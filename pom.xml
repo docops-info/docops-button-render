@@ -20,12 +20,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>docops.button-render</artifactId>
+    <artifactId>docops-button-render</artifactId>
     <groupId>io.docops</groupId>
     <version>2022.0</version>
     <packaging>jar</packaging>
 
-    <name>render</name>
+    <name>docops-button-render</name>
     <url>https://docops.io/docops-button-render/</url>
     <description>A library to render a grid of buttons.</description>
 
