@@ -1,0 +1,175 @@
+<?xml version='1.0'?>
+<!--
+  - Copyright 2020 The DocOps Consortium
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="970" height="460"
+     viewBox="0 0 990 480">
+    <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="7"
+                refX="0" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#00ee11" opacity="0.1"/>
+        </marker>
+        <marker id="arrowhead" viewBox="0 -5 10 10" refX="5" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+            <path class="cool" d="M0,-5L10,0L0,5"/>
+        </marker>
+    </defs>
+    <style>
+        .label {
+            font-size: 10px;
+            font-family: "Noto Sans", sans-serif;
+            font-weight: bold;
+            fill: #fff;
+        }
+
+        .desc {
+            font-size: 9px;
+            font-family: "Noto Sans", sans-serif;
+            font-weight: bold;
+            fill: #fff;
+        }
+
+        .desc2 {
+            font-size: 9px;
+            font-family: "Noto Sans", sans-serif;
+            font-weight: bold;
+            fill: #000;
+        }
+        .title {
+            font-size: 18px;
+            font-family: "Noto Sans", sans-serif;
+            font-weight: normal;
+            fill: #fff;
+        }
+
+        .cool {
+            fill: teal;
+            stroke: teal;
+        }
+
+        rect.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+
+        rect.card:hover {
+            opacity: 0.6;
+        }
+    </style>
+    <script>
+        var show = function (id) {
+            var elem = document.getElementById(id)
+            if (elem) {
+                elem.setAttribute("visibility", "visible");
+            }
+        };
+        var hide = function (id) {
+            var elem = document.getElementById(id)
+            if (elem) {
+                elem.setAttribute("visibility", "hidden");
+            }
+        };
+    </script>
+
+    <rect x="0" y="0" rx="5" ry="5" fill="#1E3B45" height="100%" width="100%"/>
+    <rect x="485" y="40" rx="5" ry="5" id="notes" fill="#f0ede5" height="85%" width="485" opacity="0.5"/>
+
+    <line x1="97" x2="97" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="194" x2="194" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="291" x2="291" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="388" x2="388" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="485" x2="485" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="582" x2="582" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="679" x2="679" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="776" x2="776" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="873" x2="873" y1="0" y2="460" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+
+    <line x1="0" x2="970" y1="92" y2="92" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="0" x2="970" y1="184" y2="184" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="0" x2="970" y1="276" y2="276" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="0" x2="970" y1="368" y2="368" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+
+
+
+    <text x="485" y="24" text-anchor="middle" class="title" stroke="#ffffff" stroke-width="1px">Clothing Stores sales by
+        Street Number
+    </text>
+    <rect x="97.0" y="20.0" width="40" height="111.12548842902396" fill="#43ABC9" class="card"
+          onmouseover="show('rect-0');" onmouseout="hide('rect-0');"/>
+    <text x="117.0" y="75.56274421451198" text-anchor="middle" class="label" onmouseover="show('rect-0');"
+          onmouseout="hide('rect-0');">28%
+    </text>
+    <line x1="137.0" y1="75.56274421451198" x2="187.0" y2="75.56274421451198" style="stroke-width: 2; stroke: #43ABC9;"
+          marker-end="url(#arrowhead)"/>
+    <text x="199.0" y="75.56274421451198" class="desc">
+        <tspan x="199.0" dy="3">Cherry St.</tspan>
+    </text>
+    <text x="30" y="440" visibility="hidden" id="rect-0" class="desc">
+        <tspan x="97.0" dy="0" fill="#ffffff">4810.34 1536.57</tspan>
+    </text>
+    <rect x="97.0" y="131.12548842902396" width="40" height="105.93606876004603" fill="#B5C689" class="card"
+          onmouseover="show('rect-1');show('notes');" onmouseout="hide('rect-1');hide('notes');"/>
+    <text x="117.0" y="184.093522809047" text-anchor="middle" class="label" onmouseover="show('rect-1');show('notes');"
+          onmouseout="hide('rect-1');hide('notes');">26%
+    </text>
+    <line x1="137.0" y1="184.093522809047" x2="187.0" y2="184.093522809047" style="stroke-width: 2; stroke: #B5C689;"
+          marker-end="url(#arrowhead)"/>
+    <text x="199.0" y="184.093522809047" class="desc">
+        <tspan x="199.0" dy="3">Strawberry Mall</tspan>
+    </text>
+    <text x="490" y="50" visibility="hidden" id="rect-1">
+        <tspan x="490" dy="0" class="desc2">3126.58 2019.81</tspan>
+    </text>
+    <rect x="97.0" y="237.06155718907" width="40" height="67.12215265214438" fill="#BCA136" class="card"
+          onmouseover="show('rect-2');" onmouseout="hide('rect-2');"/>
+    <text x="117.0" y="270.6226335151422" text-anchor="middle" class="label" onmouseover="show('rect-2');"
+          onmouseout="hide('rect-2');">17%
+    </text>
+    <line x1="137.0" y1="270.6226335151422" x2="187.0" y2="270.6226335151422" style="stroke-width: 2; stroke: #BCA136;"
+          marker-end="url(#arrowhead)"/>
+    <text x="199.0" y="270.6226335151422" class="desc">
+        <tspan x="199.0" dy="3">Peach St.</tspan>
+    </text>
+    <text x="30" y="440" visibility="hidden" id="rect-2" class="desc">
+        <tspan x="97.0" dy="0" fill="#ffffff">4923.48 1472.59</tspan>
+    </text>
+    <rect x="97.0" y="304.18370984121435" width="40" height="62.65907149726615" fill="#EFD469" class="card"
+          onmouseover="show('rect-3');" onmouseout="hide('rect-3');"/>
+    <text x="117.0" y="335.51324558984743" text-anchor="middle" class="label" onmouseover="show('rect-3');"
+          onmouseout="hide('rect-3');">16%
+    </text>
+    <line x1="137.0" y1="335.51324558984743" x2="187.0" y2="335.51324558984743"
+          style="stroke-width: 2; stroke: #EFD469;" marker-end="url(#arrowhead)"/>
+    <text x="199.0" y="335.51324558984743" class="desc">
+        <tspan x="199.0" dy="3">Lime Av.</tspan>
+    </text>
+    <text x="30" y="440" visibility="hidden" id="rect-3" class="desc">
+        <tspan x="97.0" dy="0" fill="#ffffff">2955.55 1390.55</tspan>
+    </text>
+    <rect x="97.0" y="366.8427813384805" width="40" height="53.157218661519536" fill="#F58B4C" class="card"
+          onmouseover="show('rect-4');" onmouseout="hide('rect-4');"/>
+    <text x="117.0" y="393.4213906692403" text-anchor="middle" class="label" onmouseover="show('rect-4');"
+          onmouseout="hide('rect-4');">13%
+    </text>
+    <line x1="137.0" y1="393.4213906692403" x2="187.0" y2="393.4213906692403" style="stroke-width: 2; stroke: #F58B4C;"
+          marker-end="url(#arrowhead)"/>
+    <text x="199.0" y="393.4213906692403" class="desc">
+        <tspan x="199.0" dy="3">Apple Rd.</tspan>
+    </text>
+    <text x="485" y="440" visibility="hidden" id="rect-4" class="desc">
+        <tspan x="97.0" dy="0" fill="#ffffff">1858.46 917.90</tspan>
+    </text>
+
+</svg>

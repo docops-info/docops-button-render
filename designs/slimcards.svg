@@ -1,0 +1,192 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+  - Copyright 2020 The DocOps Consortium
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="970" height="500"
+     viewBox="0 0 1000 500">
+    <defs>
+        <filter id="dropShadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+            <feOffset dx="5" dy="5" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.9"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <filter id="filter">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="OUTLINE"/>
+            <feComposite operator="out" in="OUTLINE" in2="SourceAlpha"/>
+        </filter>
+        <radialGradient id="myGradient">
+            <stop offset="10%" stop-color="#fbc1cc" />
+            <stop offset="50%" stop-color="#fa99b2" />
+        </radialGradient>
+        <radialGradient id="myGradient2">
+            <stop offset="10%" stop-color="#1fe4f5" />
+            <stop offset="95%" stop-color="#3fbafe" />
+        </radialGradient>
+        <radialGradient id="myGradient3">
+            <stop offset="10%" stop-color="#76b2fe" />
+            <stop offset="95%" stop-color="#b69efe" />
+        </radialGradient>
+        <radialGradient id="myGradient4">
+            <stop offset="10%" stop-color="#60efbc" />
+            <stop offset="95%" stop-color="#58d5c9" />
+        </radialGradient>
+        <radialGradient id="myGradient5">
+            <stop offset="10%" stop-color="#f588d8" />
+            <stop offset="95%" stop-color="#c0a3e5" />
+        </radialGradient>
+    </defs>
+    <style>
+        rect.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+
+        rect.card:hover {
+            opacity: 0.6;
+        }
+
+        .card {
+            filter: url(#dropShadow);
+        }
+        :root {
+            --main-bg-color: brown;
+            --card-font-family: 'Verdana', serif;
+        }
+
+        .lineHead {
+            fill: white;
+            font-family: 'Verdana', serif;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+
+        .subtitle {
+            fill: white;
+            font-family: 'Verdana', serif;
+            font-weight: normal;
+            font-size: 10px;
+        }
+
+        .author {
+            fill: black;
+            font-family: 'Verdana', serif;
+            font-weight: normal;
+            font-size: 10px;
+        }
+
+        .date {
+            fill: white;
+            font-family: 'Verdana', serif;
+            font-weight: normal;
+            font-size: 10px;
+        }
+        #tooltip {
+            background: cornsilk;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function showTooltip(evt, text) {
+            let tooltip = document.getElementById("tooltip");
+            tooltip.innerHTML = text;
+            tooltip.style.display = "block";
+            tooltip.style.left = evt.pageX + 10 + 'px';
+            tooltip.style.top = evt.pageY + 10 + 'px';
+        }
+
+        function hideTooltip() {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "none";
+        }
+    </script>
+    <g>
+    <rect x="10" y="10" fill="url(#myGradient)" width="150" height="150" rx="5" ry="5" class="card">
+        <title>Long Title to show description in html popup.</title>
+    </rect>
+    <text x="12" y="30">
+        <tspan x="14" dy="0" class="lineHead">Welcome Aboard</tspan>
+        <tspan x="14" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+        <tspan x="14" dy="16" class="author">Steve D. Roach</tspan>
+        <tspan x="95" dy="80" class="date">11/16/1971</tspan>
+    </text>
+    <rect x="170" y="10" fill="url(#myGradient2)" width="150" height="150" rx="5" ry="5" class="card">
+        <title>Another title this time shorter</title>
+    </rect>
+    <text x="182" y="30">
+        <tspan x="176" dy="0" class="lineHead">Current Work</tspan>
+        <tspan x="176" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+        <tspan x="176" dy="16" class="author">Steve D. Roach</tspan>
+        <tspan x="255" dy="80" class="date">11/16/1971</tspan>
+    </text>
+    <rect x="330" y="10" fill="url(#myGradient3)" width="150" height="150" rx="5" ry="5" class="card"/>
+    <text x="332" y="30">
+        <tspan x="334" dy="0" class="lineHead">Current Work</tspan>
+        <tspan x="334" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+        <tspan x="334" dy="16" class="author">Steve D. Roach</tspan>
+        <tspan x="415" dy="80" class="date">11/16/1971</tspan>
+    </text>
+    <rect x="490" y="10" fill="url(#myGradient4)" width="150" height="150" rx="5" ry="5"  class="card"/>
+    <text x="492" y="30">
+        <tspan x="494" dy="0" class="lineHead">Current Work</tspan>
+        <tspan x="494" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+        <tspan x="494" dy="16" class="author">Steve D. Roach</tspan>
+        <tspan x="575" dy="80" class="date">11/16/1971</tspan>
+    </text>
+    <rect x="650" y="10" fill="url(#myGradient5)" width="150" height="150" rx="5" ry="5" class="card"/>
+    <text x="652" y="30">
+        <tspan x="654" dy="0" class="lineHead">Current Work</tspan>
+        <tspan x="654" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+        <tspan x="654" dy="16" class="author">Steve D. Roach</tspan>
+        <tspan x="735" dy="80" class="date">11/16/1971</tspan>
+    </text>
+    <rect x="810" y="10" fill="url(#myGradient)" width="150" height="150" rx="5" ry="5"  class="card"/>
+    <text x="812" y="30">
+        <tspan x="814" dy="0" class="lineHead">Current Work</tspan>
+        <tspan x="814" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+        <tspan x="814" dy="16" class="author">Steve D. Roach</tspan>
+        <tspan x="895" dy="80" class="date">11/16/1971</tspan>
+    </text>
+    </g>
+    <g>
+        <rect x="10" y="170" fill="url(#myGradient2)" width="150" height="150" rx="5" ry="5" class="card">
+            <title>Long Title to show description in html popup.</title>
+        </rect>
+        <text x="12" y="200">
+            <tspan x="14" dy="0" class="lineHead">Welcome Aboard</tspan>
+            <tspan x="14" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+            <tspan x="14" dy="16" class="author">Steve D. Roach</tspan>
+            <tspan x="95" dy="80" class="date">11/16/1971</tspan>
+        </text>
+        <rect x="170" y="170" fill="url(#myGradient3)" width="150" height="150" rx="5" ry="5" class="card">
+            <title>Another title this time shorter</title>
+        </rect>
+        <text x="182" y="200">
+            <tspan x="176" dy="0" class="lineHead">Current Work</tspan>
+            <tspan x="176" dy="16" class="subtitle">OnGoing Initiatives</tspan>
+            <tspan x="176" dy="16" class="author">Steve D. Roach</tspan>
+            <tspan x="255" dy="80" class="date">11/16/1971</tspan>
+        </text>
+    </g>
+</svg>

@@ -1,0 +1,157 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+  - Copyright 2020 The DocOps Consortium
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="970" height="195"
+     viewBox="0 0 1000 200">
+    <defs>
+        <filter id="dropShadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+            <feOffset dx="5" dy="5" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.9"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <filter id="filter">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="OUTLINE"/>
+            <feComposite operator="out" in="OUTLINE" in2="SourceAlpha"/>
+        </filter>
+        <radialGradient id="myGradient">
+            <stop offset="10%" stop-color="#fbc1cc"/>
+            <stop offset="50%" stop-color="#fa99b2"/>
+        </radialGradient>
+        <radialGradient id="myGradient2">
+            <stop offset="10%" stop-color="#1fe4f5"/>
+            <stop offset="95%" stop-color="#3fbafe"/>
+        </radialGradient>
+        <radialGradient id="myGradient3">
+            <stop offset="10%" stop-color="#76b2fe"/>
+            <stop offset="95%" stop-color="#b69efe"/>
+        </radialGradient>
+        <radialGradient id="myGradient4">
+            <stop offset="10%" stop-color="#60efbc"/>
+            <stop offset="95%" stop-color="#58d5c9"/>
+        </radialGradient>
+        <radialGradient id="myGradient5">
+            <stop offset="10%" stop-color="#f588d8"/>
+            <stop offset="95%" stop-color="#c0a3e5"/>
+        </radialGradient>
+        <linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="162.375" y1="40.053" x2="162.375" y2="9.99">
+            <stop offset="0" stop-color="#ff857a" stop-opacity="1"/>
+            <stop offset="1" stop-color="#f0a2b7" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-1" gradientUnits="userSpaceOnUse" x1="471.482" y1="39.988" x2="471.482" y2="9.983">
+            <stop offset="0" stop-color="#ffa801" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ffcc01" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-2" gradientUnits="userSpaceOnUse" x1="781.482" y1="39.988" x2="781.482" y2="9.983">
+            <stop offset="0" stop-color="#cb43f6" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ec4cbd" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-3" gradientUnits="userSpaceOnUse" x1="162.375" y1="80.053" x2="162.375" y2="49.99">
+            <stop offset="0" stop-color="#ff857a" stop-opacity="1"/>
+            <stop offset="1" stop-color="#f0a2b7" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-4" gradientUnits="userSpaceOnUse" x1="471.482" y1="79.988" x2="471.482"
+                        y2="49.983">
+            <stop offset="0" stop-color="#ffa801" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ffcc01" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-5" gradientUnits="userSpaceOnUse" x1="781.482" y1="79.988" x2="781.482" y2="49.983">
+            <stop offset="0" stop-color="#cb43f6" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ec4cbd" stop-opacity="1"/>
+        </linearGradient>
+    </defs>
+    <style>
+        rect.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+
+        rect.card:hover {
+            opacity: 0.6;
+        }
+
+        rect.legend {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+
+        rect.legend:hover {
+            opacity: 0.6;
+        }
+        .subtitle {
+            font-family: 'Verdana', serif;
+            font-weight: normal;
+            font-size: 10px;
+        }
+
+        .legendText {
+            font-family: 'Verdana', serif;
+            font-weight: normal;
+            font-size: 10px;
+
+
+        }
+    </style>
+    <g>
+        <rect x="10" y="10" fill="url(#linear-gradient-4)" width="300" height="30" rx="5" ry="5" class="card">
+            <title>Long Title to show description in html popup.</title>
+        </rect>
+        <text x="160" y="30" class="subtitle" text-anchor="middle" style="fill: white;">11/16/1971</text>
+        <rect x="320" y="10" fill="url(#linear-gradient-1)" width="300" height="30" rx="5" ry="5" class="card">
+            <title>Another title this time shorter</title>
+        </rect>
+        <text x="460" y="30" text-anchor="middle" class="subtitle">Current Work</text>
+
+        <rect x="630" y="10" fill="url(#linear-gradient-5)" width="300" height="30" rx="5" ry="5" class="card"/>
+        <text x="780" y="30" text-anchor="middle" class="subtitle">Other Working Item long lab erl</text>
+    </g>
+    <g>
+        <rect x="10" y="50" fill="url(#linear-gradient)" width="300" height="30" rx="5" ry="5" class="card">
+            <title>Long Title to show description in html popup.</title>
+        </rect>
+        <text x="160" y="70" text-anchor="middle" class="subtitle">11/16/1971</text>
+        <rect x="320" y="50" fill="url(#linear-gradient-2)" width="300" height="30" rx="5" ry="5" class="card">
+            <title>Another title this time shorter</title>
+        </rect>
+        <text x="460" y="70" text-anchor="middle" class="subtitle">Current Work</text>
+
+        <rect x="630" y="50" fill="url(#linear-gradient-3)" width="300" height="30" rx="5" ry="5" class="card"/>
+        <text x="780" y="70" text-anchor="middle" class="subtitle">Other Working Item long lab erl</text>
+    </g>
+    <svg>
+        <rect id="MaroonRect" x="10" y="120" width="10" height="10" style="fill:url(#linear-gradient-4);" class="legend"/>
+        <text x="30" y="128" class="legendText">Option 1</text>
+        <rect id="MaroonRect2" x="10" y="140" width="10" height="10" style="fill:url(#linear-gradient-1)" class="legend"/>
+        <text x="30" y="148" class="legendText">Option 2</text>
+        <rect id="MaroonRect2" x="10" y="160" width="10" height="10" style="fill:url(#linear-gradient-5)" class="legend"/>
+        <text x="30" y="168" class="legendText">Option 3</text>
+    </svg>
+    <svg>
+        <rect id="MaroonRect" x="100" y="120" width="10" height="10" style="fill:url(#linear-gradient)" class="legend"/>
+        <text x="120" y="128" class="legendText">Option 4</text>
+        <rect id="MaroonRect2" x="100" y="140" width="10" height="10" style="fill:url(#linear-gradient-2)" class="legend"/>
+        <text x="120" y="148" class="legendText">Option 5</text>
+        <rect id="MaroonRect2" x="100" y="160" width="10" height="10" style="fill:url(#linear-gradient-3)" class="legend"/>
+        <text x="120" y="168" class="legendText">Option 6</text>
+    </svg>
+    <!--<path d="M 8 115 H 180 V 180 H 8 Z" fill="transparent" stroke="black"/>-->
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+  - Copyright 2020 The DocOps Consortium
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="970" height="550"
+     viewBox="0 0 1000 550">
+    <filter id="dropShadow" height="130%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+        <feOffset dx="5" dy="5" result="offsetblur"/>
+        <feComponentTransfer>
+            <feFuncA type="linear" slope="0.9"/>
+        </feComponentTransfer>
+        <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+    </filter>
+    <style>
+        .title {
+            font: bold 36px "Noto Sans",sans-serif;
+            fill: #ff0000;
+        }
+        .content {
+            font: bold 14px "Noto Sans",sans-serif;
+        }
+    </style>
+    <rect id="myRect" x="10" y="0" width="970" height="100%" rx="5" ry="5"  fill="#fffefa"  class="card" filter="url(#dropShadow)"/>
+    <text x="485" y="40" class="title" text-anchor="middle" >ADR Parse Failure</text>
+    <line x1="10" y1="45" x2="970" y2="45" stroke="#F0F1F4" />
+    <text y="60">
+        <tspan x="20" dy="14" class="content">Begin</tspan>
+    </text>
+</svg>

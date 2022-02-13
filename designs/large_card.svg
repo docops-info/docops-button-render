@@ -1,0 +1,108 @@
+<!--
+  - Copyright 2020 The DocOps Consortium
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg viewBox="0 0 1300 600" width="1280" height="600"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     preserveAspectRatio="none">
+    <style>
+        rect.card {
+            pointer-events: bounding-box;
+            opacity: 01;
+        }
+        rect.card:hover {
+            opacity: 0.6;
+        }
+        .headline {
+            font: bold 18px Verdana, Helvetica, Arial, sans-serif;
+            fill: #46494d;
+        }
+        .link {
+            font: bold 12px Verdana, Helvetica, Arial, sans-serif;
+            fill: #335D79;
+        }
+        .description {
+            font: normal 12px Verdana, Helvetica, Arial, sans-serif;
+        }
+    </style>
+    <defs>
+        <filter id="dropShadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+            <feOffset dx="5" dy="5" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.9"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <rect id="myRect" x="0" y="0" width="300" height="400" rx="5" ry="5"  fill="#fffefa"  class="card" filter="url(#dropShadow)"/>
+        <rect id="rectBar" x="0" y="0" width="300" rx="5" ry="5" height="191" class="card"/>
+    </defs>
+    <g>
+        <svg>
+            <a href="https://www.google.com" target="_blank">
+            <use x="10" y="10" xlink:href="#myRect" />
+            <!--<rect x="10" y="10" width="300" height="400" rx="5" ry="5" fill="#fffefa" class="card" filter="url(#dropShadow)"/>-->
+            <use x="10" y="10" xlink:href="#rectBar" fill="#5F4B8B"/>
+            <text x="20" y="230" class="headline">Nuevo</text>
+            <text x="20" y="250" class="description">
+                <tspan class="link" text-decoration="underline"><a href="https://www.google.com" fill="#335D79" target="_blank">Google Home</a></tspan>
+                <tspan x="20" dy="18">
+                    You can put really long lines of text here and
+                </tspan>
+                <tspan x="20" dy="18">
+                    they will wrap as you would hope they would.
+                </tspan>
+                <tspan x="20" dy="18">
+                    The problem is that Chrome doesn't support
+                </tspan>
+                <tspan x="20" dy="18">
+                    &lt;ul&gt;&lt;li&gt; tags in side the foreignObject.
+                </tspan>
+            </text>
+            </a>
+        </svg>
+
+        <use x="320" y="10" xlink:href="#myRect"/>
+        <!--<rect x="320" y="10" width="300" height="400" fill="#fffefa" class="card" filter="url(#dropShadow)"/>-->
+        <use x="320" y="10" xlink:href="#rectBar" fill="#1fe4f5"/>
+        <text x="330" y="230" class="headline">Classic</text>
+        <text x="330" y="248" class="description">
+            <tspan class="link" text-decoration="underline"><a href="https://www.google.com" fill="#335D79" target="_blank">Google Home</a></tspan>
+            <tspan x="330" dy="18">
+                You can put really long lines of text here and
+            </tspan>
+            <tspan x="330" dy="18">
+                they will wrap as you would hope they would.
+            </tspan>
+            <tspan x="330" dy="18">
+                The problem is that Chrome doesn't support
+            </tspan>
+            <tspan x="330" dy="18">
+                &lt;ul&gt;&lt;li&gt; tags in side the foreignObject.
+            </tspan>
+        </text>
+
+        <use x="640" y="10" xlink:href="#myRect"/>
+       <!-- <rect x="640" y="10" width="300" height="400" fill="#fffefa" class="card" filter="url(#dropShadow)"/>-->
+        <rect x="640" y="10" width="300" rx="5" ry="5" height="191" fill="#fbc1cc" class="card"/>
+
+        <rect x="960" y="10" width="300" height="400" fill="#fffefa" class="card" filter="url(#dropShadow)"/>
+
+    </g>
+</svg>

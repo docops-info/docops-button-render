@@ -1,0 +1,137 @@
+<?xml version='1.0'?>
+<!--
+  - Copyright 2020 The DocOps Consortium
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="340"
+viewBox="0 0 320 340">
+    <style>
+        .label {
+            font-size: 8px;
+            font-family: 'Verdana', serif;
+            font-weight: normal;
+            fill: white;
+            stroke-width: 0.9;
+        }
+        rect.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+        .cool {
+            fill: teal;
+            stroke: teal;
+        }
+        rect.card:hover {
+            opacity: 0.6;
+        }
+    </style>
+
+    <defs>
+        <marker id="arrow=" markerWidth="10" markerHeight="7"
+                refX="0" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#00ee11" opacity="0.1"/>
+        </marker>
+        <marker id="arrowhead" viewBox="0 -5 10 10" refX="5" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+            <path class="cool" d="M0,-5L10,0L0,5"/>
+        </marker>
+    </defs>
+
+    <script>
+        var show = function(id) {
+            var elem = document.getElementById(id)
+            if(elem) {
+                elem.setAttribute("visibility", "visible");
+            }
+        };
+        var hide = function (id) {
+            var elem = document.getElementById(id)
+            if(elem) {
+                elem.setAttribute("visibility", "hidden");
+            }
+        };
+    </script>
+
+    <rect x="0" y="0" rx="5" ry="5" fill="#C9C1F9" height="100%" width="100%"/>
+
+    <line x1="160" x2="160" y1="0" y2="340" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="80" x2="80" y1="0" y2="340" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="240" x2="240" y1="0" y2="340" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="0" x2="320" y1="85" y2="85" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="0" x2="320" y1="170" y2="170" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+    <line x1="0" x2="320" y1="255" y2="255" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
+
+    <rect x="10" y="10" width="40" height="39" fill="#70AE58" class="card" onmouseover="show('first');" onmouseout="hide('first');"/>
+    <rect x="10" y="49" width="40" height="90" fill="#B0CEA8" class="card" onmouseover="show('second');" onmouseout="hide('second');"/>
+    <rect x="10" y="139" width="40" height="8" fill="#DDE8D9" class="card"/>
+    <rect x="10" y="147" width="40" height="33" fill="#E4DfE7" class="card"/>
+    <rect x="10" y="180" width="40" height="57" fill="#C5BBCB" class="card"/>
+    <rect x="10" y="237" width="40" height="30" fill="#9D89AC" class="card"/>
+    <rect x="10" y="267" width="40" height="33" fill="#661C80" class="card"/>
+
+    <text x="30" y="29.5" text-anchor="middle" class="label">13%</text>
+    <line x1="50" y1="28" x2="100" y2="28" style="stroke-width: 2; stroke: #70AE58;" marker-end="url(#arrowhead)"/>
+    <text x="112" y="18" class="label">
+        <tspan x="112" dy="0">Optimizing</tspan>
+        <tspan x="112" dy="12">cloud</tspan>
+        <tspan x="112" dy="12">Performance</tspan>
+    </text>
+
+    <text x="30" y="94" text-anchor="middle" class="label">30%</text>
+    <line x1="50" y1="90" x2="100" y2="90" style="stroke-width: 2; stroke: #B0CEA8;" marker-end="url(#arrowhead)"/>
+    <text x="112" y="94" class="label">
+        <tspan x="112" dy="0">Managing Costs</tspan>
+    </text>
+
+    <text x="30" y="146" text-anchor="middle" class="label">6%</text>
+    <line x1="50" y1="143" x2="100" y2="143" style="stroke-width: 2; stroke: #DDE8D9;" marker-end="url(#arrowhead)"/>
+    <text x="112" y="140" class="label">
+        <tspan x="112" dy="0">Migrating to</tspan>
+        <tspan x="112" dy="12">a cloud strategy</tspan>
+    </text>
+
+    <text x="30" y="163" text-anchor="middle" class="label">11%</text>
+    <line x1="50" y1="163" x2="100" y2="163" style="stroke-width: 2; stroke: #E4DfE7;" marker-end="url(#arrowhead)"/>
+    <text x="112" y="163" class="label" id="hideme">
+        <tspan x="112" dy="0">Migrating workloads</tspan>
+        <tspan x="112" dy="12">to a public cloud</tspan>
+    </text>
+
+    <text x="30" y="203" text-anchor="middle" class="label">19%</text>
+    <line x1="50" y1="203" x2="100" y2="203" style="stroke-width: 2; stroke: #C5BBCB;" marker-end="url(#arrowhead)"/>
+    <text x="112" y="203" class="label">
+        <tspan x="112" dy="0">Modernizing applications</tspan>
+        <tspan x="112" dy="12">using public cloud containers</tspan>
+    </text>
+
+    <text x="30" y="253" text-anchor="middle" class="label" fill="#fff">10%</text>
+    <line x1="50" y1="252" x2="100" y2="252" style="stroke-width: 2; stroke: #9D89AC;" marker-end="url(#arrowhead)"/>
+    <text x="112" y="252" class="label">
+        <tspan x="112" dy="0">Automating compliance and</tspan>
+        <tspan x="112" dy="12">governance in a public cloud</tspan>
+    </text>
+
+    <text x="30" y="283" text-anchor="middle" class="label" fill="#fff">11%</text>
+    <line x1="50" y1="283" x2="100" y2="283" style="stroke-width: 2; stroke: #661C80;" marker-end="url(#arrowhead)"/>
+    <text x="112" y="283" class="label">
+        <tspan x="112" dy="0">Other</tspan>
+    </text>
+
+    <text x="30" y="320" visibility="hidden" id="first">
+        <tspan dy="0">This is the description for the first bar</tspan>
+    </text>
+    <text x="30" y="320" visibility="hidden" id="second">
+        <tspan dy="0" fill="red">This is the description for the second bar</tspan>
+    </text>
+</svg>
