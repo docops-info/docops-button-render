@@ -99,7 +99,7 @@
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/docops-info/render/issues</url>
+        <url>https://github.com/docops-info/docops-button-render/issues</url>
     </issueManagement>
 
     <build>
