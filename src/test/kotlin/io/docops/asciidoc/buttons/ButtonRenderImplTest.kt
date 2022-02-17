@@ -139,7 +139,6 @@ class ButtonRenderImplTest {
         theme.groupBy= Grouping.TYPE
         theme.columns = 4
         theme.groupOrder = GroupingOrder.ASCENDING
-        theme.isPDF = true
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
