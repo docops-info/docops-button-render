@@ -21,6 +21,23 @@ import java.util.*
 class StringFunctions {
 }
 
+fun String.escapeXml(): String {
+    val sb = StringBuilder()
+    for (element in this) {
+        when (val c: Char = element) {
+            '<' -> sb.append("&lt;")
+            '>' -> sb.append("&gt;")
+            '\"' -> sb.append("&quot;")
+            '&' -> sb.append("&amp;")
+            '\'' -> sb.append("&apos;")
+            else -> if (c.code > 0x7e) {
+                sb.append("&#" + c.code + ";")
+            } else sb.append(c)
+        }
+    }
+    return sb.toString()
+}
+
 fun addLinebreaks(input: String, maxLineLength: Int): MutableList<StringBuilder> {
     val list = mutableListOf<StringBuilder>()
 
@@ -41,4 +58,8 @@ fun addLinebreaks(input: String, maxLineLength: Int): MutableList<StringBuilder>
         list.add(output)
     }
     return list
+}
+
+fun String.makeLines(): List<String> {
+    return this.split(" ")
 }

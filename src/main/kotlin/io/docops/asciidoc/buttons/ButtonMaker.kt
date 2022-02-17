@@ -110,7 +110,7 @@ abstract class ButtonMaker {
             <stop offset="0" stop-color="#cb43f6" stop-opacity="1"/>
             <stop offset="1" stop-color="#ec4cbd" stop-opacity="1"/>
         </linearGradient>
-        <circle id="myCircle" cx="0" cy="0"  r="30" class="card"/>
+        <circle id="myCircle" cx="0" cy="0"  r="60" class="card"/>
         <rect id="legendRect" x="0" y="0" width="10" height="10"  class="legend"/>
         <rect id="mySlimRect" x="0" y="0" width="150" height="150" rx="5" ry="5" class="card"/>
         <rect id="myLargeRect" fill="#fffefa" x="0" y="0" width="300" height="400" rx="5" ry="5" class="card" filter="url(#dropShadow)">

@@ -17,12 +17,13 @@
 package io.docops.asciidoc.buttons
 
 import io.docops.asciidoc.buttons.models.Button
-import io.docops.asciidoc.buttons.models.escapeXml
 import io.docops.asciidoc.buttons.theme.Theme
+import io.docops.asciidoc.utils.escapeXml
+import io.docops.asciidoc.utils.makeLines
 
 class RoundButtonItemRenderer : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
-        val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 60, defaultHeight = 75, widthFactor = 75, theme = theme))
+        val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 130, defaultHeight = 130, widthFactor = 115, theme = theme))
         sb.append(makeDefs(theme))
         sb.append(makeStyles())
         sb.append(drawButtons(buttons,theme))
@@ -43,16 +44,16 @@ class RoundButtonItemRenderer : ButtonMaker() {
 
     private fun drawButtonRow(rowCount: Int, buttons: MutableList<Button>, theme: Theme): String {
         val sb = StringBuilder("<g>")
-        var recXpos = 35
-        var yPos = 30
+        var recXpos = 80
+        var yPos = 65
         if(rowCount>0) {
-            yPos = rowCount * 75 + 30
+            yPos = rowCount * 130 + 65
         }
-        var textXPos = 35
+        var textXPos = 55
         buttons.forEachIndexed { index, button ->
             if(index > 0) {
-                recXpos += 75
-                textXPos += 75
+                recXpos += 125
+                textXPos += 115
             }
             var win = "_blank"
             if(!theme.newWin) {
@@ -68,7 +69,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 )
                 sb.append(
                     """
-                <text x="$textXPos" y="${yPos + 5}" text-anchor="middle" class="label" fill="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
+                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="label" fill="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
             """.trimIndent()
                 )
             } else {
@@ -82,12 +83,29 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 """.trimIndent()
                 )
                 sb.append(
-                    """
-                <text x="$textXPos" y="${yPos + 5}" text-anchor="middle" ><a xlink:href="${button.link}" target="$win" style="fill: ${
+                    """ 
+                <a xlink:href="${button.link}" target="$win" style="fill: ${
                         theme.buttonTextColor(
                             button
                         )
-                    }" class="label">${button.title.escapeXml()}</a></text>
+                    }" class="label">
+                    <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" >""")
+                val lines = button.title.makeLines()
+                var dy = 0
+                if(lines.size>2) {
+                    dy = -10 * (lines.size - 2)
+                }
+                lines.forEachIndexed {i, str ->
+                    if(i>0) {
+                        dy = 12
+                    }
+                    sb.append(
+                        """<tspan x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        )
+                }
+                sb.append("""
+                    </text>
+                    </a>
             """.trimIndent()
                 )
             }

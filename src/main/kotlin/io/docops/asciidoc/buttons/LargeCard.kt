@@ -17,9 +17,9 @@
 package io.docops.asciidoc.buttons
 
 import io.docops.asciidoc.buttons.models.Button
-import io.docops.asciidoc.buttons.models.escapeXml
 import io.docops.asciidoc.buttons.theme.Theme
 import io.docops.asciidoc.utils.addLinebreaks
+import io.docops.asciidoc.utils.escapeXml
 
 class LargeCard : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {

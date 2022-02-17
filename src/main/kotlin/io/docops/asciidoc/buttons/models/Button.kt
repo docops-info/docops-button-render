@@ -38,19 +38,3 @@ data class Button(
 }
 data class ButtonImage(val base64Str: String, val type: String = "image/png")
 
-fun String.escapeXml(): String {
-    val sb = StringBuilder()
-    for (element in this) {
-        when (val c: Char = element) {
-            '<' -> sb.append("&lt;")
-            '>' -> sb.append("&gt;")
-            '\"' -> sb.append("&quot;")
-            '&' -> sb.append("&amp;")
-            '\'' -> sb.append("&apos;")
-            else -> if (c.code > 0x7e) {
-                sb.append("&#" + c.code + ";")
-            } else sb.append(c)
-        }
-    }
-    return sb.toString()
-}
