@@ -69,9 +69,21 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 )
                 sb.append(
                     """
-                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="label" fill="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
-            """.trimIndent()
-                )
+                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="label" fill="${theme.buttonTextColor(button)}">""")
+                val lines = button.title.makeLines()
+                var dy = 0
+                if(lines.size>2) {
+                    dy = -10 * (lines.size - 2)
+                }
+                lines.forEachIndexed {i, str ->
+                    if(i>0) {
+                        dy = 12
+                    }
+                    sb.append(
+                        """<tspan x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                    )
+                }
+                sb.append("""</text>""")
             } else {
                 sb.append(
                     """
