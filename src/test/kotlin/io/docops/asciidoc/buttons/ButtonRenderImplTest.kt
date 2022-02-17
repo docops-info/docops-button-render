@@ -156,7 +156,7 @@ class ButtonRenderImplTest {
             authors = mutableListOf("Steve"),
             type = "Awesome",
             date = "11/16/2021",
-            foregroundColor = null,
+            foregroundColor = "black",
             backgroundColor = null
         )
         return listOf(
@@ -170,7 +170,7 @@ class ButtonRenderImplTest {
             Button(
                 title = "Google", link = "https://google.com",
                 description = "description trying & < >. Bug: if a word in the input is longer than maxLineLength it will be appended to the current line instead of on a too-long line of its own. I assume your line length is something like 80 or 120 characters, in which case this is unlikely to be a problem.", authors = mutableListOf("Steve"), type = "Green",
-                date = "11/16/2021", foregroundColor = "white", backgroundColor = "red"
+                date = "11/16/2021", foregroundColor = "black", backgroundColor = "red"
             ),
             Button(
                 title = "Maryland's Crab & Snack Shop",

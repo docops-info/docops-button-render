@@ -30,11 +30,17 @@ class StackedBarMaker(val pdf: Boolean = false) {
     )
 
     var colors = mutableListOf<String>()
-    var colorRange = mapOf(
+    /*var colorRange = mapOf(
         1 to listOf("#093145", "#107896", "#829356", "#0C374D", "#1287A8"),
         2 to listOf("#93A661", "#C2571A", "#9A2617", "#D3B53D", "#DA621E", "#AD2A1A"),
         3 to listOf("#EBC944", "#F26D21", "#C02F1D", "#0D3D56", "#1496BB", "#A3B86C", "#3C6478"),
         4 to listOf("#43ABC9", "#B5C689", "#BCA136", "#EFD469", "#F58B4C", "#CD594A")
+    )*/
+    var colorRange = mapOf(
+        1 to listOf("#deaddf","#e8e08e","#e7d2ae","#97dfd2","#9efdc1","#f3e76f","#a7cbda","#ef8ce3","#6ed7ed","#d9b8a2","#e9ce86","#dac588","#fae587","#56f1e2","#8fbeef","#d8b5e3","#cba2f8","#cf7bf3","#ead471","#d3e58f"),
+        2 to listOf("#b9deae","#c8bbe5","#8baeea","#65cef4","#d7f640","#ddfc65","#ece2a7","#f1a9b2","#abc2f0","#ed9ecb","#f588d0","#f1d692","#ec8af0","#fc64f3","#7ecbe6","#78e9c9","#61f3fc","#a197e7","#a9dcbd","#a7ef7d"),
+        3 to listOf("#ecc4b9","#e2c5c3","#e69cf0","#eab2bc","#b7b1e0","#cff24e","#cfe8c1","#8cd6f4","#e9aecb","#a7d3be","#ed8bc9","#69d5eb","#f3a0c4","#f4c99f","#96b6fd","#f356ec","#aec0ec","#aac7e5","#9291fa","#aff8b5"),
+        4 to listOf("#efd17b","#7fd4d7","#dd9ad6","#fbdb80","#e2d1ad","#e0e878","#e7b2c5","#e579cb","#e9b392","#e1b0ce","#c5e885","#48d6f6","#e0b4e3","#bcfc7a","#db78dc","#b6f3c3","#d397c7","#f8a9aa","#72a7fb","#81cdd8"),
     )
 
 
@@ -55,7 +61,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
         val x = width * 0.10
         sb.append(
             """
-               <rect x="0" y="0" rx="5" ry="5" fill="#1E3B45" height="100%" width="100%"/>
+               <rect x="0" y="0" rx="5" ry="5" fill="#444444" height="100%" width="100%"/>
                <text x="${width / 2}" y="24" text-anchor="middle" class="title" stroke="#ffffff" stroke-width="1px">$title</text>
             """.trimIndent()
         )
