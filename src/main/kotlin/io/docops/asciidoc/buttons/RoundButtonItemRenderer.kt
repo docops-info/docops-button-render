@@ -23,7 +23,7 @@ import io.docops.asciidoc.utils.makeLines
 
 class RoundButtonItemRenderer : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
-        val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 130, defaultHeight = 130, widthFactor = 115, theme = theme))
+        val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 130, defaultHeight = 130, widthFactor = 125, theme = theme))
         sb.append(makeDefs(theme))
         sb.append(makeStyles())
         sb.append(drawButtons(buttons,theme))
