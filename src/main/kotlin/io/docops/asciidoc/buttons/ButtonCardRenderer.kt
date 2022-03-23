@@ -22,7 +22,7 @@ import io.docops.asciidoc.utils.escapeXml
 
 class ButtonCardRenderer : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
-        val widthFactor = 300
+        val widthFactor = 305
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 40, defaultHeight = 60, widthFactor = widthFactor, theme = theme))
         sb.append(makeDefs(theme))
         sb.append(makeStyles())

@@ -25,7 +25,27 @@ class Theme {
     }
     var columns = 3
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
-    var colorMap = listOf("url(#linear-gradient-0)", "url(#linear-gradient-1)", "url(#linear-gradient-2)", "url(#linear-gradient-3)", "url(#linear-gradient-4)", "url(#linear-gradient-5)")
+    var colorMap = listOf("#c8dfcc",
+            "#b2a2eb",
+            "#9bf6da",
+            "#eea1d3",
+            "#eccfa1",
+            "#a3e6d4",
+            "#fbb394",
+            "#d5d2b6",
+            "#eedbbf",
+            "#dce5b7",
+            "#b0f6bf",
+            "#f0abb7",
+            "#a7b5f5",
+            "#c7a0f9",
+            "#d4d4b0",
+            "#e1bdbc",
+            "#accdec",
+            "#b5e4dd",
+            "#a1fb88",
+            "#eefab4")
+    //var colorMap = listOf("url(#linear-gradient-0)", "url(#linear-gradient-1)", "url(#linear-gradient-2)", "url(#linear-gradient-3)", "url(#linear-gradient-4)", "url(#linear-gradient-5)")
     var groupBy = Grouping.DATE
     var groupOrder = GroupingOrder.ASCENDING
     var fontWeight = "normal"
@@ -67,12 +87,52 @@ class Theme {
 
 val SlimCardsTheme = theme {
     //colorMap = listOf("#fbc1cc", "#fa99b2", "#1fe4f5", "#3fbafe", "#76b2fe", "#b69efe", "#60efbc", "#58d5c9", "#f588d8", "#c0a3e5")
+    this.colorMap = listOf("#c8dfcc",
+        "#b2a2eb",
+        "#9bf6da",
+        "#eea1d3",
+        "#eccfa1",
+        "#a3e6d4",
+        "#fbb394",
+        "#d5d2b6",
+        "#eedbbf",
+        "#dce5b7",
+        "#b0f6bf",
+        "#f0abb7",
+        "#a7b5f5",
+        "#c7a0f9",
+        "#d4d4b0",
+        "#e1bdbc",
+        "#accdec",
+        "#b5e4dd",
+        "#a1fb88",
+        "#eefab4")
     this typeIs "SLIM_CARD"
     groupBy= Grouping.TYPE
     groupOrder = GroupingOrder.ASCENDING
     columns = 4
 }
 val LargeCards = theme {
+    var colorMap = listOf("#c8dfcc",
+        "#b2a2eb",
+        "#9bf6da",
+        "#eea1d3",
+        "#eccfa1",
+        "#a3e6d4",
+        "#fbb394",
+        "#d5d2b6",
+        "#eedbbf",
+        "#dce5b7",
+        "#b0f6bf",
+        "#f0abb7",
+        "#a7b5f5",
+        "#c7a0f9",
+        "#d4d4b0",
+        "#e1bdbc",
+        "#accdec",
+        "#b5e4dd",
+        "#a1fb88",
+        "#eefab4")
     this typeIs "LARGE_CARD"
 }
 

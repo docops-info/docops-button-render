@@ -27,7 +27,7 @@ class LargeCard : ButtonMaker() {
             buttons = buttons,
             heightFactor = 410,
             defaultHeight = 500,
-            widthFactor = 300,
+            widthFactor = 310,
             theme = theme
         ))
         sb.append(makeDefs(theme))

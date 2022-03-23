@@ -94,12 +94,26 @@ internal class ButtonsKtTest {
                     weight = FontWeight.bold
                 }
                 colorMap {
-                    color("#1488CC")
-                    color("#00467F")
-                    color("#076585")
-                    color("#BBD2C5")
-                    color("#9796f0")
-                    color("#B79891")
+                    color("#c8dfcc")
+                    color("#b2a2eb")
+                    color("#9bf6da")
+                    color("#eea1d3")
+                    color("#eccfa1")
+                    color("#a3e6d4")
+                    color("#fbb394")
+                    color("#d5d2b6")
+                    color("#eedbbf")
+                    color("#dce5b7")
+                    color("#b0f6bf")
+                    color("#f0abb7")
+                    color("#a7b5f5")
+                    color("#c7a0f9")
+                    color("#d4d4b0")
+                    color("#e1bdbc")
+                    color("#accdec")
+                    color("#b5e4dd")
+                    color("#a1fb88")
+                    color("#eefab4")
                 }
 
             }
@@ -278,12 +292,26 @@ fun buttonData (): Panels {
                 weight = FontWeight.bold
             }
             colorMap {
-                gradient("#1488CC", "#2B32B2")
-                gradient("#00467F", "#A5CC82")
-                gradient("#076585", "#ffffff")
-                gradient("#BBD2C5", "#536976")
-                gradient("#9796f0", "#fbc7d4")
-                gradient("#B79891", "#94716B")
+                color("#c8dfcc")
+                color("#b2a2eb")
+                color("#9bf6da")
+                color("#eea1d3")
+                color("#eccfa1")
+                color("#a3e6d4")
+                color("#fbb394")
+                color("#d5d2b6")
+                color("#eedbbf")
+                color("#dce5b7")
+                color("#b0f6bf")
+                color("#f0abb7")
+                color("#a7b5f5")
+                color("#c7a0f9")
+                color("#d4d4b0")
+                color("#e1bdbc")
+                color("#accdec")
+                color("#b5e4dd")
+                color("#a1fb88")
+                color("#eefab4")
             }
 
         }

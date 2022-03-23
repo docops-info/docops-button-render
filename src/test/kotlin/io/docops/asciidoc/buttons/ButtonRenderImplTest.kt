@@ -16,8 +16,10 @@
 
 package io.docops.asciidoc.buttons
 
+import io.docops.asciidoc.buttons.dsl.panels
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
+import io.docops.asciidoc.buttons.service.PanelService
 import io.docops.asciidoc.buttons.theme.Theme
 import io.docops.asciidoc.buttons.theme.Grouping
 import io.docops.asciidoc.buttons.theme.GroupingOrder
@@ -148,6 +150,47 @@ class ButtonRenderImplTest {
         val f = File("out/round.svg")
         f.writeBytes(svg.toByteArray())
     }
+    @Test
+    fun drawRoundFromDoc () {
+        val d = panels {
+            theme {
+                colorMap{
+                    color("#ff6385")
+                    color("#36a3eb")
+                    color("#9966ff")
+                    color("#ffcf56")
+                    color("#4bc0c0")
+                    color("#FDCBF1")
+                }
+                legendOn = true
+            }
+            round {
+                link = "https://www.google.com"
+                label = "Google"
+            }
+            round {
+                link = "https://www.apple.com"
+                label = "Apple"
+            }
+            round {
+                link = "https://www.microsoft.com"
+                label = "Microsoft"
+            }
+            round {
+                link = "https://www.amazon.com"
+                label = "Amazon"
+            }
+            round {
+                link = "https://www.netflix.com"
+                label = "Netflix"
+            }
+        }
+        val p = PanelService()
+        val svg =  p.fromPanelToSvg(d)
+        val f = File("out/round2.svg")
+        f.writeBytes(svg.toByteArray())
+    }
+
     private fun buttons(): List<Button> {
         val button = Button(
             title = "title",

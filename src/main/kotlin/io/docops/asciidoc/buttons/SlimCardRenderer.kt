@@ -23,7 +23,7 @@ import io.docops.asciidoc.utils.escapeXml
 
 class SlimCardRenderer : ButtonMaker() {
     override  fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
-        val sb = StringBuilder(makeSvgHead(buttons, 170, 250, 150, theme))
+        val sb = StringBuilder(makeSvgHead(buttons, 170, 250, 155, theme))
         sb.append(makeDefs(theme))
         sb.append(makeStyles())
         sb.append(drawButtons(buttons,theme))

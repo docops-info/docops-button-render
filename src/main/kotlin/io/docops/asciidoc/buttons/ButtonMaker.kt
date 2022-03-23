@@ -64,7 +64,7 @@ abstract class ButtonMaker {
         return """<?xml version="1.0" standalone="no"?>
                 <svg xmlns="http://www.w3.org/2000/svg" width="$maxWidth" height="$height"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 $maxWidth $height">"""
+                >"""
     }
 
     fun makeDefs(theme: Theme): String {
@@ -130,16 +130,27 @@ abstract class ButtonMaker {
 
     fun drawLegend(types: MutableMap<String, String>): String {
         val sb = StringBuilder("<svg>")
-        val recXpos = 10
-        var yPos = startLegendHeight + 20
+        var recXpos = "10"
+        var textXPos = "30"
+        var yPos = startLegendHeight - 20
+        val size = types.size/2
+
+        var count = 0
+
         types.forEach { (color, desc) ->
+            if(count == size) {
+                recXpos = "50%"
+                yPos = startLegendHeight - 20
+                textXPos = "54%"
+            }
             sb.append(
                 """
                 <use x="$recXpos" y="$yPos" style="fill:$color" xlink:href="#legendRect"/>
-                <text x="30" y="${yPos + 10}" class="legendText">$desc</text>
+                <text x="$textXPos" y="${yPos + 10}" class="legendText">$desc</text>
             """.trimIndent()
             )
             yPos += 20
+            count++
         }
         sb.append("</svg>")
         return sb.toString()
