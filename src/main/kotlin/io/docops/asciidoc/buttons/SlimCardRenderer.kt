@@ -18,6 +18,7 @@ package io.docops.asciidoc.buttons
 
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.theme.Theme
+import io.docops.asciidoc.utils.addLinebreaks
 import io.docops.asciidoc.utils.escapeXml
 
 
@@ -78,7 +79,7 @@ class SlimCardRenderer : ButtonMaker() {
                 )
             }
             val authors = StringBuilder()
-            val dy: Int = if(button.authors.size == 0) {
+            var dy: Int = if(button.authors.size == 0) {
                 80
             } else {
                 (80 - button.authors.size * 16) + 16
@@ -86,9 +87,21 @@ class SlimCardRenderer : ButtonMaker() {
             button.authors.forEach {
                 authors.append("""<tspan x="${recXpos+4}" dy="16" class="author">${it.escapeXml()}</tspan>""")
             }
+            val str = addLinebreaks(button.type.escapeXml(),25)
+            var head = ""
+            var c = 0
+            var downBy = 0
+            str.forEach {
+                head += """<tspan x="${recXpos+4}" dy="$downBy" class="lineHead">${it}</tspan>"""
+                c++
+                if(c>0) {
+                    downBy = 16
+                    dy -= 16
+                }
+            }
             sb.append("""
                 <text x="${recXpos+2}" y="${yPos+20}">
-                    <tspan x="${recXpos+4}" dy="0" class="lineHead">${button.type.escapeXml()}</tspan>
+                    $head
                     <tspan x="${recXpos+4}" dy="16" class="subtitle">${button.title.escapeXml()}</tspan>
                     $authors
                     <tspan x="$dateXpos" dy="$dy" class="date">${button.date.escapeXml()}</tspan>
@@ -128,6 +141,7 @@ class SlimCardRenderer : ButtonMaker() {
             fill: white;
             font-family: "Noto Sans",sans-serif;
             font-weight: normal;
+            font-style: italic;
             font-size: 10px;
         }
 

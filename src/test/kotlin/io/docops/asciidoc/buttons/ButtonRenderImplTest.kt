@@ -231,7 +231,7 @@ class ButtonRenderImplTest {
             button.copy(title = "Fleet", type = "Awesome", description = "Should the description be long maybe?"),
             button.copy(
                 title = "Datagrip",
-                type = "Awesome",
+                type = "Awesome Little Lengthy Description For this tile still has 2 rows?",
                 description = "Should the description be long maybe?",
                 backgroundColor = "red"
             )
