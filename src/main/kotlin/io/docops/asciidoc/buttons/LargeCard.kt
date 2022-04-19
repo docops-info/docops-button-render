@@ -73,15 +73,18 @@ class LargeCard : ButtonMaker() {
             if(button.base64Image != null) {
                 val img = button.base64Image
                 img?.let {
+                    // language=svg
                     imgOrRec = """
                         <image x="$recXpos" y="$yPos" width="300" height="191" href="data:image/png;base64, ${img.base64Str}"/>""".trimIndent()
                 }
             } else {
+                // language=svg
                 imgOrRec = """
                     <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
                     """.trimIndent()
             }
             if(theme.isPDF) {
+                // language=svg
                 sb.append(
                     """
                    <use x="$recXpos" y="$yPos" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>     
@@ -89,6 +92,7 @@ class LargeCard : ButtonMaker() {
                 """.trimIndent()
                 )
             } else {
+                // language=svg
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
@@ -99,24 +103,30 @@ class LargeCard : ButtonMaker() {
                 )
             }
             val authors = StringBuilder()
+            // language=svg
             button.authors.forEach {
                 authors.append("""<tspan x="${recXpos+10}" dy="18" class="author">${it.escapeXml()}</tspan>""")
             }
+            // language=svg
             sb.append("""
                 <text x="${recXpos+10}" y="${yPos+220}" class="headline">${button.type.escapeXml()}</text>
                 <text x="${recXpos+10}" y="${yPos+240}" class="longdesc">
                 """)
             if(theme.isPDF) {
+                // language=svg
                 sb.append("""<tspan class="link" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>""")
             }else {
+                // language=svg
                 sb.append("""<tspan class="link" text-decoration="underline"><a href="${button.link}" fill="#335D79" target="$win">${button.title.escapeXml()}</a></tspan>""")
             }
+            // language=svg
             sb.append("""
                     $authors
                     <tspan x="${recXpos+10}" dy="18" class="date">${button.date.escapeXml()}</tspan>
             """.trimEnd())
             lines.forEachIndexed { i, str ->
                 if(i < 6) {
+                    // language=svg
                     sb.append(
                         """
                 <tspan x="${recXpos + 10}" dy="18" class="longdesc">
@@ -133,6 +143,7 @@ class LargeCard : ButtonMaker() {
     }
 
     private fun makeStyles(): String {
+        // language=svg
         return """
             <style>
         rect.card {

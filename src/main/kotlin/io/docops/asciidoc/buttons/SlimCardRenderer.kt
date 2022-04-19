@@ -60,6 +60,7 @@ class SlimCardRenderer : ButtonMaker() {
                 win = "_top"
             }
             if(theme.isPDF) {
+                // language=svg
                 sb.append(
                     """
                    <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect"> 
@@ -68,6 +69,7 @@ class SlimCardRenderer : ButtonMaker() {
                 """.trimIndent()
                 )
             } else {
+                // language=svg
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
@@ -92,6 +94,7 @@ class SlimCardRenderer : ButtonMaker() {
             var c = 0
             var downBy = 0
             str.forEach {
+                // language=svg
                 head += """<tspan x="${recXpos+4}" dy="$downBy" class="lineHead">${it}</tspan>"""
                 c++
                 if(c>0) {
@@ -99,6 +102,7 @@ class SlimCardRenderer : ButtonMaker() {
                     dy -= 16
                 }
             }
+            // language=svg
             sb.append("""
                 <text x="${recXpos+2}" y="${yPos+20}">
                     $head
@@ -115,6 +119,7 @@ class SlimCardRenderer : ButtonMaker() {
 
 
     private fun makeStyles(): String {
+        // language=svg
         return """
             <style>
         rect.card {

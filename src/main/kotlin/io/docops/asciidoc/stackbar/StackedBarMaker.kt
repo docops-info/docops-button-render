@@ -59,6 +59,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
         val norm = normalize(stackModels)
         var totalHeight = 20.0
         val x = width * 0.10
+        // language=svg
         sb.append(
             """
                <rect x="0" y="0" rx="5" ry="5" fill="#444444" height="100%" width="100%"/>
@@ -69,10 +70,14 @@ class StackedBarMaker(val pdf: Boolean = false) {
             val height = 400 * norm[index]
 
             val nextHalf = height / 2 + totalHeight
+            // language=svg
             sb.append("""<rect x="$x" y="$totalHeight" width="$barWidth" height="$height" fill="${colors[index % colors.size]}" class="card" onmouseover="show('rect-$index');" onmouseout="hide('rect-$index');"/>""")
+            // language=svg
             sb.append("""<text x="${x + 20}" y="$nextHalf" text-anchor="middle" class="label" onmouseover="show('rect-$index');" onmouseout="hide('rect-$index');">${(norm[index] * 100).roundToInt()}%</text>""")
+            // language=svg
             sb.append("""<line x1="${x + 40}" y1="$nextHalf" x2="${x + 90}" y2="$nextHalf" style="stroke-width: 2; stroke: ${colors[index % colors.size]};" marker-end="url(#arrowhead)"/>""")
             val lines = addLinebreaks(stackModel.description, 120)
+            // language=svg
             sb.append(
                 """
                 <text x="${x + 102}" y="$nextHalf" class="desc">"""
@@ -85,12 +90,14 @@ class StackedBarMaker(val pdf: Boolean = false) {
                 if (i > 0) {
                     start = 12
                 }
+                // language=svg
                 sb.append("""<tspan x ="${x + 102}" dy = "$start">${line}</tspan>""")
             }
             sb.append("</text>")
 
             if (!pdf) {
                 val desc = addLinebreaks(stackModel.fullDescription, 100)
+                // language=svg
                 sb.append("""<text x="30" y="440" visibility="hidden" id="rect-$index" class="desc">""")
 
                 desc.forEachIndexed { i, d ->
@@ -99,6 +106,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
                     } else {
                         start = 12
                     }
+                    // language=svg
                     sb.append("""<tspan x="$x" dy="$start" fill="#ffffff">${d}</tspan>""")
                 }
                 sb.append("""</text>""")
@@ -121,9 +129,13 @@ class StackedBarMaker(val pdf: Boolean = false) {
     fun toLine(filename: String, list: List<StackModel>): MutableList<String> {
         val norm = normalize(list)
         val lines = mutableListOf<String>()
+
         lines.add(".$filename")
+        // language=Asciidoc
         lines.add("""[cols="15%,15%,20%, 50%", options=header]""")
+        // language=Asciidoc
         lines.add("|===")
+        // language=Asciidoc
         lines.add("|Percent |Value |Label |Description")
         list.forEachIndexed { index, stackModel ->
             lines.add("|${(norm[index] * 100).roundToInt()} % |${stackModel.value} |${stackModel.description} |${stackModel.fullDescription}")
@@ -132,6 +144,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
         return lines
     }
     private fun head(height: Int = 460, width: Int = 970): String {
+        // language=svg
         return """
             <?xml version='1.0'?>
             <svg xmlns="http://www.w3.org/2000/svg" width="$width" height="$height"
@@ -144,6 +157,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
     }
 
     private fun style(): String {
+        // language=svg
         return """
     <style>
         .label {
@@ -182,6 +196,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
     }
 
     private fun defs(): String {
+        // language=svg
         return """
     <defs>
         <marker id="arrow" markerWidth="10" markerHeight="7"
@@ -196,6 +211,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
     }
 
     private fun script(): String {
+        // language=svg
         return """
     <script>
         var show = function(id) {

@@ -60,16 +60,19 @@ class ButtonCardRenderer : ButtonMaker() {
                 win = "_top"
             }
             if(theme.isPDF) {
+                // language=svg
                 sb.append(
                     """
                    <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
                         <title class="description">${button.description.escapeXml()}</title>
                    </use>      
                 """.trimIndent())
+                // language=svg
                 sb.append("""
                 <text x="$textXPos" y="${yPos+20}" class="label" text-anchor="middle" style="fill: ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
             """.trimIndent())
             } else {
+                // language=svg
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
@@ -79,6 +82,7 @@ class ButtonCardRenderer : ButtonMaker() {
                    </a>
                 """.trimIndent()
                 )
+                // language=svg
                 sb.append("""
                 <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" target="$win" style="fill: ${theme.buttonTextColor(button)}; text-decoration: underline;">${button.title.escapeXml()}</a></text>
             """.trimIndent())
@@ -90,6 +94,7 @@ class ButtonCardRenderer : ButtonMaker() {
     }
 
     private fun makeStyles(): String {
+        // language=svg
         return """
         <style>
         rect.card {
@@ -115,7 +120,8 @@ class ButtonCardRenderer : ButtonMaker() {
         .label {
             font-family: "Noto Sans",sans-serif;
         }
-    </style>"""
+    </style>
+    """
     }
 
 

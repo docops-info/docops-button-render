@@ -61,6 +61,7 @@ abstract class ButtonMaker {
     ): String {
         val height = height(buttons, heightFactor = heightFactor, defaultHeight = defaultHeight, theme = theme)
         val maxWidth = theme.columns * widthFactor + theme.columns * 10
+        // language=svg
         return """<?xml version="1.0" standalone="no"?>
                 <svg xmlns="http://www.w3.org/2000/svg" width="$maxWidth" height="$height"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 $maxWidth $height"
@@ -68,6 +69,7 @@ abstract class ButtonMaker {
     }
 
     fun makeDefs(theme: Theme): String {
+        // language=svg
         return """
         <defs>
         <filter id="dropShadow" height="130%">
@@ -119,7 +121,8 @@ abstract class ButtonMaker {
         <rect id="myLargerHeroRect" x="0" y="0" width="300" height="191" rx="5" ry="5" class="card"/>
         <rect id="myPanel" x="0" y="0" width="300" height="30" rx="5" ry="5" class="card"/>
         ${theme.defs}
-    </defs>"""
+    </defs>
+    """
     }
 
     fun makeSvgEnd(): String {
@@ -143,6 +146,7 @@ abstract class ButtonMaker {
                 yPos = startLegendHeight - 20
                 textXPos = "54%"
             }
+            // language=svg
             sb.append(
                 """
                 <use x="$recXpos" y="$yPos" style="fill:$color" xlink:href="#legendRect"/>

@@ -105,6 +105,7 @@ class PanelService {
 
     fun toLines(filename: String, panels: Panels): MutableList<String> {
         val lines = mutableListOf<String>()
+        // language=Asciidoc
         lines.add(".$filename")
         lines.add("[options=header]")
         lines.add("|===")

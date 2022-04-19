@@ -60,6 +60,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 win = "_top"
             }
             if(theme.isPDF) {
+                // language=svg
                 sb.append(
                     """
                    <use x="$recXpos" y="$yPos" xlink:href="#myCircle" fill="${theme.buttonColor(button)}">
@@ -85,6 +86,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 }
                 sb.append("""</text>""")
             } else {
+                // language=svg
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
@@ -94,6 +96,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                    </a>
                 """.trimIndent()
                 )
+                // language=svg
                 sb.append(
                     """ 
                 <a xlink:href="${button.link}" target="$win" style="fill: ${
@@ -111,6 +114,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     if(i>0) {
                         dy = 12
                     }
+                    // language=svg
                     sb.append(
                         """<tspan x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
                         )
@@ -127,6 +131,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
     }
 
     private fun makeStyles(): String {
+        // language=svg
         return """
         <style>
         circle.card {
@@ -153,7 +158,8 @@ class RoundButtonItemRenderer : ButtonMaker() {
             font-family: "Noto Sans",sans-serif;
             font-size: 10px;
         }
-    </style>"""
+    </style>
+    """
     }
 
 
