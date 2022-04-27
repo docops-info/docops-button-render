@@ -80,7 +80,8 @@ class PanelService {
                         authors = mutableListOf(),
                         type = it.type,
                         date = it.date,
-                        foregroundColor = panel.buttonTheme.font.color
+                        foregroundColor = panel.buttonTheme.font.color,
+                        base64Image = it.base64Image
                     )
                     localList.add(btn)
                 }

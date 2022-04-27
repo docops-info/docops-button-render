@@ -111,6 +111,11 @@
 
         }
     </style>
+    <script>
+        function go(url) {
+            window.location.href = url;
+        }
+    </script>
     <g>
         <rect x="10" y="10" fill="url(#linear-gradient-4)" width="300" height="30" rx="5" ry="5" class="card">
             <title>Long Title to show description in html popup.</title>
