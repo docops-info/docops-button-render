@@ -90,7 +90,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" xlink:href="#myCircle" fill="${theme.buttonColor(button)}">
+                   <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card" fill="${theme.buttonColor(button)}">
                         <title class="description">${button.description.escapeXml()}</title>
                    </use>
                    </a>
@@ -139,6 +139,13 @@ class RoundButtonItemRenderer : ButtonMaker() {
             opacity: 1;
         }
         circle.card:hover {
+            opacity: 0.6;
+        }
+        use.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+        use.card:hover {
             opacity: 0.6;
         }
         .subtitle {

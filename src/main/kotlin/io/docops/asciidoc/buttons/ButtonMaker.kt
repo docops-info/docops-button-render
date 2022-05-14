@@ -149,7 +149,7 @@ abstract class ButtonMaker {
             // language=svg
             sb.append(
                 """
-                <use x="$recXpos" y="$yPos" style="fill:$color" xlink:href="#legendRect"/>
+                <use x="$recXpos" y="$yPos" style="fill:$color" class="card" xlink:href="#legendRect"/>
                 <text x="$textXPos" y="${yPos + 10}" class="legendText">$desc</text>
             """.trimIndent()
             )

@@ -63,7 +63,7 @@ class SlimCardRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect"> 
+                   <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect"> 
                        <title class="description">${button.description.escapeXml()}</title>
                    </use>     
                 """.trimIndent()
@@ -73,7 +73,7 @@ class SlimCardRenderer : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect"> 
+                   <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect"> 
                        <title class="description">${button.description.escapeXml()}</title>
                    </use>    
                    </a>
@@ -128,6 +128,14 @@ class SlimCardRenderer : ButtonMaker() {
         }
 
         rect.card:hover {
+            opacity: 0.6;
+        }
+        use.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+
+        use.card:hover {
             opacity: 0.6;
         }
 

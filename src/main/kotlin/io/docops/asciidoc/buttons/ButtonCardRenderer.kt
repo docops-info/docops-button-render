@@ -63,7 +63,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
+                   <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
                         <title class="description">${button.description.escapeXml()}</title>
                    </use>      
                 """.trimIndent())
@@ -76,7 +76,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
+                   <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
                         <title class="description">${button.description.escapeXml()}</title>
                    </use> 
                    </a>
@@ -102,6 +102,13 @@ class ButtonCardRenderer : ButtonMaker() {
             opacity: 1;
         }
         rect.card:hover {
+            opacity: 0.6;
+        }
+        use.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+        use.card:hover {
             opacity: 0.6;
         }
         .subtitle {

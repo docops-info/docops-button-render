@@ -148,9 +148,16 @@ class LargeCard : ButtonMaker() {
             <style>
         rect.card {
             pointer-events: bounding-box;
-            opacity: 01;
+            opacity: 1;
         }
         rect.card:hover {
+            opacity: 0.6;
+        }
+        use.card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+        use.card:hover {
             opacity: 0.6;
         }
         .headline {
