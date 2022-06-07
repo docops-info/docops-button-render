@@ -19,11 +19,11 @@
      xmlns:xlink="http://www.w3.org/1999/xlink"
      preserveAspectRatio="none">
     <style>
-        rect.card {
+        .card {
             pointer-events: bounding-box;
             opacity: 01;
         }
-        rect.card:hover {
+        .card:hover {
             opacity: 0.6;
         }
         .headline {
@@ -56,9 +56,9 @@
     <g>
         <svg>
             <a href="https://www.google.com" target="_blank">
-            <use x="10" y="10" xlink:href="#myRect" />
+            <use x="10" y="10" xlink:href="#myRect" class="card"/>
             <!--<rect x="10" y="10" width="300" height="400" rx="5" ry="5" fill="#fffefa" class="card" filter="url(#dropShadow)"/>-->
-            <use x="10" y="10" xlink:href="#rectBar" fill="#5F4B8B"/>
+            <use x="10" y="10" xlink:href="#rectBar" fill="#5F4B8B" class="card"/>
             <text x="20" y="230" class="headline">Nuevo</text>
             <text x="20" y="250" class="description">
                 <tspan class="link" text-decoration="underline"><a href="https://www.google.com" fill="#335D79" target="_blank">Google Home</a></tspan>
@@ -78,7 +78,7 @@
             </a>
         </svg>
 
-        <use x="320" y="10" xlink:href="#myRect"/>
+        <use x="320" y="10" xlink:href="#myRect" class="card"/>
         <!--<rect x="320" y="10" width="300" height="400" fill="#fffefa" class="card" filter="url(#dropShadow)"/>-->
         <use x="320" y="10" xlink:href="#rectBar" fill="#1fe4f5"/>
         <text x="330" y="230" class="headline">Classic</text>
@@ -98,7 +98,7 @@
             </tspan>
         </text>
 
-        <use x="640" y="10" xlink:href="#myRect"/>
+        <use x="640" y="10" xlink:href="#myRect" class="card"/>
        <!-- <rect x="640" y="10" width="300" height="400" fill="#fffefa" class="card" filter="url(#dropShadow)"/>-->
         <rect x="640" y="10" width="300" rx="5" ry="5" height="191" fill="#fbc1cc" class="card"/>
 

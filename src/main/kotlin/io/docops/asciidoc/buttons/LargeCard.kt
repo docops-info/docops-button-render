@@ -80,14 +80,14 @@ class LargeCard : ButtonMaker() {
             } else {
                 // language=svg
                 imgOrRec = """
-                    <use x="$recXpos" y="$yPos" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
+                    <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
                     """.trimIndent()
             }
             if(theme.isPDF) {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>     
+                   <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>     
                    $imgOrRec
                 """.trimIndent()
                 )
@@ -96,7 +96,7 @@ class LargeCard : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                    <use x="$recXpos" y="$yPos" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>    
+                    <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>    
                    $imgOrRec
                    </a>
                 """.trimIndent()
@@ -158,6 +158,13 @@ class LargeCard : ButtonMaker() {
             opacity: 1;
         }
         use.card:hover {
+            opacity: 0.6;
+        }
+        .card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+        .card:hover {
             opacity: 0.6;
         }
         .headline {

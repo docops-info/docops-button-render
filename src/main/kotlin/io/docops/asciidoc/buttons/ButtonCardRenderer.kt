@@ -111,6 +111,13 @@ class ButtonCardRenderer : ButtonMaker() {
         use.card:hover {
             opacity: 0.6;
         }
+        .card {
+            pointer-events: bounding-box;
+            opacity: 1;
+        }
+        .card:hover {
+            opacity: 0.6;
+        }
         .subtitle {
             font-family: "Noto Sans",sans-serif;
             font-weight: normal;
