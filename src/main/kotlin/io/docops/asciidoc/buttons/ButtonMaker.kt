@@ -63,8 +63,8 @@ abstract class ButtonMaker {
         val maxWidth = theme.columns * widthFactor + theme.columns * 10
         // language=svg
         return """<?xml version="1.0" standalone="no"?>
-                <svg xmlns="http://www.w3.org/2000/svg" width="$maxWidth" height="$height"
-                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 $maxWidth $height"
+                <svg xmlns="http://www.w3.org/2000/svg" width="$maxWidth" height="${height+20}"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 $maxWidth ${height+20}"
                 >"""
     }
 
