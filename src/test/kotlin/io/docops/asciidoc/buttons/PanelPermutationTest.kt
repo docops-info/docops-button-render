@@ -114,7 +114,7 @@ class PanelPermutationTest {
 
         //title
         val titleNodeList = xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        println("link test: ${titleNodeList.item(0).textContent} --> $thenTitle")
+        println("title test: ${titleNodeList.item(0).textContent} --> $thenTitle")
         assertEquals(titleNodeList.item(0).textContent, thenTitle)
 
         //link
@@ -135,7 +135,7 @@ class PanelPermutationTest {
 
         //first author
         val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        println("date test: ${authorNodeList.item(0).textContent} --> $thenAuthor")
+        println("author test: ${authorNodeList.item(0).textContent} --> $thenAuthor")
         assertEquals(authorNodeList.item(0).textContent, thenAuthor)
 
 //        val typeNodeList = xPath.compile("//*[@class=\"card\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList

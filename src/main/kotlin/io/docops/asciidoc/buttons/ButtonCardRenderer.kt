@@ -64,12 +64,12 @@ class ButtonCardRenderer : ButtonMaker() {
                 sb.append(
                     """
                    <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
-                        <title class="title">${button.title.escapeXml()}</title>
+                        <title class="description">${button.description.escapeXml()}</title>
                    </use>      
                 """.trimIndent())
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" class="label" text-anchor="middle" style="fill: ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
+                <text x="$textXPos" y="${yPos+20}" class="title" text-anchor="middle" style="fill: ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
             """.trimIndent())
             } else {
                 // language=svg
@@ -77,20 +77,16 @@ class ButtonCardRenderer : ButtonMaker() {
                     """
                     <a xlink:href="${button.link}" target="$win">
                    <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
-                        <title class="title">${button.title.escapeXml()}</title>
+                        <title class="description">${button.description.escapeXml()}</title>
+                        <tspan x="${recXpos+10}" dy="18" class="author">${button.authors[0]}</tspan>
+                        <tspan x="${recXpos+10}" dy="18" class="date">${button.date.escapeXml()}</tspan>
                    </use> 
 
                    </a>
                 """.trimIndent()
                 )
                 // language=svg
-                sb.append("""
-                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="link"><a xlink:href="${button.link}" target="$win" style="fill: ${theme.buttonTextColor(button)}; text-decoration: underline;">${button.title.escapeXml()}</a>
-                   <tspan x="${recXpos+10}" dy="18" class="author"><!--${button.authors[0]}--></tspan>
-                   <tspan x="${recXpos+10}" dy="18" class="date"><!--${button.date.escapeXml()}--></tspan>
-                   <tspan x="${recXpos+10}" dy="18" class="description"><!--${button.description.escapeXml()}--></tspan>
-                </text>
-            """.trimIndent())
+                sb.append("""<text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="link"><a xlink:href="${button.link}" class="title" target="$win" style="fill: ${theme.buttonTextColor(button)}; text-decoration: underline;">${button.title.escapeXml()}</a></text>""".trimIndent())
             }
 
         }
