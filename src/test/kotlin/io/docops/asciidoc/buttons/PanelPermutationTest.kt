@@ -33,6 +33,7 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
+import java.util.logging.Logger;
 
 
 class PanelPermutationTest {
@@ -114,28 +115,24 @@ class PanelPermutationTest {
 
         //title
         val titleNodeList = xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+
         println("title test: ${titleNodeList.item(0).textContent} --> $thenTitle")
         assertEquals(titleNodeList.item(0).textContent, thenTitle)
 
         //link
         val linkNodeList = xPath.compile("//@href").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        println("link test: ${linkNodeList.item(0).textContent} --> $thenLink")
         assertEquals(linkNodeList.item(0).textContent, thenLink)
 
         //description
-//        val descriptionNodeList = xPath.compile("//use/title[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         val descriptionNodeList = xPath.compile("//*[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        println("description test: ${descriptionNodeList.item(1).textContent} --> $thenDescription :: ${descriptionNodeList.length} + ${descriptionNodeList.item(1).textContent}")
         assertEquals(thenDescription, descriptionNodeList.item(1).textContent.trim())
 
         //date
         val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        println("date test: ${dateNodeList.item(0).textContent.trim()} --> $thenDate")
         assertEquals(thenDate, dateNodeList.item(0).textContent, thenDate)
 
         //first author
         val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        println("author test: ${authorNodeList.item(0).textContent} --> $thenAuthor")
         assertEquals(authorNodeList.item(0).textContent, thenAuthor)
 
 //        val typeNodeList = xPath.compile("//*[@class=\"card\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
