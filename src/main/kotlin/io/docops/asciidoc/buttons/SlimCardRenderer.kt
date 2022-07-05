@@ -106,7 +106,7 @@ class SlimCardRenderer : ButtonMaker() {
             sb.append("""
                 <text x="${recXpos+2}" y="${yPos+20}">
                     $head
-                    <tspan x="${recXpos+4}" dy="16" class="subtitle">${button.title.escapeXml()}</tspan>
+                    <tspan x="${recXpos+4}" dy="16" class="title">${button.title.escapeXml()}</tspan>
                     $authors
                     <tspan x="$dateXpos" dy="$dy" class="date">${button.date.escapeXml()}</tspan>
                 </text>

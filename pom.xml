@@ -74,6 +74,7 @@
         <mojo.version>1.6.0</mojo.version>
         <dokka.version>1.6.10</dokka.version>
         <maven-plugin.version>3.0.0-M6</maven-plugin.version>
+        <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
         <maven-deploy.version>3.0.0-M2</maven-deploy.version>
         <maven-release.version>3.0.0-M5</maven-release.version>
         <maven-scm-provider.version>2.0.0-M1</maven-scm-provider.version>
@@ -288,6 +289,11 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-scripting-jvm-host</artifactId>
             <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-shared-utils</artifactId>
+            <version>${maven-shared-utils.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>

@@ -92,6 +92,8 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     <a xlink:href="${button.link}" target="$win">
                    <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card" fill="${theme.buttonColor(button)}">
                         <title class="description">${button.description.escapeXml()}</title>
+                        <tspan class="date">${button.date.escapeXml()}</tspan>
+                        <tspan class="author">${button.authors[0].escapeXml()}</tspan>
                    </use>
                    </a>
                 """.trimIndent()
@@ -116,7 +118,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     }
                     // language=svg
                     sb.append(
-                        """<tspan x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan x="$recXpos" dy="$dy" class="title">${str.escapeXml()}</tspan>""".trimMargin()
                         )
                 }
                 sb.append("""

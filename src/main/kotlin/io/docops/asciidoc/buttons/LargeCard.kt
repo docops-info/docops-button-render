@@ -87,7 +87,9 @@ class LargeCard : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>     
+                   <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect">
+                       <title class="description">${button.description.escapeXml()}</title>
+                   </use>     
                    $imgOrRec
                 """.trimIndent()
                 )
@@ -96,7 +98,7 @@ class LargeCard : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                    <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>    
+                    <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect"><title class="descriptionToo">${button.description.escapeXml()}</title></use>    
                    $imgOrRec
                    </a>
                 """.trimIndent()
@@ -117,7 +119,7 @@ class LargeCard : ButtonMaker() {
                 sb.append("""<tspan class="link" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>""")
             }else {
                 // language=svg
-                sb.append("""<tspan class="link" text-decoration="underline"><a href="${button.link}" fill="#335D79" target="$win">${button.title.escapeXml()}</a></tspan>""")
+                sb.append("""<tspan class="title" text-decoration="underline"><a href="${button.link}" fill="#335D79" class="link" target="$win">${button.title.escapeXml()}</a></tspan>""")
             }
             // language=svg
             sb.append("""
@@ -128,11 +130,7 @@ class LargeCard : ButtonMaker() {
                 if(i < 6) {
                     // language=svg
                     sb.append(
-                        """
-                <tspan x="${recXpos + 10}" dy="18" class="longdesc">
-                    ${str.toString().escapeXml()}
-                </tspan>
-                """.trimIndent()
+                        """<tspan x="${recXpos + 10}" dy="18" class="description">${str.toString().escapeXml()}</tspan>""".trimIndent()
                     )
                 }
             }

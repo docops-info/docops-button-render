@@ -22,16 +22,18 @@ import io.docops.asciidoc.buttons.theme.ButtonType
 import io.docops.asciidoc.buttons.theme.Grouping
 import io.docops.asciidoc.buttons.theme.GroupingOrder
 import io.docops.asciidoc.buttons.theme.theme
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
 import org.w3c.dom.Document
 import org.w3c.dom.NodeList
 import java.io.ByteArrayInputStream
+import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
-import kotlin.test.assertEquals
+import java.util.logging.Logger;
 
 
 class PanelPermutationTest {
@@ -39,6 +41,7 @@ class PanelPermutationTest {
     @ParameterizedTest
     @CsvFileSource(resources = ["/smoke/SingleItemPermutationTest.csv"], numLinesToSkip = 1)
     fun `should run through a number of item specific scenarios`(
+        scenario: String,
         whenThemeType: String,
         whenThemeGroupBy: String,
         whenThemeGroupOrder: String,
@@ -82,11 +85,10 @@ class PanelPermutationTest {
 
         fun imageValue(whenBase64Image: String?): ButtonImage? {
 
-            if(whenBase64Image.isNullOrBlank()) {
-                return null
-            }
-            else {
-                return ButtonImage(base64Str = whenBase64Image, type = "image/png")
+            return if(whenBase64Image.isNullOrBlank()) {
+                null
+            } else {
+                ButtonImage(base64Str = whenBase64Image, type = "image/png")
             }
         }
 
@@ -103,29 +105,42 @@ class PanelPermutationTest {
         )
 
         val svg = panel.render(mutableListOf(item), theme)
+        val f = File("src/test/resources/smoke/result/$scenario.svg")
+        f.writeBytes(svg.toByteArray())
 
         val builderFactory = DocumentBuilderFactory.newInstance()
         val builder = builderFactory.newDocumentBuilder()
         val xmlDocument: Document = builder.parse(ByteArrayInputStream(svg.toByteArray()))
         val xPath: XPath = XPathFactory.newInstance().newXPath()
 
+        //title
+        val titleNodeList = xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+
+        println("title test: ${titleNodeList.item(0).textContent} --> $thenTitle")
+        assertEquals(titleNodeList.item(0).textContent, thenTitle)
+
         //link
         val linkNodeList = xPath.compile("//@href").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(linkNodeList.item(0).textContent, thenLink)
 
         //description
-        val titleNodeList = xPath.compile("//use/title[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        assertEquals(thenDescription, titleNodeList.item(0).textContent)
+        val descriptionNodeList = xPath.compile("//*[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(thenDescription, descriptionNodeList.item(1).textContent.trim())
 
+        //date
+        val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(thenDate, dateNodeList.item(0).textContent, thenDate)
 
-//        val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-//        assertEquals(dateNodeList.item(0).textContent, thenDate)
+        //first author
+        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
 
-//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+//        val typeNodeList = xPath.compile("//*[@class=\"card\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        println("theme type test: ${typeNodeList.item(0).textContent} --> $thenThemeType")
+//        assertEquals(typeNodeList.item(0).textContent, thenThemeType)
 
-//        Assertions.assertTrue(result.contains(thenThemeType))
 //        Assertions.assertTrue(result.contains(thenThemeGroupBy))
+//        println("theme type test: ${typeNodeList.item(0).textContent} --> $thenThemeType")
 //        Assertions.assertTrue(result.contains(thenThemeGroupOrder))
 //        Assertions.assertTrue(result.contains(thenThemeFontWeight))
 //        Assertions.assertTrue(result.contains(thenThemeNewWindow))
@@ -151,6 +166,9 @@ class PanelPermutationTest {
 //        if(!thenBase64Image.isNullOrBlank()) {
 //            Assertions.assertTrue(svg.contains(thenBase64Image))
 //        }
+
+
+
     }
 
 }
