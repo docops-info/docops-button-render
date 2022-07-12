@@ -25,7 +25,7 @@ class ButtonCardRenderer : ButtonMaker() {
         val widthFactor = 305
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 40, defaultHeight = 60, widthFactor = widthFactor, theme = theme))
         sb.append(makeDefs(theme))
-        sb.append(makeStyles())
+        sb.append(makeStyles(theme))
         sb.append(drawButtons(buttons,theme, widthFactor))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
@@ -93,11 +93,12 @@ class ButtonCardRenderer : ButtonMaker() {
         return sb.toString()
     }
 
-    private fun makeStyles(): String {
+    private fun makeStyles(theme: Theme): String {
         // language=svg
         return """
         <style>
         rect.card {
+           filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
             pointer-events: bounding-box;
             opacity: 1;
         }
@@ -105,6 +106,7 @@ class ButtonCardRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         use.card {
+           filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
             pointer-events: bounding-box;
             opacity: 1;
         }
