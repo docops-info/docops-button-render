@@ -180,6 +180,7 @@ internal class ButtonsKtTest {
         theme.columns = list.buttonTheme.layout.columns
         theme.colorMap = list.buttonTheme.colorMap.colors
         theme.defs = list.buttonTheme.colorMap.colorDefs
+        theme.dropShadow = list.buttonTheme.dropShadow
         val localList = mutableListOf<Button>()
 
         when (list.buttonType) {
@@ -291,6 +292,7 @@ fun buttonData (): Panels {
                 color = "#000000"
                 weight = FontWeight.bold
             }
+            dropShadow = 2
             colorMap {
                 color("#c8dfcc")
                 color("#b2a2eb")
