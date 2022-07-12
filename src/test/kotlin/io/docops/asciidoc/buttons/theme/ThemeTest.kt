@@ -67,8 +67,6 @@ class ThemeTest {
     fun `invalid drop shadow value`() {
         val thrown: IllegalArgumentException = assertThrows(IllegalArgumentException::class.java, Executable {
             val t = theme {
-                columns = 5
-                fontWeight = "bold"
                 dropShadow = 11
             }
         })
