@@ -27,15 +27,13 @@ class ThemeTest {
         val t = theme {
             columns = 5
             fontWeight = "bold"
+            dropShadow = 1
         }
         assertEquals("bold", t.fontWeight)
-
     }
 
     @Test
     fun invalidFontWeightTest() {
-
-
         val thrown: IllegalArgumentException = assertThrows(IllegalArgumentException::class.java, Executable {
             theme {
                 columns = 5
@@ -63,5 +61,17 @@ class ThemeTest {
             }
         })
         assertEquals("No enum constant io.docops.asciidoc.buttons.theme.ButtonType.BUTTOX", thrown.message)
+    }
+
+    @Test
+    fun `invalid drop shadow value`() {
+        val thrown: IllegalArgumentException = assertThrows(IllegalArgumentException::class.java, Executable {
+            val t = theme {
+                columns = 5
+                fontWeight = "bold"
+                dropShadow = 11
+            }
+        })
+        assertEquals("Dropshadow value 11 does not fall in the range 0..9", thrown.message)
     }
 }

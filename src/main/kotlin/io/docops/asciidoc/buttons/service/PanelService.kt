@@ -40,6 +40,7 @@ class PanelService {
         theme.isPDF = panel.isPdf
         theme.legendOn = panel.buttonTheme.legendOn
         theme.newWin = panel.buttonTheme.newWin
+        theme.dropShadow = panel.buttonTheme.dropShadow
         val localList = mutableListOf<Button>()
         val b = ButtonRenderImpl()
 

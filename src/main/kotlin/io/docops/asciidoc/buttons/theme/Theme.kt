@@ -54,6 +54,7 @@ class Theme {
     var legendOn = true
     var isPDF = false
     var defs = ""
+    var dropShadow = 0
 
     var typeMap = mutableMapOf<String, String>()
     infix fun typeIs (other: String) {
@@ -61,6 +62,7 @@ class Theme {
     }
     internal fun validate(): Theme {
         require(fontWeights.contains(fontWeight)) {"not a valid font weight $fontWeight"}
+        require(dropShadow in 0..9) {"Dropshadow value $dropShadow does not fall in the range 0..9"}
         return this
     }
     fun buttonColor(button: Button): String {

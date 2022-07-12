@@ -65,7 +65,7 @@
         }
 
         .card {
-            filter: url(#dropShadow);
+            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
         }
         :root {
             --main-bg-color: brown;
@@ -183,7 +183,7 @@
             <title>Another title this time shorter</title>
         </rect>
         <text x="182" y="200">
-            <tspan x="176" dy="0" class="lineHead">Current Work</tspan>
+            <tspan x="176" dy="0" class="lineHead">Current Work OnGoing Initiatives</tspan>
             <tspan x="176" dy="16" class="subtitle">OnGoing Initiatives</tspan>
             <tspan x="176" dy="16" class="author">Steve D. Roach</tspan>
             <tspan x="255" dy="80" class="date">11/16/1971</tspan>
