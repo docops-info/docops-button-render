@@ -73,7 +73,7 @@ abstract class ButtonMaker {
         return """
         <defs>
         <filter id="dropShadow" height="130%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+            <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
             <feOffset dx="5" dy="5" result="offsetblur"/>
             <feComponentTransfer>
                 <feFuncA type="linear" slope="0.9"/>

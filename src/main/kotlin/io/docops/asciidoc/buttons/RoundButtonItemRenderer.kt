@@ -135,7 +135,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
         return """
         <style>
         circle.card {
-           filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
+            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
             pointer-events: bounding-box;
             opacity: 1;
         }
@@ -151,7 +151,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .subtitle {
-            font-family: "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-weight: normal;
             font-size: 10px;
         }
@@ -164,7 +164,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .label {
-            font-family: "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-size: 10px;
         }
     </style>

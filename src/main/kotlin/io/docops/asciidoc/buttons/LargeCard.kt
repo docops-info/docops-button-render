@@ -143,7 +143,7 @@ class LargeCard : ButtonMaker() {
     }
 
     private fun makeStyles(theme: Theme): String {
-        // language=svg
+        //language=html
         return """
             <style>
         rect.card {
@@ -170,18 +170,20 @@ class LargeCard : ButtonMaker() {
             opacity: 0.6;
         }
         .headline {
-            font: bold 18px "Noto Sans",sans-serif;;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             fill: #46494d;
         }
         .link {
-            font: bold 12px "Noto Sans",sans-serif;;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             fill: #335D79;
         }
         .description {
-            font: normal 12px "Noto Sans",sans-serif;
+            font-size: 9pt;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         }
         .longdesc {
-            font: normal 11px "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 9pt;
         }
     </style>
         """.trimIndent()

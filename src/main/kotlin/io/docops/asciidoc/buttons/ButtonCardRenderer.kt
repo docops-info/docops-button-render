@@ -121,7 +121,7 @@ class ButtonCardRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .subtitle {
-            font-family: "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-weight: normal;
             font-size: 10px;
         }
@@ -134,7 +134,7 @@ class ButtonCardRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .label {
-            font-family: "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         }
     </style>
     """
