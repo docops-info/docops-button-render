@@ -75,7 +75,8 @@ class LargeCard : ButtonMaker() {
                 img?.let {
                     // language=svg
                     imgOrRec = """
-                        <image x="$recXpos" y="$yPos" width="300" height="191" href="data:image/png;base64, ${img.base64Str}"/>""".trimIndent()
+                        <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
+                        <image x="$recXpos" y="$yPos" width="300" height="191" href="${img.base64Str}"/>""".trimIndent()
                 }
             } else {
                 // language=svg
