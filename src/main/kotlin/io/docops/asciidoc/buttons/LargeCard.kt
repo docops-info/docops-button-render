@@ -148,7 +148,6 @@ class LargeCard : ButtonMaker() {
         return """
             <style>
         rect.card {
-            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));    
             pointer-events: bounding-box;
             opacity: 1;
         }
@@ -163,7 +162,6 @@ class LargeCard : ButtonMaker() {
             opacity: 0.6;
         }
         .card {
-            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));
             pointer-events: bounding-box;
             opacity: 1;
         }

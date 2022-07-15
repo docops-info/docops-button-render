@@ -76,7 +76,7 @@ abstract class ButtonMaker {
             <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
             <feOffset dx="5" dy="5" result="offsetblur"/>
             <feComponentTransfer>
-                <feFuncA type="linear" slope="0.9"/>
+                <feFuncA type="linear" slope="0.${theme.dropShadow}"/>
             </feComponentTransfer>
             <feMerge>
                 <feMergeNode/>

@@ -17,6 +17,9 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" width="970" height="550"
      viewBox="0 0 1000 550">
+    <filter id="shadow" color-interpolation-filters="sRGB">
+        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+    </filter>
     <filter id="dropShadow" height="130%">
         <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
         <feOffset dx="5" dy="5" result="offsetblur"/>
@@ -54,7 +57,7 @@
             opacity: 0.2;
         }
     </style>
-    <rect id="myRect" x="10" y="0" width="970" height="100%" rx="5" ry="5"  fill="#fffefa"  class="card" filter="url(#dropShadow)"/>
+    <rect id="myRect" x="10" y="0" width="970" height="100%" rx="5" ry="5"  fill="#fffefa"  class="card" filter="url(#shadow)"/>
     <text x="485" y="40" class="title" text-anchor="middle">Use Solr for Structured Data Search</text>
     <line x1="10" y1="45" x2="970" y2="45" stroke="#F0F1F4" />
     <g>

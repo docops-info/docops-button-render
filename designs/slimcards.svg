@@ -17,6 +17,9 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" width="970" height="500"
      viewBox="0 0 1000 500">
+    <filter id="shadow" color-interpolation-filters="sRGB">
+        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+    </filter>
     <defs>
         <filter id="dropShadow" height="130%">
             <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
@@ -53,7 +56,9 @@
             <stop offset="10%" stop-color="#f588d8" />
             <stop offset="95%" stop-color="#c0a3e5" />
         </radialGradient>
+
     </defs>
+
     <style>
         rect.card {
             pointer-events: bounding-box;
@@ -65,7 +70,7 @@
         }
 
         .card {
-            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+            filter: url(#shadow);
         }
         :root {
             --main-bg-color: brown;

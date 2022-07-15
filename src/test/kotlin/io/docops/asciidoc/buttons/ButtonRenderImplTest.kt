@@ -122,6 +122,7 @@ class ButtonRenderImplTest {
         theme.columns = 4
         theme.legendOn = false
         theme.isPDF = false
+        theme.dropShadow = 4
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
