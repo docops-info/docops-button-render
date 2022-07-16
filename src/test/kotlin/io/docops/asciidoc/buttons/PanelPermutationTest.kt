@@ -103,6 +103,8 @@ class PanelPermutationTest {
             base64Image = imageValue(whenBase64Image)
         )
 
+        val dir = File("src/test/resources/smoke/result")
+        if(!dir.exists()) { dir.mkdir() }
         val svg = panel.render(mutableListOf(item), theme)
         val f = File("src/test/resources/smoke/result/$scenario.svg")
         f.writeBytes(svg.toByteArray())
@@ -140,7 +142,6 @@ class PanelPermutationTest {
 
         val typeNodeList =
             xPath.compile("//*[@class=\"type\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        println("item type test: ${typeNodeList.item(0).textContent} --> $thenItemType")
         assertEquals(typeNodeList.item(0).textContent, thenItemType)
 
 //        Assertions.assertTrue(result.contains(thenThemeGroupBy))
