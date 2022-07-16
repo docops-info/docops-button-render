@@ -61,10 +61,12 @@ class LargeCard : ButtonMaker() {
                 recXpos += 320
                 dateXpos+= 320
             }
-            var win = "_blank"
-            if(!theme.newWin) {
-                win = "_top"
+            val win = if(!theme.newWin) {
+                "_top"
+            } else {
+                "_blank"
             }
+
             val lines = addLinebreaks(button.description, 41)
             var imgOrRec = ""
             button.base64Image?.let {
@@ -111,7 +113,7 @@ class LargeCard : ButtonMaker() {
             }
             // language=svg
             sb.append("""
-                <text x="${recXpos+10}" y="${yPos+220}" class="headline">${button.type.escapeXml()}</text>
+                <text x="${recXpos+10}" y="${yPos+220}" class="type">${button.type.escapeXml()}</text>
                 <text x="${recXpos+10}" y="${yPos+240}" class="longdesc">
                 """)
             if(theme.isPDF) {

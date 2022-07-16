@@ -55,10 +55,12 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 recXpos += 125
                 textXPos += 115
             }
-            var win = "_blank"
-            if(!theme.newWin) {
-                win = "_top"
+            val win = if(!theme.newWin) {
+                "_top"
+            } else {
+                "_blank"
             }
+
             if(theme.isPDF) {
                 // language=svg
                 sb.append(
@@ -90,11 +92,12 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card" fill="${theme.buttonColor(button)}">
-                        <title class="description">${button.description.escapeXml()}</title>
-                        <tspan class="date">${button.date.escapeXml()}</tspan>
-                        <tspan class="author">${button.authors[0].escapeXml()}</tspan>
-                   </use>
+                       <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card" fill="${theme.buttonColor(button)}">
+                           <title class="description">${button.description.escapeXml()}</title>
+                       </use>
+                       <text class="date" visibility="hidden">${button.date.escapeXml()}</text>
+                       <text class="author" visibility="hidden">${button.authors.firstOrNull()}</text>
+                       <text class="type" visibility="hidden">${button.type.escapeXml()}</text>
                    </a>
                 """.trimIndent()
                 )

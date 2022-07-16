@@ -22,7 +22,7 @@ import io.docops.asciidoc.buttons.theme.ButtonType
 import io.docops.asciidoc.buttons.theme.Grouping
 import io.docops.asciidoc.buttons.theme.GroupingOrder
 import io.docops.asciidoc.buttons.theme.theme
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
 import org.w3c.dom.Document
@@ -33,7 +33,6 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
-import java.util.logging.Logger;
 
 
 class PanelPermutationTest {
@@ -85,7 +84,7 @@ class PanelPermutationTest {
 
         fun imageValue(whenBase64Image: String?): ButtonImage? {
 
-            return if(whenBase64Image.isNullOrBlank()) {
+            return if (whenBase64Image.isNullOrBlank()) {
                 null
             } else {
                 ButtonImage(base64Str = whenBase64Image, type = "image/png")
@@ -97,7 +96,7 @@ class PanelPermutationTest {
             link = whenLink,
             date = whenDate,
             description = whenDescription,
-            authors = mutableListOf( whenAuthor),
+            authors = mutableListOf(whenAuthor),
             type = whenItemType,
             foregroundColor = whenForegroundColor,
             backgroundColor = whenBackgroundColor,
@@ -114,7 +113,8 @@ class PanelPermutationTest {
         val xPath: XPath = XPathFactory.newInstance().newXPath()
 
         //title
-        val titleNodeList = xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val titleNodeList =
+            xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
 
         println("title test: ${titleNodeList.item(0).textContent} --> $thenTitle")
         assertEquals(titleNodeList.item(0).textContent, thenTitle)
@@ -124,20 +124,24 @@ class PanelPermutationTest {
         assertEquals(linkNodeList.item(0).textContent, thenLink)
 
         //description
-        val descriptionNodeList = xPath.compile("//*[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val descriptionNodeList =
+            xPath.compile("//*[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(thenDescription, descriptionNodeList.item(1).textContent.trim())
 
         //date
-        val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val dateNodeList =
+            xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(thenDate, dateNodeList.item(0).textContent, thenDate)
 
         //first author
-        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val authorNodeList =
+            xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(authorNodeList.item(0).textContent, thenAuthor)
 
-//        val typeNodeList = xPath.compile("//*[@class=\"card\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-//        println("theme type test: ${typeNodeList.item(0).textContent} --> $thenThemeType")
-//        assertEquals(typeNodeList.item(0).textContent, thenThemeType)
+        val typeNodeList =
+            xPath.compile("//*[@class=\"type\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        println("item type test: ${typeNodeList.item(0).textContent} --> $thenItemType")
+        assertEquals(typeNodeList.item(0).textContent, thenItemType)
 
 //        Assertions.assertTrue(result.contains(thenThemeGroupBy))
 //        println("theme type test: ${typeNodeList.item(0).textContent} --> $thenThemeType")
@@ -166,7 +170,6 @@ class PanelPermutationTest {
 //        if(!thenBase64Image.isNullOrBlank()) {
 //            Assertions.assertTrue(svg.contains(thenBase64Image))
 //        }
-
 
 
     }

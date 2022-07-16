@@ -22,7 +22,7 @@
 
     <artifactId>docops-button-render</artifactId>
     <groupId>io.docops</groupId>
-    <version>2022.8-SNAPSHOT</version>
+    <version>2022.9</version>
     <packaging>jar</packaging>
 
     <name>docops-button-render</name>
@@ -74,8 +74,8 @@
         <mojo.version>1.6.0</mojo.version>
         <dokka.version>1.6.10</dokka.version>
         <maven-plugin.version>3.0.0-M6</maven-plugin.version>
-        <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
         <maven-deploy.version>3.0.0-M2</maven-deploy.version>
+        <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
         <maven-release.version>3.0.0-M5</maven-release.version>
         <maven-scm-provider.version>2.0.0-M1</maven-scm-provider.version>
         <nexus-staging.version>1.6.7</nexus-staging.version>

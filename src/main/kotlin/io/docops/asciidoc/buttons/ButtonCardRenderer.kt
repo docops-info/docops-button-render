@@ -55,10 +55,12 @@ class ButtonCardRenderer : ButtonMaker() {
                 recXpos += 310
                 textXPos = recXpos + (widthFactor/2)
             }
-            var win = "_blank"
-            if(!theme.newWin) {
-                win = "_top"
+            val win = if(!theme.newWin) {
+                "_top"
+            } else {
+                "_blank"
             }
+
             if(theme.isPDF) {
                 // language=svg
                 sb.append(
@@ -78,10 +80,10 @@ class ButtonCardRenderer : ButtonMaker() {
                     <a xlink:href="${button.link}" target="$win">
                    <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
                         <title class="description">${button.description.escapeXml()}</title>
-                        <tspan x="${recXpos+10}" dy="18" class="author">${button.authors[0]}</tspan>
-                        <tspan x="${recXpos+10}" dy="18" class="date">${button.date.escapeXml()}</tspan>
                    </use> 
-
+                       <text class="author" visibility="hidden">${button.authors.firstOrNull()}</text>
+                       <text class="date" visibility="hidden">${button.date.escapeXml()}</text>
+                       <text class="type" visibility="hidden">${button.type.escapeXml()}</text>
                    </a>
                 """.trimIndent()
                 )
