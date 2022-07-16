@@ -92,10 +92,22 @@ class SlimCardRenderer : ButtonMaker() {
             val str = addLinebreaks(button.type.escapeXml(),25)
             var head = ""
             var c = 0
-            var downBy = 0
+            var downBy = 16
             str.forEach {
                 // language=svg
-                head += """<tspan x="${recXpos+4}" dy="$downBy" class="lineHead">${it}</tspan>"""
+                head += """<tspan x="${recXpos+4}" dy="$downBy" class="subtitle">${it}</tspan>"""
+                c++
+                if(c>0) {
+                    downBy = 16
+                    dy -= 16
+                }
+            }
+            val titleStr = addLinebreaks(button.title.escapeXml(),25)
+            var title = ""
+            c = 0
+            downBy = 0
+            titleStr.forEach {
+                title += """<tspan x="${recXpos+4}" dy="$downBy" class="lineHead">${it}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -105,10 +117,10 @@ class SlimCardRenderer : ButtonMaker() {
             // language=svg
             sb.append("""
                 <text x="${recXpos+2}" y="${yPos+20}">
+                    $title
                     $head
-                    <tspan x="${recXpos+4}" dy="16" class="subtitle">${button.title.escapeXml()}</tspan>
                     $authors
-                    <tspan x="$dateXpos" dy="$dy" class="date">${button.date.escapeXml()}</tspan>
+                    <tspan x="$dateXpos" dy="16" class="date">${button.date.escapeXml()}</tspan>
                 </text>
             """.trimIndent())
         }
@@ -119,7 +131,7 @@ class SlimCardRenderer : ButtonMaker() {
 
 
     private fun makeStyles(theme: Theme): String {
-        // language=svg
+        // language=css
         return """
             <style>
         rect.card {
@@ -145,24 +157,30 @@ class SlimCardRenderer : ButtonMaker() {
 
         .lineHead {
             fill: white;
-            font-family: "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-weight: bold;
-            font-size: 12px;
+            font-size: 9pt;
         }
 
         .subtitle {
             fill: white;
-            font-family: "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-weight: normal;
             font-style: italic;
-            font-size: 10px;
+            font-size: 8pt;
         }
 
         .author {
             fill: black;
-            font-family: "Noto Sans",sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-weight: normal;
-            font-size: 10px;
+            font-size: 8pt;
+            fill: darkslategrey;
+        }
+        .legendText {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-weight: normal;
+            font-size: 9pt;
         }
 
         .date {

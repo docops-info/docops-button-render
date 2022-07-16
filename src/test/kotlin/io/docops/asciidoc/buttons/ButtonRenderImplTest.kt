@@ -82,6 +82,7 @@ class ButtonRenderImplTest {
         val b = ButtonRenderImpl()
         val buttons = buttons()
         val theme = SlimCardsTheme
+        theme.dropShadow = 4
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
@@ -197,7 +198,7 @@ class ButtonRenderImplTest {
             title = "title",
             link = "https://www.jetbrains.com",
             description = "description",
-            authors = mutableListOf("Steve"),
+            authors = mutableListOf("Steve Roach","Ian Rose", "Mike Duffy"),
             type = "Awesome",
             date = "11/16/2021",
             foregroundColor = "black",
