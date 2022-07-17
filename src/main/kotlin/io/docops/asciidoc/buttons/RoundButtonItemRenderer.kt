@@ -55,9 +55,10 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 recXpos += 125
                 textXPos += 115
             }
-            var win = "_blank"
-            if(!theme.newWin) {
-                win = "_top"
+            val win = if(!theme.newWin) {
+                "_top"
+            } else {
+                "_blank"
             }
             if(theme.isPDF) {
                 // language=svg
@@ -65,7 +66,10 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     """
                    <use x="$recXpos" y="$yPos" xlink:href="#myCircle" fill="${theme.buttonColor(button)}">
                         <title class="description">${button.description.escapeXml()}</title>
-                   </use>   
+                   </use>
+                   <text class="category" visibility="hidden">${button.type.escapeXml()}</text>
+                   <text class="author" visibility="hidden">${button.authors.firstOrNull()}</text>
+                   <text class="date" visibility="hidden">${button.date.escapeXml()}</text>
                 """.trimIndent()
                 )
                 sb.append(
@@ -81,18 +85,21 @@ class RoundButtonItemRenderer : ButtonMaker() {
                         dy = 12
                     }
                     sb.append(
-                        """<tspan x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan class="title" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
                     )
                 }
                 sb.append("""</text>""")
             } else {
                 // language=svg
                 sb.append(
-                    """
-                    <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card" fill="${theme.buttonColor(button)}">
-                        <title class="description">${button.description.escapeXml()}</title>
-                   </use>
+                   """
+                   <a xlink:href="${button.link}" target="$win">
+                       <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card" fill="${theme.buttonColor(button)}">
+                           <title class="description">${button.description.escapeXml()}</title>
+                       </use>
+                       <text class="category" visibility="hidden">${button.type.escapeXml()}</text>
+                       <text class="author" visibility="hidden">${button.authors.firstOrNull()}</text>
+                       <text class="date" visibility="hidden">${button.date.escapeXml()}</text>
                    </a>
                 """.trimIndent()
                 )
@@ -116,7 +123,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     }
                     // language=svg
                     sb.append(
-                        """<tspan x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan class="title" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
                         )
                 }
                 sb.append("""

@@ -55,9 +55,10 @@ class SlimCardRenderer : ButtonMaker() {
                 recXpos += 160
                 dateXpos+= 160
             }
-            var win = "_blank"
-            if(!theme.newWin) {
-                win = "_top"
+            val win = if(!theme.newWin) {
+                "_top"
+            } else {
+                "_blank"
             }
             if(theme.isPDF) {
                 // language=svg
@@ -95,7 +96,7 @@ class SlimCardRenderer : ButtonMaker() {
             var downBy = 16
             str.forEach {
                 // language=svg
-                head += """<tspan x="${recXpos+4}" dy="$downBy" class="subtitle">${it}</tspan>"""
+                head += """<tspan x="${recXpos+4}" dy="$downBy" class="category">${it.trim()}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -107,7 +108,7 @@ class SlimCardRenderer : ButtonMaker() {
             c = 0
             downBy = 0
             titleStr.forEach {
-                title += """<tspan x="${recXpos+4}" dy="$downBy" class="lineHead">${it}</tspan>"""
+                title += """<tspan x="${recXpos+4}" dy="$downBy" class="title">${it.trim()}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16

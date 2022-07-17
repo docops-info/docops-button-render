@@ -61,9 +61,10 @@ class LargeCard : ButtonMaker() {
                 recXpos += 320
                 dateXpos+= 320
             }
-            var win = "_blank"
-            if(!theme.newWin) {
-                win = "_top"
+            val win = if(!theme.newWin) {
+                "_top"
+            } else {
+                "_blank"
             }
             val lines = addLinebreaks(button.description, 41)
             var imgOrRec = ""
@@ -110,15 +111,15 @@ class LargeCard : ButtonMaker() {
             }
             // language=svg
             sb.append("""
-                <text x="${recXpos+10}" y="${yPos+220}" class="headline">${button.type.escapeXml()}</text>
+                <text x="${recXpos+10}" y="${yPos+220}" class="category">${button.type.escapeXml()}</text>
                 <text x="${recXpos+10}" y="${yPos+240}" class="longdesc">
                 """)
             if(theme.isPDF) {
                 // language=svg
-                sb.append("""<tspan class="link" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>""")
+                sb.append("""<tspan class="title" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>""")
             }else {
                 // language=svg
-                sb.append("""<tspan class="link" text-decoration="underline"><a href="${button.link}" fill="#335D79" target="$win">${button.title.escapeXml()}</a></tspan>""")
+                sb.append("""<tspan class="link" text-decoration="underline"><a href="${button.link}" class="title" fill="#335D79" target="$win">${button.title.escapeXml()}</a></tspan>""")
             }
             // language=svg
             sb.append("""

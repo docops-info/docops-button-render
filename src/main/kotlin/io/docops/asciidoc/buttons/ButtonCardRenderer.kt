@@ -55,9 +55,10 @@ class ButtonCardRenderer : ButtonMaker() {
                 recXpos += 310
                 textXPos = recXpos + (widthFactor/2)
             }
-            var win = "_blank"
-            if(!theme.newWin) {
-                win = "_top"
+            val win = if(!theme.newWin) {
+                "_top"
+            } else {
+                "_blank"
             }
             if(theme.isPDF) {
                 // language=svg
@@ -66,6 +67,9 @@ class ButtonCardRenderer : ButtonMaker() {
                    <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
                         <title class="description">${button.description.escapeXml()}</title>
                    </use>      
+                   <text class="category" visibility="hidden">${button.type.escapeXml()}</text>
+                   <text class="author" visibility="hidden">${button.authors.firstOrNull()}</text>
+                   <text class="date" visibility="hidden">${button.date.escapeXml()}</text>
                 """.trimIndent())
                 // language=svg
                 sb.append("""
@@ -74,17 +78,20 @@ class ButtonCardRenderer : ButtonMaker() {
             } else {
                 // language=svg
                 sb.append(
-                    """
-                    <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
-                        <title class="description">${button.description.escapeXml()}</title>
-                   </use> 
+                   """
+                   <a xlink:href="${button.link}" target="$win">
+                       <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
+                           <title class="description">${button.description.escapeXml()}</title>
+                       </use>
+                       <text class="category" visibility="hidden">${button.type.escapeXml()}</text>
+                       <text class="author" visibility="hidden">${button.authors.firstOrNull()}</text>
+                       <text class="date" visibility="hidden">${button.date.escapeXml()}</text>
                    </a>
                 """.trimIndent()
                 )
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" target="$win" style="fill: ${theme.buttonTextColor(button)}; text-decoration: underline;">${button.title.escapeXml()}</a></text>
+                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="title" target="$win" style="fill: ${theme.buttonTextColor(button)}; text-decoration: underline;">${button.title.escapeXml()}</a></text>
             """.trimIndent())
             }
 

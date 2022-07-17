@@ -19,14 +19,13 @@ package io.docops.asciidoc.buttons
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
 import io.docops.asciidoc.buttons.theme.ButtonType
-import io.docops.asciidoc.buttons.theme.Grouping
-import io.docops.asciidoc.buttons.theme.GroupingOrder
 import io.docops.asciidoc.buttons.theme.theme
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
 import org.w3c.dom.Document
 import org.w3c.dom.NodeList
 import java.io.ByteArrayInputStream
+import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
@@ -39,11 +38,8 @@ class PanelPermutationTest {
     @ParameterizedTest
     @CsvFileSource(resources = ["/smoke/SingleItemPermutationTest.csv"], numLinesToSkip = 1)
     fun `should run through a number of item specific scenarios`(
+        scenario: String,
         whenThemeType: String,
-        whenThemeGroupBy: String,
-        whenThemeGroupOrder: String,
-        whenThemeFontWeight: String,
-        whenThemeNewWindow: Boolean,
         whenTitle: String,
         whenLink: String,
         whenDate: String,
@@ -53,11 +49,6 @@ class PanelPermutationTest {
         whenForegroundColor: String,
         whenBackgroundColor: String,
         whenBase64Image: String?,
-        thenThemeType: String,
-        thenThemeGroupBy: String,
-        thenThemeGroupOrder: String,
-        thenThemeFontWeight: String,
-        thenThemeNewWindow: String,
         thenTitle: String,
         thenLink: String,
         thenDate: String,
@@ -73,20 +64,17 @@ class PanelPermutationTest {
 
         val theme = theme {
             columns = 1
-            groupBy = Grouping.valueOf(whenThemeGroupBy)
-            groupOrder = GroupingOrder.valueOf(whenThemeGroupOrder)
-            fontWeight = whenThemeFontWeight
+            dropShadow = 3
+
             type = ButtonType.valueOf(whenThemeType)
-            newWin = whenThemeNewWindow
         }
 
         fun imageValue(whenBase64Image: String?): ButtonImage? {
 
-            if(whenBase64Image.isNullOrBlank()) {
-                return null
-            }
-            else {
-                return ButtonImage(base64Str = whenBase64Image, type = "image/png")
+            return if(whenBase64Image.isNullOrBlank()) {
+                null
+            } else {
+                ButtonImage(base64Str = whenBase64Image, type = "image/png")
             }
         }
 
@@ -109,48 +97,36 @@ class PanelPermutationTest {
         val xmlDocument: Document = builder.parse(ByteArrayInputStream(svg.toByteArray()))
         val xPath: XPath = XPathFactory.newInstance().newXPath()
 
+        //title
+        val titleNodeList = xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(titleNodeList.item(0).textContent, thenTitle)
+
+        //type
+        val typeNodeList = xPath.compile("//*[@class=\"category\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(typeNodeList.item(0).textContent, thenItemType)
+
         //link
         val linkNodeList = xPath.compile("//@href").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(linkNodeList.item(0).textContent, thenLink)
 
         //description
-        val titleNodeList = xPath.compile("//use/title[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        assertEquals(thenDescription, titleNodeList.item(0).textContent)
+        val descriptionNodeList = xPath.compile("//use/title[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(descriptionNodeList.item(0).textContent, thenDescription)
 
+        //date
+        val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(dateNodeList.item(0).textContent, thenDate)
 
-//        val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-//        assertEquals(dateNodeList.item(0).textContent, thenDate)
+        //author
+        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
 
-//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
-
-//        Assertions.assertTrue(result.contains(thenThemeType))
-//        Assertions.assertTrue(result.contains(thenThemeGroupBy))
-//        Assertions.assertTrue(result.contains(thenThemeGroupOrder))
-//        Assertions.assertTrue(result.contains(thenThemeFontWeight))
-//        Assertions.assertTrue(result.contains(thenThemeNewWindow))
-//        Assertions.assertTrue(svg.contains(thenTitle))
-//        Assertions.assertTrue(svg.contains(thenLink))
-//        if(!thenDate.isNullOrBlank()) {
-//            Assertions.assertTrue(svg.contains(thenDate)) }
-//        if(!thenDescription.isNullOrBlank()) {
-//            Assertions.assertTrue(svg.contains(thenDescription)) }
-//        if(!thenAuthor.isNullOrBlank()) {
-//            val svgAuthor = "class=\"author\">(\\w+\\s+\\w)</tspan>".toRegex().find(svg)?.groups?.get(1)
-//
-//        val expression = "//*[@class=\"author\"]"
-//        val nodeList = xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-//
-//        println(nodeList)
-//
-//            Assertions.assertEquals(thenAuthor, svgAuthor) }
-//        Assertions.assertTrue(result.contains(thenItemType))
-//        Assertions.assertTrue(result.contains(thenForegroundColor))
-//        Assertions.assertTrue(result.contains(thenBackgroundColor))
-//
-//        if(!thenBase64Image.isNullOrBlank()) {
-//            Assertions.assertTrue(svg.contains(thenBase64Image))
-//        }
+        //write the svg
+        val path = "src/test/resources/smoke/result/"
+        val dir = File(path)
+        if(!dir.exists()) { dir.mkdir() }
+        val file = File("$path/$scenario.svg")
+        file.writeBytes(svg.toByteArray())
     }
 
 }

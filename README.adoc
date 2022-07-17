@@ -7,8 +7,8 @@
 :minor: .9
 :patch:
 :build:
-//:extension:
-:extension: -SNAPSHOT
+:extension:
+//:extension: -SNAPSHOT
 
 == Maven
 
@@ -42,9 +42,13 @@ link:https://search.maven.org/remotecontent?filepath=io/docops/{artifact}/{major
 
 == Document
 
-link:build/docs/{artifact}.html[]
+link:docs/{artifact}.html[]
 
 == History
+
+2022.9 - 2022-07-17::
+* added parameterized test
+* updated button and round with date, type, and author
 
 2022.8 - 2022-07-14::
 * drop shadows
