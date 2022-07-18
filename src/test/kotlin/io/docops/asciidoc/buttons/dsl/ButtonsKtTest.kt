@@ -42,23 +42,36 @@ internal class ButtonsKtTest {
                     groupBy = Grouping.TITLE
                     groupOrder = GroupingOrder.DESCENDING
                 }
-                font {
-                    color = "#000000"
-                    weight = FontWeight.bold
-                }
-
             }
             panel {
                 link = "https://www.google.com"
                 label = "Google"
+                font =  font{
+                    color = "#000000"
+                    weight = FontWeight.normal
+                    size = "9pt"
+                    decoration = "underline"
+                }
             }
             panel {
                 link = "https://www.apple.com"
                 label = "Apple"
+                font = font{
+                    color = "#0000ff"
+                    weight = FontWeight.normal
+                    size = "10pt"
+                    decoration = "underline"
+                }
             }
             panel {
                 link = "https://www.microsoft.com"
                 label = "Microsoft"
+                font = font{
+                    color = "#00ff00"
+                    weight = FontWeight.normal
+                    size = "10pt"
+                    decoration = "underline"
+                }
             }
             panel {
                 link = "https://www.amazon.com"
@@ -91,6 +104,7 @@ internal class ButtonsKtTest {
                 }
                 font {
                     color = "#000000"
+                    font = "Arial, Helvetica, sans-serif"
                     weight = FontWeight.bold
                 }
                 colorMap {
@@ -186,28 +200,28 @@ internal class ButtonsKtTest {
         when (list.buttonType) {
             ButtonType.BUTTON -> {
                 list.panelButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, "")
+                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, "", font = it.font)
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
             ButtonType.SLIM_CARD -> {
                 list.slimButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, it.date)
+                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, it.date, font = it.font)
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
             ButtonType.LARGE_CARD -> {
                 list.largeButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, "")
+                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, "", font = it.font)
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
             ButtonType.ROUND -> {
                 list.roundButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, "")
+                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, "", font = it.font)
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)

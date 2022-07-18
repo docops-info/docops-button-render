@@ -16,6 +16,7 @@
 
 package io.docops.asciidoc.buttons.models
 
+import io.docops.asciidoc.buttons.dsl.Font
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -26,7 +27,7 @@ data class Button(
     var authors: MutableList<String>,
     var type: String,
     var date: String,
-    var foregroundColor: String? = null,
+    var font: Font? = null,
     var backgroundColor: String? = null,
     var buttonImage: ButtonImage? = null
 ) {
@@ -35,6 +36,7 @@ data class Button(
         val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
         return LocalDate.parse(date, formatter)
     }
+
 }
 data class ButtonImage(val ref: String, val type: String = "image/png")
 

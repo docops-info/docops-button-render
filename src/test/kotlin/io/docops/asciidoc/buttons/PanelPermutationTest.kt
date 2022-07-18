@@ -16,6 +16,7 @@
 
 package io.docops.asciidoc.buttons
 
+import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
 import io.docops.asciidoc.buttons.theme.ButtonType
@@ -46,7 +47,7 @@ class PanelPermutationTest {
         whenDescription: String,
         whenAuthor: String,
         whenItemType: String,
-        whenForegroundColor: String,
+        whenForegroundColor: Font,
         whenBackgroundColor: String,
         whenBase64Image: String?,
         thenTitle: String,
@@ -85,7 +86,7 @@ class PanelPermutationTest {
             description = whenDescription,
             authors = mutableListOf( whenAuthor),
             type = whenItemType,
-            foregroundColor = whenForegroundColor,
+            font = whenForegroundColor,
             backgroundColor = whenBackgroundColor,
             buttonImage = imageValue(whenBase64Image)
         )

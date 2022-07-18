@@ -17,9 +17,7 @@
 package io.docops.asciidoc.buttons.service
 
 import io.docops.asciidoc.buttons.ButtonRenderImpl
-import io.docops.asciidoc.buttons.dsl.ButtonItem
-import io.docops.asciidoc.buttons.dsl.PanelButton
-import io.docops.asciidoc.buttons.dsl.Panels
+import io.docops.asciidoc.buttons.dsl.*
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.theme.ButtonType
 import io.docops.asciidoc.buttons.theme.Theme
@@ -54,7 +52,8 @@ class PanelService {
                         authors = mutableListOf(),
                         type = it.label,
                         date = "",
-                        foregroundColor = panel.buttonTheme.font.color)
+                        font = panel.buttonTheme.font
+                    )
                     localList.add(btn)
                 }
             }
@@ -67,7 +66,7 @@ class PanelService {
                         authors = it.authors,
                         type = it.type,
                         date = it.date,
-                        foregroundColor = panel.buttonTheme.font.color
+                        font = panel.buttonTheme.font
                     )
                     localList.add(btn)
                 }
@@ -81,7 +80,7 @@ class PanelService {
                         authors = mutableListOf(),
                         type = it.type,
                         date = it.date,
-                        foregroundColor = panel.buttonTheme.font.color,
+                        font = panel.buttonTheme.font,
                         buttonImage = it.buttonImage
                     )
                     localList.add(btn)
@@ -96,7 +95,7 @@ class PanelService {
                         authors = mutableListOf(),
                         type = it.label,
                         date = "",
-                        foregroundColor = panel.buttonTheme.font.color)
+                        font = panel.buttonTheme.font)
                     localList.add(btn)
                 }
             }

@@ -16,6 +16,7 @@
 
 package io.docops.asciidoc.buttons
 
+import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
 import io.docops.asciidoc.buttons.theme.ButtonType
@@ -66,7 +67,9 @@ class SVGReferenceTest {
             description = "This is a description.",
             authors = mutableListOf("Steve Roach", "Mike Duffy", "Ian Cooper Rose"),
             type = "Render Test",
-            foregroundColor = "#FFFFFF",
+            font =  font{
+                color = "#ffffff"
+            },
             backgroundColor = "#007700"
         )
 

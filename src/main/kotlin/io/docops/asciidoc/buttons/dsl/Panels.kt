@@ -27,6 +27,9 @@ open class ButtonItem {
     var label = ""
     var description = ""
     var type = label
+    var font = Font()
+
+
 }
 
 @PanelDSL
@@ -75,6 +78,8 @@ class Font {
     var color = "white"
     var weight = FontWeight.normal
     var font = """-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol""""
+    var size = "9pt"
+    var decoration = "none"
 }
 
 
@@ -209,4 +214,7 @@ class Panels {
 
 fun panels(panel: Panels.() -> Unit): Panels {
     return Panels().apply(panel).validate()
+}
+ fun font(font: Font.() -> Unit): Font {
+    return Font().apply(font)
 }

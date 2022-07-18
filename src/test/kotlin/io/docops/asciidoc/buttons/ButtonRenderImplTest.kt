@@ -16,6 +16,8 @@
 
 package io.docops.asciidoc.buttons
 
+import io.docops.asciidoc.buttons.dsl.FontWeight
+import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.dsl.panels
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
@@ -36,14 +38,18 @@ class ButtonRenderImplTest {
         val button = Button(
             title = "title", link = "link1",
             description = "description", authors = mutableListOf("Steve"), type = "Awesome",
-            date = "11/16/2021", foregroundColor = null, backgroundColor = null
+            date = "11/16/2021", font =  font{
+                color = "#ffcccc"
+                weight = FontWeight.normal
+                size = "8"
+            }, backgroundColor = null
         )
         val buttons = listOf(
             button.copy(authors = mutableListOf("Mike"), type = "Pizza"),
             Button(
                 title = "title", link = "link1",
                 description = "description", authors = mutableListOf("Steve"), type = "Awesome",
-                date = "11/16/2021", foregroundColor = null, backgroundColor = null
+                date = "11/16/2021", font = null, backgroundColor = null
             ),
             Button(
                 title = "title2", link = "link0", description = "desc", authors = mutableListOf("Ian"), type = "Dirty",
@@ -201,7 +207,9 @@ class ButtonRenderImplTest {
             authors = mutableListOf("Steve Roach","Ian Rose", "Mike Duffy"),
             type = "Awesome",
             date = "11/16/2021",
-            foregroundColor = "black",
+            font =  font{
+                color = "#000000"
+            },
             backgroundColor = null
         )
         return listOf(
@@ -215,7 +223,9 @@ class ButtonRenderImplTest {
             Button(
                 title = "Google", link = "https://google.com",
                 description = "description trying & < >. Bug: if a word in the input is longer than maxLineLength it will be appended to the current line instead of on a too-long line of its own. I assume your line length is something like 80 or 120 characters, in which case this is unlikely to be a problem.", authors = mutableListOf("Steve"), type = "Green",
-                date = "11/16/2021", foregroundColor = "black", backgroundColor = "red"
+                date = "11/16/2021", font =  font{
+                    color = "#000000"
+                }, backgroundColor = "red"
             ),
             Button(
                 title = "Maryland's Crab & Snack Shop",

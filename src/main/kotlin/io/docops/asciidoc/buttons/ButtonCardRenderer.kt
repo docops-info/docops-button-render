@@ -91,7 +91,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 )
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="title" target="$win" style="fill: ${theme.buttonTextColor(button)}; text-decoration: underline;">${button.title.escapeXml()}</a></text>
+                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="title"  ${theme.buttonTextColor(button)}>${button.title.escapeXml()}</a></text>
             """.trimIndent())
             }
 
@@ -142,6 +142,13 @@ class ButtonCardRenderer : ButtonMaker() {
         }
         .label {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+        .title {
+            fill: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-weight: normal;
+            font-style: normal;
+            font-size: 9pt;
         }
     </style>
     """

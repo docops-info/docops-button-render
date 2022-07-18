@@ -17,15 +17,18 @@
 package io.docops.asciidoc.buttons.theme
 
 import io.docops.asciidoc.buttons.models.Button
+import io.docops.asciidoc.utils.escapeXml
 
 @ThemeDSL
 class Theme {
     companion object {
         private val fontWeights = listOf("bold", "normal", "italic")
     }
+
     var columns = 3
+
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
-    var colorMap = listOf (
+    var colorMap = listOf(
         "#DA79EC",
         "#DECD5E",
         "#F6AB4C",
@@ -45,7 +48,8 @@ class Theme {
         "#2913ED",
         "#324DE5",
         "#32B0A1",
-        "#1EB178")
+        "#1EB178"
+    )
 
     //var colorMap = listOf("url(#linear-gradient-0)", "url(#linear-gradient-1)", "url(#linear-gradient-2)", "url(#linear-gradient-3)", "url(#linear-gradient-4)", "url(#linear-gradient-5)")
     var groupBy = Grouping.DATE
@@ -59,39 +63,60 @@ class Theme {
     var dropShadow = 0
 
     var typeMap = mutableMapOf<String, String>()
-    infix fun typeIs (other: String) {
+    infix fun typeIs(other: String) {
         this.type = ButtonType.valueOf(other)
     }
+
     internal fun validate(): Theme {
-        require(fontWeights.contains(fontWeight)) {"not a valid font weight $fontWeight"}
-        require(dropShadow in 0..9) {"dropShadow value $dropShadow does not fall in the range 0..9"}
+        require(fontWeights.contains(fontWeight)) { "not a valid font weight $fontWeight" }
+        require(dropShadow in 0..9) { "dropShadow value $dropShadow does not fall in the range 0..9" }
         return this
     }
+
     fun buttonColor(button: Button): String {
-       button.backgroundColor?.let {
-           return it
-       }
-       val col = typeMap[button.type]
-        return if(null == col) {
-            val color = colorMap[typeMap.size % colorMap.size ]
-            typeMap[button.type] = color
-            color
-        } else {
-            col
+        var color = ""
+        button.backgroundColor?.let {
+            color = it
         }
+        val col = typeMap[button.type]
+
+        if (null == col && color.isEmpty()) {
+            color = colorMap[typeMap.size % colorMap.size]
+            typeMap[button.type] = color
+        } else {
+            if (col != null) {
+                color = col
+            }
+        }
+
+        return color
     }
-    fun buttonTextColor(button: Button) : String {
-         button.foregroundColor?.let {
-             return it
-         }
-        return "white"
+
+    fun buttonTextColor(button: Button): String {
+        //language=css
+        var style = ""
+        button.font?.let {
+            style += "style=\""
+            if(it.color.isNotEmpty()) {
+                style += """fill: ${it.color};"""
+            }
+            if(it.font.isNotEmpty()) {
+                style += " font-family: ${it.font.escapeXml()};"
+            }
+            if(it.size.isNotEmpty()) {
+                style +=" font-size: ${it.size};"
+            }
+            style += " font-weight: ${it.weight};"
+            return style + """" text-decoration="${it.decoration.escapeXml()}""""
+        }
+        return "style=\"fill:white;\""
     }
 }
 
 
 val SlimCardsTheme = theme {
     this typeIs "SLIM_CARD"
-    groupBy= Grouping.TYPE
+    groupBy = Grouping.TYPE
     groupOrder = GroupingOrder.ASCENDING
     columns = 4
 }
@@ -102,14 +127,16 @@ val LargeCards = theme {
 enum class ButtonType {
     BUTTON, ROUND, LARGE_CARD, SLIM_CARD
 }
+
 enum class Grouping {
     TYPE, TITLE, AUTHOR, DATE
 }
+
 enum class GroupingOrder {
     ASCENDING, DESCENDING
 }
 
-fun theme(theme: Theme.()->Unit) : Theme {
+fun theme(theme: Theme.() -> Unit): Theme {
     return Theme().apply(theme).validate()
 }
 

@@ -106,11 +106,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """ 
-                <a xlink:href="${button.link}" target="$win" style="fill: ${
-                        theme.buttonTextColor(
-                            button
-                        )
-                    }" class="label">
+                <a xlink:href="${button.link}" target="$win"  ${theme.buttonTextColor(button)} class="label">
                     <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" >""")
                 val lines = button.title.makeLines()
                 var dy = 0
