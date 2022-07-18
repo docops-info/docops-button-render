@@ -33,7 +33,7 @@ open class ButtonItem {
 class LargeButton : ButtonItem() {
     var authors = mutableListOf<String>()
     var date: String = ""
-    var base64Image: ButtonImage? = null
+    var buttonImage: ButtonImage? = null
     infix fun author(author: String) {
         authors.add(author)
     }
@@ -74,55 +74,44 @@ enum class FontWeight {
 class Font {
     var color = "white"
     var weight = FontWeight.normal
+    var font = """-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol""""
 }
 
 
 @PanelDSL
 class ColorMap {
-    private val defaultColors = listOf(
-        "url(#linear-gradient-0)",
-        "url(#linear-gradient-1)",
-        "url(#linear-gradient-2)",
-        "url(#linear-gradient-3)",
-        "url(#linear-gradient-4)",
-        "url(#linear-gradient-5)"
-    )
-    var colors = mutableListOf<String>()
+
+    var colors = mutableListOf(
+        "#DA79EC",
+        "#DECD5E",
+        "#F6AB4C",
+        "#F8827D",
+        "#FB0F5F",
+        "#ED4661",
+        "#7FA0BC",
+        "#74F78F",
+        "#EBFB01",
+        "#1EB20B",
+        "#06A69F",
+        "#E33241",
+        "#E21A0E",
+        "#CAF728",
+        "#CEFF48",
+        "#F62A0C",
+        "#2913ED",
+        "#324DE5",
+        "#32B0A1",
+        "#1EB178")
     private val colorPairs = mutableListOf<Pair<String, String>>()
     var colorDefs = ""
     internal var initialized = false
-    fun gradient(startColor: String, endColor: String) {
-        colorPairs.add(Pair(startColor, endColor))
-    }
+
 
     fun color(color: String) {
         colors.add(color)
     }
 
-    private fun toLinearGradient(): String {
-        val sb = StringBuilder()
-        colorPairs.forEachIndexed { index, pair ->
-            sb.append(
-                """
-            <linearGradient id="gradient-$index" gradientUnits="userSpaceOnUse" x1="781.482" y1="79.988" x2="781.482" y2="49.983">
-                <stop offset="0" stop-color="${pair.first}" stop-opacity="1"/>
-                <stop offset="1" stop-color="${pair.second}" stop-opacity="1"/>
-            </linearGradient>
-            """.trimIndent()
-            )
-            colors.add("url(#gradient-$index)")
-        }
-        return sb.toString()
-    }
 
-    fun setup(): ColorMap {
-        colorDefs = toLinearGradient()
-        if (colorDefs.isEmpty() && colors.isEmpty()) {
-            colors.addAll(defaultColors)
-        }
-        initialized = true
-        return this
-    }
 }
 
 
@@ -133,16 +122,14 @@ class ButtonTheme {
     var colorMap = ColorMap()
     var legendOn = true
     var newWin = true
-    var dropShadow = 0
+    var dropShadow = 1
 
     fun layout(layout: Layout.() -> Unit) {
         this.layout = Layout().apply(layout)
     }
 
     fun validate(): ButtonTheme {
-        if (!colorMap.initialized) {
-            colorMap.setup()
-        }
+
         require(dropShadow in 0..9) { "Drop shadow value $dropShadow does not fall in the range 0..9" }
         return this
     }
@@ -152,7 +139,7 @@ class ButtonTheme {
     }
 
     fun colorMap(colorMap: ColorMap.() -> Unit) {
-        this.colorMap = ColorMap().apply(colorMap).setup()
+        this.colorMap = ColorMap().apply(colorMap)
     }
 
 }

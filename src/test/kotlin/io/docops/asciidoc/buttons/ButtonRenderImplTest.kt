@@ -210,7 +210,7 @@ class ButtonRenderImplTest {
                 type = "Pizza",
                 title = "Hamburger",
                 link = "https://cooking.nytimes.com/recipes/1016595-hamburgers-diner-style",
-                base64Image = ButtonImage(base64Str = "ayaan.png")
+                buttonImage = ButtonImage(ref = "ayaan.png")
             ),
             Button(
                 title = "Google", link = "https://google.com",
@@ -226,7 +226,7 @@ class ButtonRenderImplTest {
                 date = "10/10/2020"
             ),
             button.copy(title = "Bahama", type = "Pizza", description = "Should the description be long?",
-                base64Image = ButtonImage(base64Str = "ayaan.png")
+                buttonImage = ButtonImage(ref = "ayaan.png")
             ),
             button.copy(title = "PyCharm Edu", type = "Awesome", description = "Should the description be long maybe? Is this going on"),
             button.copy(title = "Rider", type = "Awesome", description = "Should the description be long maybe?"),

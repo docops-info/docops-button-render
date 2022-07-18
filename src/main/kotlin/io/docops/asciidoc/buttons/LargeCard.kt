@@ -68,16 +68,16 @@ class LargeCard : ButtonMaker() {
             }
             val lines = addLinebreaks(button.description, 41)
             var imgOrRec = ""
-            button.base64Image?.let {
-                imgOrRec = "data:${it.type};base64,${it.base64Str}"
+            button.buttonImage?.let {
+                imgOrRec = "data:${it.type};base64,${it.ref}"
             }
-            if(button.base64Image != null) {
-                val img = button.base64Image
+            if(button.buttonImage != null) {
+                val img = button.buttonImage
                 img?.let {
                     // language=svg
                     imgOrRec = """
                         <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
-                        <image x="$recXpos" y="$yPos" width="300" height="191" href="${img.base64Str}"/>""".trimIndent()
+                        <image x="$recXpos" y="$yPos" width="300" height="191" href="${img.ref}"/>""".trimIndent()
                 }
             } else {
                 // language=svg

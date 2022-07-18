@@ -82,7 +82,7 @@ class PanelService {
                         type = it.type,
                         date = it.date,
                         foregroundColor = panel.buttonTheme.font.color,
-                        base64Image = it.base64Image
+                        buttonImage = it.buttonImage
                     )
                     localList.add(btn)
                 }

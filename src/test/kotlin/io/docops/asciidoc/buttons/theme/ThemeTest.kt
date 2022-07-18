@@ -70,6 +70,6 @@ class ThemeTest {
                 dropShadow = 11
             }
         })
-        assertEquals("Dropshadow value 11 does not fall in the range 0..9", thrown.message)
+        assertEquals("dropShadow value 11 does not fall in the range 0..9", thrown.message)
     }
 }

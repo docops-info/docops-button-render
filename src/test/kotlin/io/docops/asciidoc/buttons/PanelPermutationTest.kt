@@ -74,7 +74,7 @@ class PanelPermutationTest {
             return if(whenBase64Image.isNullOrBlank()) {
                 null
             } else {
-                ButtonImage(base64Str = whenBase64Image, type = "image/png")
+                ButtonImage(ref = whenBase64Image, type = "image/png")
             }
         }
 
@@ -87,7 +87,7 @@ class PanelPermutationTest {
             type = whenItemType,
             foregroundColor = whenForegroundColor,
             backgroundColor = whenBackgroundColor,
-            base64Image = imageValue(whenBase64Image)
+            buttonImage = imageValue(whenBase64Image)
         )
 
         val svg = panel.render(mutableListOf(item), theme)

@@ -163,16 +163,23 @@ class SlimCardRenderer : ButtonMaker() {
             font-size: 9pt;
         }
 
-        .subtitle {
+        .category {
             fill: white;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            font-weight: normal;
+            font-weight: bold;
             font-style: italic;
             font-size: 8pt;
         }
+        .title {
+            fill: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-weight: bold;
+            font-style: normal;
+            font-size: 9pt;
+        }
+
 
         .author {
-            fill: black;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-weight: normal;
             font-size: 8pt;

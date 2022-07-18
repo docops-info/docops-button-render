@@ -101,7 +101,7 @@ class ButtonCardRenderer : ButtonMaker() {
     }
 
     private fun makeStyles(theme: Theme): String {
-        // language=svg
+        // language=css
         return """
         <style>
         rect.card {

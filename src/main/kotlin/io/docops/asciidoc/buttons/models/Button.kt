@@ -28,7 +28,7 @@ data class Button(
     var date: String,
     var foregroundColor: String? = null,
     var backgroundColor: String? = null,
-    var base64Image: ButtonImage? = null
+    var buttonImage: ButtonImage? = null
 ) {
 
     fun dateFromStr(): LocalDate {
@@ -36,5 +36,5 @@ data class Button(
         return LocalDate.parse(date, formatter)
     }
 }
-data class ButtonImage(val base64Str: String, val type: String = "image/png")
+data class ButtonImage(val ref: String, val type: String = "image/png")
 

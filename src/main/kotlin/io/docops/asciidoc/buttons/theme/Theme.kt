@@ -25,7 +25,7 @@ class Theme {
     }
     var columns = 3
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
-    var colorMap =listOf(
+    var colorMap = listOf (
         "#DA79EC",
         "#DECD5E",
         "#F6AB4C",
@@ -64,7 +64,7 @@ class Theme {
     }
     internal fun validate(): Theme {
         require(fontWeights.contains(fontWeight)) {"not a valid font weight $fontWeight"}
-        require(dropShadow in 0..9) {"Dropshadow value $dropShadow does not fall in the range 0..9"}
+        require(dropShadow in 0..9) {"dropShadow value $dropShadow does not fall in the range 0..9"}
         return this
     }
     fun buttonColor(button: Button): String {
