@@ -27,7 +27,7 @@ open class ButtonItem {
     var label = ""
     var description = ""
     var type = label
-    var font = Font()
+    var font: Font? = null
 
 
 }
@@ -77,9 +77,9 @@ enum class FontWeight {
 class Font {
     var color = "white"
     var weight = FontWeight.normal
-    var font = """-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol""""
+    var font = "Arial, Helvetica, sans-serif"
     var size = "9pt"
-    var decoration = "none"
+    var decoration = "underline"
 }
 
 
@@ -123,7 +123,7 @@ class ColorMap {
 @PanelDSL
 class ButtonTheme {
     var layout: Layout = Layout()
-    var font = Font()
+    var font: Font? = null
     var colorMap = ColorMap()
     var legendOn = true
     var newWin = true
@@ -139,9 +139,6 @@ class ButtonTheme {
         return this
     }
 
-    fun font(font: Font.() -> Unit) {
-        this.font = Font().apply(font)
-    }
 
     fun colorMap(colorMap: ColorMap.() -> Unit) {
         this.colorMap = ColorMap().apply(colorMap)

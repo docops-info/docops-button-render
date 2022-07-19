@@ -23,17 +23,19 @@ import io.docops.asciidoc.utils.escapeXml
 
 class LargeCard : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
-        val sb = StringBuilder(makeSvgHead(
-            buttons = buttons,
-            heightFactor = 410,
-            defaultHeight = 500,
-            widthFactor = 310,
-            theme = theme
-        ))
+        val sb = StringBuilder(
+            makeSvgHead(
+                buttons = buttons,
+                heightFactor = 410,
+                defaultHeight = 500,
+                widthFactor = 310,
+                theme = theme
+            )
+        )
         sb.append(makeDefs(theme))
         sb.append(makeStyles(theme))
-        sb.append(drawButtons(buttons,theme))
-        if(theme.legendOn) {
+        sb.append(drawButtons(buttons, theme))
+        if (theme.legendOn) {
             sb.append(drawLegend(types))
         }
         sb.append(makeSvgEnd())
@@ -53,15 +55,15 @@ class LargeCard : ButtonMaker() {
         var recXpos = 10
         var yPos = 10
         var dateXpos = 95
-        if(rowCount>0) {
+        if (rowCount > 0) {
             yPos = rowCount * 410 + 10
         }
         row.forEachIndexed { index, button ->
-            if(index > 0) {
+            if (index > 0) {
                 recXpos += 320
-                dateXpos+= 320
+                dateXpos += 320
             }
-            val win = if(!theme.newWin) {
+            val win = if (!theme.newWin) {
                 "_top"
             } else {
                 "_blank"
@@ -71,7 +73,7 @@ class LargeCard : ButtonMaker() {
             button.buttonImage?.let {
                 imgOrRec = "data:${it.type};base64,${it.ref}"
             }
-            if(button.buttonImage != null) {
+            if (button.buttonImage != null) {
                 val img = button.buttonImage
                 img?.let {
                     // language=svg
@@ -85,7 +87,7 @@ class LargeCard : ButtonMaker() {
                     <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
                     """.trimIndent()
             }
-            if(theme.isPDF) {
+            if (theme.isPDF) {
                 // language=svg
                 sb.append(
                     """
@@ -107,27 +109,31 @@ class LargeCard : ButtonMaker() {
             val authors = StringBuilder()
             // language=svg
             button.authors.forEach {
-                authors.append("""<tspan x="${recXpos+10}" dy="18" class="author">${it.escapeXml()}</tspan>""")
+                authors.append("""<tspan x="${recXpos + 10}" dy="18" class="author">${it.escapeXml()}</tspan>""")
             }
             // language=svg
-            sb.append("""
-                <text x="${recXpos+10}" y="${yPos+220}" class="category">${button.type.escapeXml()}</text>
-                <text x="${recXpos+10}" y="${yPos+240}" class="longdesc">
-                """)
-            if(theme.isPDF) {
+            sb.append(
+                """
+                <text x="${recXpos + 10}" y="${yPos + 220}" class="category">${button.type.escapeXml()}</text>
+                <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
+                """
+            )
+            if (theme.isPDF) {
                 // language=svg
                 sb.append("""<tspan class="title" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>""")
-            }else {
+            } else {
                 // language=svg
-                sb.append("""<tspan class="link" text-decoration="underline"><a href="${button.link}" class="title" fill="#335D79" target="$win">${button.title.escapeXml()}</a></tspan>""")
+                sb.append("""<tspan><a href="${button.link}" class="title" ${theme.buttonTextColor(button)} target="$win">${button.title.escapeXml()}</a></tspan>""")
             }
             // language=svg
-            sb.append("""
+            sb.append(
+                """
                     $authors
-                    <tspan x="${recXpos+10}" dy="18" class="date">${button.date.escapeXml()}</tspan>
-            """.trimEnd())
+                    <tspan x="${recXpos + 10}" dy="18" class="date">${button.date.escapeXml()}</tspan>
+            """.trimEnd()
+            )
             lines.forEachIndexed { i, str ->
-                if(i < 6) {
+                if (i < 6) {
                     // language=svg
                     sb.append(
                         """
@@ -170,20 +176,28 @@ class LargeCard : ButtonMaker() {
             opacity: 0.6;
         }
         .headline {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family:  Helvetica, Arial, sans-serif;
             fill: #46494d;
         }
         .link {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-family:  Helvetica, Arial, sans-serif;
             fill: #335D79;
         }
         .description {
             font-size: 9pt;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family:  Helvetica, Arial, sans-serif;    
+        }
+        .category {
+            font-size: 10pt;
+            font-family:  Helvetica, Arial, sans-serif;    
         }
         .longdesc {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family:  Helvetica, Arial, sans-serif;     
             font-size: 9pt;
+        }
+        .legendText {
+            font-size: 9pt;
+            font-family:  Helvetica, Arial, sans-serif;    
         }
     </style>
         """.trimIndent()

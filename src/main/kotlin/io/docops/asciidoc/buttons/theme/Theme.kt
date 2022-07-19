@@ -16,6 +16,8 @@
 
 package io.docops.asciidoc.buttons.theme
 
+import io.docops.asciidoc.buttons.dsl.Font
+import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
 
@@ -60,7 +62,8 @@ class Theme {
     var legendOn = true
     var isPDF = false
     var defs = ""
-    var dropShadow = 0
+    var dropShadow = 1
+    var font: Font = Font()
 
     var typeMap = mutableMapOf<String, String>()
     infix fun typeIs(other: String) {
@@ -93,9 +96,13 @@ class Theme {
     }
 
     fun buttonTextColor(button: Button): String {
+        var f = button.font
+        if(f == null) {
+            f = this.font
+        }
         //language=css
         var style = ""
-        button.font?.let {
+        f.let {
             style += "style=\""
             if(it.color.isNotEmpty()) {
                 style += """fill: ${it.color};"""
@@ -109,7 +116,6 @@ class Theme {
             style += " font-weight: ${it.weight};"
             return style + """" text-decoration="${it.decoration.escapeXml()}""""
         }
-        return "style=\"fill:white;\""
     }
 }
 

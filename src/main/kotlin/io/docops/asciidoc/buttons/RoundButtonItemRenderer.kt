@@ -106,7 +106,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """ 
-                <a xlink:href="${button.link}" target="$win"  ${theme.buttonTextColor(button)} class="label">
+                <a xlink:href="${button.link}" target="$win">
                     <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" >""")
                 val lines = button.title.makeLines()
                 var dy = 0
@@ -119,7 +119,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     }
                     // language=svg
                     sb.append(
-                        """<tspan class="title" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan ${theme.buttonTextColor(button)} x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
                         )
                 }
                 sb.append("""
@@ -134,7 +134,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
     }
 
     private fun makeStyles(theme: Theme): String {
-        // language=svg
+        // language=css
         return """
         <style>
         circle.card {
@@ -154,9 +154,9 @@ class RoundButtonItemRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .subtitle {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
-            font-size: 10px;
+            font-size: 9pt;
         }
         rect.legend {
             pointer-events: bounding-box;
@@ -167,8 +167,12 @@ class RoundButtonItemRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .label {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            font-size: 10px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 9pt;
+        }
+        .legendText {
+            font-size: 9pt;
+            font-family:  Helvetica, Arial, sans-serif;    
         }
     </style>
     """

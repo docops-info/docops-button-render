@@ -128,7 +128,7 @@ class ButtonCardRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .subtitle {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
             font-size: 10px;
         }
@@ -141,14 +141,18 @@ class ButtonCardRenderer : ButtonMaker() {
             opacity: 0.6;
         }
         .label {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
         }
         .title {
             fill: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
             font-style: normal;
             font-size: 9pt;
+        }
+        .legendText {
+            font-size: 9pt;
+            font-family:  Helvetica, Arial, sans-serif;    
         }
     </style>
     """

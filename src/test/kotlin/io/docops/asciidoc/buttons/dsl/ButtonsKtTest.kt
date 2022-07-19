@@ -106,28 +106,7 @@ internal class ButtonsKtTest {
                     color = "#000000"
                     font = "Arial, Helvetica, sans-serif"
                     weight = FontWeight.bold
-                }
-                colorMap {
-                    color("#c8dfcc")
-                    color("#b2a2eb")
-                    color("#9bf6da")
-                    color("#eea1d3")
-                    color("#eccfa1")
-                    color("#a3e6d4")
-                    color("#fbb394")
-                    color("#d5d2b6")
-                    color("#eedbbf")
-                    color("#dce5b7")
-                    color("#b0f6bf")
-                    color("#f0abb7")
-                    color("#a7b5f5")
-                    color("#c7a0f9")
-                    color("#d4d4b0")
-                    color("#e1bdbc")
-                    color("#accdec")
-                    color("#b5e4dd")
-                    color("#a1fb88")
-                    color("#eefab4")
+                    size = "11pt"
                 }
 
             }
@@ -195,6 +174,9 @@ internal class ButtonsKtTest {
         theme.colorMap = list.buttonTheme.colorMap.colors
         theme.defs = list.buttonTheme.colorMap.colorDefs
         theme.dropShadow = list.buttonTheme.dropShadow
+        list.buttonTheme.font?.let {
+            theme.font = it
+        }
         val localList = mutableListOf<Button>()
 
         when (list.buttonType) {

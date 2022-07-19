@@ -108,7 +108,7 @@ class SlimCardRenderer : ButtonMaker() {
             c = 0
             downBy = 0
             titleStr.forEach {
-                title += """<tspan x="${recXpos+4}" dy="$downBy" class="title">${it.trim()}</tspan>"""
+                title += """<tspan x="${recXpos+4}" dy="$downBy" class="title" ${theme.buttonTextColor(button)}>${it.trim()}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -158,21 +158,21 @@ class SlimCardRenderer : ButtonMaker() {
 
         .lineHead {
             fill: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: bold;
             font-size: 9pt;
         }
 
         .category {
             fill: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: bold;
             font-style: italic;
             font-size: 8pt;
         }
         .title {
             fill: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: bold;
             font-style: normal;
             font-size: 9pt;
@@ -180,20 +180,20 @@ class SlimCardRenderer : ButtonMaker() {
 
 
         .author {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
             font-size: 8pt;
             fill: darkslategrey;
         }
         .legendText {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
             font-size: 9pt;
         }
 
         .date {
             fill: white;
-            font-family: "Noto Sans",sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
             font-size: 10px;
         }

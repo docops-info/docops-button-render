@@ -130,6 +130,10 @@ class ButtonRenderImplTest {
         theme.legendOn = false
         theme.isPDF = false
         theme.dropShadow = 4
+        theme.font = font {
+            size = "10pt"
+            color = "blue"
+        }
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
@@ -149,6 +153,9 @@ class ButtonRenderImplTest {
         theme.groupBy= Grouping.TYPE
         theme.columns = 4
         theme.groupOrder = GroupingOrder.ASCENDING
+        theme.font.decoration = "none"
+        theme.font.size = "10pt"
+
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
@@ -171,6 +178,10 @@ class ButtonRenderImplTest {
                     color("#FDCBF1")
                 }
                 legendOn = true
+                font = font {
+                    size = "10pt"
+                    decoration = "none"
+                }
             }
             round {
                 link = "https://www.google.com"
@@ -207,9 +218,6 @@ class ButtonRenderImplTest {
             authors = mutableListOf("Steve Roach","Ian Rose", "Mike Duffy"),
             type = "Awesome",
             date = "11/16/2021",
-            font =  font{
-                color = "#000000"
-            },
             backgroundColor = null
         )
         return listOf(
@@ -218,7 +226,11 @@ class ButtonRenderImplTest {
                 type = "Pizza",
                 title = "Hamburger",
                 link = "https://cooking.nytimes.com/recipes/1016595-hamburgers-diner-style",
-                buttonImage = ButtonImage(ref = "ayaan.png")
+                buttonImage = ButtonImage(ref = "ayaan.png"),
+                font = font {
+                    decoration = "underline"
+                    color = "blue"
+                }
             ),
             Button(
                 title = "Google", link = "https://google.com",
