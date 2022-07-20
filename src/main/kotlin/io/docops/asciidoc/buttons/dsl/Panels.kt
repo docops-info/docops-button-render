@@ -75,7 +75,7 @@ enum class FontWeight {
 
 @PanelDSL
 class Font {
-    var color = "white"
+    var color = "#000000"
     var weight = FontWeight.normal
     var font = "Arial, Helvetica, sans-serif"
     var size = "9pt"

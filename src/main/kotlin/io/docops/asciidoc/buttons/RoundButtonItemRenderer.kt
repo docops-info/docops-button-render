@@ -119,7 +119,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     }
                     // language=svg
                     sb.append(
-                        """<tspan ${theme.buttonTextColor(button)} x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan ${theme.buttonTextColor(button)} class="title" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
                         )
                 }
                 sb.append("""

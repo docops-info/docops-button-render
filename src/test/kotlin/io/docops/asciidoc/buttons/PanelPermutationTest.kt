@@ -47,9 +47,9 @@ class PanelPermutationTest {
         whenDescription: String,
         whenAuthor: String,
         whenItemType: String,
-        whenForegroundColor: Font,
+        whenForegroundColor: String,
         whenBackgroundColor: String,
-        whenBase64Image: String?,
+        whenButtonImage: String?,
         thenTitle: String,
         thenLink: String,
         thenDate: String,
@@ -58,7 +58,7 @@ class PanelPermutationTest {
         thenItemType: String,
         thenForegroundColor: String,
         thenBackgroundColor: String,
-        thenBase64Image: String?
+        thenButtonImage: String?
     ) {
 
         val panel = ButtonRenderImpl()
@@ -86,9 +86,9 @@ class PanelPermutationTest {
             description = whenDescription,
             authors = mutableListOf( whenAuthor),
             type = whenItemType,
-            font = whenForegroundColor,
+            font = Font(),
             backgroundColor = whenBackgroundColor,
-            buttonImage = imageValue(whenBase64Image)
+            buttonImage = imageValue(whenButtonImage)
         )
 
         val svg = panel.render(mutableListOf(item), theme)
@@ -100,7 +100,7 @@ class PanelPermutationTest {
 
         //title
         val titleNodeList = xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        assertEquals(titleNodeList.item(0).textContent, thenTitle)
+        assertEquals(titleNodeList.item(0).textContent.trim(), thenTitle)
 
         //type
         val typeNodeList = xPath.compile("//*[@class=\"category\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList

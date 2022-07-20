@@ -112,18 +112,26 @@ class LargeCard : ButtonMaker() {
                 authors.append("""<tspan x="${recXpos + 10}" dy="18" class="author">${it.escapeXml()}</tspan>""")
             }
             // language=svg
-            sb.append(
-                """
-                <text x="${recXpos + 10}" y="${yPos + 220}" class="category">${button.type.escapeXml()}</text>
-                <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
-                """
-            )
+
             if (theme.isPDF) {
                 // language=svg
-                sb.append("""<tspan class="title" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>""")
+                sb.append("""
+                        <tspan class="title" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>
+                        <text x="${recXpos + 10}" y="${yPos + 220}" class="category">${button.type.escapeXml()}</text>
+                        <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
+                    """.trimIndent())
             } else {
                 // language=svg
-                sb.append("""<tspan><a href="${button.link}" class="title" ${theme.buttonTextColor(button)} target="$win">${button.title.escapeXml()}</a></tspan>""")
+                sb.append("""
+                        <text x="${recXpos + 10}" y="${yPos + 220}" class="link">
+                            <a href="${button.link}" class="title" ${theme.buttonTextColor(button)}>
+                                ${button.title.escapeXml()}
+                            </a>
+                        </text>
+                        
+                        <text x="${recXpos + 10}" y="${yPos + 238}" class="category">${button.type.escapeXml()}</text>
+                        <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
+                    """.trimIndent())
             }
             // language=svg
             sb.append(
