@@ -169,7 +169,7 @@ class ButtonRenderImplTest {
     fun drawRoundFromDoc () {
         val d = panels {
             theme {
-                colorMap{
+                colorMap {
                     color("#ff6385")
                     color("#36a3eb")
                     color("#9966ff")
@@ -261,5 +261,93 @@ class ButtonRenderImplTest {
             )
 
         )
+    }
+
+    @Test
+    fun testFontPanelSvc() {
+        val pans =  panels{
+            theme {
+                colorMap {
+                    color("#03CFD9")
+                    color("#48B338")
+                    color("#1C8950")
+                    color("#ABCB2B")
+                    color("#331C68")
+                    color("#11A988")
+                }
+                legendOn = false
+                layout {
+                    columns = 3
+                    groupBy = Grouping.TYPE
+                    groupOrder = GroupingOrder.ASCENDING
+                }
+                font = font {
+                    color = "#ffffff"
+                    font = "Arial, Helvetica, sans-serif"
+                    weight = FontWeight.normal
+                    size = "11pt"
+                    decoration = "underline"
+                }
+                dropShadow = 2
+            }
+            large{
+                link = "https://www.apple.com"
+                label = "#03CFD9"
+                type = "Advertising 0"
+                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                author("author1")
+                author("author2")
+                date ="07/20/2022"
+            }
+            large{
+                link = "https://www.apple.com"
+                label = "#48B338"
+                type = "Advertising 1"
+                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                author("author1")
+                author("author2")
+                date ="07/19/2022"
+            }
+            large{
+                link = "https://www.apple.com"
+                label = "#1C8950"
+                type = "Advertising 2"
+                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                author("author1")
+                author("author2")
+                date ="07/18/2022"
+            }
+            large{
+                link = "https://www.apple.com"
+                label = "#ABCB2B"
+                type = "Advertising 3"
+                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                author("author1")
+                author("author2")
+                date ="07/17/2022"
+            }
+            large{
+                link = "https://www.apple.com"
+                label = "#331C68"
+                type = "Advertising 4"
+                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                author("author1")
+                author("author2")
+                date ="07/16/2022"
+            }
+            large{
+                link = "https://www.apple.com"
+                label = "#11A988"
+                type = "Advertising 0"
+                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                author("author1")
+                author("author2")
+                date ="07/15/2022"
+            }
+        }
+        val p = PanelService()
+        val svg =  p.fromPanelToSvg(pans)
+        val f = File("out/largeFont2.svg")
+        f.writeBytes(svg.toByteArray())
     }
 }

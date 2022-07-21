@@ -31,7 +31,7 @@ import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
 
 
-internal class ButtonsKtTest {
+class ButtonsKtTest {
 
     @Test
     fun fromDslToButtonImage() {
@@ -171,7 +171,10 @@ internal class ButtonsKtTest {
         theme.groupBy = list.buttonTheme.layout.groupBy
         theme.groupOrder = list.buttonTheme.layout.groupOrder
         theme.columns = list.buttonTheme.layout.columns
-        theme.colorMap = list.buttonTheme.colorMap.colors
+        if(list.buttonTheme.colorMap.colors.isNotEmpty()) {
+            theme.colorMap = mutableListOf<String>()
+            theme.colorMap.addAll(list.buttonTheme.colorMap.colors)
+        }
         theme.defs = list.buttonTheme.colorMap.colorDefs
         theme.dropShadow = list.buttonTheme.dropShadow
         list.buttonTheme.font?.let {
@@ -273,6 +276,61 @@ internal class ButtonsKtTest {
           }
       }
        return false
+    }
+    @Test
+    fun newTest() {
+        val p =
+            panels{
+                theme {
+                    colorMap {
+                        color("#3FD9F7")
+                        color("#8636A4")
+                        color("#CFA118")
+                        color("#2F39CF")
+                        color("#482902")
+                        color("#AD80C2")
+                    }
+                    legendOn = false
+                    layout {
+                        columns = 3
+                        groupBy = Grouping.TYPE
+                        groupOrder = GroupingOrder.ASCENDING
+                    }
+                    font = font {
+                        color = "#000000"
+                        font = "Arial, Helvetica, sans-serif"
+                        weight = FontWeight.normal
+                        size = "8pt"
+                        decoration = "underline"
+                    }
+                    dropShadow = 1
+                }
+                panel{
+                    link = "https://www.apple.com"
+                    label = "#3FD9F7"
+                }
+                panel{
+                    link = "https://www.apple.com"
+                    label = "#8636A4"
+                }
+                panel{
+                    link = "https://www.apple.com"
+                    label = "#CFA118"
+                }
+                panel{
+                    link = "https://www.apple.com"
+                    label = "#2F39CF"
+                }
+                panel{
+                    link = "https://www.apple.com"
+                    label = "#482902"
+                }
+                panel{
+                    link = "https://www.apple.com"
+                    label = "#AD80C2"
+                }
+            }
+        renderImage(p,"largeFont")
     }
 }
 

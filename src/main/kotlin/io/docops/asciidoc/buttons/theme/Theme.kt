@@ -20,6 +20,7 @@ import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
+import java.util.StringJoiner
 
 @ThemeDSL
 class Theme {
@@ -30,7 +31,7 @@ class Theme {
     var columns = 3
 
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
-    var colorMap = listOf(
+    var colorMap = mutableListOf(
         "#DA79EC",
         "#DECD5E",
         "#F6AB4C",

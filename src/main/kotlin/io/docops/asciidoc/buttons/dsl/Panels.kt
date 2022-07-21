@@ -86,27 +86,7 @@ class Font {
 @PanelDSL
 class ColorMap {
 
-    var colors = mutableListOf(
-        "#DA79EC",
-        "#DECD5E",
-        "#F6AB4C",
-        "#F8827D",
-        "#FB0F5F",
-        "#ED4661",
-        "#7FA0BC",
-        "#74F78F",
-        "#EBFB01",
-        "#1EB20B",
-        "#06A69F",
-        "#E33241",
-        "#E21A0E",
-        "#CAF728",
-        "#CEFF48",
-        "#F62A0C",
-        "#2913ED",
-        "#324DE5",
-        "#32B0A1",
-        "#1EB178")
+    var colors = mutableListOf<String>()
     private val colorPairs = mutableListOf<Pair<String, String>>()
     var colorDefs = ""
     internal var initialized = false

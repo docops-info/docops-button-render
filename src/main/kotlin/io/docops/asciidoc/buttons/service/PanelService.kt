@@ -32,7 +32,8 @@ class PanelService {
         theme.groupOrder = panel.buttonTheme.layout.groupOrder
         theme.columns = panel.buttonTheme.layout.columns
         if(panel.buttonTheme.colorMap.colors.isNotEmpty()) {
-            theme.colorMap = panel.buttonTheme.colorMap.colors
+                theme.colorMap = mutableListOf()
+                theme.colorMap.addAll(panel.buttonTheme.colorMap.colors)
         }
         theme.defs = panel.buttonTheme.colorMap.colorDefs
         theme.isPDF = panel.isPdf
