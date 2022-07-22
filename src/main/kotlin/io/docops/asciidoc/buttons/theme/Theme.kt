@@ -115,7 +115,7 @@ class Theme {
                 style +=" font-size: ${it.size};"
             }
             style += " font-weight: ${it.weight};"
-            return style + """" text-decoration="${it.decoration.escapeXml()}""""
+            return style + " text-decoration:${it.decoration.escapeXml()};\""
         }
     }
 }
