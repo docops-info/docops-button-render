@@ -40,7 +40,6 @@ class ButtonRenderImplTest {
             description = "description", authors = mutableListOf("Steve"), type = "Awesome",
             date = "11/16/2021", font =  font{
                 color = "#ffcccc"
-                weight = FontWeight.normal
                 size = "8"
             }, backgroundColor = null
         )
@@ -153,7 +152,6 @@ class ButtonRenderImplTest {
         theme.groupBy= Grouping.TYPE
         theme.columns = 4
         theme.groupOrder = GroupingOrder.ASCENDING
-        theme.font.decoration = "none"
         theme.font.size = "10pt"
 
         val localList = buttons.toMutableList()
@@ -180,7 +178,6 @@ class ButtonRenderImplTest {
                 legendOn = true
                 font = font {
                     size = "10pt"
-                    decoration = "none"
                 }
             }
             round {
@@ -228,7 +225,7 @@ class ButtonRenderImplTest {
                 link = "https://cooking.nytimes.com/recipes/1016595-hamburgers-diner-style",
                 buttonImage = ButtonImage(ref = "ayaan.png"),
                 font = font {
-                    decoration = "underline"
+                    underline = true
                     color = "blue"
                 }
             ),
@@ -283,10 +280,9 @@ class ButtonRenderImplTest {
                 }
                 font = font {
                     color = "#ffffff"
-                    font = "Arial, Helvetica, sans-serif"
-                    weight = FontWeight.normal
+                    family = "Arial, Helvetica, sans-serif"
                     size = "11pt"
-                    decoration = "underline"
+                    underline = true
                 }
                 dropShadow = 2
             }

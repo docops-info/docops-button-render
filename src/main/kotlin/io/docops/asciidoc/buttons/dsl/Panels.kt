@@ -73,13 +73,31 @@ enum class FontWeight {
     normal, italic, bold
 }
 
+//@PanelDSL
+//class Font {
+//    var color = "#000000"
+//    var weight = FontWeight.normal
+//    var font = "Arial, Helvetica, sans-serif"
+//    var size = "9pt"
+//    var decoration = "underline"
+//}
+
 @PanelDSL
 class Font {
-    var color = "#000000"
-    var weight = FontWeight.normal
-    var font = "Arial, Helvetica, sans-serif"
-    var size = "9pt"
-    var decoration = "underline"
+    var family = "Arial, Helvetica, sans-serif"
+    var size = "11px"
+    var bold = false
+    var italic = false
+    var underline = false
+    var vertical = false
+    var case = Case.NONE
+    var color = "#FFFFFF"
+    var spacing = "normal"
+}
+
+@PanelDSL
+enum class Case {
+    UPPER, LOWER, SENTENCE, CAPITALIZE, SMALLCAP, NONE
 }
 
 

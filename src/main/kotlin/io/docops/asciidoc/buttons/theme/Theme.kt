@@ -16,6 +16,7 @@
 
 package io.docops.asciidoc.buttons.theme
 
+import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.models.Button
@@ -108,14 +109,37 @@ class Theme {
             if(it.color.isNotEmpty()) {
                 style += """fill: ${it.color};"""
             }
-            if(it.font.isNotEmpty()) {
-                style += " font-family: ${it.font.escapeXml()};"
+            if(it.family.isNotEmpty()) {
+                style += " font-family: ${it.family.escapeXml()};"
             }
             if(it.size.isNotEmpty()) {
                 style +=" font-size: ${it.size};"
             }
-            style += " font-weight: ${it.weight};"
-            return style + " text-decoration:${it.decoration.escapeXml()};\""
+            if(it.bold) {
+                style += " font-weight: bold;"
+            }
+            if(it.italic) {
+                style += " font-style: italic;"
+            }
+            if(it.underline) {
+                style += " text-decoration: underline;"
+            }
+            if(it.vertical) {
+                style += " writing-mode: vertical-rl;"
+            }
+            style += when(it.case) {
+                Case.CAPITALIZE -> " text-transform: capitalize;"
+                Case.UPPER -> " text-transform: uppercase;"
+                Case.LOWER -> " text-transform: lowercase;"
+                Case.SMALLCAP -> " font-variant: small-caps;"
+                else -> {
+                    ""
+                }
+            }
+
+            style += "\""
+
+            return style
         }
     }
 }

@@ -29,6 +29,7 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
+import kotlin.test.Ignore
 
 
 class ButtonsKtTest {
@@ -48,9 +49,8 @@ class ButtonsKtTest {
                 label = "Google"
                 font =  font{
                     color = "#000000"
-                    weight = FontWeight.normal
                     size = "9pt"
-                    decoration = "underline"
+                    underline = true
                 }
             }
             panel {
@@ -58,9 +58,8 @@ class ButtonsKtTest {
                 label = "Apple"
                 font = font{
                     color = "#0000ff"
-                    weight = FontWeight.normal
                     size = "10pt"
-                    decoration = "underline"
+                    underline = true
                 }
             }
             panel {
@@ -68,9 +67,8 @@ class ButtonsKtTest {
                 label = "Microsoft"
                 font = font{
                     color = "#00ff00"
-                    weight = FontWeight.normal
                     size = "10pt"
-                    decoration = "underline"
+                    underline = true
                 }
             }
             panel {
@@ -104,8 +102,7 @@ class ButtonsKtTest {
                 }
                 font {
                     color = "#000000"
-                    font = "Arial, Helvetica, sans-serif"
-                    weight = FontWeight.bold
+                    family = "Arial, Helvetica, sans-serif"
                     size = "11pt"
                 }
 
@@ -298,10 +295,9 @@ class ButtonsKtTest {
                     }
                     font = font {
                         color = "#000000"
-                        font = "Arial, Helvetica, sans-serif"
-                        weight = FontWeight.normal
+                        family = "Arial, Helvetica, sans-serif"
                         size = "8pt"
-                        decoration = "underline"
+                        underline = true
                     }
                     dropShadow = 1
                 }
@@ -344,7 +340,7 @@ fun buttonData (): Panels {
             }
             font {
                 color = "#000000"
-                weight = FontWeight.bold
+                bold = true
             }
             dropShadow = 2
             colorMap {
