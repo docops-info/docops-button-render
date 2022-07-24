@@ -69,35 +69,22 @@ class Layout {
     var groupOrder = GroupingOrder.ASCENDING
 }
 
-enum class FontWeight {
-    normal, italic, bold
-}
-
-//@PanelDSL
-//class Font {
-//    var color = "#000000"
-//    var weight = FontWeight.normal
-//    var font = "Arial, Helvetica, sans-serif"
-//    var size = "9pt"
-//    var decoration = "underline"
-//}
-
 @PanelDSL
 class Font {
     var family = "Arial, Helvetica, sans-serif"
     var size = "11px"
+    var color = "#FFFFFF"
+    var spacing = "normal"
     var bold = false
     var italic = false
     var underline = false
     var vertical = false
     var case = Case.NONE
-    var color = "#FFFFFF"
-    var spacing = "normal"
 }
 
 @PanelDSL
 enum class Case {
-    UPPER, LOWER, SENTENCE, CAPITALIZE, SMALLCAP, NONE
+    UPPER, LOWER, SENTENCE, CAPITALIZE, SMALLCAPS, NONE
 }
 
 

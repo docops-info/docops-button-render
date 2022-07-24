@@ -16,7 +16,6 @@
 
 package io.docops.asciidoc.buttons
 
-import io.docops.asciidoc.buttons.dsl.FontWeight
 import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.dsl.panels
 import io.docops.asciidoc.buttons.models.Button

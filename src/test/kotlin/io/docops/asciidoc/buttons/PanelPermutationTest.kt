@@ -16,7 +16,9 @@
 
 package io.docops.asciidoc.buttons
 
+import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
+import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
 import io.docops.asciidoc.buttons.theme.ButtonType
@@ -121,6 +123,125 @@ class PanelPermutationTest {
         //author
         val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+
+        //background color
+//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+
+        //foreground color
+//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+
+        //image
+//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+
+        //write the svg
+        val path = "src/test/resources/smoke/result/"
+        val dir = File(path)
+        if(!dir.exists()) { dir.mkdir() }
+        val file = File("$path/$scenario.svg")
+        file.writeBytes(svg.toByteArray())
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/smoke/SingleItemFontPermutationTest.csv"], numLinesToSkip = 1)
+    fun `should run through a number of font specific scenarios`(
+        scenario: String,
+        whenThemeType: String,
+        whenFamily: String?,
+        whenSize: String?,
+        whenFontColor: String?,
+        whenSpacing: String?,
+        whenBold: Boolean?,
+        whenItalic: Boolean?,
+        whenUnderline: Boolean?,
+        whenVertical: Boolean?,
+        whenCase: String?,
+        thenFamily: String,
+        thenSize: String,
+        thenFontColor: String,
+        thenSpacing: String,
+        thenBold: Boolean?,
+        thenItalic: Boolean?,
+        thenUnderline: Boolean?,
+        thenVertical: Boolean?,
+        thenCase: String?
+    ) {
+
+        val panel = ButtonRenderImpl()
+
+        val theme = theme {
+            columns = 1
+            dropShadow = 3
+
+            type = ButtonType.valueOf(whenThemeType)
+        }
+
+        val item = Button(
+            title = "Title",
+            link = "https://docops.io/",
+            date = "1969-12-22",
+            description = "This is the description of the item.",
+            authors = mutableListOf("Ian Cooper Rose"),
+            type = "Category",
+            font = font {
+                if (whenFamily != null) family = whenFamily
+                if (whenSize != null) size = whenSize
+                if (whenFontColor != null) color = whenFontColor
+                if (whenSpacing != null) spacing = whenSpacing
+                if (whenBold != null) bold = whenBold
+                if (whenItalic != null) italic = whenItalic
+                if (whenUnderline != null) underline = whenUnderline
+                if (whenVertical != null) vertical = whenVertical
+                if (whenCase != null) case = Case.valueOf(whenCase)
+            },
+            backgroundColor = "#000000"
+        )
+
+        val svg = panel.render(mutableListOf(item), theme)
+
+        val builderFactory = DocumentBuilderFactory.newInstance()
+        val builder = builderFactory.newDocumentBuilder()
+        val xmlDocument: Document = builder.parse(ByteArrayInputStream(svg.toByteArray()))
+        val xPath: XPath = XPathFactory.newInstance().newXPath()
+
+        val styleNodeList = xPath.compile("//@style").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val styleMap = mutableMapOf<String, String>()
+        val rawStyle = styleNodeList.item(0).textContent.dropLastWhile { it.toString() == ";" }.split(";")
+        rawStyle.forEach { styleMap[it.split(":")[0]] = it.split(":")[1] }
+
+        assertEquals(styleMap["font-family"], thenFamily)
+        assertEquals(styleMap["font-size"], thenSize)
+        assertEquals(styleMap["fill"], thenFontColor)
+        assertEquals(styleMap["letter-spacing"], thenSpacing)
+//        val typeNodeList = xPath.compile("//*[@class=\"category\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(typeNodeList.item(0).textContent, thenItemType)
+
+        //color
+        //spacing
+//        val descriptionNodeList = xPath.compile("//use/title[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(descriptionNodeList.item(0).textContent, thenDescription)
+
+        //bold
+//        val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(dateNodeList.item(0).textContent, thenDate)
+
+        //italic
+//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+
+        //underline
+//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+
+        //vertical
+//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
+
+        //case
+//        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+//        assertEquals(authorNodeList.item(0).textContent, thenAuthor)
 
         //write the svg
         val path = "src/test/resources/smoke/result/"

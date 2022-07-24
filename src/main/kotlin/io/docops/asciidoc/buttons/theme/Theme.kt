@@ -18,10 +18,8 @@ package io.docops.asciidoc.buttons.theme
 
 import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
-import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
-import java.util.StringJoiner
 
 @ThemeDSL
 class Theme {
@@ -99,39 +97,42 @@ class Theme {
 
     fun buttonTextColor(button: Button): String {
         var f = button.font
-        if(f == null) {
+        if (f == null) {
             f = this.font
         }
         //language=css
         var style = ""
         f.let {
             style += "style=\""
-            if(it.color.isNotEmpty()) {
-                style += """fill: ${it.color};"""
+            if (it.family.isNotEmpty()) {
+                style += "font-family:${it.family.escapeXml()};"
             }
-            if(it.family.isNotEmpty()) {
-                style += " font-family: ${it.family.escapeXml()};"
+            if (it.size.isNotEmpty()) {
+                style += "font-size:${it.size};"
             }
-            if(it.size.isNotEmpty()) {
-                style +=" font-size: ${it.size};"
+            if (it.color.isNotEmpty()) {
+                style += "fill:${it.color};"
             }
-            if(it.bold) {
-                style += " font-weight: bold;"
+            if (it.spacing.isNotEmpty()) {
+                style += "letter-spacing:${it.spacing};"
             }
-            if(it.italic) {
-                style += " font-style: italic;"
+            if (it.bold) {
+                style += "font-weight:bold;"
             }
-            if(it.underline) {
-                style += " text-decoration: underline;"
+            if (it.italic) {
+                style += "font-style:italic;"
             }
-            if(it.vertical) {
-                style += " writing-mode: vertical-rl;"
+            if (it.underline) {
+                style += "text-decoration:underline;"
             }
-            style += when(it.case) {
-                Case.CAPITALIZE -> " text-transform: capitalize;"
-                Case.UPPER -> " text-transform: uppercase;"
-                Case.LOWER -> " text-transform: lowercase;"
-                Case.SMALLCAP -> " font-variant: small-caps;"
+            if (it.vertical) {
+                style += "writing-mode:vertical-rl;"
+            }
+            style += when (it.case) {
+                Case.CAPITALIZE -> "text-transform:capitalize;"
+                Case.UPPER -> "text-transform:uppercase;"
+                Case.LOWER -> "text-transform:lowercase;"
+                Case.SMALLCAPS -> "font-variant:small-caps;"
                 else -> {
                     ""
                 }
