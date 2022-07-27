@@ -3,4 +3,4 @@
 "font-round-default-test","ROUND", , , , , , , , , ,"Arial, Helvetica, sans-serif", "11px", "#FFFFFF", "normal", false, false, false, false,
 "font-slim-default-test","SLIM_CARD", , , , , , , , , ,"Arial, Helvetica, sans-serif", "11px", "#FFFFFF", "normal", false, false, false, false,
 "font-large-default-test","LARGE_CARD", , , , , , , , , ,"Arial, Helvetica, sans-serif", "11px", "#FFFFFF", "normal", false, false, false, false,
-"font-round-something-different-test","ROUND","Georgia, serif" ,"21px" ,"#00FF00" ,"3px" , true, true, true, false, "SMALLCAPS","Georgia, serif", "21px", "#00FF00", "3px", false, false, false, false,
+"font-round-something-different-test","ROUND","Georgia, serif" ,"21px" ,"#00FF00" ,"3px" , true, true, true, true, "SMALLCAPS","Georgia, serif", "21px", "#00FF00", "3px", false, false, false, false,

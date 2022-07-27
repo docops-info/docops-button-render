@@ -58,6 +58,11 @@ class PanelButton : ButtonItem() {
 }
 
 @PanelDSL
+class Button : ButtonItem() {
+
+}
+
+@PanelDSL
 class RoundButton : ButtonItem() {
 
 }
@@ -148,6 +153,11 @@ class Panels {
         buttonType = ButtonType.BUTTON
     }
 
+    fun button(panelButton: PanelButton.() -> Unit) {
+        panelButtons.add(PanelButton().apply(panelButton))
+        buttonType = ButtonType.BUTTON
+    }
+
     fun slim(slimButton: SlimButton.() -> Unit) {
         slimButtons.add(SlimButton().apply(slimButton))
         buttonType = ButtonType.SLIM_CARD
@@ -195,6 +205,10 @@ class Panels {
 }
 
 fun panels(panel: Panels.() -> Unit): Panels {
+    return Panels().apply(panel).validate()
+}
+
+fun panel(panel: Panels.() -> Unit): Panels {
     return Panels().apply(panel).validate()
 }
  fun font(font: Font.() -> Unit): Font {

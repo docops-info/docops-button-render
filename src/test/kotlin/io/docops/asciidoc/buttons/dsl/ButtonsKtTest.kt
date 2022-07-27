@@ -47,7 +47,7 @@ class ButtonsKtTest {
             panel {
                 link = "https://www.google.com"
                 label = "Google"
-                font =  font{
+                font = font {
                     color = "#000000"
                     size = "9pt"
                     underline = true
@@ -56,7 +56,7 @@ class ButtonsKtTest {
             panel {
                 link = "https://www.apple.com"
                 label = "Apple"
-                font = font{
+                font = font {
                     color = "#0000ff"
                     size = "10pt"
                     underline = true
@@ -65,7 +65,7 @@ class ButtonsKtTest {
             panel {
                 link = "https://www.microsoft.com"
                 label = "Microsoft"
-                font = font{
+                font = font {
                     color = "#00ff00"
                     size = "10pt"
                     underline = true
@@ -88,7 +88,64 @@ class ButtonsKtTest {
                 label = "Instagram"
             }
         }
-        renderImage(list,"panels")
+        renderImage(list, "panels")
+    }
+
+    @Test
+    fun fromDslToButtonImageAlternate() {
+        val list = panel {
+            theme {
+                layout {
+                    columns = 4
+                    groupBy = Grouping.TITLE
+                    groupOrder = GroupingOrder.DESCENDING
+                }
+            }
+            button {
+                link = "https://www.google.com"
+                label = "Google"
+                font = font {
+                    color = "#000000"
+                    size = "9pt"
+                    underline = true
+                }
+            }
+            button {
+                link = "https://www.apple.com"
+                label = "Apple"
+                font = font {
+                    color = "#0000ff"
+                    size = "10pt"
+                    underline = true
+                }
+            }
+            button {
+                link = "https://www.microsoft.com"
+                label = "Microsoft"
+                font = font {
+                    color = "#00ff00"
+                    size = "10pt"
+                    underline = true
+                }
+            }
+            button {
+                link = "https://www.amazon.com"
+                label = "Amazon"
+            }
+            button {
+                link = "https://www.netflix.com"
+                label = "Netflix"
+            }
+            button {
+                link = "https://www.facebook.com"
+                label = "Facebook"
+            }
+            button {
+                link = "https://www.instagram.com"
+                label = "Instagram"
+            }
+        }
+        renderImage(list, "panel")
     }
 
     @Test
@@ -111,7 +168,8 @@ class ButtonsKtTest {
                 link = "https://www.google.com"
                 label = "Google"
                 type = "Search"
-                description = "Google is is an American multinational technology company that specializes in Internet-related services and products "
+                description =
+                    "Google is is an American multinational technology company that specializes in Internet-related services and products "
                 author("Sergey Brin")
                 author("Larry Page")
             }
@@ -119,19 +177,22 @@ class ButtonsKtTest {
                 link = "https://www.apple.com"
                 label = "Apple"
                 type = "Personal Devices"
-                description = "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software and online services. "
+                description =
+                    "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software and online services. "
             }
             large {
                 link = "https://www.microsoft.com"
                 label = "Microsoft"
                 type = "Software"
-                description = "Microsoft Corporation is an American multinational technology corporation which produces computer software, consumer electronics, personal computers, and related services."
+                description =
+                    "Microsoft Corporation is an American multinational technology corporation which produces computer software, consumer electronics, personal computers, and related services."
             }
             large {
                 link = "https://www.amazon.com"
                 label = "Amazon"
                 type = "Super Store"
-                description = "Amazon.com, Inc. is an American multinational technology company which focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence"
+                description =
+                    "Amazon.com, Inc. is an American multinational technology company which focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence"
             }
             large {
                 link = "https://www.netflix.com"
@@ -143,16 +204,18 @@ class ButtonsKtTest {
                 link = "https://www.facebook.com"
                 label = "Facebook"
                 type = "Dive Bar"
-                description = "Facebook is an American online social media and social networking service owned by Meta Platforms."
+                description =
+                    "Facebook is an American online social media and social networking service owned by Meta Platforms."
             }
             large {
                 link = "https://www.instagram.com"
                 label = "Instagram"
                 type = "Beach"
-                description = "Instagram is an American photo and video sharing social networking service founded by Kevin Systrom and Mike Krieger. "
+                description =
+                    "Instagram is an American photo and video sharing social networking service founded by Kevin Systrom and Mike Krieger. "
             }
         }
-        renderImage(list,"largepanels")
+        renderImage(list, "largepanels")
     }
 
     @Test
@@ -168,7 +231,7 @@ class ButtonsKtTest {
         theme.groupBy = list.buttonTheme.layout.groupBy
         theme.groupOrder = list.buttonTheme.layout.groupOrder
         theme.columns = list.buttonTheme.layout.columns
-        if(list.buttonTheme.colorMap.colors.isNotEmpty()) {
+        if (list.buttonTheme.colorMap.colors.isNotEmpty()) {
             theme.colorMap = mutableListOf<String>()
             theme.colorMap.addAll(list.buttonTheme.colorMap.colors)
         }
@@ -187,6 +250,7 @@ class ButtonsKtTest {
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
+
             ButtonType.SLIM_CARD -> {
                 list.slimButtons.forEach {
                     val btn = Button(it.label, it.link, it.description, it.authors, it.type, it.date, font = it.font)
@@ -194,6 +258,7 @@ class ButtonsKtTest {
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
+
             ButtonType.LARGE_CARD -> {
                 list.largeButtons.forEach {
                     val btn = Button(it.label, it.link, it.description, it.authors, it.type, "", font = it.font)
@@ -201,6 +266,7 @@ class ButtonsKtTest {
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
+
             ButtonType.ROUND -> {
                 list.roundButtons.forEach {
                     val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, "", font = it.font)
@@ -210,6 +276,7 @@ class ButtonsKtTest {
             }
         }
     }
+
     fun genFile(localList: MutableList<Button>, theme: Theme, fileName: String) {
         val b = ButtonRenderImpl()
         val svg = b.render(localList, theme)
@@ -223,28 +290,29 @@ class ButtonsKtTest {
 
     @Test
     fun testFailMultipleButtonTypes() {
-         assertThrows(IllegalArgumentException::class.java) {
-             panels {
-                 slim {
-                     link = "https://www.google.com"
-                     label = "Google"
-                 }
-                 panel {
-                     link = "https://www.google.com"
-                     label = "Google"
-                 }
-             }
-         }
+        assertThrows(IllegalArgumentException::class.java) {
+            panels {
+                slim {
+                    link = "https://www.google.com"
+                    label = "Google"
+                }
+                panel {
+                    link = "https://www.google.com"
+                    label = "Google"
+                }
+            }
+        }
     }
 
     @Test
     fun testFailEmptyButtonTypes() {
-         assertThrows(IllegalArgumentException::class.java) {
-             panels {
+        assertThrows(IllegalArgumentException::class.java) {
+            panels {
 
-             }
-         }
+            }
+        }
     }
+
     @Test
     fun testAuthorExistsInSvg() {
         val data = buttonData()
@@ -264,20 +332,22 @@ class ButtonsKtTest {
             assert(contains(data, nodeList.item(i).firstChild.textContent))
         }
     }
+
     private fun contains(slimButtons: Panels, author: String): Boolean {
-      slimButtons.slimButtons.forEach {
-          it.authors.forEach { auth ->
-              if(auth == author) {
-                  return true
-              }
-          }
-      }
-       return false
+        slimButtons.slimButtons.forEach {
+            it.authors.forEach { auth ->
+                if (auth == author) {
+                    return true
+                }
+            }
+        }
+        return false
     }
+
     @Test
     fun newTest() {
         val p =
-            panels{
+            panels {
                 theme {
                     colorMap {
                         color("#3FD9F7")
@@ -301,36 +371,36 @@ class ButtonsKtTest {
                     }
                     dropShadow = 1
                 }
-                panel{
+                panel {
                     link = "https://www.apple.com"
                     label = "#3FD9F7"
                 }
-                panel{
+                panel {
                     link = "https://www.apple.com"
                     label = "#8636A4"
                 }
-                panel{
+                panel {
                     link = "https://www.apple.com"
                     label = "#CFA118"
                 }
-                panel{
+                panel {
                     link = "https://www.apple.com"
                     label = "#2F39CF"
                 }
-                panel{
+                panel {
                     link = "https://www.apple.com"
                     label = "#482902"
                 }
-                panel{
+                panel {
                     link = "https://www.apple.com"
                     label = "#AD80C2"
                 }
             }
-        renderImage(p,"largeFont")
+        renderImage(p, "largeFont")
     }
 }
 
-fun buttonData (): Panels {
+fun buttonData(): Panels {
     return panels {
         theme {
             layout {
@@ -371,7 +441,8 @@ fun buttonData (): Panels {
             link = "https://www.google.com"
             label = "Google"
             type = "Search"
-            description = "Google is is an American multinational technology company that specializes in Internet-related services and products "
+            description =
+                "Google is is an American multinational technology company that specializes in Internet-related services and products "
             author("Sergey Brin")
             author("Larry Page")
         }
@@ -379,7 +450,8 @@ fun buttonData (): Panels {
             link = "https://www.apple.com"
             label = "Apple"
             type = "Personal Devices"
-            description = "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software and online services. "
+            description =
+                "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software and online services. "
             author("Steve Jobs")
             author("Steve Wozniak")
         }
@@ -387,14 +459,16 @@ fun buttonData (): Panels {
             link = "https://www.microsoft.com"
             label = "Microsoft"
             type = "Software"
-            description = "Microsoft Corporation is an American multinational technology corporation which produces computer software, consumer electronics, personal computers, and related services."
+            description =
+                "Microsoft Corporation is an American multinational technology corporation which produces computer software, consumer electronics, personal computers, and related services."
             author("Bill Gates")
         }
         slim {
             link = "https://www.amazon.com"
             label = "Amazon"
             type = "Super Store"
-            description = "Amazon.com, Inc. is an American multinational technology company which focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence"
+            description =
+                "Amazon.com, Inc. is an American multinational technology company which focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence"
             author("Jeff Bezos")
         }
         slim {
@@ -409,7 +483,8 @@ fun buttonData (): Panels {
             link = "https://www.facebook.com"
             label = "Facebook"
             type = "Dive Bar"
-            description = "Facebook is an American online social media and social networking service owned by Meta Platforms."
+            description =
+                "Facebook is an American online social media and social networking service owned by Meta Platforms."
             author("Mark Zukerberg")
         }
         slim {
