@@ -26,7 +26,7 @@ class SlimCardRenderer : ButtonMaker() {
     override  fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val sb = StringBuilder(makeSvgHead(buttons, 170, 250, 155, theme))
         sb.append(makeDefs(theme))
-        sb.append(makeStyles(theme))
+        sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
@@ -108,7 +108,7 @@ class SlimCardRenderer : ButtonMaker() {
             c = 0
             downBy = 0
             titleStr.forEach {
-                title += """<tspan x="${recXpos+4}" dy="$downBy" class="title" ${theme.buttonTextColor(button)}>${it.trim()}</tspan>"""
+                title += """<tspan x="${recXpos+4}" dy="$downBy" class="title ${theme.buttonTextColor(button)}">${it.trim()}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -131,9 +131,14 @@ class SlimCardRenderer : ButtonMaker() {
 
 
 
-    private fun makeStyles(theme: Theme): String {
+    private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        buttonList.forEach { buttons ->
+            buttons.forEach {
+                    item -> theme.buttonTextColor(item)
+            }
+        }
         // language=css
-        return """
+        var str =  """
             <style>
         rect.card {
             pointer-events: bounding-box;
@@ -203,7 +208,12 @@ class SlimCardRenderer : ButtonMaker() {
             border-radius: 5px;
             padding: 5px;
         }
-    </style>
+        
     """.trimIndent()
+        theme.buttonStyleMap.forEach { (t, u) ->
+            str += ".$u {$t}\n"
+        }
+        str += """</style>"""
+        return str
     }
 }

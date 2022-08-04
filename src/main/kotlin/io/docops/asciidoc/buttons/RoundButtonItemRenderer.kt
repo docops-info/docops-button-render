@@ -25,7 +25,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 155, defaultHeight = 130, widthFactor = 140, theme = theme))
         sb.append(makeDefs(theme))
-        sb.append(makeStyles(theme))
+        sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
@@ -74,7 +74,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 )
                 sb.append(
                     """
-                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="label" fill="${theme.buttonTextColor(button)}">""")
+                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="label ${theme.buttonTextColor(button)}">""")
                 val lines = button.title.makeLines()
                 var dy = 0
                 if(lines.size>2) {
@@ -119,7 +119,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     }
                     // language=svg
                     sb.append(
-                        """<tspan ${theme.buttonTextColor(button)} class="title" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan class="title ${theme.buttonTextColor(button)}" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
                         )
                 }
                 sb.append("""
@@ -133,9 +133,14 @@ class RoundButtonItemRenderer : ButtonMaker() {
         return sb.toString()
     }
 
-    private fun makeStyles(theme: Theme): String {
-        // language=css
-        return """
+    private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        buttonList.forEach { buttons ->
+            buttons.forEach {
+                    item -> theme.buttonTextColor(item)
+            }
+        }
+        //language=html
+        var str =  """
         <style>
         circle.card {
             filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
@@ -174,9 +179,13 @@ class RoundButtonItemRenderer : ButtonMaker() {
             font-size: 9pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
-    </style>
-    """
+        
+    """.trimIndent()
+        theme.buttonStyleMap.forEach { (t, u) ->
+            str += ".$u {$t}\n"
+        }
+        str += """</style>"""
+        return str
     }
-
 
 }

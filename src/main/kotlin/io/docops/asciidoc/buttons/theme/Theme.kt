@@ -66,6 +66,7 @@ class Theme {
     var font: Font = Font()
 
     var typeMap = mutableMapOf<String, String>()
+    val buttonStyleMap = mutableMapOf<String, String>()
     infix fun typeIs(other: String) {
         this.type = ButtonType.valueOf(other)
     }
@@ -103,7 +104,7 @@ class Theme {
         //language=css
         var style = ""
         f.let {
-            style += "style=\""
+
             if (it.family.isNotEmpty()) {
                 style += "font-family:${it.family.escapeXml()};"
             }
@@ -137,11 +138,20 @@ class Theme {
                     ""
                 }
             }
+            var clazz = ""
+            if(null == this.buttonStyleMap[style]) {
+                clazz = "btnclass${(this.buttonStyleMap.size+1)}"
+                this.buttonStyleMap[style] = clazz
+            } else {
+                clazz = this.buttonStyleMap[style]!!
+            }
+            style = "style=\"$style\""
 
-            style += "\""
-
-            return style
+            return clazz
         }
+    }
+    fun logMap() {
+        buttonStyleMap.forEach { t, u -> println("key $t -> value -> $u") }
     }
 }
 

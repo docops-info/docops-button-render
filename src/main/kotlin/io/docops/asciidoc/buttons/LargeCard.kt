@@ -33,12 +33,13 @@ class LargeCard : ButtonMaker() {
             )
         )
         sb.append(makeDefs(theme))
-        sb.append(makeStyles(theme))
+        sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons, theme))
         if (theme.legendOn) {
             sb.append(drawLegend(types))
         }
         sb.append(makeSvgEnd())
+        theme.logMap()
         return sb.toString()
     }
 
@@ -124,12 +125,11 @@ class LargeCard : ButtonMaker() {
                 // language=svg
                 sb.append("""
                         <text x="${recXpos + 10}" y="${yPos + 220}" class="link">
-                            <a href="${button.link}" class="title" ${theme.buttonTextColor(button)}>
+                            <a href="${button.link}" class="title ${theme.buttonTextColor(button)}">
                                 ${button.title.escapeXml()}
                             </a>
                         </text>
-                        
-                        <text x="${recXpos + 10}" y="${yPos + 238}" class="category">${button.type.escapeXml()}</text>
+                        <text x="${recXpos + 10}" y="${yPos + 238}" class="category ${theme.buttonTextColor(button)}">${button.type.escapeXml()}</text>
                         <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
                     """.trimIndent())
             }
@@ -158,9 +158,14 @@ class LargeCard : ButtonMaker() {
         return sb.toString()
     }
 
-    private fun makeStyles(theme: Theme): String {
+    private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        buttonList.forEach { buttons ->
+            buttons.forEach {
+                item -> theme.buttonTextColor(item)
+            }
+        }
         //language=html
-        return """
+        var str =  """
             <style>
         rect.card {
             pointer-events: bounding-box;
@@ -207,7 +212,12 @@ class LargeCard : ButtonMaker() {
             font-size: 9pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
-    </style>
+        
         """.trimIndent()
+        theme.buttonStyleMap.forEach { (t, u) ->
+            str += ".$u {$t}\n"
+        }
+        str += """</style>"""
+        return str
     }
 }

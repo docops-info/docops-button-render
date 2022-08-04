@@ -25,7 +25,7 @@ class ButtonCardRenderer : ButtonMaker() {
         val widthFactor = 305
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 40, defaultHeight = 60, widthFactor = widthFactor, theme = theme))
         sb.append(makeDefs(theme))
-        sb.append(makeStyles(theme))
+        sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons,theme, widthFactor))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
@@ -73,7 +73,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 """.trimIndent())
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" class="label" text-anchor="middle" style="fill: ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
+                <text x="$textXPos" y="${yPos+20}" class="label ${theme.buttonTextColor(button)}" text-anchor="middle">${button.title.escapeXml()}</text>
             """.trimIndent())
             } else {
                 // language=svg
@@ -91,7 +91,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 )
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="title"  ${theme.buttonTextColor(button)}>${button.title.escapeXml()}</a></text>
+                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="title ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</a></text>
             """.trimIndent())
             }
 
@@ -100,9 +100,14 @@ class ButtonCardRenderer : ButtonMaker() {
         return sb.toString()
     }
 
-    private fun makeStyles(theme: Theme): String {
+    private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        buttonList.forEach { buttons ->
+            buttons.forEach { item ->
+                theme.buttonTextColor(item)
+            }
+        }
         // language=css
-        return """
+        var str = """
         <style>
         rect.card {
            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
@@ -154,8 +159,13 @@ class ButtonCardRenderer : ButtonMaker() {
             font-size: 9pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
-    </style>
-    """
+        
+    """.trimIndent()
+        theme.buttonStyleMap.forEach { (t, u) ->
+            str += ".$u {$t}\n"
+        }
+        str += """</style>"""
+        return str
     }
 
 

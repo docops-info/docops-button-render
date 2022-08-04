@@ -157,9 +157,9 @@ class ButtonsKtTest {
                     groupBy = Grouping.TYPE
                     groupOrder = GroupingOrder.ASCENDING
                 }
-                font {
-                    color = "#000000"
-                    family = "Arial, Helvetica, sans-serif"
+                font = font {
+                    color = "#3C3939"
+                    family = "Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif"
                     size = "11pt"
                 }
 
