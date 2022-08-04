@@ -62,8 +62,8 @@ class StackedBarMaker(val pdf: Boolean = false) {
         // language=svg
         sb.append(
             """
-               <rect x="0" y="0" rx="5" ry="5" fill="#444444" height="100%" width="100%"/>
-               <text x="${width / 2}" y="24" text-anchor="middle" class="title" stroke="#ffffff" stroke-width="1px">$title</text>
+               <rect x="0" y="0" rx="5" ry="5" fill="#eeeeee" height="95%" width="95%" class="outerbox"/>
+               <text x="${width / 2}" y="24" text-anchor="middle" class="title">$title</text>
             """.trimIndent()
         )
         stackModels.forEachIndexed { index, stackModel ->
@@ -96,18 +96,18 @@ class StackedBarMaker(val pdf: Boolean = false) {
             sb.append("</text>")
 
             if (!pdf) {
-                val desc = addLinebreaks(stackModel.fullDescription, 100)
+                val desc = addLinebreaks(stackModel.fullDescription, 70)
                 // language=svg
-                sb.append("""<text x="30" y="440" visibility="hidden" id="rect-$index" class="desc">""")
+                sb.append("""<text x="400" y="80" visibility="hidden" id="rect-$index" class="desc">""")
 
                 desc.forEachIndexed { i, d ->
-                    if (i == 0) {
-                        start = 0
+                    start = if (i == 0) {
+                        0
                     } else {
-                        start = 12
+                        12
                     }
                     // language=svg
-                    sb.append("""<tspan x="$x" dy="$start" fill="#ffffff">${d}</tspan>""")
+                    sb.append("""<tspan x="410" dy="$start" fill="#000000">${d}</tspan>""")
                 }
                 sb.append("""</text>""")
             }
@@ -157,40 +157,16 @@ class StackedBarMaker(val pdf: Boolean = false) {
     }
 
     private fun style(): String {
-        // language=svg
+        // language=html
         return """
     <style>
-        .label {
-        font-size: 10px;
-        font-family: "Noto Sans",sans-serif;
-        font-weight: bold;
-        fill: #fff;
-    }
-
-    .desc {
-        font-size: 9px;
-        font-family: "Noto Sans",sans-serif;
-        font-weight: bold;
-        fill: #fff;
-    }
-        .title {
-            font-size: 18px;
-            font-family: "Noto Sans",sans-serif;
-            font-weight: normal;
-            fill: #fff;
-        }
-        .cool {
-            fill: teal;
-            stroke: teal;
-        }
-        rect.card {
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
-
-        rect.card:hover {
-            opacity: 0.6;
-        }
+        .label {font-size: 10px;font-family: ".AppleSystemUIFont","Noto Sans",sans-serif;font-weight: bold;}
+        .desc { font-size: 12px; font-family: ".AppleSystemUIFont","Noto Sans",sans-serif; font-weight: bold; }
+        .title { font-size: 18px; font-family: ".AppleSystemUIFont","Noto Sans",sans-serif; font-weight: normal; }
+        .cool { fill: teal; stroke: teal; }
+        rect.outerbox { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.5)); }
+        rect.card { pointer-events: bounding-box; opacity: 1; }
+        rect.card:hover { opacity: 0.6; }
     </style>
         """.trimIndent()
     }
@@ -211,7 +187,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
     }
 
     private fun script(): String {
-        // language=svg
+        // language=html
         return """
     <script>
         var show = function(id) {
