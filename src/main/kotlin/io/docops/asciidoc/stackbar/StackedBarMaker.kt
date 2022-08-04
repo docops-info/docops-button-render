@@ -30,12 +30,6 @@ class StackedBarMaker(val pdf: Boolean = false) {
     )
 
     var colors = mutableListOf<String>()
-    /*var colorRange = mapOf(
-        1 to listOf("#093145", "#107896", "#829356", "#0C374D", "#1287A8"),
-        2 to listOf("#93A661", "#C2571A", "#9A2617", "#D3B53D", "#DA621E", "#AD2A1A"),
-        3 to listOf("#EBC944", "#F26D21", "#C02F1D", "#0D3D56", "#1496BB", "#A3B86C", "#3C6478"),
-        4 to listOf("#43ABC9", "#B5C689", "#BCA136", "#EFD469", "#F58B4C", "#CD594A")
-    )*/
     var colorRange = mapOf(
         1 to listOf("#deaddf","#e8e08e","#e7d2ae","#97dfd2","#9efdc1","#f3e76f","#a7cbda","#ef8ce3","#6ed7ed","#d9b8a2","#e9ce86","#dac588","#fae587","#56f1e2","#8fbeef","#d8b5e3","#cba2f8","#cf7bf3","#ead471","#d3e58f"),
         2 to listOf("#b9deae","#c8bbe5","#8baeea","#65cef4","#d7f640","#ddfc65","#ece2a7","#f1a9b2","#abc2f0","#ed9ecb","#f588d0","#f1d692","#ec8af0","#fc64f3","#7ecbe6","#78e9c9","#61f3fc","#a197e7","#a9dcbd","#a7ef7d"),
