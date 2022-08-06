@@ -101,11 +101,11 @@ class PanelPermutationTest {
         val xPath: XPath = XPathFactory.newInstance().newXPath()
 
         //title
-        val titleNodeList = xPath.compile("//*[@class=\"title\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val titleNodeList = xPath.compile("//*[contains(@class, \"title\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(titleNodeList.item(0).textContent.trim(), thenTitle)
 
         //type
-        val typeNodeList = xPath.compile("//*[@class=\"category\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val typeNodeList = xPath.compile("//*[contains(@class, \"category\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(typeNodeList.item(0).textContent, thenItemType)
 
         //link
@@ -113,15 +113,15 @@ class PanelPermutationTest {
         assertEquals(linkNodeList.item(0).textContent, thenLink)
 
         //description
-        val descriptionNodeList = xPath.compile("//use/title[@class=\"description\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val descriptionNodeList = xPath.compile("//use/title[contains(@class, \"description\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(descriptionNodeList.item(0).textContent, thenDescription)
 
         //date
-        val dateNodeList = xPath.compile("//*[@class=\"date\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val dateNodeList = xPath.compile("//*[contains(@class, \"date\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(dateNodeList.item(0).textContent, thenDate)
 
         //author
-        val authorNodeList = xPath.compile("//*[@class=\"author\"]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val authorNodeList = xPath.compile("//*[contains(@class, \"author\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(authorNodeList.item(0).textContent, thenAuthor)
 
         //background color
@@ -199,6 +199,8 @@ class PanelPermutationTest {
             backgroundColor = "#000000"
         )
 
+
+
         val svg = panel.render(mutableListOf(item), theme)
 
         val builderFactory = DocumentBuilderFactory.newInstance()
@@ -206,10 +208,16 @@ class PanelPermutationTest {
         val xmlDocument: Document = builder.parse(ByteArrayInputStream(svg.toByteArray()))
         val xPath: XPath = XPathFactory.newInstance().newXPath()
 
-        val styleNodeList = xPath.compile("//@style").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        val styleNodeList = xPath.compile("//style").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         val styleMap = mutableMapOf<String, String>()
-        val rawStyle = styleNodeList.item(0).textContent.dropLastWhile { it.toString() == ";" }.split(";")
-        rawStyle.forEach { styleMap[it.split(":")[0]] = it.split(":")[1] }
+        styleNodeList.item(0)
+            .firstChild.textContent
+            .split("\n")
+            .filter { it.contains("btnclass") }[0]
+            .substringAfter("{")
+            .substringBefore("}")
+            .split(";").dropLast(1)
+            .forEach{ styleMap[it.split(":")[0]] = it.split(":")[1] }
 
         assertEquals(styleMap["font-family"], thenFamily)
         assertEquals(styleMap["font-size"], thenSize)

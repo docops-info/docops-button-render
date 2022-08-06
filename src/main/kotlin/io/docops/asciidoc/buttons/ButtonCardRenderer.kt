@@ -73,7 +73,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 """.trimIndent())
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" class="label ${theme.buttonTextColor(button)}" text-anchor="middle">${button.title.escapeXml()}</text>
+                <text x="$textXPos" y="${yPos+20}" class="title ${theme.buttonTextColor(button)}" text-anchor="middle">${button.title.escapeXml()}</text>
             """.trimIndent())
             } else {
                 // language=svg
