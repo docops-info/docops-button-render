@@ -55,7 +55,7 @@ class PanelService {
                         description = it.description,
                         authors = mutableListOf(),
                         type = it.label,
-                        date = "",
+                        date = it.date,
                         font = panel.buttonTheme.font
                     )
                     localList.add(btn)

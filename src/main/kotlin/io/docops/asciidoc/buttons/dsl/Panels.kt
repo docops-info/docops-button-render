@@ -54,7 +54,7 @@ class SlimButton : ButtonItem() {
 
 @PanelDSL
 class PanelButton : ButtonItem() {
-
+    var date: String = ""
 }
 
 @PanelDSL

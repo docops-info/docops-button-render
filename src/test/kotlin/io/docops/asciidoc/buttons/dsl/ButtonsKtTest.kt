@@ -97,8 +97,8 @@ class ButtonsKtTest {
             theme {
                 layout {
                     columns = 4
-                    groupBy = Grouping.TITLE
-                    groupOrder = GroupingOrder.DESCENDING
+                    groupBy = Grouping.DATE
+                    groupOrder = GroupingOrder.ASCENDING
                 }
             }
             button {
@@ -109,6 +109,7 @@ class ButtonsKtTest {
                     size = "9pt"
                     underline = true
                 }
+                date = "06/05/2022"
             }
             button {
                 link = "https://www.apple.com"
@@ -118,6 +119,7 @@ class ButtonsKtTest {
                     size = "10pt"
                     underline = true
                 }
+                date = "06/01/2022"
             }
             button {
                 link = "https://www.microsoft.com"
@@ -127,22 +129,27 @@ class ButtonsKtTest {
                     size = "10pt"
                     underline = true
                 }
+                date = "05/01/2022"
             }
             button {
                 link = "https://www.amazon.com"
                 label = "Amazon"
+                date = "06/02/2022"
             }
             button {
                 link = "https://www.netflix.com"
                 label = "Netflix"
+                date = "02/01/2022"
             }
             button {
                 link = "https://www.facebook.com"
                 label = "Facebook"
+                date = "04/01/2022"
             }
             button {
                 link = "https://www.instagram.com"
                 label = "Instagram"
+                date = "03/01/2022"
             }
         }
         renderImage(list, "panel")
@@ -245,7 +252,7 @@ class ButtonsKtTest {
         when (list.buttonType) {
             ButtonType.BUTTON -> {
                 list.panelButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, "", font = it.font)
+                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, date = it.date, font = it.font)
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
