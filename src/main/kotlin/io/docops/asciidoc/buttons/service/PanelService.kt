@@ -53,7 +53,7 @@ class PanelService {
                         title = it.label,
                         link = it.link,
                         description = it.description,
-                        authors = mutableListOf(),
+                        authors = it.authors,
                         type = it.label,
                         date = it.date,
                         font = panel.buttonTheme.font
@@ -81,7 +81,7 @@ class PanelService {
                         title = it.label,
                         link = it.link,
                         description = it.description,
-                        authors = mutableListOf(),
+                        authors = it.authors,
                         type = it.type,
                         date = it.date,
                         font = panel.buttonTheme.font,
@@ -96,7 +96,7 @@ class PanelService {
                         title = it.label,
                         link = it.link,
                         description = it.description,
-                        authors = mutableListOf(),
+                        authors = it.authors,
                         type = it.label,
                         date = "",
                         font = panel.buttonTheme.font)
