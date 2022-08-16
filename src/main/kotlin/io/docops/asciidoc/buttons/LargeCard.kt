@@ -39,7 +39,6 @@ class LargeCard : ButtonMaker() {
             sb.append(drawLegend(types))
         }
         sb.append(makeSvgEnd())
-        theme.logMap()
         return sb.toString()
     }
 

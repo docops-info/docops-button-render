@@ -28,44 +28,30 @@ open class ButtonItem {
     var description = ""
     var type = label
     var font: Font? = null
-
+    var date: String = ""
+    var authors = mutableListOf<String>()
+    infix fun author(author: String) {
+        authors.add(author)
+    }
 
 }
 
 @PanelDSL
 class LargeButton : ButtonItem() {
-    var authors = mutableListOf<String>()
-    var date: String = ""
     var buttonImage: ButtonImage? = null
-    infix fun author(author: String) {
-        authors.add(author)
-    }
 }
 
 @PanelDSL
-class SlimButton : ButtonItem() {
-    var authors = mutableListOf<String>()
-    var date: String = ""
-
-    infix fun author(author: String) {
-        authors.add(author)
-    }
-}
+class SlimButton : ButtonItem()
 
 @PanelDSL
-class PanelButton : ButtonItem() {
-    var date: String = ""
-}
+class PanelButton : ButtonItem()
 
 @PanelDSL
-class Button : ButtonItem() {
-
-}
+class Button : ButtonItem()
 
 @PanelDSL
-class RoundButton : ButtonItem() {
-
-}
+class RoundButton : ButtonItem()
 
 @PanelDSL
 class Layout {

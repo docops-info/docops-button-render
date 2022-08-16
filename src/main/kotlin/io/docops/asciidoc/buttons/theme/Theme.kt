@@ -150,9 +150,7 @@ class Theme {
             return clazz
         }
     }
-    fun logMap() {
-        buttonStyleMap.forEach { t, u -> println("key $t -> value -> $u") }
-    }
+
 }
 
 
