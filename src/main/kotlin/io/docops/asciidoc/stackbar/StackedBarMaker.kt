@@ -18,7 +18,6 @@ package io.docops.asciidoc.stackbar
 
 import io.docops.asciidoc.stackbar.model.StackModel
 import io.docops.asciidoc.utils.addLinebreaks
-import java.io.File
 import kotlin.math.roundToInt
 
 class StackedBarMaker(val pdf: Boolean = false) {
@@ -38,25 +37,33 @@ class StackedBarMaker(val pdf: Boolean = false) {
     )
 
 
-    fun makeStackedBar(stackModels: List<StackModel>, title: String): String {
+    fun makeStackedBar(stackModels: List<StackModel>, title: String, darkMode: Boolean = false): String {
         val i = (1..4).random()
         colors = colorRange[i]!!.toMutableList()
         val barWidth = 40
         val sb = StringBuilder()
-        val width = 970
+        val width = 800
         sb.append(head(height = 460, width = width))
         sb.append(defs())
-        sb.append(style())
+        sb.append(style(darkMode))
         if (!pdf) {
             sb.append(script())
         }
         val norm = normalize(stackModels)
         var totalHeight = 20.0
         val x = width * 0.10
+        var mode = "#eeeeee"
+        if(darkMode) {
+            mode = "#444444"
+        }
+        var fill = "#000000"
+        if(darkMode) {
+            fill = "#ffffff"
+        }
         // language=svg
         sb.append(
             """
-               <rect x="0" y="0" rx="5" ry="5" fill="#eeeeee" height="95%" width="95%" class="outerbox"/>
+               <rect x="0" y="0" rx="5" ry="5" fill="$mode" height="95%" width="95%" class="outerbox"/>
                <text x="${width / 2}" y="24" text-anchor="middle" class="title">$title</text>
             """.trimIndent()
         )
@@ -70,7 +77,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
             sb.append("""<text x="${x + 20}" y="$nextHalf" text-anchor="middle" class="label" onmouseover="show('rect-$index');" onmouseout="hide('rect-$index');">${(norm[index] * 100).roundToInt()}%</text>""")
             // language=svg
             sb.append("""<line x1="${x + 40}" y1="$nextHalf" x2="${x + 90}" y2="$nextHalf" style="stroke-width: 2; stroke: ${colors[index % colors.size]};" marker-end="url(#arrowhead)"/>""")
-            val lines = addLinebreaks(stackModel.description, 120)
+            val lines = addLinebreaks(stackModel.description, 50)
             // language=svg
             sb.append(
                 """
@@ -90,7 +97,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
             sb.append("</text>")
 
             if (!pdf) {
-                val desc = addLinebreaks(stackModel.fullDescription, 70)
+                val desc = addLinebreaks(stackModel.fullDescription, 50)
                 // language=svg
                 sb.append("""<text x="400" y="80" visibility="hidden" id="rect-$index" class="desc">""")
 
@@ -101,7 +108,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
                         12
                     }
                     // language=svg
-                    sb.append("""<tspan x="410" dy="$start" fill="#000000">${d}</tspan>""")
+                    sb.append("""<tspan x="410" dy="$start" fill="$fill">${d}</tspan>""")
                 }
                 sb.append("""</text>""")
             }
@@ -150,13 +157,17 @@ class StackedBarMaker(val pdf: Boolean = false) {
         return "</svg>"
     }
 
-    private fun style(): String {
+    private fun style(darkMode: Boolean): String {
+        var fill = "#000000"
+        if(darkMode) {
+            fill = "#ffffff"
+        }
         // language=html
         return """
     <style>
-        .label {font-size: 10px;font-family: ".AppleSystemUIFont","Noto Sans",sans-serif;font-weight: bold;}
-        .desc { font-size: 12px; font-family: ".AppleSystemUIFont","Noto Sans",sans-serif; font-weight: bold; }
-        .title { font-size: 18px; font-family: ".AppleSystemUIFont","Noto Sans",sans-serif; font-weight: normal; }
+        .label {font-size: 10px;font-family: ".AppleSystemUIFont","Noto Sans",sans-serif;font-weight: bold;fill: $fill}
+        .desc { font-size: 12px; font-family: ".AppleSystemUIFont","Noto Sans",sans-serif; font-weight: bold; fill: $fill}
+        .title { font-size: 18px; font-family: ".AppleSystemUIFont","Noto Sans",sans-serif; font-weight: normal; fill: $fill}
         .cool { fill: teal; stroke: teal; }
         rect.outerbox { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.5)); }
         rect.card { pointer-events: bounding-box; opacity: 1; }

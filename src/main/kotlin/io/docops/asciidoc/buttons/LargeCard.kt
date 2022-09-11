@@ -144,9 +144,7 @@ class LargeCard : ButtonMaker() {
                     // language=svg
                     sb.append(
                         """
-                <tspan x="${recXpos + 10}" dy="18" class="longdesc">
-                    ${str.toString().escapeXml()}
-                </tspan>
+                <tspan x="${recXpos + 10}" dy="18" class="longdesc">${str.toString().escapeXml()}</tspan>
                 """.trimIndent()
                     )
                 }

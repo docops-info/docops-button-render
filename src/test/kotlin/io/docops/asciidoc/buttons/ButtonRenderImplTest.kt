@@ -16,6 +16,7 @@
 
 package io.docops.asciidoc.buttons
 
+import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.font
 import io.docops.asciidoc.buttons.dsl.panels
 import io.docops.asciidoc.buttons.models.Button
@@ -278,10 +279,16 @@ class ButtonRenderImplTest {
                     groupOrder = GroupingOrder.ASCENDING
                 }
                 font = font {
-                    color = "#ffffff"
                     family = "Arial, Helvetica, sans-serif"
-                    size = "11pt"
-                    underline = true
+                    size = "11px"
+                    color = "#6a329f"
+                    spacing = "normal"
+                    bold = true
+                    italic = false
+                    underline = false
+                    vertical = false
+                    case = Case.NONE
+
                 }
                 dropShadow = 2
             }

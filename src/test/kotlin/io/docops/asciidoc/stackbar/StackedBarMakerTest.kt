@@ -1,11 +1,6 @@
 package io.docops.asciidoc.stackbar
 
-import io.docops.asciidoc.buttons.ButtonRenderImpl
-import io.docops.asciidoc.buttons.theme.Grouping
-import io.docops.asciidoc.buttons.theme.GroupingOrder
-import io.docops.asciidoc.buttons.theme.Theme
 import io.docops.asciidoc.stackbar.model.StackModel
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.io.File
 
@@ -43,7 +38,7 @@ internal class StackedBarMakerTest {
             0.55|Dark Beer |Dark beers typically range in color from amber to dark reddish brown. They are characterized by their smooth malty flavor
         """.trimIndent()
         val s = StackedBarMaker(false)
-        val svg = s.makeStackedBar(strToStackedModels(str), "Demo Color")
+        val svg = s.makeStackedBar(strToStackedModels(str), "Demo Color", false)
         val dir = File("out")
         if(!dir.exists()) {
             dir.mkdir()
