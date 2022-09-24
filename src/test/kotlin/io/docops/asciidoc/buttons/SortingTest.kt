@@ -60,7 +60,7 @@ class SortingTest {
         val p = makePanel(t)
         val b = PanelService()
         val svg = b.fromPanelToSvg(p)
-        ensureOrder("/svg/g/a/text[@class='date']", svg, "08/03/2022")
+        ensureOrder("/svg/g/a/text[@class='date']", svg, "08/07/2022")
     }
     private fun ensureOrder(path: String, svg: String, compareTo: String) {
         val builderFactory = DocumentBuilderFactory.newInstance()
