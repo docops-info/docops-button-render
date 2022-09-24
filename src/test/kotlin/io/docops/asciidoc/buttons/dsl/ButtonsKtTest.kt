@@ -161,8 +161,6 @@ class ButtonsKtTest {
             theme {
                 layout {
                     columns = 4
-                    groupBy = Grouping.TYPE
-                    groupOrder = GroupingOrder.ASCENDING
                 }
                 font = font {
                     color = "#3C3939"

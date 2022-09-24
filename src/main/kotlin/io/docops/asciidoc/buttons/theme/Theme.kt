@@ -54,7 +54,7 @@ class Theme {
     )
 
     //var colorMap = listOf("url(#linear-gradient-0)", "url(#linear-gradient-1)", "url(#linear-gradient-2)", "url(#linear-gradient-3)", "url(#linear-gradient-4)", "url(#linear-gradient-5)")
-    var groupBy = Grouping.DATE
+    var groupBy = Grouping.ORDER
     var groupOrder = GroupingOrder.ASCENDING
     var fontWeight = "normal"
     var type = ButtonType.BUTTON
@@ -169,7 +169,7 @@ enum class ButtonType {
 }
 
 enum class Grouping {
-    TYPE, TITLE, AUTHOR, DATE
+    ORDER, TYPE, TITLE, AUTHOR, DATE
 }
 
 enum class GroupingOrder {

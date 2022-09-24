@@ -72,9 +72,26 @@ class SortingTest {
         assertEquals(authorNodeList.item(0).textContent, compareTo)
 
     }
+    @Test
+    fun whenGroupByInsertionOrder() {
+        val t = ButtonTheme()
+        t.layout = Layout()
+        t.layout.groupBy = Grouping.ORDER
+        t.layout.groupOrder = GroupingOrder.ASCENDING
+        val p = makePanel(t)
+        val b = PanelService()
+        val svg = b.fromPanelToSvg(p)
+        ensureOrder("/svg/g/a/text[@class='date']", svg, "08/07/2022")
+    }
     private fun makePanel(t: ButtonTheme) : Panels {
         return panels {
             buttonTheme = t
+            panel {
+                link = "https://ibm.com"
+                label = "IBM"
+                date = "08/07/2022"
+                author("Ginny")
+            }
             panel {
                 link = "https://apple.com"
                 label = "Apple"

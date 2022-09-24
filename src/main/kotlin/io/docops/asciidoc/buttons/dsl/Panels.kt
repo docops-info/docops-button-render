@@ -56,7 +56,7 @@ class RoundButton : ButtonItem()
 @PanelDSL
 class Layout {
     var columns = 3
-    var groupBy = Grouping.TITLE
+    var groupBy = Grouping.ORDER
     var groupOrder = GroupingOrder.ASCENDING
 }
 
