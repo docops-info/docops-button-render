@@ -23,21 +23,28 @@
             font: 14px sans-serif;
             height: 100%;
             overflow: auto;
+            cursor: pointer;
         }
 
-        .rect {
-            fill: #aef3ae;
-            stroke: black;
-            #stroke-width: 5;
+        
+        rect:hover {
             opacity: 0.5;
         }
 
+        rect {
+            filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
+            fill: #fff;
+            stroke: black;
+            pointer-events: bounding-box;
+            cursor: pointer;
+        }
 
         .titleText {
             fill: #17730f;
             font-size: 18px;
             font-family: sans-serif;
             font-weight: bold;
+            cursor: pointer;
         }
 
         circle.card {
@@ -45,10 +52,11 @@
             pointer-events: bounding-box;
             opacity: 1;
             stroke: black;
+            cursor: pointer;
         }
 
         circle.card:hover {
-            opacity: 0.6;
+            opacity: 0.6;cursor: pointer;
         }
 
         .shadow {
@@ -56,6 +64,7 @@
             filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
         }
     </style>
+    <defs>
     <filter id="duotone" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
         <feColorMatrix type="matrix" values="1 0 0 0 0
 1 0 0 0 0
@@ -68,8 +77,22 @@
             <feFuncA type="table" tableValues="0 1"/>
         </feComponentTransfer>
     </filter>
+        <filter id="redsunset" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="1 0 0 0 0
+1 0 0 0 0
+1 0 0 0 0
+0 0 0 1 0" in="SourceGraphic" result="colormatrix"/>
+            <feComponentTransfer in="colormatrix" result="componentTransfer">
+                <feFuncR type="table" tableValues="0.43 0.97"/>
+                <feFuncG type="table" tableValues="0.06 0.88"/>
+                <feFuncB type="table" tableValues="0.37 0.79"/>
+                <feFuncA type="table" tableValues="0 1"/>
+            </feComponentTransfer>
+            <feBlend mode="screen" in="componentTransfer" in2="SourceGraphic" result="blend"/>
+        </filter>
+    </defs>
     <g >
-    <rect x="10" y="10" width="400" height="200" rx="10" class="rect shadow" />
+    <rect x="10" y="10" width="400" height="200"  class="" />
     <text x="15" y="30" class="titleText shadow">Hello World</text>
     <foreignObject x="15" y="55" width="290" height="200">
         <div xmlns="http://www.w3.org/1999/xhtml">
@@ -83,23 +106,23 @@
     <circle cx="360" cy="60" r="40" class="card" fill="#ffffff"/>
     </g>
     <g>
-    <rect x="430" y="10" width="400" height="200" rx="10" class="rect" />
-    <text x="435" y="30" class="titleText shadow">Hello World</text>
-    <foreignObject x="435" y="55" width="290" height="200">
+    <rect x="410" y="10" width="400" height="200"  class="" />
+    <text x="415" y="30" class="titleText shadow">Hello World</text>
+    <foreignObject x="415" y="55" width="290" height="200">
         <div xmlns="http://www.w3.org/1999/xhtml">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
+            Lorem ipsum dolor sit amet, 😈 👿 😂 💓 🚳 adipiscing elit. Sed mollis mollis
             mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
             imperdiet eros. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
             mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
             imperdiet eros. Aliquam erat volutpat.
         </div>
     </foreignObject>
-    <circle cx="780" cy="60" r="40" class="card" fill="#ffffff"/>
+    <circle cx="760" cy="60" r="40" class="card" fill="#ffffff"/>
     </g>
     <g>
-    <rect x="850" y="10" width="400" height="200" rx="10" class="rect" />
-    <text x="855" y="30" class="titleText shadow">Hello World</text>
-    <foreignObject x="855" y="55" width="290" height="200">
+    <rect x="810" y="10" width="400" height="200"  class="" />
+    <text x="815" y="30" class="titleText shadow">Hello World</text>
+    <foreignObject x="815" y="55" width="290" height="200">
         <div xmlns="http://www.w3.org/1999/xhtml">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
             mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
@@ -108,13 +131,13 @@
             imperdiet eros. Aliquam erat volutpat.
         </div>
     </foreignObject>
-    <circle cx="1200" cy="60" r="40" class="card" fill="#ffffff"/>
+    <circle cx="1160" cy="60" r="40" class="card" fill="#ffffff"/>
     </g>
 
     <g filter="url(#duotone)">
-        <rect x="10" y="230" width="400" height="200" rx="10" class="rect shadow" />
-        <text x="15" y="250" class="titleText shadow">Hello World</text>
-        <foreignObject x="15" y="275" width="290" height="200">
+        <rect x="10" y="210" width="400" height="200"  class="shadow" />
+        <text x="15" y="230" class="titleText shadow">Hello World</text>
+        <foreignObject x="15" y="255" width="290" height="200">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
                 mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
@@ -123,13 +146,13 @@
                 imperdiet eros. Aliquam erat volutpat.
             </div>
         </foreignObject>
-        <circle cx="360" cy="280" r="40" class="card" fill="#ffffff"/>
+        <circle cx="360" cy="260" r="40" class="card" fill="#ffffff"/>
     </g>
 
     <g filter="url(#duotone)">
-        <rect x="430" y="230" width="400" height="200" rx="10" class="rect" />
-        <text x="435" y="250" class="titleText shadow">Hello World</text>
-        <foreignObject x="435" y="275" width="290" height="200">
+        <rect x="410" y="210" width="400" height="200"  class="" />
+        <text x="415" y="230" class="titleText shadow">Hello World</text>
+        <foreignObject x="415" y="255" width="290" height="200">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
                 mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
@@ -138,13 +161,13 @@
                 imperdiet eros. Aliquam erat volutpat.
             </div>
         </foreignObject>
-        <circle cx="780" cy="280" r="40" class="card" fill="#ffffff"/>
+        <circle cx="760" cy="260" r="40" class="card" fill="#ffffff"/>
     </g>
 
     <g filter="url(#duotone)">
-        <rect x="850" y="230" width="400" height="200" rx="10" class="rect" />
-        <text x="855" y="250" class="titleText shadow">Hello World</text>
-        <foreignObject x="855" y="275" width="290" height="200">
+        <rect x="810" y="210" width="400" height="200"  class="" />
+        <text x="815" y="230" class="titleText shadow">Hello World</text>
+        <foreignObject x="815" y="255" width="290" height="200">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
                 mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
@@ -153,6 +176,52 @@
                 imperdiet eros. Aliquam erat volutpat.
             </div>
         </foreignObject>
-        <circle cx="1200" cy="280" r="40" class="card" fill="#ffffff"/>
+        <circle cx="1160" cy="260" r="40" class="card" fill="#ffffff"/>
+    </g>
+
+
+    <g filter="url(#redsunset)">
+        <rect x="10" y="410" width="400" height="200"  class="shadow" />
+        <text x="15" y="430" class="titleText shadow">Hello World</text>
+        <foreignObject x="15" y="455" width="290" height="200">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
+                mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
+                imperdiet eros. <b>Aliquam</b> erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
+                mi ut ultricies. <a href="apple.com">Nullam magna</a> ipsum, porta vel dui convallis, rutrum
+                imperdiet eros. Aliquam erat volutpat.
+            </div>
+        </foreignObject>
+        <circle cx="360" cy="460" r="40" class="card" fill="#ffffff"/>
+    </g>
+
+    <g filter="url(#redsunset)">
+        <rect x="410" y="410" width="400" height="200"  class="" />
+        <text x="415" y="430" class="titleText shadow">Hello World</text>
+        <foreignObject x="415" y="455" width="290" height="200">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
+                mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
+                imperdiet eros. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
+                mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
+                imperdiet eros. Aliquam erat volutpat.
+            </div>
+        </foreignObject>
+        <circle cx="760" cy="460" r="40" class="card" fill="#ffffff"/>
+    </g>
+
+    <g filter="url(#redsunset)">
+        <rect x="810" y="410" width="400" height="200"  class="" />
+        <text x="815" y="430" class="titleText shadow">Hello World</text>
+        <foreignObject x="815" y="455" width="290" height="200">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
+                mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
+                imperdiet eros. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis mollis
+                mi ut ultricies. Nullam magna ipsum, porta vel dui convallis, rutrum
+                imperdiet eros. Aliquam erat volutpat.
+            </div>
+        </foreignObject>
+        <circle cx="1160" cy="460" r="40" class="card" fill="#ffffff"/>
     </g>
  </svg>

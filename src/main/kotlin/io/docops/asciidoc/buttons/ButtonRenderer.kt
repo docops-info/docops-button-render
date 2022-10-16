@@ -47,6 +47,9 @@ class ButtonRenderImpl : ButtonRenderer {
             ButtonType.LARGE_CARD -> {
                 LargeCard().makeButtons(buttons = rows, theme = theme)
             }
+            ButtonType.RECTANGLE -> {
+                RectangleCardRenderer().makeButtons(buttons = rows, theme = theme)
+            }
         }
 
     }

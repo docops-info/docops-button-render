@@ -16,9 +16,7 @@
 
 package io.docops.asciidoc.buttons
 
-import io.docops.asciidoc.buttons.dsl.Case
-import io.docops.asciidoc.buttons.dsl.font
-import io.docops.asciidoc.buttons.dsl.panels
+import io.docops.asciidoc.buttons.dsl.*
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
 import io.docops.asciidoc.buttons.service.PanelService
@@ -163,6 +161,28 @@ class ButtonRenderImplTest {
         val f = File("out/round.svg")
         f.writeBytes(svg.toByteArray())
     }
+
+    @Test
+    fun drawRectangle() {
+        val b = ButtonRenderImpl()
+        val buttons= recButtons()
+        val theme = Theme()
+        theme.typeIs("RECTANGLE")
+        theme.groupBy= Grouping.ORDER
+        theme.columns = 3
+        theme.groupOrder = GroupingOrder.ASCENDING
+        theme.font.size = "10pt"
+        theme.colorMap = colors()
+
+        val localList = buttons.toMutableList()
+        val svg = b.render(localList, theme)
+        val dir = File("out")
+        if(!dir.exists()) {
+            dir.mkdir()
+        }
+        val f = File("out/rectangular.svg")
+        f.writeBytes(svg.toByteArray())
+    }
     @Test
     fun drawRoundFromDoc () {
         val d = panels {
@@ -254,6 +274,72 @@ class ButtonRenderImplTest {
                 title = "Datagrip",
                 type = "Awesome Little Lengthy Description For this tile still has 2 rows?",
                 description = "Should the description be long maybe?",
+                backgroundColor = "red"
+            )
+
+        )
+    }
+
+    private fun recButtons(): List<Button> {
+        val links = mutableListOf(
+            Link(label = "Jetbrains",href ="https://www.jetbrains.com"),
+            Link(label = "AppCode",href ="https://www.jetbrains.com"),
+            Link(label = "PyCharm",href ="https://www.jetbrains.com"),
+            Link(label = "Rider",href ="https://www.jetbrains.com")
+            )
+        val button = Button(
+            title = "Jetbrains",
+            link = "https://www.jetbrains.com",
+            description = "IDE",
+            authors = mutableListOf("Steve Roach","Ian Rose", "Mike Duffy"),
+            type = "Awesome",
+            date = "11/16/2021",
+            links = links,
+            buttonImage = ButtonImage(ref = "java.svg"),
+            backgroundColor = null
+        )
+        return listOf(
+            button.copy(
+                authors = mutableListOf("Mike"),
+                link = "https://cooking.nytimes.com/recipes/1016595-hamburgers-diner-style",
+                buttonImage = ButtonImage(ref = "java.svg"),
+                font = font {
+                    underline = true
+                    color = "blue"
+                }
+            ),
+            Button(
+                title = "Google", link = "https://google.com",
+                description = "Search", authors = mutableListOf("Steve"), type = "Green",
+                date = "11/16/2021",
+                buttonImage = ButtonImage(ref = "java.svg"),
+                font =  font{
+                    color = "#000000"
+                },
+                backgroundColor = "red",
+                links = links,
+            ),
+            Button(
+                title = "Maryland's Crab",
+                link = "http://www.maryland.gov",
+                description = "* Curry * Steamed",
+                authors = mutableListOf("Ian"),
+                type = "Crabby",
+                date = "10/10/2020",
+                links = links,
+                buttonImage = ButtonImage(ref = "java.svg"),
+            ),
+            button.copy(title = "Bahama", type = "Pizza", description = "Should the description be long?",
+                links = links,
+                buttonImage = ButtonImage(ref = "java.svg")
+            ),
+            button.copy(title = "PyCharm Edu", type = "Awesome", description = "Python"),
+            button.copy(title = "Rider", type = "Awesome", description = "csharp"),
+            button.copy(title = "Fleet", type = "Awesome", description = "Polyglot"),
+            button.copy(
+                title = "Datagrip",
+                type = "Awesome Little Lengthy Description For this tile still has 2 rows?",
+                description = "database",
                 backgroundColor = "red"
             )
 
@@ -352,4 +438,20 @@ class ButtonRenderImplTest {
         val f = File("out/largeFont2.svg")
         f.writeBytes(svg.toByteArray())
     }
-}
+    private fun colors(): MutableList<String> {
+        val d = panels {
+            theme {
+                colorMap {
+                    color("#6F36A7")
+                    color("#B3110E")
+                    color("#BB81D3")
+                    color("#161CB2")
+                    color("#95910B")
+                    color("#1BED6E")
+                }
+            }
+            button {  }
+        }
+        return d.buttonTheme.colorMap.colors
+    }
+ }

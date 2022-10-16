@@ -17,6 +17,7 @@
 package io.docops.asciidoc.buttons.models
 
 import io.docops.asciidoc.buttons.dsl.Font
+import io.docops.asciidoc.buttons.dsl.Link
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -29,6 +30,7 @@ data class Button(
     var date: String,
     var font: Font? = null,
     var backgroundColor: String? = null,
+    var links:MutableList<Link>? = null,
     var buttonImage: ButtonImage? = null
 ) {
 

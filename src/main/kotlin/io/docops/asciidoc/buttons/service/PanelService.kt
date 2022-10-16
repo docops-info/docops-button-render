@@ -103,6 +103,21 @@ class PanelService {
                     localList.add(btn)
                 }
             }
+
+            ButtonType.RECTANGLE -> {
+                panel.rectangleButtons.forEach {
+                    val btn = Button(
+                        title = it.label,
+                        link = it.link,
+                        description = it.description,
+                        authors = it.authors,
+                        type = it.label,
+                        date = "",
+                        links = it.links,
+                        font = panel.buttonTheme.font)
+                    localList.add(btn)
+                }
+            }
         }
         return b.render(localList, theme)
 
@@ -138,6 +153,10 @@ class PanelService {
             }
             ButtonType.ROUND -> {
                 localList.addAll(panel.roundButtons)
+            }
+
+            ButtonType.RECTANGLE -> {
+                localList.addAll(panel.rectangleButtons)
             }
         }
         return localList

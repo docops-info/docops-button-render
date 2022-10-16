@@ -279,6 +279,14 @@ class ButtonsKtTest {
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
+
+            ButtonType.RECTANGLE -> {
+                list.rectangleButtons.forEach {
+                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, "", font = it.font)
+                    localList.add(btn)
+                }
+                genFile(localList = localList, theme = theme, fileName = fileName)
+            }
         }
     }
 

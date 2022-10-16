@@ -30,10 +30,14 @@ open class ButtonItem {
     var font: Font? = null
     var date: String = ""
     var authors = mutableListOf<String>()
+    var links = mutableListOf<Link>()
     infix fun author(author: String) {
         authors.add(author)
     }
 
+    infix fun link(link: Link.() -> Unit) {
+        links.add(Link().apply(link))
+    }
 }
 
 @PanelDSL
@@ -52,6 +56,9 @@ class Button : ButtonItem()
 
 @PanelDSL
 class RoundButton : ButtonItem()
+
+@PanelDSL
+class RectangleButton : ButtonItem()
 
 @PanelDSL
 class Layout {
@@ -123,6 +130,16 @@ class ButtonTheme {
 }
 
 @PanelDSL
+class Link constructor(){
+    constructor(label: String = "", href: String= "") : this() {
+        this.label = label
+        this.href = href
+    }
+
+    var label = ""
+    var href = ""
+}
+@PanelDSL
 class Panels {
     var columns = 3
     var isPdf = false
@@ -130,6 +147,7 @@ class Panels {
     var slimButtons = mutableListOf<SlimButton>()
     var largeButtons = mutableListOf<LargeButton>()
     var roundButtons = mutableListOf<RoundButton>()
+    var rectangleButtons = mutableListOf<RectangleButton>()
     var buttonTheme: ButtonTheme = ButtonTheme()
 
     var buttonType = ButtonType.BUTTON
@@ -159,6 +177,10 @@ class Panels {
         buttonType = ButtonType.ROUND
     }
 
+    fun rectangle(rectangleButton: RectangleButton.() -> Unit) {
+        rectangleButtons.add(RectangleButton().apply(rectangleButton))
+        buttonType = ButtonType.RECTANGLE
+    }
     fun theme(buttonTheme: ButtonTheme.() -> Unit) {
         this.buttonTheme = ButtonTheme().apply(buttonTheme).validate()
     }
