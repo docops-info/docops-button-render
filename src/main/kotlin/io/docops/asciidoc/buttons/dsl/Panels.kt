@@ -204,6 +204,10 @@ class Panels {
             count++
             list.add("Round")
         }
+        if(rectangleButtons.size>0) {
+            count++
+            list.add("Rectangle")
+        }
         require(count < 2) { "More than one button type specified, see -> $list, only one type supported at a time" }
         require(count == 1) {
             "No Buttons were added"
