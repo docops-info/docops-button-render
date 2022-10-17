@@ -114,6 +114,7 @@ class PanelService {
                         type = it.label,
                         date = "",
                         links = it.links,
+                        buttonImage = it.buttonImage,
                         font = panel.buttonTheme.font)
                     localList.add(btn)
                 }

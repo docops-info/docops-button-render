@@ -81,7 +81,7 @@ class RectangleCardRenderer : ButtonMaker() {
         <rect x="$itemWidth" y="$itemHeight" width="$width" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3;'/>
         <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="titleText">${button.title.escapeXml()}</text>
         <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" rx="12" ry="12" fill="${theme.buttonColor(button)}"/>
-        ${makeButtonImage(button, x = itemWidth+10,y = itemHeight+10)}
+        ${makeButtonImage(button, x = itemWidth+12,y = itemHeight+15)}
         <foreignObject x="${itemWidth + 15 + 105}" y="${itemHeight + 30}" width="180" height="200">
                 <div xmlns="http://www.w3.org/1999/xhtml">${linksToList(button)}</div>
         </foreignObject>

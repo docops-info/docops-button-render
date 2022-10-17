@@ -58,7 +58,9 @@ class Button : ButtonItem()
 class RoundButton : ButtonItem()
 
 @PanelDSL
-class RectangleButton : ButtonItem()
+class RectangleButton : ButtonItem() {
+    var buttonImage: ButtonImage? = null
+}
 
 @PanelDSL
 class Layout {
