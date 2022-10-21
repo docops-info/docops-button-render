@@ -37,36 +37,40 @@ class RectangleCardRenderer : ButtonMaker() {
         return sb.toString()
     }
 
-    private fun makeStyles(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
+    private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        buttonList.forEach { buttons ->
+            buttons.forEach {
+                    item -> theme.buttonTextColor(item)
+            }
+        }
         //language=html
-        return """<style>
-        rect {
+        var str =  """
+        <style>
+        .myrect {
             stroke: #d2ddec;
         }
 
-        .titleText {
-            fill: #181b38;
-            font-size: 16px;
-            font-family: "Inter var", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
         .linkText {
-            fill: #265301;;
+            fill: #4076ff;
             font-size: 15px;
             font-family: "Inter var", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-weight: normal;
             cursor: pointer;
-            text-decoration: underline;
+        }
+        .linkText:hover {
+            fill: #ea0606;
+            border: #d2ddec solid;
         }
 
-        .shadow {
-            -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
-            filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
+
+""".trimIndent()
+        theme.buttonStyleMap.forEach { (t, u) ->
+            str += ".$u {$t}\n"
         }
-    </style>"""
+        str += """</style>"""
+        return str
     }
+
 
     private fun createItem(button: Button, row: Int, column: Int, theme: Theme): String {
         var window = "_top"
@@ -80,8 +84,8 @@ class RectangleCardRenderer : ButtonMaker() {
         //language=svg
         return """
         <g>
-        <rect x="$itemWidth" y="$itemHeight" width="$width" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3;'/>
-        <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="titleText">${button.title.escapeXml()}</text>
+        <rect x="$itemWidth" y="$itemHeight" width="$width" class="myrect" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3;'/>
+        <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
         <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" rx="12" ry="12" fill="${theme.buttonColor(button)}"/>
         ${makeButtonImage(button, x = itemWidth+12,y = itemHeight+15)}
         ${makeLinks(itemWidth+15+105, itemHeight + 30, button, window)}
@@ -92,9 +96,13 @@ class RectangleCardRenderer : ButtonMaker() {
 
     private fun makeLinks(x: Int, y: Int, button: Button, window: String): String {
         val sb = StringBuilder()
-        sb.append("""<text x="$x" y="$y" class="linkText">""".trimIndent())
-        button.links?.forEach {
-            sb.append("""<tspan x="$x" dy="16"><a xlink:href="${it.href}" target="$window">${it.label}</a></tspan>""")
+        sb.append("""<text x="$x" y="$y">""".trimIndent())
+        var downBy = 16
+        button.links?.forEachIndexed { index, link ->
+            if(index > 0) {
+                downBy = 20
+            }
+            sb.append("""<tspan  x="$x" dy="$downBy"><a xlink:href="${link.href}" class="linkText" target="$window">${link.label}</a></tspan>""")
         }
         sb.append("</text>")
         return sb.toString()
@@ -102,7 +110,7 @@ class RectangleCardRenderer : ButtonMaker() {
     private fun makeButtonImage(button: Button, x: Int, y: Int): String {
         button.buttonImage?.let {
             return """
-            <image x="${x+10}" y="${y+5}" width="75" height="75" href="${button.buttonImage?.ref}"/>
+            <image x="${x+10}" y="${y+9}" width="75" height="75" href="${button.buttonImage?.ref}"/>
         """.trimIndent()
         }
         return ""

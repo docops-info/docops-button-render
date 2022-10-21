@@ -171,9 +171,18 @@ class ButtonRenderImplTest {
         theme.groupBy= Grouping.ORDER
         theme.columns = 3
         theme.groupOrder = GroupingOrder.ASCENDING
-        theme.font.size = "10pt"
         theme.colorMap = colors()
-
+        theme.font = font {
+            family = "Arial, Helvetica, sans-serif"
+            size = "16px"
+            color = "black"
+            spacing = "normal"
+            bold = true
+            italic = false
+            underline = false
+            vertical = false
+            case = Case.NONE
+        }
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
@@ -303,19 +312,12 @@ class ButtonRenderImplTest {
                 authors = mutableListOf("Mike"),
                 link = "https://cooking.nytimes.com/recipes/1016595-hamburgers-diner-style",
                 buttonImage = ButtonImage(ref = "java.svg"),
-                font = font {
-                    underline = true
-                    color = "blue"
-                }
             ),
             Button(
                 title = "Google", link = "https://google.com",
                 description = "Search", authors = mutableListOf("Steve"), type = "Green",
                 date = "11/16/2021",
                 buttonImage = ButtonImage(ref = "java.svg"),
-                font =  font{
-                    color = "#000000"
-                },
                 backgroundColor = "red",
                 links = links,
             ),
