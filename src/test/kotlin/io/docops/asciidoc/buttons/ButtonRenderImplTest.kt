@@ -329,6 +329,14 @@ class ButtonRenderImplTest {
                 type = "Crabby",
                 date = "10/10/2020",
                 links = links,
+                font = font {
+                    family = "Arial, Helvetica, sans-serif"
+                    size = "16pt"
+                    color = "#000000"
+                    bold = true
+                    italic = true
+
+                },
                 buttonImage = ButtonImage(ref = "java.svg"),
             ),
             button.copy(title = "Bahama", type = "Pizza", description = "Should the description be long?",
@@ -397,6 +405,14 @@ class ButtonRenderImplTest {
                 author("author1")
                 author("author2")
                 date ="07/19/2022"
+                font = font {
+                    family = "Arial, Helvetica, sans-serif"
+                    size = "16pt"
+                    color = "#000000"
+                    bold = true
+                    italic = true
+
+                }
             }
             large{
                 link = "https://www.apple.com"

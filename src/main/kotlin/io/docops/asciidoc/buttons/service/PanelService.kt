@@ -49,6 +49,8 @@ class PanelService {
         when (panel.buttonType) {
             ButtonType.BUTTON -> {
                 panel.panelButtons.forEach {
+                    val f: Font? = determineFont(panel, it)
+
                     val btn = Button(
                         title = it.label,
                         link = it.link,
@@ -56,13 +58,14 @@ class PanelService {
                         authors = it.authors,
                         type = it.label,
                         date = it.date,
-                        font = panel.buttonTheme.font
+                        font = f
                     )
                     localList.add(btn)
                 }
             }
             ButtonType.SLIM_CARD -> {
                 panel.slimButtons.forEach {
+                    val f: Font? = determineFont(panel, it)
                     val btn = Button(
                         title = it.label,
                         link = it.link,
@@ -70,13 +73,14 @@ class PanelService {
                         authors = it.authors,
                         type = it.type,
                         date = it.date,
-                        font = panel.buttonTheme.font
+                        font = f
                     )
                     localList.add(btn)
                 }
             }
             ButtonType.LARGE_CARD -> {
                 panel.largeButtons.forEach {
+                    val f: Font? = determineFont(panel, it)
                     val btn = Button(
                         title = it.label,
                         link = it.link,
@@ -84,7 +88,7 @@ class PanelService {
                         authors = it.authors,
                         type = it.type,
                         date = it.date,
-                        font = panel.buttonTheme.font,
+                        font = f,
                         buttonImage = it.buttonImage
                     )
                     localList.add(btn)
@@ -92,6 +96,7 @@ class PanelService {
             }
             ButtonType.ROUND -> {
                 panel.roundButtons.forEach {
+                    val f: Font? = determineFont(panel, it)
                     val btn = Button(
                         title = it.label,
                         link = it.link,
@@ -99,13 +104,14 @@ class PanelService {
                         authors = it.authors,
                         type = it.label,
                         date = "",
-                        font = panel.buttonTheme.font)
+                        font = f)
                     localList.add(btn)
                 }
             }
 
             ButtonType.RECTANGLE -> {
                 panel.rectangleButtons.forEach {
+                    val f: Font? = determineFont(panel, it)
                     val btn = Button(
                         title = it.label,
                         link = it.link,
@@ -115,13 +121,24 @@ class PanelService {
                         date = "",
                         links = it.links,
                         buttonImage = it.buttonImage,
-                        font = panel.buttonTheme.font)
+                        font = f)
                     localList.add(btn)
                 }
             }
         }
         return b.render(localList, theme)
 
+    }
+
+    private fun determineFont(
+        panel: Panels,
+        pb: ButtonItem
+    ): Font? {
+        var f: Font? = panel.buttonTheme.font
+        if (pb.font != null) {
+            f = pb.font
+        }
+        return f
     }
 
     fun toLines(filename: String, panels: Panels): MutableList<String> {
