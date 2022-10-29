@@ -252,18 +252,20 @@ class ButtonRenderImplTest {
                 type = "Pizza",
                 title = "Hamburger",
                 link = "https://cooking.nytimes.com/recipes/1016595-hamburgers-diner-style",
-                buttonImage = ButtonImage(ref = "ayaan.png"),
+                buttonImage = ButtonImage(ref = "archrun1.svg"),
                 font = font {
                     underline = true
                     color = "blue"
-                }
+                },
+                backgroundColor = "#c1d2c0"
             ),
             Button(
                 title = "Google", link = "https://google.com",
                 description = "description trying & < >. Bug: if a word in the input is longer than maxLineLength it will be appended to the current line instead of on a too-long line of its own. I assume your line length is something like 80 or 120 characters, in which case this is unlikely to be a problem.", authors = mutableListOf("Steve"), type = "Green",
                 date = "11/16/2021", font =  font{
                     color = "#000000"
-                }, backgroundColor = "red"
+                }, backgroundColor = "#508b38",
+                buttonImage = ButtonImage(ref = "onboard.svg"),
             ),
             Button(
                 title = "Maryland's Crab & Snack Shop",
@@ -271,10 +273,11 @@ class ButtonRenderImplTest {
                 description = "desc",
                 authors = mutableListOf("Ian"),
                 type = "Crabby",
+                backgroundColor = "#c1d2c0",
                 date = "10/10/2020"
             ),
             button.copy(title = "Bahama", type = "Pizza", description = "Should the description be long?",
-                buttonImage = ButtonImage(ref = "ayaan.png")
+                buttonImage = ButtonImage(ref = "archrun1.svg"), backgroundColor = "#c1d2c0"
             ),
             button.copy(title = "PyCharm Edu", type = "Awesome", description = "Should the description be long maybe? Is this going on"),
             button.copy(title = "Rider", type = "Awesome", description = "Should the description be long maybe?"),

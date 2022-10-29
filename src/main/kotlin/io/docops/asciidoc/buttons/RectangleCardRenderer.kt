@@ -10,9 +10,9 @@ class RectangleCardRenderer : ButtonMaker() {
         val sb = StringBuilder(
             makeSvgHead(
                 buttons = buttons,
-                heightFactor = 410,
-                defaultHeight = 500,
-                widthFactor = 410,
+                heightFactor = 110,
+                defaultHeight = 110,
+                widthFactor = 300,
                 theme = theme
             )
         )
@@ -84,7 +84,7 @@ class RectangleCardRenderer : ButtonMaker() {
         //language=svg
         return """
         <g>
-        <rect x="$itemWidth" y="$itemHeight" width="$width" class="myrect" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3;'/>
+        <rect x="$itemWidth" y="$itemHeight" width="$width" class="myrect" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3'/>
         <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
         <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" rx="12" ry="12" fill="${theme.buttonColor(button)}"/>
         ${makeButtonImage(button, x = itemWidth+12,y = itemHeight+15)}
