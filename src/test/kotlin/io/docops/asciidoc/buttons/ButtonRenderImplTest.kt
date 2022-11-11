@@ -172,6 +172,7 @@ class ButtonRenderImplTest {
         theme.columns = 3
         theme.groupOrder = GroupingOrder.ASCENDING
         theme.colorMap = colors()
+        theme.legendOn = false
         theme.font = font {
             family = "Arial, Helvetica, sans-serif"
             size = "16px"

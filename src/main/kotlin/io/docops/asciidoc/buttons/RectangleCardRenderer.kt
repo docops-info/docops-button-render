@@ -7,10 +7,12 @@ import io.docops.asciidoc.utils.escapeXml
 class RectangleCardRenderer : ButtonMaker() {
     private var spacer = 10
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
+        //turn of legend as this does not support legend
+        theme.legendOn = false
         val sb = StringBuilder(
             makeSvgHead(
                 buttons = buttons,
-                heightFactor = 110,
+                heightFactor = 135,
                 defaultHeight = 110,
                 widthFactor = 300,
                 theme = theme

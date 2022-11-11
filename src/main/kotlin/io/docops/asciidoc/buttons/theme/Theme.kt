@@ -59,7 +59,7 @@ class Theme {
     var fontWeight = "normal"
     var type = ButtonType.BUTTON
     var newWin = true
-    var legendOn = true
+    var legendOn = false
     var isPDF = false
     var defs = ""
     var dropShadow = 1
