@@ -7,8 +7,8 @@
 :minor: .17
 :patch:
 :build:
-// :extension:
-:extension: -SNAPSHOT
+:extension:
+// :extension: -SNAPSHOT
 
 == Maven
 
@@ -45,6 +45,9 @@ link:https://search.maven.org/remotecontent?filepath=io/docops/{artifact}/{major
 link:docs/{artifact}.html[]
 
 == History
+
+2022.17 - 2022-11-11::
+* Address rectangle button spacing
 
 2022.16 - 2022-10-29::
 * Fix rectangle spacing
