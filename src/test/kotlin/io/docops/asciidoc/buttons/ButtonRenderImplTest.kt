@@ -460,6 +460,87 @@ class ButtonRenderImplTest {
         val f = File("out/largeFont2.svg")
         f.writeBytes(svg.toByteArray())
     }
+
+    @Test
+    fun rectAsTable() {
+        val pans = panels {
+            theme {
+                colorMap {
+                    color("#851CB7")
+                    color("#40F27B")
+                    color("#F3DA20")
+                    color("#AF4946")
+                    color("#20AA8D")
+                    color("#824911")
+                    color("#D24F68")
+                }
+                legendOn = false
+                layout {
+                    columns = 3
+                    groupBy = Grouping.ORDER
+                    groupOrder = GroupingOrder.ASCENDING
+                }
+                font = font {
+                    family = "Arial, Helvetica, sans-serif"
+                    size = "8pt"
+                    color = "black"
+                    spacing = "normal"
+                    bold = true
+                    italic = false
+                    underline = true
+                    vertical = false
+                    case = Case.NONE
+
+                }
+                newWin = true
+                dropShadow = 1
+            }
+            rectangle{
+                link = "index.html#overview"
+                label = "Overview"
+                date = "11/13/2022"
+                type = "Advertising 0"
+                link {
+                    href = "index.html#context"
+                    label = "Context Diagram"
+                }
+                link {
+                    href = "index.html#container"
+                    label = "Container Diagram"
+                }
+                link {
+                    href = "index.html#component"
+                    label = "Component Diagram"
+                }
+            }
+            rectangle{
+                link = "angular_upgrade.html"
+                label = "Angular Upgrade"
+                date = "11/12/2022"
+                type = "Angular"
+                link {
+                    href = "angular_upgrade.html"
+                    label = "Upgrade"
+                }
+            }
+
+            rectangle{
+                link = "okta.html"
+                label = "#D24F68"
+                date = "11/07/2022"
+                type = "Advertising 1"
+                link {
+                    href = "okta.html#upgrade"
+                    label = "Okta Upgrade"
+                }
+            }
+        }
+        val p = PanelService()
+        val res = p.toLines("pans", pans, "http://localhost:8010/extension")
+        res.forEach {
+            println(it)
+        }
+    }
     private fun colors(): MutableList<String> {
         val d = panels {
             theme {

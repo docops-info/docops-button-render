@@ -21,30 +21,19 @@ import io.docops.asciidoc.buttons.dsl.*
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.theme.ButtonType
 import io.docops.asciidoc.buttons.theme.Theme
+import java.net.URLEncoder
 
 class PanelService {
     
     fun fromPanelToSvg(panel: Panels) : String {
-        val theme = Theme()
-
-        theme.type = panel.buttonType
-        theme.groupBy = panel.buttonTheme.layout.groupBy
-        theme.groupOrder = panel.buttonTheme.layout.groupOrder
-        theme.columns = panel.buttonTheme.layout.columns
-        if(panel.buttonTheme.colorMap.colors.isNotEmpty()) {
-                theme.colorMap = mutableListOf()
-                theme.colorMap.addAll(panel.buttonTheme.colorMap.colors)
-        }
-        theme.defs = panel.buttonTheme.colorMap.colorDefs
-        theme.isPDF = panel.isPdf
-        theme.legendOn = panel.buttonTheme.legendOn
-        theme.newWin = panel.buttonTheme.newWin
-        theme.dropShadow = panel.buttonTheme.dropShadow
-        panel.buttonTheme.font?.let {
-            theme.font = it
-        }
-        val localList = mutableListOf<Button>()
+        val theme = extractThemeFromPanel(panel)
+        val localList = extractButtonList(panel)
         val b = ButtonRenderImpl()
+        return b.render(localList, theme)
+    }
+
+    private fun extractButtonList(panel: Panels): MutableList<Button> {
+        val localList = mutableListOf<Button>()
 
         when (panel.buttonType) {
             ButtonType.BUTTON -> {
@@ -63,6 +52,7 @@ class PanelService {
                     localList.add(btn)
                 }
             }
+
             ButtonType.SLIM_CARD -> {
                 panel.slimButtons.forEach {
                     val f: Font? = determineFont(panel, it)
@@ -78,6 +68,7 @@ class PanelService {
                     localList.add(btn)
                 }
             }
+
             ButtonType.LARGE_CARD -> {
                 panel.largeButtons.forEach {
                     val f: Font? = determineFont(panel, it)
@@ -94,6 +85,7 @@ class PanelService {
                     localList.add(btn)
                 }
             }
+
             ButtonType.ROUND -> {
                 panel.roundButtons.forEach {
                     val f: Font? = determineFont(panel, it)
@@ -104,7 +96,8 @@ class PanelService {
                         authors = it.authors,
                         type = it.label,
                         date = "",
-                        font = f)
+                        font = f
+                    )
                     localList.add(btn)
                 }
             }
@@ -121,13 +114,35 @@ class PanelService {
                         date = "",
                         links = it.links,
                         buttonImage = it.buttonImage,
-                        font = f)
+                        font = f
+                    )
                     localList.add(btn)
                 }
             }
         }
-        return b.render(localList, theme)
+        return localList
+    }
 
+    private fun extractThemeFromPanel(panel: Panels): Theme {
+        val theme = Theme()
+
+        theme.type = panel.buttonType
+        theme.groupBy = panel.buttonTheme.layout.groupBy
+        theme.groupOrder = panel.buttonTheme.layout.groupOrder
+        theme.columns = panel.buttonTheme.layout.columns
+        if (panel.buttonTheme.colorMap.colors.isNotEmpty()) {
+            theme.colorMap = mutableListOf()
+            theme.colorMap.addAll(panel.buttonTheme.colorMap.colors)
+        }
+        theme.defs = panel.buttonTheme.colorMap.colorDefs
+        theme.isPDF = panel.isPdf
+        theme.legendOn = panel.buttonTheme.legendOn
+        theme.newWin = panel.buttonTheme.newWin
+        theme.dropShadow = panel.buttonTheme.dropShadow
+        panel.buttonTheme.font?.let {
+            theme.font = it
+        }
+        return theme
     }
 
     private fun determineFont(
@@ -141,16 +156,20 @@ class PanelService {
         return f
     }
 
-    fun toLines(filename: String, panels: Panels): MutableList<String> {
+    fun toLines(filename: String, panels: Panels, server: String): MutableList<String> {
+        val theme = extractThemeFromPanel(panels)
+        val buttons = extractButtonList(panels)
         val lines = mutableListOf<String>()
         // language=Asciidoc
         lines.add(".$filename")
         lines.add("[options=header]")
         lines.add("|===")
-        lines.add("|Label |Link")
-        val buttons = toPanelForPdfLinks(panels)
+        lines.add("| |Label |Link")
         buttons.forEach {
-            lines.add("a|${it.label} | ${it.link}")
+            lines.add("a|image::$server/api/panel/pancolor?color=${URLEncoder.encode(theme.buttonColor(it), "utf-8")}&label=${URLEncoder.encode(it.title, "utf-8")}&fname=abc.svg[] a|${it.title} a|link:[${it.title}]")
+            it.links?.forEach { item ->
+                lines.add(" 3+a| link:${item.href}[${item.label}]")
+            }
         }
         lines.add("|===")
         return lines
