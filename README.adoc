@@ -3,12 +3,12 @@
 :data-uri:
 :group: io.docops
 :artifact: docops-button-render
-:major: 2022
-:minor: .20
+:major: 2023
+:minor: .00
 :patch:
 :build:
-// :extension:
-:extension: -SNAPSHOT
+:extension:
+// :extension: -SNAPSHOT
 
 == Maven
 
@@ -45,6 +45,14 @@ link:https://search.maven.org/remotecontent?filepath=io/docops/{artifact}/{major
 link:docs/{artifact}.html[]
 
 == History
+
+2023.00 - 2023-01-07::
+* Hygiene and Currency
+* Added drop shadows to rectangles
+
+[%collapsible]
+.2022 Version History
+====
 
 2022.19 - 2022-12-30::
 * Added charts to library
@@ -113,6 +121,8 @@ link:docs/{artifact}.html[]
 
 2022.0 - 2022-02-13::
 * Initial release to Maven Central.
+
+====
 
 == DocOps
 
