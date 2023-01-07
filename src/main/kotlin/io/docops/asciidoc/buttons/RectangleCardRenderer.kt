@@ -5,7 +5,7 @@ import io.docops.asciidoc.buttons.theme.Theme
 import io.docops.asciidoc.utils.escapeXml
 
 class RectangleCardRenderer : ButtonMaker() {
-    private var spacer = 10
+    private var spacer = 15
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         //turn of legend as this does not support legend
         theme.legendOn = false
@@ -18,7 +18,6 @@ class RectangleCardRenderer : ButtonMaker() {
                 theme = theme
             )
         )
-        //language=svg
         sb.append( """
     ${makeStyles(buttons, theme)}
     ${createDefs(buttons, theme)}
@@ -49,6 +48,7 @@ class RectangleCardRenderer : ButtonMaker() {
         var str =  """
         <style>
         .myrect {
+            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));  
             stroke: #d2ddec;
         }
 

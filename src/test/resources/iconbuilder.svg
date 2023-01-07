@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ICON</title>
+    <desc></desc>
+    <style>
+        .oddstyle {
+            font: bold 60px "Apple Chancery", Arial, Helvetica, sans-serif;
+            fill: #0000bf;
+        }
+
+        .evenstyle {
+            font: bold 60px "Apple Chancery", Arial, Helvetica, sans-serif;
+            fill: #ffffff;
+        }
+    </style>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+        <rect width="100%" height="100%" fill="none" />
+        <rect width="100%" height="50%" fill="#FFFFFF"/>
+        <rect y="95.5" width="100%" height="50%" fill="#0000bf" />
+        <!--1/2 pf 512 = 256 / 2 = 128 + (108 /2) 54-->
+        <text text-anchor="middle" x="150" y="67.75" fill="blue" class="oddstyle">Hello</text>
+        <!--1/2 pf 512 = 256 + 128 = 384 + (108/2) 54-->
+        <text text-anchor="middle" x="150" y="163.25" class="evenstyle">World</text>
+    </g>
+</svg>
