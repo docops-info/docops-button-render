@@ -271,7 +271,8 @@ class ButtonRenderImplTest {
                 date = "11/16/2021", font =  font{
                     color = "#000000"
                 }, backgroundColor = "#508b38",
-                buttonImage = ButtonImage(ref = "onboard.svg"),
+                line1 = "Search",
+                line2 = "AI"
             ),
             Button(
                 title = "Maryland's Crab & Snack Shop",
@@ -279,8 +280,10 @@ class ButtonRenderImplTest {
                 description = "desc",
                 authors = mutableListOf("Ian"),
                 type = "Crabby",
-                backgroundColor = "#c1d2c0",
-                date = "10/10/2020"
+                backgroundColor = "#000000",
+                date = "10/10/2020",
+                line1 = "Crab",
+                line2 = "Shack"
             ),
             button.copy(title = "Bahama", type = "Pizza", description = "Should the description be long?",
                 buttonImage = ButtonImage(ref = "archrun1.svg"), backgroundColor = "#c1d2c0"
@@ -326,9 +329,10 @@ class ButtonRenderImplTest {
                 title = "Google", link = "https://google.com",
                 description = "Search", authors = mutableListOf("Steve"), type = "Green",
                 date = "11/16/2021",
-                buttonImage = ButtonImage(ref = "java.svg"),
                 backgroundColor = "red",
                 links = links,
+                line1="Google",
+                line2="Search"
             ),
             Button(
                 title = "Maryland's Crab",

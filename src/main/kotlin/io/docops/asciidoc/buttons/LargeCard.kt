@@ -20,6 +20,7 @@ import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.theme.Theme
 import io.docops.asciidoc.utils.addLinebreaks
 import io.docops.asciidoc.utils.escapeXml
+import java.util.*
 
 class LargeCard : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
@@ -88,7 +89,7 @@ class LargeCard : ButtonMaker() {
                     """.trimIndent()
 
                 if(button.line1 != null && button.line2 != null) {
-                    imgOrRec += makeTwoTone(recXpos,yPos, button.line1, button.line2, theme.buttonColor(button))
+                    imgOrRec += makeTwoTone(recXpos,yPos, button.line1, button.line2, theme.buttonColor(button), button, theme)
                 }
             }
             if (theme.isPDF) {
@@ -222,30 +223,35 @@ class LargeCard : ButtonMaker() {
         return str
     }
 
-    fun makeTwoTone(x:Int, y: Int, line1: String?, line2: String?, color: String): String {
+    private fun makeTwoTone(x: Int, y: Int, line1: String?, line2: String?, color: String, button: Button, theme: Theme): String {
+        val guid = UUID.randomUUID().toString()
+        var font = "Arial, Helvetica, sans-serif"
+        if(button.font != null) {
+            button.font?.family?.let {
+                font = it
+            }
+        }
         return """
-            <svg x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg id="twotone$guid" x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>ICON</title>
                 <desc></desc>
                 <style>
-                    .oddstyle {
-                        font: bold 60px "Apple Chancery", Arial, Helvetica, sans-serif;
+                    .oddstyle$guid {
+                        font: bold 60px $font;
                         fill: $color;
                     }
 
-                    .evenstyle {
-                        font: bold 60px "Apple Chancery", Arial, Helvetica, sans-serif;
+                    .evenstyle$guid {
+                        font: bold 60px $font;
                         fill: #ffffff;
                     }
                 </style>
-                <g id="Page-1" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+                <g id="Page-1$guid" stroke="none" stroke-width="1" fill="#FFFFFF">
                     <rect width="100%" height="100%" fill="none" />
                     <rect width="100%" height="50%" fill="#FFFFFF"/>
                     <rect y="95.5" width="100%" height="50%" fill="$color" />
-                    <!--1/2 pf 512 = 256 / 2 = 128 + (108 /2) 54-->
-                    <text text-anchor="middle" x="150" y="67.75" class="oddstyle">$line1</text>
-                    <!--1/2 pf 512 = 256 + 128 = 384 + (108/2) 54-->
-                    <text text-anchor="middle" x="150" y="163.25" class="evenstyle">$line2</text>
+                    <text text-anchor="middle" x="150" y="67.75" class="oddstyle$guid">$line1</text>
+                    <text text-anchor="middle" x="150" y="163.25" class="evenstyle$guid">$line2</text>
                 </g>
             </svg>
         """.trimIndent()
