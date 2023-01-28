@@ -20,6 +20,7 @@ import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
+import java.util.UUID
 
 @ThemeDSL
 class Theme {
@@ -28,6 +29,7 @@ class Theme {
     }
 
     var columns = 3
+    val guid = UUID.randomUUID().toString()
 
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
     var colorMap = mutableListOf(
@@ -140,7 +142,7 @@ class Theme {
             }
             var clazz = ""
             if(null == this.buttonStyleMap[style]) {
-                clazz = "btnclass${(this.buttonStyleMap.size+1)}"
+                clazz = "btnclass${(this.buttonStyleMap.size+1)}$guid"
                 this.buttonStyleMap[style] = clazz
             } else {
                 clazz = this.buttonStyleMap[style]!!
