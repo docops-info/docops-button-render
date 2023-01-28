@@ -80,7 +80,9 @@ class PanelService {
                         type = it.type,
                         date = it.date,
                         font = f,
-                        buttonImage = it.buttonImage
+                        buttonImage = it.buttonImage,
+                        line1 = it.line1,
+                        line2 = it.line2
                     )
                     localList.add(btn)
                 }

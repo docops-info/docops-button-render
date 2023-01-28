@@ -246,7 +246,9 @@ class ButtonRenderImplTest {
             authors = mutableListOf("Steve Roach","Ian Rose", "Mike Duffy"),
             type = "Awesome",
             date = "11/16/2021",
-            backgroundColor = null
+            backgroundColor = null,
+            line1 = "Test",
+            line2 = "Lines"
         )
         return listOf(
             button.copy(
@@ -259,7 +261,9 @@ class ButtonRenderImplTest {
                     underline = true
                     color = "blue"
                 },
-                backgroundColor = "#c1d2c0"
+                backgroundColor = "#c1d2c0",
+                line1 = "Test",
+                line2 = "Lines"
             ),
             Button(
                 title = "Google", link = "https://google.com",
@@ -401,6 +405,8 @@ class ButtonRenderImplTest {
                 author("author1")
                 author("author2")
                 date ="07/20/2022"
+                line1 = "Hello"
+                line2 = "World"
             }
             large{
                 link = "https://www.apple.com"
