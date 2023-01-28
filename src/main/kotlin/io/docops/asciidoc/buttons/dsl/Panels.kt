@@ -43,6 +43,8 @@ open class ButtonItem {
 @PanelDSL
 class LargeButton : ButtonItem() {
     var buttonImage: ButtonImage? = null
+    var line1: String? = null
+    var line2: String? = null
 }
 
 @PanelDSL

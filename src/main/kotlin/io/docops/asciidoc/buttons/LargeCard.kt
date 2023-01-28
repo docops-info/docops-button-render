@@ -86,6 +86,10 @@ class LargeCard : ButtonMaker() {
                 imgOrRec = """
                     <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
                     """.trimIndent()
+
+                if(button.line1 != null && button.line2 != null) {
+                    imgOrRec += makeTwoTone(recXpos,yPos, button.line1, button.line2, theme.buttonColor(button))
+                }
             }
             if (theme.isPDF) {
                 // language=svg
@@ -216,5 +220,34 @@ class LargeCard : ButtonMaker() {
         }
         str += """</style>"""
         return str
+    }
+
+    fun makeTwoTone(x:Int, y: Int, line1: String?, line2: String?, color: String): String {
+        return """
+            <svg x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>ICON</title>
+                <desc></desc>
+                <style>
+                    .oddstyle {
+                        font: bold 60px "Apple Chancery", Arial, Helvetica, sans-serif;
+                        fill: $color;
+                    }
+
+                    .evenstyle {
+                        font: bold 60px "Apple Chancery", Arial, Helvetica, sans-serif;
+                        fill: #ffffff;
+                    }
+                </style>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+                    <rect width="100%" height="100%" fill="none" />
+                    <rect width="100%" height="50%" fill="#FFFFFF"/>
+                    <rect y="95.5" width="100%" height="50%" fill="$color" />
+                    <!--1/2 pf 512 = 256 / 2 = 128 + (108 /2) 54-->
+                    <text text-anchor="middle" x="150" y="67.75" class="oddstyle">$line1</text>
+                    <!--1/2 pf 512 = 256 + 128 = 384 + (108/2) 54-->
+                    <text text-anchor="middle" x="150" y="163.25" class="evenstyle">$line2</text>
+                </g>
+            </svg>
+        """.trimIndent()
     }
 }
