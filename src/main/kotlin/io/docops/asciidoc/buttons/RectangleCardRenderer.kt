@@ -93,7 +93,7 @@ class RectangleCardRenderer : ButtonMaker() {
         return """
         <g>
         <rect x="$itemWidth" y="$itemHeight" width="$width" class="myrect" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3'/>
-        <a xlink:href="${button.link}" target="$window">
+        <a xlink:href="${button.link}" class="linkText" target="$window">
         <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
         </a>
         <a xlink:href="${button.link}" class="linkText" target="$window">

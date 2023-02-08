@@ -494,7 +494,7 @@ class ButtonRenderImplTest {
                     spacing = "normal"
                     bold = true
                     italic = false
-                    underline = true
+                    underline = false
                     vertical = false
                     case = Case.NONE
 
