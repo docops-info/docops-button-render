@@ -498,7 +498,7 @@ class ButtonRenderImplTest {
                     spacing = "normal"
                     bold = true
                     italic = false
-                    underline = true
+                    underline = false
                     vertical = false
                     case = Case.NONE
 
@@ -551,6 +551,13 @@ class ButtonRenderImplTest {
         res.forEach {
             println(it)
         }
+        val svg= p.fromPanelToSvg(pans)
+        val dir = File("out")
+        if(!dir.exists()) {
+            dir.mkdir()
+        }
+        val f = File("out/rectangular2.svg")
+        f.writeBytes(svg.toByteArray())
     }
     private fun colors(): MutableList<String> {
         val d = panels {

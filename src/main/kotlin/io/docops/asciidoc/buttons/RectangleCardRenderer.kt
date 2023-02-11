@@ -24,10 +24,11 @@ class RectangleCardRenderer : ButtonMaker() {
     """)
         var row = 0
         var column = 0
+        var count = 0
         buttons.forEachIndexed { index, btns ->
 
-            btns.forEach {
-                sb.append(createItem(button = it, row, column, theme))
+            btns.forEachIndexed { current, item ->
+                sb.append(createItem(button = item, row, column, theme, count++))
                 column++
             }
             row++
@@ -74,7 +75,7 @@ class RectangleCardRenderer : ButtonMaker() {
     }
 
 
-    private fun createItem(button: Button, row: Int, column: Int, theme: Theme): String {
+    private fun createItem(button: Button, row: Int, column: Int, theme: Theme, itemIndex: Int): String {
         var window = "_top"
         if(theme.newWin) {
             window = "_blank"
@@ -83,13 +84,22 @@ class RectangleCardRenderer : ButtonMaker() {
         val itemHeight = (rowHeight * (row)) + 10 + (row * spacer)
         val width = 293
         val itemWidth = (column) * width + 10 + (spacer*column)
+        val contentBox  = if(button.buttonImage!= null) {
+            makeButtonImage(button,x = itemWidth+12,y = itemHeight+15, itemIndex )
+        } else {
+            makeNumberedButtonImage(button, x = itemWidth+12,y = itemHeight+15, itemIndex, window)
+        }
         //language=svg
         return """
         <g>
         <rect x="$itemWidth" y="$itemHeight" width="$width" class="myrect" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3'/>
+        <a xlink:href="${button.link}" class="linkText" target="$window">
         <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
+        </a>
+        <a xlink:href="${button.link}" class="linkText" target="$window">
         <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" rx="12" ry="12" fill="${theme.buttonColor(button)}"/>
-        ${makeButtonImage(button, x = itemWidth+12,y = itemHeight+15)}
+        </a>
+        ${contentBox}
         ${makeLinks(itemWidth+15+105, itemHeight + 30, button, window)}
         </g>
         """.trimIndent()
@@ -109,7 +119,7 @@ class RectangleCardRenderer : ButtonMaker() {
         sb.append("</text>")
         return sb.toString()
     }
-    private fun makeButtonImage(button: Button, x: Int, y: Int): String {
+    private fun makeButtonImage(button: Button, x: Int, y: Int, itemIndex: Int): String {
         button.buttonImage?.let {
             return """
             <image x="${x+10}" y="${y+9}" width="75" height="75" href="${button.buttonImage?.ref}"/>
@@ -118,6 +128,23 @@ class RectangleCardRenderer : ButtonMaker() {
         return ""
     }
 
+    private fun makeNumberedButtonImage(button: Button, x: Int, y: Int, itemIndex: Int, window: String) : String {
+        return """
+            <g>
+                <style>
+                    #numberedIcon {
+                       font-family: Helvetica,sans-serif;
+                       fill: #ffffff;
+                       font-size: 60px;
+                       dominant-baseline: central;
+                       text-anchor: middle;
+                   }
+                </style>
+                <rect x="${x-2}" y="${y-4}" height="98" width="98" fill="none"/>
+                <text id="numberedIcon" x="${x+ (98/2)}" y="${y + (98/2)}" ><a xlink:href="${button.link}" target="$window">${itemIndex+1}</a></text>
+            </g>
+        """.trimIndent()
+    }
     private fun createDefs(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         return """<defs/>"""
     }
