@@ -232,7 +232,7 @@ class ButtonsKtTest {
     private fun renderImage(list: Panels, fileName: String) {
         val theme = Theme()
 
-        theme.gradientStyle = PurplesTheme
+        theme.gradientStyle = MagentasTheme
         theme.type = list.buttonType
         theme.groupBy = list.buttonTheme.layout.groupBy
         theme.groupOrder = list.buttonTheme.layout.groupOrder

@@ -122,7 +122,7 @@ class SlimCardRenderer : ButtonMaker() {
                     dy -= 16
                 }
             }
-            val descStr = addLinebreaks(button.description.escapeXml(), 23 )
+            val descStr = addLinebreaks(button.description.escapeXml(), 25 )
             var desc = ""
             c = 0
             downBy = 16

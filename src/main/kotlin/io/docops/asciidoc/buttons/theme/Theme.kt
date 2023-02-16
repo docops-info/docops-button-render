@@ -182,8 +182,9 @@ val BluesTheme = GradientStyle("Blues", color1 = "#447799", color2 = "#224488", 
 val RedsTheme = GradientStyle("Reds", color1 = "#ee8181", color2 = "#ef2e2e", color3 = "#e70505")
 val GreensTheme = GradientStyle("Greens", color1 = "#50da77", color2 = "#1baf45", color3 = "#1baf45")
 val PurplesTheme = GradientStyle("Purples", color1 = "#bb90f3", color2 = "#ad7cee", color3 = "#a770ef")
-val LightGreyTheme = GradientStyle("LightGreys", color1 = "#c8c7cb", color2 = "#cdcdce", color3 = "#ebebec", fontColor = "#000000")
-val OrangeTheme = GradientStyle("Oranges", color1 = "#f8c567", color2 = "#faac1d", color3 = "#ffa500", "#000000")
+val LightGreysTheme = GradientStyle("LightGreys", color1 = "#c8c7cb", color2 = "#cdcdce", color3 = "#ebebec", fontColor = "#000000")
+val OrangesTheme = GradientStyle("Oranges", color1 = "#f8c567", color2 = "#faac1d", color3 = "#ffa500", "#000000")
+val MagentasTheme = GradientStyle("Magentas", color1 = "#f373f3", color2 = "#e82ee8", color3 = "#FF00FF")
 open class GradientStyle(id: String, color1: String, color2: String, color3: String, fontColor: String = "white") {
     var fontColor = fontColor
     var gradientId = id
