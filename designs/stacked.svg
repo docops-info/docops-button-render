@@ -29,12 +29,32 @@ viewBox="0 0 320 340">
             pointer-events: bounding-box;
             opacity: 1;
         }
+        .shape{
+            stroke-dasharray: 140 540;
+            stroke-dashoffset: -474;
+            stroke-width:8px;
+            stroke:black;
+        }
         .cool {
             fill: teal;
             stroke: teal;
         }
         rect.card:hover {
             opacity: 0.6;
+            -webkit-animation: 0.5s draw linear forwards;
+            animation: 0.5s draw linear forwards;
+        }
+        @keyframes draw{
+            0%{
+                stroke-dasharray: 140 540;
+                stroke-dashoffset: -474;
+                stroke-width:8px;
+            }
+            100%{
+                stroke-dasharray: 760;
+                stroke-dashoffset:0;
+                stroke-width:2px;
+            }
         }
     </style>
 
@@ -46,6 +66,53 @@ viewBox="0 0 320 340">
         <marker id="arrowhead" viewBox="0 -5 10 10" refX="5" refY="0" markerWidth="4" markerHeight="4" orient="auto">
             <path class="cool" d="M0,-5L10,0L0,5"/>
         </marker>
+        <filter id="shadow" width="1.5" height="1.5" x="-.25" y="-.25">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur"/>
+            <feColorMatrix result="bluralpha" type="matrix" values=
+                    "1 0 0 0   0
+                     0 1 0 0   0
+                     0 0 1 0   0
+                     0 0 0 0.4 0 "/>
+            <feOffset in="bluralpha" dx="3" dy="3" result="offsetBlur"/>
+            <feMerge>
+                <feMergeNode in="offsetBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- a transparent grey glow with no offset -->
+        <filter id="black-glow">
+            <feColorMatrix type="matrix" values=
+                    "0 0 0 0   0
+                     0 0 0 0   0
+                     0 0 0 0   0
+                     0 0 0 0.7 0"/>
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- a transparent glow that takes on the colour of the object it's applied to -->
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <filter id="dropGlow" width="1.5" height="1.5" x="-.25" y="-.25">
+            <feGaussianBlur id="feGaussianBlur5384" in="SourceAlpha" stdDeviation="15.000000" result="blur"/>
+            <feColorMatrix id="feColorMatrix5386" result="bluralpha" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.800000 0 "/>
+            <feOffset id="feOffset5388" in="bluralpha" dx="0.000000" dy="0.000000" result="offsetBlur"/>
+            <feMerge id="feMerge5390">
+                <feMergeNode id="feMergeNode5392" in="offsetBlur"/>
+                <feMergeNode id="feMergeNode5394" in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
     </defs>
 
     <script>
@@ -63,7 +130,7 @@ viewBox="0 0 320 340">
         };
     </script>
 
-    <rect x="0" y="0" rx="5" ry="5" fill="#C9C1F9" height="100%" width="100%"/>
+    <rect x="0" y="0" rx="5" ry="5" fill="#C9C1F9" height="100%" width="100%" filter="url(#black-glow)"/>
 
     <line x1="160" x2="160" y1="0" y2="340" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
     <line x1="80" x2="80" y1="0" y2="340" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
@@ -72,13 +139,13 @@ viewBox="0 0 320 340">
     <line x1="0" x2="320" y1="170" y2="170" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
     <line x1="0" x2="320" y1="255" y2="255" stroke="#E4DfE7"  stroke-width="1" opacity="0.2"/>
 
-    <rect x="10" y="10" width="40" height="39" fill="#70AE58" class="card" onmouseover="show('first');" onmouseout="hide('first');"/>
-    <rect x="10" y="49" width="40" height="90" fill="#B0CEA8" class="card" onmouseover="show('second');" onmouseout="hide('second');"/>
-    <rect x="10" y="139" width="40" height="8" fill="#DDE8D9" class="card"/>
-    <rect x="10" y="147" width="40" height="33" fill="#E4DfE7" class="card"/>
-    <rect x="10" y="180" width="40" height="57" fill="#C5BBCB" class="card"/>
-    <rect x="10" y="237" width="40" height="30" fill="#9D89AC" class="card"/>
-    <rect x="10" y="267" width="40" height="33" fill="#661C80" class="card"/>
+    <rect x="10" y="10" width="40" height="39" fill="#70AE58" class="card shape" onmouseover="show('first');" onmouseout="hide('first');" />
+    <rect x="10" y="49" width="40" height="90" fill="#B0CEA8" class="card shape" onmouseover="show('second');" onmouseout="hide('second');" />
+    <rect x="10" y="139" width="40" height="8" fill="#DDE8D9" class="card shape" />
+    <rect x="10" y="147" width="40" height="33" fill="#E4DfE7" class="card shape" />
+    <rect x="10" y="180" width="40" height="57" fill="#C5BBCB" class="card shape" />
+    <rect x="10" y="237" width="40" height="30" fill="#9D89AC" class="card shape" />
+    <rect x="10" y="267" width="40" height="33" fill="#661C80" class="card shape" />
 
     <text x="30" y="29.5" text-anchor="middle" class="label">13%</text>
     <line x1="50" y1="28" x2="100" y2="28" style="stroke-width: 2; stroke: #70AE58;" marker-end="url(#arrowhead)"/>

@@ -67,6 +67,7 @@ class Theme {
 
     var typeMap = mutableMapOf<String, String>()
     val buttonStyleMap = mutableMapOf<String, String>()
+    var gradientStyle: GradientStyle? = null
     infix fun typeIs(other: String) {
         this.type = ButtonType.valueOf(other)
     }
@@ -176,6 +177,32 @@ enum class GroupingOrder {
     ASCENDING, DESCENDING
 }
 
+
+val BluesTheme = GradientStyle("Blues", color1 = "#447799", color2 = "#224488", color3 = "#112266")
+val RedsTheme = GradientStyle("Reds", color1 = "#ee8181", color2 = "#ef2e2e", color3 = "#e70505")
+val GreensTheme = GradientStyle("Greens", color1 = "#50da77", color2 = "#1baf45", color3 = "#1baf45")
+val PurplesTheme = GradientStyle("Purples", color1 = "#bb90f3", color2 = "#ad7cee", color3 = "#a770ef")
+val LightGreyTheme = GradientStyle("LightGreys", color1 = "#c8c7cb", color2 = "#cdcdce", color3 = "#ebebec", fontColor = "#000000")
+val OrangeTheme = GradientStyle("Oranges", color1 = "#f8c567", color2 = "#faac1d", color3 = "#ffa500", "#000000")
+open class GradientStyle(id: String, color1: String, color2: String, color3: String, fontColor: String = "white") {
+    var fontColor = fontColor
+    var gradientId = id
+    var style = """
+        
+.${gradientId.lowercase()} { fill: url(#$gradientId); }
+#$gradientId .stop1 {stop-color: $color1;}
+#$gradientId .stop2 {stop-color: $color2;}
+#$gradientId .stop3 {stop-color: $color3;}
+        
+    """.trimIndent()
+    fun gradientIdToXml() = """
+        <linearGradient id="$gradientId">
+            <stop class="stop1" offset="0%" />
+            <stop class="stop2" offset="50%" />
+            <stop class="stop3" offset="100%" />
+        </linearGradient>
+    """.trimIndent()
+}
 fun theme(theme: Theme.() -> Unit): Theme {
     return Theme().apply(theme).validate()
 }

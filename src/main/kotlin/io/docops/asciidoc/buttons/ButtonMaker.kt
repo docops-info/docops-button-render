@@ -69,6 +69,9 @@ abstract class ButtonMaker {
     }
 
     fun makeDefs(theme: Theme): String {
+        var linear = ""
+        theme.gradientStyle?.let { linear = it.gradientIdToXml() }
+
         // language=svg
         return """
         <defs>
@@ -112,6 +115,27 @@ abstract class ButtonMaker {
             <stop offset="0" stop-color="#cb43f6" stop-opacity="1"/>
             <stop offset="1" stop-color="#ec4cbd" stop-opacity="1"/>
         </linearGradient>
+        <linearGradient xmlns="http://www.w3.org/2000/svg" id="my-cool-gradient" x2="1" y2="1">
+            <stop offset="0%" stop-color="#447799"/>
+            <stop offset="50%" stop-color="#224488"/>
+            <stop offset="100%" stop-color="#112266"/>
+        </linearGradient>
+        <linearGradient xmlns="http://www.w3.org/2000/svg" id="my-warm-gradient" x2="1" y2="1">
+            <stop offset="0%" stop-color="#CC7744"/>
+            <stop offset="50%" stop-color="#992244"/>
+            <stop offset="100%" stop-color="#661133"/>
+        </linearGradient>
+        <linearGradient id="my-cool-gradient-1" x2="1" y2="1">
+            <stop offset="0%" stop-color="#447799" />
+            <stop offset="50%" stop-color="#224488" />
+            <stop offset="100%" stop-color="#112266" />
+        </linearGradient>
+        <linearGradient id="my-cool-gradient-2" x2="1" y2="1">
+            <stop offset="0%" stop-color="gold" />
+            <stop offset="50%" stop-color="red" />
+            <stop offset="100%" stop-color="#112266" />
+        </linearGradient>
+        $linear
         <circle id="myCircle" cx="0" cy="0"  r="60" class="card"/>
         <rect id="legendRect" x="0" y="0" width="10" height="10"  class="legend"/>
         <rect id="mySlimRect" x="0" y="0" width="150" height="150" rx="5" ry="5" class="card"/>

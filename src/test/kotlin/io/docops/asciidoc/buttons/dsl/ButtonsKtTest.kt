@@ -232,6 +232,7 @@ class ButtonsKtTest {
     private fun renderImage(list: Panels, fileName: String) {
         val theme = Theme()
 
+        theme.gradientStyle = PurplesTheme
         theme.type = list.buttonType
         theme.groupBy = list.buttonTheme.layout.groupBy
         theme.groupOrder = list.buttonTheme.layout.groupOrder
@@ -421,9 +422,10 @@ fun buttonData(): Panels {
                 groupBy = Grouping.AUTHOR
                 groupOrder = GroupingOrder.ASCENDING
             }
-            font {
+            font = font {
                 color = "#000000"
-                bold = true
+                bold = false
+                italic = false
             }
             dropShadow = 2
             colorMap {
