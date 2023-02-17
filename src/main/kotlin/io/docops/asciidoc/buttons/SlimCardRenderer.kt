@@ -156,11 +156,13 @@ class SlimCardRenderer : ButtonMaker() {
     private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
         var stroke = PanelStroke()
         var fontColor = "white"
+        var titleColor = "whitesmoke"
         var style = ""
         theme.gradientStyle?.let {
             style = it.style
             fontColor = it.fontColor
             stroke = it.panelStroke
+            titleColor = it.titleColor
         }
         buttonList.forEach { buttons ->
             buttons.forEach {
@@ -177,7 +179,7 @@ class SlimCardRenderer : ButtonMaker() {
         .card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); }
         .lineHead { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 9pt; }
         .category { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
-        .title { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 9pt; }
+        .title { fill: $titleColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 9pt; }
         .author { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 8pt; fill: $fontColor; }
         .legendText { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
         .date { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 10px; }

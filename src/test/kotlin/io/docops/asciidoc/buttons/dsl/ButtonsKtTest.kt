@@ -227,11 +227,14 @@ class ButtonsKtTest {
         val list = buttonData()
         renderImage(list, "slimpanels", BluesTheme)
         renderImage(list, "slimpanels2", MagentasTheme)
-        renderImage(list, "slimpanels3", PurplesTheme)
+        renderImage(list, "slimpanels3", LightPurpleTheme)
+        renderImage(list, "slimpanels9", PurplesTheme)
         renderImage(list, "slimpanels4", GreensTheme)
         renderImage(list, "slimpanels5", DarkTheme)
         renderImage(list, "slimpanels6", LightGreysTheme)
         renderImage(list, "slimpanels7", OrangesTheme)
+        renderImage(list, "slimpanels8", DarkTheme2)
+        renderImage(list, "slimpanels10", RedsTheme)
     }
 
     private fun renderImage(list: Panels, fileName: String, gradientStyle: GradientStyle) {
