@@ -52,6 +52,10 @@ class RectangleCardRenderer : ButtonMaker() {
             filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));  
             stroke: #d2ddec;
         }
+        .mybox:hover {
+             -webkit-animation: 0.5s draw linear forwards; 
+            animation: 0.5s draw linear forwards;
+        }
 
         .linkText {
             fill: #4076ff;
@@ -64,6 +68,8 @@ class RectangleCardRenderer : ButtonMaker() {
             fill: #ea0606;
             border: #d2ddec solid;
         }
+        @keyframes draw{ 0%{ stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:5px; } }
+        .shape{ stroke:black;}
 
 
 """.trimIndent()
@@ -97,7 +103,7 @@ class RectangleCardRenderer : ButtonMaker() {
         <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
         </a>
         <a xlink:href="${button.link}" class="linkText" target="$window">
-        <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" rx="12" ry="12" fill="${theme.buttonColor(button)}"/>
+        <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" class="mybox shape" rx="12" ry="12" fill="${theme.buttonColor(button)}"/>
         </a>
         ${contentBox}
         ${makeLinks(itemWidth+15+105, itemHeight + 30, button, window)}
