@@ -129,19 +129,15 @@ class RectangleCardRenderer : ButtonMaker() {
     }
 
     private fun makeNumberedButtonImage(button: Button, x: Int, y: Int, itemIndex: Int, window: String) : String {
+        var disp = "${itemIndex+1}"
+        if(itemIndex < 9) {
+            disp = "0${disp}"
+        }
         return """
-            <g>
-                <style>
-                    #numberedIcon {
-                       font-family: Helvetica,sans-serif;
-                       fill: #ffffff;
-                       font-size: 60px;
-                       dominant-baseline: central;
-                       text-anchor: middle;
-                   }
-                </style>
-                <rect x="${x-2}" y="${y-4}" height="98" width="98" fill="none"/>
-                <text id="numberedIcon" x="${x+ (98/2)}" y="${y + (98/2)}" ><a xlink:href="${button.link}" target="$window">${itemIndex+1}</a></text>
+            <g transform="translate(20,20)">
+                <text x="${x-2 + 29}" y="${y-4 + 43}" text-anchor="middle" alignment-baseline="central" font-family="Helvetica, sans-serif" font-size="60px" dominant-baseline="middle" >
+                <a xlink:href="${button.link}" target="$window" fill="#ffffff">$disp</a>
+                </text>
             </g>
         """.trimIndent()
     }

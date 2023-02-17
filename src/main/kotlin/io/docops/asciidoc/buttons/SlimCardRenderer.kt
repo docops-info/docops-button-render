@@ -17,6 +17,7 @@
 package io.docops.asciidoc.buttons
 
 import io.docops.asciidoc.buttons.models.Button
+import io.docops.asciidoc.buttons.theme.PanelStroke
 import io.docops.asciidoc.buttons.theme.Theme
 import io.docops.asciidoc.utils.addLinebreaks
 import io.docops.asciidoc.utils.escapeXml
@@ -153,11 +154,13 @@ class SlimCardRenderer : ButtonMaker() {
 
 
     private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        var stroke = PanelStroke()
         var fontColor = "white"
         var style = ""
         theme.gradientStyle?.let {
             style = it.style
             fontColor = it.fontColor
+            stroke = it.panelStroke
         }
         buttonList.forEach { buttons ->
             buttons.forEach {
@@ -179,8 +182,8 @@ class SlimCardRenderer : ButtonMaker() {
         .legendText { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
         .date { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 10px; }
      
-        @keyframes draw{ 0%{ stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:3px; } }
-        .shape{ stroke:black;}
+        @keyframes draw{ 0%{ stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:${stroke.width}px; } }
+        .shape{ stroke:${stroke.color};}
         $style
     """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->

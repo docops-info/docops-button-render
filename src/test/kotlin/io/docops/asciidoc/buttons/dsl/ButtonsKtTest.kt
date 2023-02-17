@@ -29,7 +29,6 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
-import kotlin.test.Ignore
 
 
 class ButtonsKtTest {
@@ -88,7 +87,7 @@ class ButtonsKtTest {
                 label = "Instagram"
             }
         }
-        renderImage(list, "panels")
+        renderImage(list, "panels", BluesTheme)
     }
 
     @Test
@@ -152,7 +151,7 @@ class ButtonsKtTest {
                 date = "03/01/2022"
             }
         }
-        renderImage(list, "panel")
+        renderImage(list, "panel", BluesTheme)
     }
 
     @Test
@@ -220,19 +219,25 @@ class ButtonsKtTest {
                     "Instagram is an American photo and video sharing social networking service founded by Kevin Systrom and Mike Krieger. "
             }
         }
-        renderImage(list, "largepanels")
+        renderImage(list, "largepanels", BluesTheme)
     }
 
     @Test
     fun dslToSlimButtonImage() {
         val list = buttonData()
-        renderImage(list, "slimpanels")
+        renderImage(list, "slimpanels", BluesTheme)
+        renderImage(list, "slimpanels2", MagentasTheme)
+        renderImage(list, "slimpanels3", PurplesTheme)
+        renderImage(list, "slimpanels4", GreensTheme)
+        renderImage(list, "slimpanels5", DarkTheme)
+        renderImage(list, "slimpanels6", LightGreysTheme)
+        renderImage(list, "slimpanels7", OrangesTheme)
     }
 
-    private fun renderImage(list: Panels, fileName: String) {
+    private fun renderImage(list: Panels, fileName: String, gradientStyle: GradientStyle) {
         val theme = Theme()
 
-        theme.gradientStyle = MagentasTheme
+        theme.gradientStyle = gradientStyle
         theme.type = list.buttonType
         theme.groupBy = list.buttonTheme.layout.groupBy
         theme.groupOrder = list.buttonTheme.layout.groupOrder
@@ -331,7 +336,7 @@ class ButtonsKtTest {
     fun testAuthorExistsInSvg() {
         val data = buttonData()
 
-        renderImage(data, "xpathdata")
+        renderImage(data, "xpathdata", BluesTheme)
         val xml = File("out/xpathdata.svg")
         assert(xml.exists())
         val fileIS = FileInputStream(xml)
@@ -410,7 +415,7 @@ class ButtonsKtTest {
                     label = "#AD80C2"
                 }
             }
-        renderImage(p, "largeFont")
+        renderImage(p, "largeFont", BluesTheme)
     }
 }
 
