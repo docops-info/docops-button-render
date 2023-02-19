@@ -129,7 +129,7 @@ class SlimCardRenderer : ButtonMaker() {
             downBy = 16
             descStr.forEach {
                 if(c < 4) {
-                    title += """<tspan x="${recXpos + 4}" dy="$downBy" class="category $btnTextColor">${it.trim()}</tspan>"""
+                    title += """<tspan x="${recXpos + 4}" dy="$downBy" class="description $btnTextColor">${it.trim()}</tspan>"""
                     c++
                     if (c > 0) {
                         downBy = 16
