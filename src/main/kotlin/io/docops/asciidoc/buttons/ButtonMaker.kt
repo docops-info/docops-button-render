@@ -75,9 +75,9 @@ abstract class ButtonMaker {
         // language=svg
         return """
         <defs>
-        <filter id="dropShadow" height="130%">
+        <filter id="dropShadow" height="112%">
             <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
-            <feOffset dx="5" dy="5" result="offsetblur"/>
+            <feOffset dx="1" dy="3" result="offsetblur"/>
             <feComponentTransfer>
                 <feFuncA type="linear" slope="0.${theme.dropShadow}"/>
             </feComponentTransfer>
