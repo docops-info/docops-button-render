@@ -22,7 +22,7 @@
 
     <artifactId>docops-button-render</artifactId>
     <groupId>io.docops</groupId>
-    <version>2023.02-SNAPSHOT</version>
+    <version>2023.02</version>
     <packaging>jar</packaging>
 
     <name>docops-button-render</name>
