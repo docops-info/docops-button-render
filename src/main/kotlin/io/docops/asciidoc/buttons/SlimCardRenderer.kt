@@ -56,7 +56,7 @@ class SlimCardRenderer : ButtonMaker() {
             yPos = rowCount * 160 + 10
         }
         row.forEachIndexed { index, button ->
-            var btnTextColor = theme.buttonTextColor(button)
+            var btnTextColor = " ${theme.buttonTextColor(button)}"
             theme.gradientStyle?.let { btnTextColor="" }
             if(index > 0) {
                 recXpos += 160
@@ -103,7 +103,7 @@ class SlimCardRenderer : ButtonMaker() {
             var downBy = 16
             str.forEach {
                 // language=svg
-                head += """<tspan x="${recXpos+4}" dy="$downBy" class="category $btnTextColor">${it.trim()}</tspan>"""
+                head += """<tspan x="${recXpos+4}" dy="$downBy" class="category$btnTextColor">${it.trim()}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -178,6 +178,7 @@ class SlimCardRenderer : ButtonMaker() {
         use.card:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
         .card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); }
         .lineHead { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 9pt; }
+        .description { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
         .category { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
         .title { fill: $titleColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 9pt; }
         .author { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 8pt; fill: $fontColor; }
