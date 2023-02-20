@@ -4,7 +4,7 @@
 :group: io.docops
 :artifact: docops-button-render
 :major: 2023
-:minor: .02
+:minor: .03
 :patch:
 :build:
 :extension:
@@ -46,8 +46,11 @@ link:docs/{artifact}.html[]
 
 == History
 
-2023.02 - 2023-02-19::
+2023.03 - 2023-02-19::
 * Added Slim button theme
+
+2023.02 - 2023-02-11::
+* Auto Number rectangles when no image given.
 
 2023.01 - 2023-01-29::
 * Updated drop shadow for rectangle
