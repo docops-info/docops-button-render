@@ -24,7 +24,7 @@ import io.docops.asciidoc.buttons.theme.Theme
 import java.net.URLEncoder
 
 class PanelService {
-    
+
     fun fromPanelToSvg(panel: Panels) : String {
         val theme = extractThemeFromPanel(panel)
         val localList = extractButtonList(panel)
@@ -129,6 +129,7 @@ class PanelService {
         val theme = Theme()
 
         theme.type = panel.buttonType
+        theme.gradientStyle = panel.buttonTheme.gradientStyle
         theme.groupBy = panel.buttonTheme.layout.groupBy
         theme.groupOrder = panel.buttonTheme.layout.groupOrder
         theme.columns = panel.buttonTheme.layout.columns

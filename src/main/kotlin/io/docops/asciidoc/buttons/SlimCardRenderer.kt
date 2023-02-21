@@ -71,9 +71,9 @@ class SlimCardRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" class="card $style shape" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect"> 
+                   <use x="$recXpos" y="$yPos" class="card $style shape" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect">
                        <title class="description">${button.description.escapeXml()}</title>
-                   </use>     
+                   </use>
                 """.trimIndent()
                 )
             } else {
@@ -81,9 +81,9 @@ class SlimCardRenderer : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" class="$style shape" fill="${theme.buttonColor(button)}" aria-hidden="true" focusable="false" xlink:href="#mySlimRect"> 
+                   <use x="$recXpos" y="$yPos" class="$style shape" fill="${theme.buttonColor(button)}" aria-hidden="true" focusable="false" xlink:href="#mySlimRect">
                        <title class="description">${button.description.escapeXml()}</title>
-                   </use>    
+                   </use>
                    </a>
                 """.trimIndent()
                 )
@@ -158,11 +158,13 @@ class SlimCardRenderer : ButtonMaker() {
         var fontColor = "white"
         var titleColor = "whitesmoke"
         var style = ""
+        var strokeWidth = 3
         theme.gradientStyle?.let {
             style = it.style
             fontColor = it.fontColor
             stroke = it.panelStroke
             titleColor = it.titleColor
+            strokeWidth= it.panelStroke.width
         }
         buttonList.forEach { buttons ->
             buttons.forEach {
@@ -184,7 +186,7 @@ class SlimCardRenderer : ButtonMaker() {
         .author { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 8pt; fill: $fontColor; }
         .legendText { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
         .date { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 10px; }
-     
+
         @keyframes draw{ 0%{ stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:${stroke.width}px; } }
         .shape{ stroke:${stroke.color};}
         $style

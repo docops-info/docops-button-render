@@ -18,6 +18,7 @@ package io.docops.asciidoc.buttons.dsl
 
 import io.docops.asciidoc.buttons.models.ButtonImage
 import io.docops.asciidoc.buttons.theme.ButtonType
+import io.docops.asciidoc.buttons.theme.GradientStyle
 import io.docops.asciidoc.buttons.theme.Grouping
 import io.docops.asciidoc.buttons.theme.GroupingOrder
 
@@ -115,7 +116,7 @@ class ButtonTheme {
     var legendOn = true
     var newWin = true
     var dropShadow = 1
-
+    var gradientStyle : GradientStyle? = null
     fun layout(layout: Layout.() -> Unit) {
         this.layout = Layout().apply(layout)
     }
@@ -227,6 +228,6 @@ fun panels(panel: Panels.() -> Unit): Panels {
 fun panel(panel: Panels.() -> Unit): Panels {
     return Panels().apply(panel).validate()
 }
- fun font(font: Font.() -> Unit): Font {
+fun font(font: Font.() -> Unit): Font {
     return Font().apply(font)
 }

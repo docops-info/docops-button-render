@@ -1,3 +1,5 @@
+
+
 /*
  * Copyright 2020 The DocOps Consortium
  *
@@ -20,7 +22,6 @@ import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
-import java.util.UUID
 
 @ThemeDSL
 class Theme {
@@ -29,7 +30,6 @@ class Theme {
     }
 
     var columns = 3
-    val guid = UUID.randomUUID().toString()
 
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
     var colorMap = mutableListOf(
@@ -143,7 +143,7 @@ class Theme {
             }
             var clazz = ""
             if(null == this.buttonStyleMap[style]) {
-                clazz = "btnclass${(this.buttonStyleMap.size+1)}$guid"
+                clazz = "btnclass${(this.buttonStyleMap.size+1)}"
                 this.buttonStyleMap[style] = clazz
             } else {
                 clazz = this.buttonStyleMap[style]!!
@@ -192,17 +192,17 @@ val DarkTheme2 = GradientStyle("Darks2","#131938", color2 = "#060b26", color3 = 
 //light themes
 val LightGreysTheme = GradientStyle("LightGreys", color1 = "#c8c7cb", color2 = "#cdcdce", color3 = "#ebebec", fontColor = "#000000", panelStroke =  PanelStroke(color = "#cd9d72", 5))
 val OrangesTheme = GradientStyle("Oranges", color1 = "#f8c567", color2 = "#faac1d", color3 = "#ffa500", "#000000")
-class GradientStyle(val gradientId: String, color1: String, color2: String, color3: String,
+class GradientStyle(val gradientId: String, val color1: String, val color2: String, val color3: String,
                     val fontColor: String = "white",
                     val titleColor: String = "whitesmoke",
                     val panelStroke: PanelStroke = PanelStroke()) {
     var style = """
-        
+
 .${gradientId.lowercase()} { fill: url(#$gradientId); }
 #$gradientId .stop1 {stop-color: $color1;}
 #$gradientId .stop2 {stop-color: $color2;}
 #$gradientId .stop3 {stop-color: $color3;}
-        
+
     """.trimIndent()
     fun gradientIdToXml() = """
         <linearGradient id="$gradientId">
@@ -217,4 +217,3 @@ class PanelStroke(val color: String = "black", val width: Int = 3)
 fun theme(theme: Theme.() -> Unit): Theme {
     return Theme().apply(theme).validate()
 }
-
