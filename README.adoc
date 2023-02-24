@@ -4,7 +4,7 @@
 :group: io.docops
 :artifact: docops-button-render
 :major: 2023
-:minor: .03
+:minor: .04
 :patch:
 :build:
 :extension:
@@ -45,6 +45,9 @@ link:https://search.maven.org/remotecontent?filepath=io/docops/{artifact}/{major
 link:docs/{artifact}.html[]
 
 == History
+
+2023.04 - 2023-02-24::
+* Updated Slim buttons
 
 2023.03 - 2023-02-19::
 * Added Slim button theme
