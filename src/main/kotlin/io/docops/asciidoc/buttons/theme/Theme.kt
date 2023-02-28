@@ -181,7 +181,7 @@ enum class GroupingOrder {
 
 
 //dark themes
-val BluesTheme = GradientStyle("Blues", color1 = "#447799", color2 = "#224488", color3 = "#112266", titleColor = "#ffa500", panelStroke = PanelStroke("#5D5B5B", 5))
+val BluesTheme = GradientStyle("Blues", color1 = "#447799", color2 = "#224488", color3 = "#112266", titleColor = "#ffa500", panelStroke = PanelStroke("#ffa500", 5))
 val RedsTheme = GradientStyle("Reds", color1 = "#ee8181", color2 = "#ef2e2e", color3 = "#e70505", titleColor = "#1A1212")
 val GreensTheme = GradientStyle("Greens", color1 = "#50da77", color2 = "#1baf45", color3 = "#1baf45")
 val PurplesTheme = GradientStyle("Purples", color1 = "#bb90f3", color2 = "#ad7cee", color3 = "#a770ef")

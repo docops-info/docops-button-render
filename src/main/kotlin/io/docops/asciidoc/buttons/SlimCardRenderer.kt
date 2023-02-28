@@ -174,11 +174,8 @@ class SlimCardRenderer : ButtonMaker() {
         // language=css
         var str =  """
             <style>
-        rect.card { pointer-events: bounding-box; opacity: 1; }
-        rect.card:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
-        use.card { pointer-events: bounding-box; opacity: 1; }
-        use.card:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
-        .card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); }
+        use { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));  pointer-events: bounding-box; opacity: 1; }
+        use:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
         .lineHead { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 9pt; }
         .description { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
         .category { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
@@ -187,7 +184,11 @@ class SlimCardRenderer : ButtonMaker() {
         .legendText { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
         .date { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 10px; }
 
-        @keyframes draw{ 0%{ stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:${stroke.width}px; } }
+        @keyframes draw { 
+            0% { stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 
+            100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:${stroke.width}px; } 
+        }
+        
         .shape{ stroke:${stroke.color};}
         $style
     """.trimIndent()
