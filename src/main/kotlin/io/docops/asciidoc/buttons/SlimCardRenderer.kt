@@ -81,7 +81,7 @@ class SlimCardRenderer : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" class="$style shape" fill="${theme.buttonColor(button)}" aria-hidden="true" focusable="false" xlink:href="#mySlimRect">
+                   <use x="$recXpos" y="$yPos" class="card $style shape" fill="${theme.buttonColor(button)}" aria-hidden="true" focusable="false" xlink:href="#mySlimRect">
                        <title class="description">${button.description.escapeXml()}</title>
                    </use>
                    </a>
@@ -171,14 +171,14 @@ class SlimCardRenderer : ButtonMaker() {
                     item -> theme.buttonTextColor(item)
             }
         }
-        // language=css
+        // language=html
         var str =  """
-            <style>
+        <style>
         use { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));  pointer-events: bounding-box; opacity: 1; }
         use:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
         .lineHead { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 9pt; }
         .description { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
-        .category { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
+        .category { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; font-weight: bold; font-style: italic}
         .title { fill: $titleColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 9pt; }
         .author { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 8pt; fill: $fontColor; }
         .legendText { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
@@ -190,6 +190,7 @@ class SlimCardRenderer : ButtonMaker() {
         }
         
         .shape{ stroke:${stroke.color};}
+        
         $style
     """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
