@@ -48,23 +48,23 @@ class RectangleCardRenderer : ButtonMaker() {
         //language=html
         var str =  """
         <style>
-        .myrect {
+        #${theme.id} .myrect {
             filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));  
             stroke: #d2ddec;
         }
-        .mybox:hover {
+        #${theme.id} .mybox:hover {
              -webkit-animation: 0.5s draw linear forwards; 
             animation: 0.5s draw linear forwards;
         }
 
-        .linkText {
+        #${theme.id} .linkText {
             fill: #4076ff;
             font-size: 15px;
             font-family: "Inter var", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-weight: normal;
             cursor: pointer;
         }
-        .linkText:hover {
+        #${theme.id} .linkText:hover {
             fill: #ea0606;
             border: #d2ddec solid;
         }
@@ -74,7 +74,7 @@ class RectangleCardRenderer : ButtonMaker() {
 
 """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
-            str += ".$u {$t}\n"
+            str += "#${theme.id} .$u {$t}\n"
         }
         str += """</style>"""
         return str
@@ -136,13 +136,13 @@ class RectangleCardRenderer : ButtonMaker() {
 
     private fun makeNumberedButtonImage(button: Button, x: Int, y: Int, itemIndex: Int, window: String) : String {
         var disp = "${itemIndex+1}"
-        if(itemIndex < 9) {
+        if(button.leadingZeroNumbersOn && itemIndex < 9) {
             disp = "0${disp}"
         }
         return """
             <g transform="translate(20,20)">
                 <text x="${x-2 + 29}" y="${y-4 + 43}" text-anchor="middle" alignment-baseline="central" font-family="Helvetica, sans-serif" font-size="60px"  >
-                <a xlink:href="${button.link}" target="$window" fill="#ffffff">$disp</a>
+                <a xlink:href="${button.link}" target="$window" fill="${button.numberColor}">$disp</a>
                 </text>
             </g>
         """.trimIndent()

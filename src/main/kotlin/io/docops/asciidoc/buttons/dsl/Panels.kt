@@ -63,6 +63,8 @@ class RoundButton : ButtonItem()
 @PanelDSL
 class RectangleButton : ButtonItem() {
     var buttonImage: ButtonImage? = null
+    var leadingZeroNumbersOn: Boolean = false
+    var numberColor: String = "#000000"
 }
 
 @PanelDSL

@@ -33,8 +33,9 @@ data class Button(
     var links:MutableList<Link>? = null,
     var buttonImage: ButtonImage? = null,
     var line1: String? = null,
-    var line2: String? = null
-
+    var line2: String? = null,
+    var leadingZeroNumbersOn: Boolean = false,
+    var numberColor: String = "#000000"
 ) {
 
     fun dateFromStr(): LocalDate {

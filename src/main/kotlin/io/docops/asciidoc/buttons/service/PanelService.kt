@@ -116,7 +116,9 @@ class PanelService {
                         date = "",
                         links = it.links,
                         buttonImage = it.buttonImage,
-                        font = f
+                        font = f,
+                        leadingZeroNumbersOn = it.leadingZeroNumbersOn,
+                        numberColor = it.numberColor
                     )
                     localList.add(btn)
                 }

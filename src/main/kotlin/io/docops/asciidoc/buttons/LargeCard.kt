@@ -169,55 +169,55 @@ class LargeCard : ButtonMaker() {
         //language=html
         var str =  """
             <style>
-        rect.card {
+        #${theme.id} rect.card {
             pointer-events: bounding-box;
             opacity: 1;
         }
-        rect.card:hover {
+        #${theme.id} rect.card:hover {
             opacity: 0.6;
         }
-        use.card {
+        #${theme.id} use.card {
             pointer-events: bounding-box;
             opacity: 1;
         }
-        use.card:hover {
+        #${theme.id} use.card:hover {
             opacity: 0.6;
         }
-        .card {
+        #${theme.id} .card {
             pointer-events: bounding-box;
             opacity: 1;
         }
-        .card:hover {
+        #${theme.id} .card:hover {
             opacity: 0.6;
         }
-        .headline {
+        #${theme.id} .headline {
             font-family:  Helvetica, Arial, sans-serif;
             fill: #46494d;
         }
-        .link {
+        #${theme.id} .link {
         font-family:  Helvetica, Arial, sans-serif;
             fill: #335D79;
         }
-        .description {
+        #${theme.id} .description {
             font-size: 9pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
-        .category {
+        #${theme.id} .category {
             font-size: 10pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
-        .longdesc {
+        #${theme.id} .longdesc {
             font-family:  Helvetica, Arial, sans-serif;     
             font-size: 9pt;
         }
-        .legendText {
+        #${theme.id} .legendText {
             font-size: 9pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
         
         """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
-            str += ".$u {$t}\n"
+            str += "#${theme.id} .$u {$t}\n"
         }
         str += """</style>"""
         return str
@@ -231,6 +231,7 @@ class LargeCard : ButtonMaker() {
                 font = it
             }
         }
+        //language=svg
         return """
             <svg id="twotone$guid" x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>ICON</title>

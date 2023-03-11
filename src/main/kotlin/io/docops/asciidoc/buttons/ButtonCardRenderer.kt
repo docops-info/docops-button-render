@@ -109,27 +109,27 @@ class ButtonCardRenderer : ButtonMaker() {
         // language=css
         var str = """
         <style>
-        rect.card {
+        #${theme.id} rect.card {
            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
             pointer-events: bounding-box;
             opacity: 1;
         }
-        rect.card:hover {
+        #${theme.id} rect.card:hover {
             opacity: 0.6;
         }
-        use.card {
+        #${theme.id} use.card {
            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
             pointer-events: bounding-box;
             opacity: 1;
         }
-        use.card:hover {
+        #${theme.id} use.card:hover {
             opacity: 0.6;
         }
-        .card {
+        #${theme.id} .card {
             pointer-events: bounding-box;
             opacity: 1;
         }
-        .card:hover {
+        #${theme.id} .card:hover {
             opacity: 0.6;
         }
         .subtitle {
@@ -137,32 +137,32 @@ class ButtonCardRenderer : ButtonMaker() {
             font-weight: normal;
             font-size: 10px;
         }
-        rect.legend {
+        #${theme.id} rect.legend {
             pointer-events: bounding-box;
             opacity: 1;
         }
 
-        rect.legend:hover {
+        #${theme.id} rect.legend:hover {
             opacity: 0.6;
         }
-        .label {
+        #${theme.id} .label {
             font-family: Helvetica, Arial, sans-serif;
         }
-        .title {
+        #${theme.id} .title {
             fill: white;
             font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
             font-style: normal;
             font-size: 9pt;
         }
-        .legendText {
+        #${theme.id} .legendText {
             font-size: 9pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
         
     """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
-            str += ".$u {$t}\n"
+            str += "#${theme.id} .$u {$t}\n"
         }
         str += """</style>"""
         return str

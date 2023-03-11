@@ -22,6 +22,7 @@ import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
+import java.util.UUID
 
 @ThemeDSL
 class Theme {
@@ -29,6 +30,7 @@ class Theme {
         private val fontWeights = listOf("bold", "normal", "italic")
     }
 
+    val id = "DocOps-${UUID.randomUUID()}"
     var columns = 3
 
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
@@ -181,17 +183,17 @@ enum class GroupingOrder {
 
 
 //dark themes
-val BluesTheme = GradientStyle("Blues", color1 = "#447799", color2 = "#224488", color3 = "#112266", titleColor = "#ffa500", panelStroke = PanelStroke("#ffa500", 5))
-val RedsTheme = GradientStyle("Reds", color1 = "#ee8181", color2 = "#ef2e2e", color3 = "#e70505", titleColor = "#1A1212")
-val GreensTheme = GradientStyle("Greens", color1 = "#50da77", color2 = "#1baf45", color3 = "#1baf45")
-val PurplesTheme = GradientStyle("Purples", color1 = "#bb90f3", color2 = "#ad7cee", color3 = "#a770ef")
+val BlueTheme = GradientStyle("Blues", color1 = "#447799", color2 = "#224488", color3 = "#112266", titleColor = "#ffa500", panelStroke = PanelStroke("#5D5B5B", 5))
+val RedTheme = GradientStyle("Reds", color1 = "#ee8181", color2 = "#ef2e2e", color3 = "#e70505", titleColor = "#1A1212")
+val GreenTheme = GradientStyle("Greens", color1 = "#50da77", color2 = "#1baf45", color3 = "#1baf45")
+val PurpleTheme = GradientStyle("Purples", color1 = "#bb90f3", color2 = "#ad7cee", color3 = "#a770ef")
 val LightPurpleTheme = GradientStyle("Purples", color1 = "#ae88f6 ", color2 = "#b796f6", color3 = "#c9a7f6", fontColor = "#000000")
-val MagentasTheme = GradientStyle("Magentas", color1 = "#f373f3", color2 = "#e82ee8", color3 = "#FF00FF")
+val MagentaTheme = GradientStyle("Magentas", color1 = "#f373f3", color2 = "#e82ee8", color3 = "#FF00FF")
 val DarkTheme = GradientStyle("Darks","#282525", color2 = "#252424", color3 = "#1e1f22", fontColor = "#cd9d72", titleColor="#cacaca", panelStroke = PanelStroke(color = "#cd9d72", 5))
 val DarkTheme2 = GradientStyle("Darks2","#131938", color2 = "#060b26", color3 = "#01061d", fontColor = "#888171", titleColor="#d9d2c3", PanelStroke(color = "#cd9d72", 5))
 //light themes
-val LightGreysTheme = GradientStyle("LightGreys", color1 = "#c8c7cb", color2 = "#cdcdce", color3 = "#ebebec", fontColor = "#000000", panelStroke =  PanelStroke(color = "#cd9d72", 5))
-val OrangesTheme = GradientStyle("Oranges", color1 = "#f8c567", color2 = "#faac1d", color3 = "#ffa500", "#000000")
+val LightGreyTheme = GradientStyle("LightGreys", color1 = "#c8c7cb", color2 = "#cdcdce", color3 = "#ebebec", fontColor = "#000000", panelStroke =  PanelStroke(color = "#cd9d72", 5))
+val OrangeTheme = GradientStyle("Oranges", color1 = "#f8c567", color2 = "#faac1d", color3 = "#ffa500", "#000000")
 class GradientStyle(val gradientId: String, val color1: String, val color2: String, val color3: String,
                     val fontColor: String = "white",
                     val titleColor: String = "whitesmoke",

@@ -142,47 +142,47 @@ class RoundButtonItemRenderer : ButtonMaker() {
         //language=html
         var str =  """
         <style>
-        circle.card {
+        #${theme.id} circle.card {
             filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
             pointer-events: bounding-box;
             opacity: 1;
         }
-        circle.card:hover {
+        #${theme.id} circle.card:hover {
             opacity: 0.6;
         }
-        use.card {
+        #${theme.id} use.card {
             filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));
             pointer-events: bounding-box;
             opacity: 1;
         }
-        use.card:hover {
+        #${theme.id} use.card:hover {
             opacity: 0.6;
         }
-        .subtitle {
+        #${theme.id} .subtitle {
             font-family: Helvetica, Arial, sans-serif;
             font-weight: normal;
             font-size: 9pt;
         }
-        rect.legend {
+        #${theme.id} rect.legend {
             pointer-events: bounding-box;
             opacity: 1;
         }
 
-        rect.legend:hover {
+        #${theme.id} rect.legend:hover {
             opacity: 0.6;
         }
-        .label {
+        #${theme.id} .label {
             font-family: Helvetica, Arial, sans-serif;
             font-size: 9pt;
         }
-        .legendText {
+        #${theme.id} .legendText {
             font-size: 9pt;
             font-family:  Helvetica, Arial, sans-serif;    
         }
         
     """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
-            str += ".$u {$t}\n"
+            str += "#${theme.id} .$u {$t}\n"
         }
         str += """</style>"""
         return str
