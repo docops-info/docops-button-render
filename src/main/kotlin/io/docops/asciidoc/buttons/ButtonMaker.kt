@@ -143,7 +143,7 @@ abstract class ButtonMaker {
         </linearGradient>
         $linear
         $btnDef
-        <circle id="myCircle" cx="0" cy="0"  r="60" class="card"/>
+        <circle id="myCircle" cx="0" cy="0"  r="60" class="card" stroke="black" stroke-width="1"/>
         <rect id="legendRect" x="0" y="0" width="10" height="10"  class="legend"/>
         <rect id="mySlimRect" x="0" y="0" width="150" height="150" rx="5" ry="5" class="card"/>
         <rect id="myLargeRect" fill="#fffefa" x="0" y="0" width="300" height="400" rx="5" ry="5" class="card" filter="url(#dropShadow)">
