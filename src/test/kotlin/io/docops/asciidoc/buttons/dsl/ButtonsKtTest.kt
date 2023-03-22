@@ -115,6 +115,7 @@ class ButtonsKtTest {
                     groupBy = Grouping.DATE
                     groupOrder = GroupingOrder.ASCENDING
                 }
+                dropShadow = 4
             }
             button {
                 link = "https://www.google.com"
@@ -140,7 +141,7 @@ class ButtonsKtTest {
                 link = "https://www.microsoft.com"
                 label = "Microsoft"
                 font = font {
-                    color = "#00ff00"
+                    color = "#000000"
                     size = "10pt"
                     underline = true
                 }

@@ -101,7 +101,7 @@ class ButtonCardRenderer : ButtonMaker() {
     }
 
     private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
-        var btnGrad = StringBuilder()
+        val btnGrad = StringBuilder()
         buttonList.forEach { buttons ->
             buttons.forEach { item ->
                 theme.buttonTextColor(item)

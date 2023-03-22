@@ -259,7 +259,7 @@ class ButtonRenderImplTest {
                 buttonImage = ButtonImage(ref = "archrun1.svg"),
                 font = font {
                     underline = true
-                    color = "blue"
+                    color = "#0000ff"
                 },
                 backgroundColor = "#c1d2c0",
                 line1 = "Test",
@@ -295,7 +295,7 @@ class ButtonRenderImplTest {
                 title = "Datagrip",
                 type = "Awesome Little Lengthy Description For this tile still has 2 rows?",
                 description = "Should the description be long maybe?",
-                backgroundColor = "red"
+                backgroundColor = "#ff0000"
             )
 
         )
@@ -374,16 +374,16 @@ class ButtonRenderImplTest {
         val pans =  panels{
             theme {
                 colorMap {
-                    color("#03CFD9")
-                    color("#48B338")
-                    color("#1C8950")
-                    color("#ABCB2B")
-                    color("#331C68")
-                    color("#11A988")
+                    color("#9C1AB1")
+                    color("#4918B8")
+                    color("#C861DF")
+                    color("#B8D7D5")
+                    color("#6526FE")
+                    color("#3FA3B2")
                 }
                 legendOn = false
                 layout {
-                    columns = 3
+                    columns = 4
                     groupBy = Grouping.TYPE
                     groupOrder = GroupingOrder.ASCENDING
                 }
