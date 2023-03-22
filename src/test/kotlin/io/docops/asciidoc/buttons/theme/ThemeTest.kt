@@ -20,6 +20,7 @@ package io.docops.asciidoc.buttons.theme
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
+import java.awt.Color
 
 class ThemeTest {
     @Test
@@ -71,5 +72,33 @@ class ThemeTest {
             }
         })
         assertEquals("dropShadow value 11 does not fall in the range 0..9", thrown.message)
+    }
+
+    @Test
+    fun `generate shades of color`() {
+        val color1= "#447799"
+        val decoded = Color.decode(color1)
+        val shaded = shade(decoded)
+        println(shaded)
+        val tinted = tint2(decoded)
+        println(tinted)
+    }
+    private fun shade(color: Color): String {
+        val rs: Double = color.red * 0.75
+        val gs = color.green * 0.75
+        val bs = color.blue * 0.75
+        return  "#${rs.toInt().toString(16)}${gs.toInt().toString(16)}${bs.toInt().toString(16)}"
+    }
+    private fun tint(color: Color): String {
+        val rs = color.red + (0.25 * (255 - color.red))
+        val gs = color.green + (0.25 * (255 - color.green))
+        val bs = color.blue + (0.25 * (255 - color.blue))
+        return  "#${rs.toInt().toString(16)}${gs.toInt().toString(16)}${bs.toInt().toString(16)}"
+    }
+    private fun tint2(color: Color): String {
+        val rs = color.red + (0.5 * (255 - color.red))
+        val gs = color.green + (0.5 * (255 - color.green))
+        val bs = color.blue + (0.5 * (255 - color.blue))
+        return  "#${rs.toInt().toString(16)}${gs.toInt().toString(16)}${bs.toInt().toString(16)}"
     }
 }

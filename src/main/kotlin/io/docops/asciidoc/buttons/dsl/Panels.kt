@@ -32,6 +32,7 @@ open class ButtonItem {
     var date: String = ""
     var authors = mutableListOf<String>()
     var links = mutableListOf<Link>()
+    var gradientStyle: GradientStyle? = null
     infix fun author(author: String) {
         authors.add(author)
     }

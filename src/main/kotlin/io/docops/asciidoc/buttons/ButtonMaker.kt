@@ -68,10 +68,16 @@ abstract class ButtonMaker {
                 >"""
     }
 
-    fun makeDefs(theme: Theme): String {
+    fun makeDefs(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         var linear = ""
         theme.gradientStyle?.let { linear = it.gradientIdToXml() }
 
+        val btnDef = StringBuilder("")
+        buttons.forEach {
+            btn -> btn.forEach {
+                btnDef.append(theme.buildGradientDef(it))
+             }
+        }
         // language=svg
         return """
         <defs>
@@ -136,6 +142,7 @@ abstract class ButtonMaker {
             <stop offset="100%" stop-color="#112266" />
         </linearGradient>
         $linear
+        $btnDef
         <circle id="myCircle" cx="0" cy="0"  r="60" class="card"/>
         <rect id="legendRect" x="0" y="0" width="10" height="10"  class="legend"/>
         <rect id="mySlimRect" x="0" y="0" width="150" height="150" rx="5" ry="5" class="card"/>

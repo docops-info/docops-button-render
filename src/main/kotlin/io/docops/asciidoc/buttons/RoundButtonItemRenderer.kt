@@ -24,7 +24,7 @@ import io.docops.asciidoc.utils.makeLines
 class RoundButtonItemRenderer : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 155, defaultHeight = 130, widthFactor = 140, theme = theme))
-        sb.append(makeDefs(theme))
+        sb.append(makeDefs(buttons, theme))
         sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {

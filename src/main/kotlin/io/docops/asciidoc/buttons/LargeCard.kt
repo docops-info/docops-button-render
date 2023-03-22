@@ -33,7 +33,7 @@ class LargeCard : ButtonMaker() {
                 theme = theme
             )
         )
-        sb.append(makeDefs(theme))
+        sb.append(makeDefs(buttons, theme))
         sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons, theme))
         if (theme.legendOn) {

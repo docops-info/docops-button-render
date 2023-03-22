@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     aria-label="Calendar" role="img" viewBox="0 0 512 512">
+    <rect width="512" height="512" rx="77" fill="#dee"/>
+    <path d="m77 0h358a77 77 0 0 1 77 77v103h-512v-103a77 77 0 0 1 77-77z" fill="#d34"/>
+    <g fill="#eab">
+        <circle cx="470" cy="142" r="14"/>
+        <circle cx="470" cy="100" r="14"/>
+        <circle cx="427" cy="142" r="14"/>
+        <circle cx="427" cy="100" r="14"/>
+        <circle cx="384" cy="142" r="14"/>
+        <circle cx="384" cy="100" r="14"/>
+    </g>
+    <g fill="#677" font-family="monospace" text-anchor="middle">
+        <text fill="#fff" font-size="140" x="140" y="164" id="m">MAR</text>
+        <text font-size="200" x="256" y="400" id="d">2023</text>
+    </g>
+</svg>

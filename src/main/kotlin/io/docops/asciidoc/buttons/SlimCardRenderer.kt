@@ -26,7 +26,7 @@ import io.docops.asciidoc.utils.escapeXml
 class SlimCardRenderer : ButtonMaker() {
     override  fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val sb = StringBuilder(makeSvgHead(buttons, 170, 250, 155, theme))
-        sb.append(makeDefs(theme))
+        sb.append(makeDefs(buttons, theme))
         sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {
@@ -58,6 +58,7 @@ class SlimCardRenderer : ButtonMaker() {
         row.forEachIndexed { index, button ->
             var btnTextColor = " ${theme.buttonTextColor(button)}"
             theme.gradientStyle?.let { btnTextColor="" }
+            button.gradientStyle?.let { style = it.gradientId.lowercase() }
             if(index > 0) {
                 recXpos += 160
                 dateXpos+= 160
