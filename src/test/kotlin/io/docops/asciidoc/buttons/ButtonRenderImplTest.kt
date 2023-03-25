@@ -443,6 +443,8 @@ class ButtonRenderImplTest {
                     italic = true
 
                 }
+                line1 = "Foo"
+                line2 = "Bar"
             }
             large {
                 link = "https://www.apple.com"
@@ -483,6 +485,8 @@ class ButtonRenderImplTest {
                 author("author1")
                 author("author2")
                 date = "07/15/2022"
+                line1 = "Fizz"
+                line2 = "Buzz"
             }
         }
         val p = PanelService()

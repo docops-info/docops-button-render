@@ -128,11 +128,10 @@ class LargeCard : ButtonMaker() {
             } else {
                 // language=svg
                 sb.append("""
-                        <text x="${recXpos + 10}" y="${yPos + 220}" class="link">
-                            <a href="${button.link}" class="title ${theme.buttonTextColor(button)}">
-                                ${button.title.escapeXml()}
-                            </a>
-                        </text>
+                        <a xlink:href="${button.link}" href="${button.link}" class="${theme.buttonTextColor(button)}">
+                        <text x="${recXpos + 10}" y="${yPos + 220}" class="link" fill="#000" opacity="0.25">${button.title.escapeXml()}</text>
+                        <text x="${recXpos + 11}" y="${yPos + 219}" class="title link">${button.title.escapeXml()}</text>
+                        </a>
                         <text x="${recXpos + 10}" y="${yPos + 238}" class="category ${theme.buttonTextColor(button)}">${button.type.escapeXml()}</text>
                         <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
                     """.trimIndent())
@@ -229,7 +228,9 @@ class LargeCard : ButtonMaker() {
                     <rect width="100%" height="50%" fill="#FFFFFF"/>
                     <rect y="95.5" width="100%" height="50%" fill="$color" />
                     <text text-anchor="middle" x="150" y="67.75" class="oddstyle$guid">$line1</text>
+                    <text text-anchor="middle" x="150" y="70.75" fill="#000" opacity="0.25" class="oddstyle$guid">$line1</text>
                     <text text-anchor="middle" x="150" y="163.25" class="evenstyle$guid">$line2</text>
+                    <text text-anchor="middle" x="150" y="166.25" fill="#000" opacity="0.25" class="evenstyle$guid">$line2</text>
                 </g>
             </svg>
         """.trimIndent()

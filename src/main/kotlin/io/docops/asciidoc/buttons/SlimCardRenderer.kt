@@ -117,7 +117,8 @@ class SlimCardRenderer : ButtonMaker() {
             downBy = 0
 
             titleStr.forEach {
-                title += """<tspan x="${recXpos+4}" dy="$downBy" class="title $btnTextColor">${it.trim()}</tspan>"""
+                title += """<text x="${recXpos+4}" y="${yPos+20}" class="title $btnTextColor" fill="#000" opacity="0.25">${it.trim()}</text>"""
+                title += """<text x="${recXpos+5}" y="${yPos+19}" class="title $btnTextColor">${it.trim()}</text>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -130,7 +131,7 @@ class SlimCardRenderer : ButtonMaker() {
             downBy = 16
             descStr.forEach {
                 if(c < 4) {
-                    title += """<tspan x="${recXpos + 4}" dy="$downBy" class="description $btnTextColor">${it.trim()}</tspan>"""
+                    desc += """<tspan x="${recXpos + 4}" dy="$downBy" class="description $btnTextColor">${it.trim()}</tspan>"""
                     c++
                     if (c > 0) {
                         downBy = 16
@@ -140,8 +141,9 @@ class SlimCardRenderer : ButtonMaker() {
             }
             // language=svg
             sb.append("""
+                 $title
                 <text x="${recXpos+2}" y="${yPos+20}">
-                    $title
+                    $desc
                     $head
                     $authors
                     <tspan x="${recXpos+2}" dy="16" class="date">${button.date.escapeXml()}</tspan>
