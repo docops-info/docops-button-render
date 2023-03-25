@@ -22,6 +22,7 @@ import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
+import java.awt.Color
 import java.util.UUID
 
 @ThemeDSL
@@ -35,6 +36,10 @@ class Theme {
 
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
     var colorMap = mutableListOf(
+        "#2913ED",
+        "#324DE5",
+        "#32B0A1",
+        "#1EB178",
         "#DA79EC",
         "#DECD5E",
         "#F6AB4C",
@@ -50,11 +55,8 @@ class Theme {
         "#E21A0E",
         "#CAF728",
         "#CEFF48",
-        "#F62A0C",
-        "#2913ED",
-        "#324DE5",
-        "#32B0A1",
-        "#1EB178"
+        "#F62A0C"
+
     )
 
     //var colorMap = listOf("url(#linear-gradient-0)", "url(#linear-gradient-1)", "url(#linear-gradient-2)", "url(#linear-gradient-3)", "url(#linear-gradient-4)", "url(#linear-gradient-5)")
@@ -156,12 +158,55 @@ class Theme {
         }
     }
 
+    fun buildGradientStyle(button: Button) : String{
+        val color = buttonColor(button)
+        val m = gradientFromColor(color)
+        return """
+          
+        .${button.id}_cls { fill: url(#${button.id}); }   
+         
+        #${button.id} .stop1 {stop-color: ${m["color1"]};}
+
+        #${button.id} .stop2 {stop-color: ${m["color2"]};}
+
+        #${button.id} .stop3 {stop-color: ${m["color3"]};}
+        
+        """.trimIndent()
+    }
+    fun buildGradientDef(button: Button): String {
+        return """
+           <linearGradient id="${button.id}" x2="1" y2="1">
+            <stop class="stop1" offset="0%"/>
+            <stop class="stop2" offset="50%"/>
+            <stop class="stop3" offset="100%"/>
+            </linearGradient> 
+        """
+    }
+    private fun gradientFromColor(color: String): Map<String, String> {
+        val decoded = Color.decode(color)
+        val tinted1 = tint(decoded, 0.5)
+        val tinted2 = tint(decoded, 0.25)
+        return mapOf("color1" to tinted1, "color2" to tinted2, "color3" to color)
+    }
+    private fun shade(color: Color): String {
+        val rs: Double = color.red * 0.50
+        val gs = color.green * 0.50
+        val bs = color.blue * 0.50
+        return  "#${rs.toInt().toString(16)}${gs.toInt().toString(16)}${bs.toInt().toString(16)}"
+    }
+    private fun tint(color: Color, factor: Double): String {
+        val rs = color.red + (factor * (255 - color.red))
+        val gs = color.green + (factor * (255 - color.green))
+        val bs = color.blue + (factor * (255 - color.blue))
+        return  "#${rs.toInt().toString(16)}${gs.toInt().toString(16)}${bs.toInt().toString(16)}"
+    }
 }
+
 
 
 val SlimCardsTheme = theme {
     this typeIs "SLIM_CARD"
-    groupBy = Grouping.TYPE
+    groupBy = Grouping.ORDER
     groupOrder = GroupingOrder.ASCENDING
     columns = 4
 }
@@ -200,10 +245,10 @@ class GradientStyle(val gradientId: String, val color1: String, val color2: Stri
                     val panelStroke: PanelStroke = PanelStroke()) {
     var style = """
 
-.${gradientId.lowercase()} { fill: url(#$gradientId); }
-#$gradientId .stop1 {stop-color: $color1;}
-#$gradientId .stop2 {stop-color: $color2;}
-#$gradientId .stop3 {stop-color: $color3;}
+    .${gradientId.lowercase()} { fill: url(#$gradientId); }
+    #$gradientId .stop1 {stop-color: $color1;}
+    #$gradientId .stop2 {stop-color: $color2;}
+    #$gradientId .stop3 {stop-color: $color3;}
 
     """.trimIndent()
     fun gradientIdToXml() = """

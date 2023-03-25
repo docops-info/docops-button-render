@@ -33,7 +33,7 @@ class LargeCard : ButtonMaker() {
                 theme = theme
             )
         )
-        sb.append(makeDefs(theme))
+        sb.append(makeDefs(buttons, theme))
         sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons, theme))
         if (theme.legendOn) {
@@ -85,7 +85,7 @@ class LargeCard : ButtonMaker() {
             } else {
                 // language=svg
                 imgOrRec = """
-                    <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
+                    <use x="$recXpos" y="$yPos" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
                     """.trimIndent()
 
                 if(button.line1 != null && button.line2 != null) {
@@ -105,7 +105,7 @@ class LargeCard : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                    <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>    
+                    <use x="$recXpos" y="$yPos" class="card shape" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>    
                    $imgOrRec
                    </a>
                 """.trimIndent()
@@ -161,60 +161,37 @@ class LargeCard : ButtonMaker() {
     }
 
     private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        val btnGrad = StringBuilder()
         buttonList.forEach { buttons ->
             buttons.forEach {
                 item -> theme.buttonTextColor(item)
+                btnGrad.append(theme.buildGradientStyle(item))
             }
         }
         //language=html
         var str =  """
             <style>
-        #${theme.id} rect.card {
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
-        #${theme.id} rect.card:hover {
-            opacity: 0.6;
-        }
-        #${theme.id} use.card {
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
-        #${theme.id} use.card:hover {
-            opacity: 0.6;
-        }
-        #${theme.id} .card {
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
-        #${theme.id} .card:hover {
-            opacity: 0.6;
-        }
-        #${theme.id} .headline {
-            font-family:  Helvetica, Arial, sans-serif;
-            fill: #46494d;
-        }
-        #${theme.id} .link {
-        font-family:  Helvetica, Arial, sans-serif;
-            fill: #335D79;
-        }
-        #${theme.id} .description {
-            font-size: 9pt;
-            font-family:  Helvetica, Arial, sans-serif;    
-        }
-        #${theme.id} .category {
-            font-size: 10pt;
-            font-family:  Helvetica, Arial, sans-serif;    
-        }
-        #${theme.id} .longdesc {
-            font-family:  Helvetica, Arial, sans-serif;     
-            font-size: 9pt;
-        }
-        #${theme.id} .legendText {
-            font-size: 9pt;
-            font-family:  Helvetica, Arial, sans-serif;    
+        #${theme.id} rect.card { pointer-events: bounding-box; opacity: 1; }
+        #${theme.id} rect.card:hover { opacity: 0.9; }
+        #${theme.id} use.card { pointer-events: bounding-box; opacity: 1; }
+        #${theme.id} use.card:hover { opacity: 0.9; }
+        #${theme.id} .card { pointer-events: bounding-box; opacity: 1; }
+        #${theme.id} .card:hover { opacity: 0.9; }
+        #${theme.id} .headline { font-family:  Helvetica, Arial, sans-serif; fill: #46494d; }
+        #${theme.id} .link { font-family:  Helvetica, Arial, sans-serif; fill: #335D79; }
+        #${theme.id} .description { font-size: 9pt; font-family:  Helvetica, Arial, sans-serif; }
+        #${theme.id} .category { font-size: 10pt; font-family:  Helvetica, Arial, sans-serif; }
+        #${theme.id} .longdesc { font-family:  Helvetica, Arial, sans-serif; font-size: 9pt; }
+        #${theme.id} .legendText { font-size: 9pt; font-family:  Helvetica, Arial, sans-serif; }
+        
+        @keyframes draw { 
+            0% { stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 
+            100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:3px; } 
         }
         
+        #${theme.id} .shape{ stroke:black;}  
+        
+        $btnGrad
         """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"

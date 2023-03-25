@@ -18,8 +18,10 @@ package io.docops.asciidoc.buttons.models
 
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.dsl.Link
+import io.docops.asciidoc.buttons.theme.GradientStyle
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.UUID
 
 data class Button(
     var title: String,
@@ -35,7 +37,9 @@ data class Button(
     var line1: String? = null,
     var line2: String? = null,
     var leadingZeroNumbersOn: Boolean = false,
-    var numberColor: String = "#000000"
+    var gradientStyle: GradientStyle? = null,
+    var numberColor: String = "#000000",
+    var id: String = "ID${UUID.randomUUID().toString()}"
 ) {
 
     fun dateFromStr(): LocalDate {

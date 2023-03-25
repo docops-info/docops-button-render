@@ -37,6 +37,14 @@ class ButtonsKtTest {
     fun fromDslToButtonImage() {
         val list = panels {
             theme {
+                colorMap {
+                    color("#9C1AB1")
+                    color("#4918B8")
+                    color("#C861DF")
+                    color("#B8D7D5")
+                    color("#6526FE")
+                    color("#3FA3B2")
+                }
                 layout {
                     columns = 4
                     groupBy = Grouping.TITLE
@@ -94,11 +102,20 @@ class ButtonsKtTest {
     fun fromDslToButtonImageAlternate() {
         val list = panel {
             theme {
+                colorMap {
+                    color("#9C1AB1")
+                    color("#4918B8")
+                    color("#C861DF")
+                    color("#B8D7D5")
+                    color("#6526FE")
+                    color("#3FA3B2")
+                }
                 layout {
                     columns = 4
                     groupBy = Grouping.DATE
                     groupOrder = GroupingOrder.ASCENDING
                 }
+                dropShadow = 4
             }
             button {
                 link = "https://www.google.com"
@@ -124,7 +141,7 @@ class ButtonsKtTest {
                 link = "https://www.microsoft.com"
                 label = "Microsoft"
                 font = font {
-                    color = "#00ff00"
+                    color = "#000000"
                     size = "10pt"
                     underline = true
                 }
@@ -267,7 +284,7 @@ class ButtonsKtTest {
 
             ButtonType.SLIM_CARD -> {
                 list.slimButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, it.date, font = it.font)
+                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, it.date, font = it.font, gradientStyle = it.gradientStyle)
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
@@ -473,6 +490,7 @@ fun buttonData(): Panels {
             link = "https://www.apple.com"
             label = "Apple"
             type = "Personal Devices"
+            gradientStyle = BlueTheme
             description =
                 "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software and online services. "
             author("Steve Jobs")

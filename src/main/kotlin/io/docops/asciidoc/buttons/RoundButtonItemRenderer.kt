@@ -24,7 +24,7 @@ import io.docops.asciidoc.utils.makeLines
 class RoundButtonItemRenderer : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 155, defaultHeight = 130, widthFactor = 140, theme = theme))
-        sb.append(makeDefs(theme))
+        sb.append(makeDefs(buttons, theme))
         sb.append(makeStyles(buttons, theme))
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {
@@ -94,7 +94,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 sb.append(
                    """
                    <a xlink:href="${button.link}" target="$win">
-                       <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card" fill="${theme.buttonColor(button)}">
+                       <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}">
                            <title class="description">${button.description.escapeXml()}</title>
                        </use>
                        <text class="category" visibility="hidden">${button.type.escapeXml()}</text>
@@ -134,51 +134,36 @@ class RoundButtonItemRenderer : ButtonMaker() {
     }
 
     private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        val btnGrad = StringBuilder()
         buttonList.forEach { buttons ->
             buttons.forEach {
                     item -> theme.buttonTextColor(item)
+                btnGrad.append(theme.buildGradientStyle(item))
             }
         }
+
         //language=html
         var str =  """
         <style>
-        #${theme.id} circle.card {
-            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); 
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
-        #${theme.id} circle.card:hover {
-            opacity: 0.6;
-        }
-        #${theme.id} use.card {
-            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
-        #${theme.id} use.card:hover {
-            opacity: 0.6;
-        }
-        #${theme.id} .subtitle {
-            font-family: Helvetica, Arial, sans-serif;
-            font-weight: normal;
-            font-size: 9pt;
-        }
-        #${theme.id} rect.legend {
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
+        #${theme.id} circle.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
+        #${theme.id} circle.card:hover { opacity: 0.9; }
+        #${theme.id} use.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
+        #${theme.id} use.card:hover { opacity: 0.9; }
+        #${theme.id} .subtitle { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
+        #${theme.id} rect.legend { pointer-events: bounding-box; opacity: 1; }
 
-        #${theme.id} rect.legend:hover {
-            opacity: 0.6;
+        #${theme.id} rect.legend:hover { opacity: 0.9; }
+        #${theme.id} .label { font-family: Helvetica, Arial, sans-serif; font-size: 9pt; }
+        #${theme.id} .legendText { font-size: 9pt; font-family:  Helvetica, Arial, sans-serif; }
+        
+        @keyframes draw { 
+            0% { stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 
+            100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:3px; } 
         }
-        #${theme.id} .label {
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 9pt;
-        }
-        #${theme.id} .legendText {
-            font-size: 9pt;
-            font-family:  Helvetica, Arial, sans-serif;    
-        }
+        
+        #${theme.id} .shape{ stroke:black;}  
+        
+        $btnGrad
         
     """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->

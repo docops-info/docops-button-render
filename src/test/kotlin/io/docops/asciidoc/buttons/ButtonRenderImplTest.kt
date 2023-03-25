@@ -36,7 +36,7 @@ class ButtonRenderImplTest {
         val button = Button(
             title = "title", link = "link1",
             description = "description", authors = mutableListOf("Steve"), type = "Awesome",
-            date = "11/16/2021", font =  font{
+            date = "11/16/2021", font = font {
                 color = "#ffcccc"
                 size = "8"
             }, backgroundColor = null
@@ -57,23 +57,23 @@ class ButtonRenderImplTest {
 
 
         val theme = Theme()
-        theme.groupBy= Grouping.AUTHOR
+        theme.groupBy = Grouping.AUTHOR
         var localList = buttons.toMutableList()
         b.render(localList, theme)
         assertEquals("Ian", localList[0].authors[0])
 
-        theme.groupBy= Grouping.TYPE
+        theme.groupBy = Grouping.TYPE
         localList = buttons.toMutableList()
         b.render(localList, theme)
         assertEquals("Awesome", localList[0].type)
 
-        theme.groupBy= Grouping.DATE
+        theme.groupBy = Grouping.DATE
         theme.groupOrder = GroupingOrder.DESCENDING
         localList = buttons.toMutableList()
         b.render(localList, theme)
         assertEquals("11/16/2021", localList[0].date)
 
-        theme.groupBy= Grouping.TYPE
+        theme.groupBy = Grouping.TYPE
         theme.groupOrder = GroupingOrder.DESCENDING
         localList = buttons.toMutableList()
         b.render(localList, theme)
@@ -89,7 +89,7 @@ class ButtonRenderImplTest {
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdir()
         }
         val f = File("out/slim.svg")
@@ -102,13 +102,13 @@ class ButtonRenderImplTest {
         val buttons = buttons()
         val theme = Theme()
         theme.typeIs("BUTTON")
-        theme.groupBy= Grouping.TYPE
+        theme.groupBy = Grouping.TYPE
         theme.groupOrder = GroupingOrder.ASCENDING
         theme.columns = 2
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdir()
         }
         val f = File("out/buttons.svg")
@@ -121,7 +121,7 @@ class ButtonRenderImplTest {
         val buttons = buttons()
         val theme = Theme()
         theme.typeIs("LARGE_CARD")
-        theme.groupBy= Grouping.TYPE
+        theme.groupBy = Grouping.TYPE
         theme.groupOrder = GroupingOrder.ASCENDING
         theme.columns = 4
         theme.legendOn = false
@@ -134,7 +134,7 @@ class ButtonRenderImplTest {
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdir()
         }
         val f = File("out/large.svg")
@@ -144,10 +144,11 @@ class ButtonRenderImplTest {
     @Test
     fun drawRound() {
         val b = ButtonRenderImpl()
-        val buttons= buttons()
+        val buttons = buttons()
         val theme = Theme()
         theme.typeIs("ROUND")
-        theme.groupBy= Grouping.TYPE
+
+        theme.groupBy = Grouping.TYPE
         theme.columns = 4
         theme.groupOrder = GroupingOrder.ASCENDING
         theme.font.size = "10pt"
@@ -155,7 +156,7 @@ class ButtonRenderImplTest {
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdir()
         }
         val f = File("out/round.svg")
@@ -165,10 +166,10 @@ class ButtonRenderImplTest {
     @Test
     fun drawRectangle() {
         val b = ButtonRenderImpl()
-        val buttons= recButtons()
+        val buttons = recButtons()
         val theme = Theme()
         theme.typeIs("RECTANGLE")
-        theme.groupBy= Grouping.ORDER
+        theme.groupBy = Grouping.ORDER
         theme.columns = 3
         theme.groupOrder = GroupingOrder.ASCENDING
         theme.colorMap = colors()
@@ -188,14 +189,15 @@ class ButtonRenderImplTest {
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdir()
         }
         val f = File("out/rectangular.svg")
         f.writeBytes(svg.toByteArray())
     }
+
     @Test
-    fun drawRoundFromDoc () {
+    fun drawRoundFromDoc() {
         val d = panels {
             theme {
                 colorMap {
@@ -233,7 +235,7 @@ class ButtonRenderImplTest {
             }
         }
         val p = PanelService()
-        val svg =  p.fromPanelToSvg(d)
+        val svg = p.fromPanelToSvg(d)
         val f = File("out/round2.svg")
         f.writeBytes(svg.toByteArray())
     }
@@ -243,7 +245,7 @@ class ButtonRenderImplTest {
             title = "title",
             link = "https://www.jetbrains.com",
             description = "description",
-            authors = mutableListOf("Steve Roach","Ian Rose", "Mike Duffy"),
+            authors = mutableListOf("Steve Roach", "Ian Rose", "Mike Duffy"),
             type = "Awesome",
             date = "11/16/2021",
             backgroundColor = null,
@@ -259,18 +261,23 @@ class ButtonRenderImplTest {
                 buttonImage = ButtonImage(ref = "archrun1.svg"),
                 font = font {
                     underline = true
-                    color = "blue"
+                    color = "#0000ff"
                 },
                 backgroundColor = "#c1d2c0",
                 line1 = "Test",
                 line2 = "Lines"
             ),
             Button(
-                title = "Google", link = "https://google.com",
-                description = "description trying & < >. Bug: if a word in the input is longer than maxLineLength it will be appended to the current line instead of on a too-long line of its own. I assume your line length is something like 80 or 120 characters, in which case this is unlikely to be a problem.", authors = mutableListOf("Steve"), type = "Green",
-                date = "11/16/2021", font =  font{
+                title = "Google",
+                link = "https://google.com",
+                description = "description trying & < >. Bug: if a word in the input is longer than maxLineLength it will be appended to the current line instead of on a too-long line of its own. I assume your line length is something like 80 or 120 characters, in which case this is unlikely to be a problem.",
+                authors = mutableListOf("Steve"),
+                type = "Green",
+                date = "11/16/2021",
+                font = font {
                     color = "#000000"
-                }, backgroundColor = "#508b38",
+                },
+                backgroundColor = "#508b38",
                 line1 = "Search",
                 line2 = "AI"
             ),
@@ -285,17 +292,22 @@ class ButtonRenderImplTest {
                 line1 = "Crab",
                 line2 = "Shack"
             ),
-            button.copy(title = "Bahama", type = "Pizza", description = "Should the description be long?",
+            button.copy(
+                title = "Bahama", type = "Pizza", description = "Should the description be long?",
                 buttonImage = ButtonImage(ref = "archrun1.svg"), backgroundColor = "#c1d2c0"
             ),
-            button.copy(title = "PyCharm Edu", type = "Awesome", description = "Should the description be long maybe? Is this going on"),
-            button.copy(title = "Rider", type = "Awesome", description = "Should the description be long maybe?"),
+            button.copy(
+                title = "PyCharm Edu",
+                type = "Awesome",
+                description = "Should the description be long maybe? Is this going on"
+            ),
+            button.copy(title = "Rider", type = "Jetbrains", description = "Should the description be long maybe?"),
             button.copy(title = "Fleet", type = "Awesome", description = "Should the description be long maybe?"),
             button.copy(
                 title = "Datagrip",
                 type = "Awesome Little Lengthy Description For this tile still has 2 rows?",
                 description = "Should the description be long maybe?",
-                backgroundColor = "red"
+                backgroundColor = "#ff0000"
             )
 
         )
@@ -303,16 +315,16 @@ class ButtonRenderImplTest {
 
     private fun recButtons(): List<Button> {
         val links = mutableListOf(
-            Link(label = "Jetbrains",href ="https://www.jetbrains.com"),
-            Link(label = "AppCode",href ="https://www.jetbrains.com"),
-            Link(label = "PyCharm",href ="https://www.jetbrains.com"),
-            Link(label = "Rider",href ="https://www.jetbrains.com")
-            )
+            Link(label = "Jetbrains", href = "https://www.jetbrains.com"),
+            Link(label = "AppCode", href = "https://www.jetbrains.com"),
+            Link(label = "PyCharm", href = "https://www.jetbrains.com"),
+            Link(label = "Rider", href = "https://www.jetbrains.com")
+        )
         val button = Button(
             title = "Jetbrains",
             link = "https://www.jetbrains.com",
             description = "IDE",
-            authors = mutableListOf("Steve Roach","Ian Rose", "Mike Duffy"),
+            authors = mutableListOf("Steve Roach", "Ian Rose", "Mike Duffy"),
             type = "Awesome",
             date = "11/16/2021",
             links = links,
@@ -331,8 +343,8 @@ class ButtonRenderImplTest {
                 date = "11/16/2021",
                 backgroundColor = "red",
                 links = links,
-                line1="Google",
-                line2="Search"
+                line1 = "Google",
+                line2 = "Search"
             ),
             Button(
                 title = "Maryland's Crab",
@@ -352,7 +364,8 @@ class ButtonRenderImplTest {
                 },
                 buttonImage = ButtonImage(ref = "java.svg"),
             ),
-            button.copy(title = "Bahama", type = "Pizza", description = "Should the description be long?",
+            button.copy(
+                title = "Bahama", type = "Pizza", description = "Should the description be long?",
                 links = links,
                 buttonImage = ButtonImage(ref = "java.svg")
             ),
@@ -371,19 +384,19 @@ class ButtonRenderImplTest {
 
     @Test
     fun testFontPanelSvc() {
-        val pans =  panels{
+        val pans = panels {
             theme {
                 colorMap {
-                    color("#03CFD9")
-                    color("#48B338")
-                    color("#1C8950")
-                    color("#ABCB2B")
-                    color("#331C68")
-                    color("#11A988")
+                    color("#9C1AB1")
+                    color("#4918B8")
+                    color("#C861DF")
+                    color("#B8D7D5")
+                    color("#6526FE")
+                    color("#3FA3B2")
                 }
                 legendOn = false
                 layout {
-                    columns = 3
+                    columns = 4
                     groupBy = Grouping.TYPE
                     groupOrder = GroupingOrder.ASCENDING
                 }
@@ -401,25 +414,27 @@ class ButtonRenderImplTest {
                 }
                 dropShadow = 2
             }
-            large{
+            large {
                 link = "https://www.apple.com"
                 label = "#03CFD9"
                 type = "Advertising 0"
-                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                description =
+                    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                 author("author1")
                 author("author2")
-                date ="07/20/2022"
+                date = "07/20/2022"
                 line1 = "Hello"
                 line2 = "World"
             }
-            large{
+            large {
                 link = "https://www.apple.com"
                 label = "#48B338"
                 type = "Advertising 1"
-                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                description =
+                    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                 author("author1")
                 author("author2")
-                date ="07/19/2022"
+                date = "07/19/2022"
                 font = font {
                     family = "Arial, Helvetica, sans-serif"
                     size = "16pt"
@@ -429,45 +444,49 @@ class ButtonRenderImplTest {
 
                 }
             }
-            large{
+            large {
                 link = "https://www.apple.com"
                 label = "#1C8950"
                 type = "Advertising 2"
-                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                description =
+                    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                 author("author1")
                 author("author2")
-                date ="07/18/2022"
+                date = "07/18/2022"
             }
-            large{
+            large {
                 link = "https://www.apple.com"
                 label = "#ABCB2B"
                 type = "Advertising 3"
-                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                description =
+                    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                 author("author1")
                 author("author2")
-                date ="07/17/2022"
+                date = "07/17/2022"
             }
-            large{
+            large {
                 link = "https://www.apple.com"
                 label = "#331C68"
                 type = "Advertising 4"
-                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                description =
+                    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                 author("author1")
                 author("author2")
-                date ="07/16/2022"
+                date = "07/16/2022"
             }
-            large{
+            large {
                 link = "https://www.apple.com"
                 label = "#11A988"
                 type = "Advertising 0"
-                description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                description =
+                    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                 author("author1")
                 author("author2")
-                date ="07/15/2022"
+                date = "07/15/2022"
             }
         }
         val p = PanelService()
-        val svg =  p.fromPanelToSvg(pans)
+        val svg = p.fromPanelToSvg(pans)
         val f = File("out/largeFont2.svg")
         f.writeBytes(svg.toByteArray())
     }
@@ -506,7 +525,7 @@ class ButtonRenderImplTest {
                 newWin = true
                 dropShadow = 1
             }
-            rectangle{
+            rectangle {
                 link = "index.html#overview"
                 label = "Overview"
                 date = "11/13/2022"
@@ -524,7 +543,7 @@ class ButtonRenderImplTest {
                     label = "Component Diagram"
                 }
             }
-            rectangle{
+            rectangle {
                 link = "angular_upgrade.html"
                 label = "Angular Upgrade"
                 date = "11/12/2022"
@@ -535,7 +554,7 @@ class ButtonRenderImplTest {
                 }
             }
 
-            rectangle{
+            rectangle {
                 link = "okta.html"
                 label = "#D24F68"
                 date = "11/07/2022"
@@ -551,28 +570,29 @@ class ButtonRenderImplTest {
         res.forEach {
             println(it)
         }
-        val svg= p.fromPanelToSvg(pans)
+        val svg = p.fromPanelToSvg(pans)
         val dir = File("out")
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdir()
         }
         val f = File("out/rectangular2.svg")
         f.writeBytes(svg.toByteArray())
     }
+
     private fun colors(): MutableList<String> {
         val d = panels {
             theme {
                 colorMap {
-                    color("#6F36A7")
-                    color("#B3110E")
-                    color("#BB81D3")
-                    color("#161CB2")
-                    color("#95910B")
-                    color("#1BED6E")
+                    color("#9C1AB1")
+                    color("#4918B8")
+                    color("#C861DF")
+                    color("#B8D7D5")
+                    color("#6526FE")
+                    color("#3FA3B2")
                 }
             }
-            button {  }
+            button { }
         }
         return d.buttonTheme.colorMap.colors
     }
- }
+}
