@@ -72,7 +72,7 @@ class SlimCardRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" class="card $style shape" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect">
+                   <use x="$recXpos" y="$yPos" class="card ${button.id}_cls $style shape" fill="${theme.buttonColor(button)}" xlink:href="#mySlimRect">
                        <title class="description">${button.description.escapeXml()}</title>
                    </use>
                 """.trimIndent()
@@ -82,7 +82,7 @@ class SlimCardRenderer : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <use x="$recXpos" y="$yPos" class="$style shape" fill="${theme.buttonColor(button)}" aria-hidden="true" focusable="false" xlink:href="#mySlimRect">
+                   <use x="$recXpos" y="$yPos" class="$style ${button.id}_cls shape" fill="${theme.buttonColor(button)}" aria-hidden="true" focusable="false" xlink:href="#mySlimRect">
                        <title class="description">${button.description.escapeXml()}</title>
                    </use>
                    </a>
@@ -167,9 +167,13 @@ class SlimCardRenderer : ButtonMaker() {
             titleColor = it.titleColor
             strokeWidth= it.panelStroke.width
         }
+        val btnGrad = StringBuilder()
         buttonList.forEach { buttons ->
             buttons.forEach {
                     item -> theme.buttonTextColor(item)
+                if(theme.gradientStyle== null) {
+                    btnGrad.append(theme.buildGradientStyle(item))
+                }
             }
         }
         // language=html
@@ -179,7 +183,7 @@ class SlimCardRenderer : ButtonMaker() {
         #${theme.id} use:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
         #${theme.id} .lineHead { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 9pt; }
         #${theme.id} .description { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
-        #${theme.id} .category { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; font-weight: bold; font-style: italic}
+        #${theme.id} .category { fill: $titleColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; font-weight: bold; font-style: italic}
         #${theme.id} .title { fill: $titleColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 9pt; }
         #${theme.id} .author { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 8pt; fill: $fontColor; }
         #${theme.id} .legendText { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
@@ -193,6 +197,8 @@ class SlimCardRenderer : ButtonMaker() {
         #${theme.id} .shape{ stroke:${stroke.color};}
         
         $style
+        
+         $btnGrad
     """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"

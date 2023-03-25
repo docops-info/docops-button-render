@@ -36,6 +36,10 @@ class Theme {
 
     //var colorMap = listOf("#5F4B8B", "#E69A8D", "#ADEFD1", "#00203F", "#ED2B33", "#D85A7F", "#E6A57E")
     var colorMap = mutableListOf(
+        "#2913ED",
+        "#324DE5",
+        "#32B0A1",
+        "#1EB178",
         "#DA79EC",
         "#DECD5E",
         "#F6AB4C",
@@ -51,11 +55,8 @@ class Theme {
         "#E21A0E",
         "#CAF728",
         "#CEFF48",
-        "#F62A0C",
-        "#2913ED",
-        "#324DE5",
-        "#32B0A1",
-        "#1EB178"
+        "#F62A0C"
+
     )
 
     //var colorMap = listOf("url(#linear-gradient-0)", "url(#linear-gradient-1)", "url(#linear-gradient-2)", "url(#linear-gradient-3)", "url(#linear-gradient-4)", "url(#linear-gradient-5)")
@@ -205,7 +206,7 @@ class Theme {
 
 val SlimCardsTheme = theme {
     this typeIs "SLIM_CARD"
-    groupBy = Grouping.TYPE
+    groupBy = Grouping.ORDER
     groupOrder = GroupingOrder.ASCENDING
     columns = 4
 }
