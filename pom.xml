@@ -22,7 +22,7 @@
 
     <artifactId>docops-button-render</artifactId>
     <groupId>io.docops</groupId>
-    <version>2023.06</version>
+    <version>2023.07</version>
     <packaging>jar</packaging>
 
     <name>docops-button-render</name>
@@ -70,12 +70,12 @@
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
         <kotlin.version>1.8.10</kotlin.version>
-        <junit.version>5.9.0</junit.version>
+        <junit.version>5.9.2</junit.version>
         <mojo.version>1.6.0</mojo.version>
         <dokka.version>1.6.10</dokka.version>
         <maven-plugin.version>3.0.0-M6</maven-plugin.version>
         <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
-        <maven-deploy.version>3.0.0</maven-deploy.version>
+        <maven-deploy.version>3.1.0</maven-deploy.version>
         <maven-release.version>3.0.0-M5</maven-release.version>
         <maven-scm-provider.version>2.0.0-M1</maven-scm-provider.version>
         <nexus-staging.version>1.6.7</nexus-staging.version>
@@ -343,7 +343,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json</artifactId>
-            <version>1.4.1</version>
+            <version>1.5.0</version>
         </dependency>
     </dependencies>
 
