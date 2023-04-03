@@ -96,6 +96,25 @@ abstract class ButtonMaker {
             <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="OUTLINE"/>
             <feComposite operator="out" in="OUTLINE" in2="SourceAlpha"/>
         </filter>
+        <filter id="sofGlow" height="300%" width="300%" x="-75%" y="-75%">
+            <!-- Thicken out the original shape -->
+            <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken"/>
+
+            <!-- Use a gaussian blur to create the soft blurriness of the glow -->
+            <feGaussianBlur in="thicken" stdDeviation="10" result="blurred"/>
+
+            <!-- Change the colour -->
+            <feFlood flood-color="hsl(24, 100%, 51%)" result="glowColor"/>
+
+            <!-- Color in the glows -->
+            <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored"/>
+
+            <!--	Layer the effects together -->
+            <feMerge>
+                <feMergeNode in="softGlow_colored"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
         <linearGradient id="linear-gradient-0" gradientUnits="userSpaceOnUse" x1="162.375" y1="40.053" x2="162.375" y2="9.99">
             <stop offset="0" stop-color="#ff857a" stop-opacity="1"/>
             <stop offset="1" stop-color="#f0a2b7" stop-opacity="1"/>

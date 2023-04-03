@@ -18,8 +18,11 @@ class RectangleCardRenderer : ButtonMaker() {
                 theme = theme
             )
         )
+        val styles =  makeStyles(buttons, theme)
+        if(!theme.isPDF) {
+            sb.append(styles)
+        }
         sb.append( """
-    ${makeStyles(buttons, theme)}
     ${createDefs(buttons, theme)}
     """)
         var row = 0

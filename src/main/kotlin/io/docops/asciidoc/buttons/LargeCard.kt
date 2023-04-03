@@ -34,7 +34,10 @@ class LargeCard : ButtonMaker() {
             )
         )
         sb.append(makeDefs(buttons, theme))
-        sb.append(makeStyles(buttons, theme))
+        val styles =  makeStyles(buttons, theme)
+        if(!theme.isPDF) {
+            sb.append(styles)
+        }
         sb.append(drawButtons(buttons, theme))
         if (theme.legendOn) {
             sb.append(drawLegend(types))
@@ -69,7 +72,7 @@ class LargeCard : ButtonMaker() {
             } else {
                 "_blank"
             }
-            val lines = addLinebreaks(button.description, 41)
+            val lines = addLinebreaks(button.description, 35)
             var imgOrRec = ""
             button.buttonImage?.let {
                 imgOrRec = "data:${it.type};base64,${it.ref}"
@@ -200,37 +203,39 @@ class LargeCard : ButtonMaker() {
     }
 
     private fun makeTwoTone(x: Int, y: Int, line1: String?, line2: String?, color: String, button: Button, theme: Theme): String {
-        val guid = UUID.randomUUID().toString()
         var font = "Arial, Helvetica, sans-serif"
         if(button.font != null) {
             button.font?.family?.let {
                 font = it
             }
         }
+        val color1 = theme.buildGradientStyle(button = button)
+        val def1= theme.buildGradientDef(button)
         //language=svg
         return """
-            <svg id="twotone$guid" x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg id="twotone_${button.id}" x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>ICON</title>
-                <desc></desc>
+                <defs>${def1}</defs>
                 <style>
-                    .oddstyle$guid {
-                        font: bold 60px $font;
+                    .oddstyle${button.id} {
+                        font: bold 40px $font;
                         fill: $color;
                     }
 
-                    .evenstyle$guid {
-                        font: bold 60px $font;
+                    .evenstyle${button.id} {
+                        font: bold 40px $font;
                         fill: #ffffff;
                     }
+                    $color1
                 </style>
-                <g id="Page-1$guid" stroke="none" stroke-width="1" fill="#FFFFFF">
+                <g id="Page-1${button.id}" stroke="none" stroke-width="1" fill="#FFFFFF">
                     <rect width="100%" height="100%" fill="none" />
                     <rect width="100%" height="50%" fill="#FFFFFF"/>
-                    <rect y="95.5" width="100%" height="50%" fill="$color" />
-                    <text text-anchor="middle" x="150" y="67.75" class="oddstyle$guid">$line1</text>
-                    <text text-anchor="middle" x="150" y="70.75" fill="#000" opacity="0.25" class="oddstyle$guid">$line1</text>
-                    <text text-anchor="middle" x="150" y="163.25" class="evenstyle$guid">$line2</text>
-                    <text text-anchor="middle" x="150" y="166.25" fill="#000" opacity="0.25" class="evenstyle$guid">$line2</text>
+                    <rect y="95.5" width="100%" height="50%" class="${button.id}_cls" />
+                    <text text-anchor="middle" x="150" y="67.75" class="oddstyle${button.id}">$line1</text>
+                    <text text-anchor="middle" x="150" y="70.75" fill="#000" opacity="0.25" class="oddstyle${button.id}">$line1</text>
+                    <text text-anchor="middle" x="150" y="163.25" class="evenstyle${button.id}">$line2</text>
+                    <text text-anchor="middle" x="150" y="166.25" fill="#000" opacity="0.25" class="evenstyle${button.id}">$line2</text>
                 </g>
             </svg>
         """.trimIndent()

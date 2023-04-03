@@ -27,7 +27,10 @@ class SlimCardRenderer : ButtonMaker() {
     override  fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val sb = StringBuilder(makeSvgHead(buttons, 170, 250, 155, theme))
         sb.append(makeDefs(buttons, theme))
-        sb.append(makeStyles(buttons, theme))
+        val styles =  makeStyles(buttons, theme)
+        if(!theme.isPDF) {
+            sb.append(styles)
+        }
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
@@ -111,7 +114,7 @@ class SlimCardRenderer : ButtonMaker() {
                     dy -= 16
                 }
             }
-            val titleStr = addLinebreaks(button.title.escapeXml(),25)
+            val titleStr = addLinebreaks(button.title.escapeXml(),20)
             var title = ""
             c = 0
             downBy = 0
@@ -182,7 +185,7 @@ class SlimCardRenderer : ButtonMaker() {
         var str =  """
         <style>
         #${theme.id} use { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));  pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} use:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
+        #${theme.id} use:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; filter: url(#sofGlow)}
         #${theme.id} .lineHead { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 9pt; }
         #${theme.id} .description { fill: $fontColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; }
         #${theme.id} .category { fill: $titleColor; font-family: Helvetica, Arial, sans-serif; font-size: 8pt; font-weight: bold; font-style: italic}

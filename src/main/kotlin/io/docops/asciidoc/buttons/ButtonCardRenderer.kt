@@ -25,7 +25,10 @@ class ButtonCardRenderer : ButtonMaker() {
         val widthFactor = 305
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 40, defaultHeight = 60, widthFactor = widthFactor, theme = theme))
         sb.append(makeDefs(buttons,theme))
-        sb.append(makeStyles(buttons, theme))
+        val styles =  makeStyles(buttons, theme)
+        if(!theme.isPDF) {
+            sb.append(styles)
+        }
         sb.append(drawButtons(buttons,theme, widthFactor))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
@@ -114,13 +117,13 @@ class ButtonCardRenderer : ButtonMaker() {
         #${theme.id} rect.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
         #${theme.id} rect.card:hover { opacity: 0.9; }
         #${theme.id} use.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} use.card:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
+        #${theme.id} use.card:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; filter: url(#sofGlow)}
         #${theme.id} .card { pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} .card:hover { opacity: 0.6; }
+        #${theme.id} .card:hover { opacity: 0.9; }
         .subtitle { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 10px; }
         #${theme.id} rect.legend { pointer-events: bounding-box; opacity: 1; }
 
-        #${theme.id} rect.legend:hover { opacity: 0.6; }
+        #${theme.id} rect.legend:hover { opacity: 0.9; }
         #${theme.id} .label { font-family: Helvetica, Arial, sans-serif; }
         #${theme.id} .title {fill: white; font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 9pt;}
         #${theme.id} .legendText {font-size: 9pt;font-family:  Helvetica, Arial, sans-serif; }

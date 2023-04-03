@@ -25,7 +25,10 @@ class RoundButtonItemRenderer : ButtonMaker() {
     override fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val sb = StringBuilder(makeSvgHead(buttons = buttons, heightFactor = 155, defaultHeight = 130, widthFactor = 140, theme = theme))
         sb.append(makeDefs(buttons, theme))
-        sb.append(makeStyles(buttons, theme))
+        val styles =  makeStyles(buttons, theme)
+        if(!theme.isPDF) {
+            sb.append(styles)
+        }
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
@@ -146,9 +149,9 @@ class RoundButtonItemRenderer : ButtonMaker() {
         var str =  """
         <style>
         #${theme.id} circle.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} circle.card:hover { opacity: 0.9; }
+        #${theme.id} circle.card:hover { opacity: 0.9; transition: fill .5s ease-in;}
         #${theme.id} use.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} use.card:hover { opacity: 0.9; }
+        #${theme.id} use.card:hover { opacity: 0.9; stroke-width: 3,stroke: gold; transition: fill .5s ease-in;}
         #${theme.id} .subtitle { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
         #${theme.id} rect.legend { pointer-events: bounding-box; opacity: 1; }
 
@@ -161,7 +164,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
             100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:3px; } 
         }
         
-        #${theme.id} .shape{ stroke:black;}  
+        #${theme.id} .shape{ stroke:gold;}  
         
         $btnGrad
         

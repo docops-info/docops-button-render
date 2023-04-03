@@ -384,7 +384,16 @@ class ButtonRenderImplTest {
 
     @Test
     fun testFontPanelSvc() {
+        testFontPanelSvcInternal(flag = false, "largeFont2")
+    }
+    @Test
+    fun testFontPanelSvcPdf() {
+        testFontPanelSvcInternal(true, "largeFont2pdf")
+    }
+
+    private fun testFontPanelSvcInternal(flag: Boolean, target:String) {
         val pans = panels {
+            isPdf = true
             theme {
                 colorMap {
                     color("#9C1AB1")
@@ -490,8 +499,9 @@ class ButtonRenderImplTest {
             }
         }
         val p = PanelService()
+
         val svg = p.fromPanelToSvg(pans)
-        val f = File("out/largeFont2.svg")
+        val f = File("out/$target.svg")
         f.writeBytes(svg.toByteArray())
     }
 
