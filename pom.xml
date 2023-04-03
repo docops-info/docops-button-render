@@ -22,7 +22,7 @@
 
     <artifactId>docops-button-render</artifactId>
     <groupId>io.docops</groupId>
-    <version>2023.08-SNAP</version>
+    <version>2023.07</version>
     <packaging>jar</packaging>
 
     <name>docops-button-render</name>
@@ -69,7 +69,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
-        <kotlin.version>1.8.10</kotlin.version>
+        <kotlin.version>1.8.20</kotlin.version>
         <junit.version>5.9.2</junit.version>
         <mojo.version>1.6.0</mojo.version>
         <dokka.version>1.6.10</dokka.version>
@@ -251,7 +251,7 @@
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
-                        <phase>site</phase>
+                        <phase>install</phase>
                         <goals>
                             <goal>sign</goal>
                         </goals>
