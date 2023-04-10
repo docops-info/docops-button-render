@@ -82,7 +82,9 @@ class PanelService {
                         font = f,
                         buttonImage = it.buttonImage,
                         line1 = it.line1,
-                        line2 = it.line2
+                        line2 = it.line2,
+                        line1Size = it.line1Size,
+                        line2Size = it.line2Size
                     )
                     localList.add(btn)
                 }

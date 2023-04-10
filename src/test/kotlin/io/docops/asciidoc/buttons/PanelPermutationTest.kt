@@ -106,15 +106,20 @@ class PanelPermutationTest {
 
         //type
         val typeNodeList = xPath.compile("//*[contains(@class, \"category\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        assertEquals(typeNodeList.item(0).textContent, thenItemType)
+        assertEquals(typeNodeList.item(0).textContent.trim(), thenItemType)
 
         //link
         val linkNodeList = xPath.compile("//@href").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
         assertEquals(linkNodeList.item(0).textContent, thenLink)
 
         //description
-        val descriptionNodeList = xPath.compile("//use/title[contains(@class, \"description\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
-        assertEquals(descriptionNodeList.item(0).textContent, thenDescription)
+        val expr = xPath.compile("//path/title[@class='description']")
+        val expr2 = xPath.compile("//use/title[@class='description']")
+        var result = expr.evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        if(result.length==0) {
+            result = expr2.evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
+        }
+        assertEquals(result.item(0).textContent, thenDescription)
 
         //date
         val dateNodeList = xPath.compile("//*[contains(@class, \"date\")]").evaluate(xmlDocument, XPathConstants.NODESET) as NodeList

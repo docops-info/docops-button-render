@@ -165,10 +165,10 @@ abstract class ButtonMaker {
         <circle id="myCircle" cx="0" cy="0"  r="60" class="card" stroke="black" stroke-width="1"/>
         <rect id="legendRect" x="0" y="0" width="10" height="10"  class="legend"/>
         <rect id="mySlimRect" x="0" y="0" width="150" height="150" rx="5" ry="5" class="card"/>
-        <rect id="myLargeRect" fill="#fffefa" x="0" y="0" width="300" height="400" rx="5" ry="5" class="card" filter="url(#dropShadow)">
+        <rect id="myLargeRect" fill="#fffefa" x="0" y="0" width="300" height="400" rx="20" ry="20" class="card" filter="url(#dropShadow)">
             <title class="description"/>
         </rect>
-        <rect id="myLargerHeroRect" x="0" y="0" width="300" height="191" rx="5" ry="5" class="card"/>
+        <rect id="myLargerHeroRect" x="0" y="0" width="300" height="191" rx="20" ry="20" class="card"/>
         <rect id="myPanel" x="0" y="0" width="300" height="30" rx="5" ry="5" class="card"/>
         ${theme.defs}
     </defs>

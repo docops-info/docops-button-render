@@ -55,6 +55,10 @@ class LargeCard : ButtonMaker() {
     }
 
     private fun drawButtonRow(rowCount: Int, row: MutableList<Button>, theme: Theme): String {
+        val topLeft = 10f
+        val topRight = 10f
+        val bottomLeft = 10f
+        val bottomRight = 10f
         val sb = StringBuilder("<svg>")
         var recXpos = 10
         var yPos = 10
@@ -82,13 +86,18 @@ class LargeCard : ButtonMaker() {
                 img?.let {
                     // language=svg
                     imgOrRec = """
-                        <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
+                        <g transform="translate($recXpos,$yPos)">
+                         <path d="${generateRectPathData(300.toFloat(), (191).toFloat(), topLeft, topRight, 0.0F, 0.0F)}" 
+                            class="card" fill="${theme.buttonColor(button)}"/>
+                        </g>
                         <image x="$recXpos" y="$yPos" width="300" height="191" href="${img.ref}"/>""".trimIndent()
                 }
             } else {
                 // language=svg
                 imgOrRec = """
-                    <use x="$recXpos" y="$yPos" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}" xlink:href="#myLargerHeroRect"/>
+                    <g transform="translate($recXpos,$yPos)">
+                    <path d="${generateRectPathData(300.toFloat(), (191).toFloat(), topLeft, topRight, 0.0F, 0.0F)}" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}"/>
+                    </g>
                     """.trimIndent()
 
                 if(button.line1 != null && button.line2 != null) {
@@ -99,7 +108,10 @@ class LargeCard : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" class="card" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>     
+                   <g transform="translate($recXpos,$yPos)">
+                     <path d="${generateRectPathData(300.toFloat(), (400).toFloat(), topLeft, topRight, bottomRight, bottomLeft)}" 
+                        filter="url(#dropShadow)" fill="#ffffff"/>
+                    </g>     
                    $imgOrRec
                 """.trimIndent()
                 )
@@ -108,8 +120,11 @@ class LargeCard : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                    <use x="$recXpos" y="$yPos" class="card shape" xlink:href="#myLargeRect"><title class="description">${button.description.escapeXml()}</title></use>    
-                   $imgOrRec
+                   <g transform="translate($recXpos,$yPos)" id="largePanelId">
+                     <path d="${generateRectPathData(300.toFloat(), (400).toFloat(), 10.0F, 10.0F, 22.0F, 22.0F)}" 
+                        filter="url(#dropShadow)" class="card shape" fill="#ffffff"><title class="description">${button.description.escapeXml()}</title></path>
+                    </g> 
+                    $imgOrRec
                    </a>
                 """.trimIndent()
                 )
@@ -124,18 +139,27 @@ class LargeCard : ButtonMaker() {
             if (theme.isPDF) {
                 // language=svg
                 sb.append("""
-                        <tspan class="title" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</tspan>
-                        <text x="${recXpos + 10}" y="${yPos + 220}" class="category">${button.type.escapeXml()}</text>
+                        <text x="${recXpos + 10}" y="${yPos + 220}" class="title" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</text>
+                        <text x="${recXpos + 10}" y="${yPos + 230}" class="category">${button.type.escapeXml()}</text>
                         <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
                     """.trimIndent())
             } else {
+                val typeStr = addLinebreaks(button.type.escapeXml(),35)
+                val strBuilder = StringBuilder()
+                var dy = 0
+                typeStr.forEachIndexed { index, str ->
+                    if(index > 0) {
+                        dy = 12
+                    }
+                    strBuilder.append("""<tspan x="${recXpos + 10}" dy="$dy">$str</tspan>""")
+                }
                 // language=svg
                 sb.append("""
                         <a xlink:href="${button.link}" href="${button.link}" class="${theme.buttonTextColor(button)}">
                         <text x="${recXpos + 10}" y="${yPos + 220}" class="link" fill="#000" opacity="0.25">${button.title.escapeXml()}</text>
                         <text x="${recXpos + 11}" y="${yPos + 219}" class="title link">${button.title.escapeXml()}</text>
                         </a>
-                        <text x="${recXpos + 10}" y="${yPos + 238}" class="category ${theme.buttonTextColor(button)}">${button.type.escapeXml()}</text>
+                        <text x="${recXpos + 10}" y="${yPos + 234}" class="category ${theme.buttonTextColor(button)}">${strBuilder}</text>
                         <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
                     """.trimIndent())
             }
@@ -174,11 +198,11 @@ class LargeCard : ButtonMaker() {
         var str =  """
             <style>
         #${theme.id} rect.card { pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} rect.card:hover { opacity: 0.9; }
-        #${theme.id} use.card { pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} use.card:hover { opacity: 0.9; }
         #${theme.id} .card { pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} .card:hover { opacity: 0.9; }
+        #${theme.id} .card:hover {  transition: mask-position 2s ease,-webkit-mask-position 2s ease;
+    -webkit-mask-position: 120%;
+    mask-position: 120%;
+    opacity: 1;}
         #${theme.id} .headline { font-family:  Helvetica, Arial, sans-serif; fill: #46494d; }
         #${theme.id} .link { font-family:  Helvetica, Arial, sans-serif; fill: #335D79; }
         #${theme.id} .description { font-size: 9pt; font-family:  Helvetica, Arial, sans-serif; }
@@ -218,20 +242,23 @@ class LargeCard : ButtonMaker() {
                 <defs>${def1}</defs>
                 <style>
                     .oddstyle${button.id} {
-                        font: bold 40px $font;
+                        font: bold ${button.line1Size} $font;
                         fill: $color;
                     }
 
                     .evenstyle${button.id} {
-                        font: bold 40px $font;
+                        font: bold ${button.line2Size} $font;
                         fill: #ffffff;
                     }
                     $color1
                 </style>
                 <g id="Page-1${button.id}" stroke="none" stroke-width="1" fill="#FFFFFF">
                     <rect width="100%" height="100%" fill="none" />
-                    <rect width="100%" height="50%" fill="#FFFFFF"/>
-                    <rect y="95.5" width="100%" height="50%" class="${button.id}_cls" />
+                    <path d="${generateRectPathData(300.toFloat(), (191/2).toFloat(), 10.0F, 10.0F, 0.0F, 0.0F)}" />
+                    
+                    <g transform="translate(0,95.5)">
+                        <path d="M0,00 300,0 300,95.5 0,95.5" class="${button.id}_cls" />
+                    </g>
                     <text text-anchor="middle" x="150" y="67.75" class="oddstyle${button.id}">$line1</text>
                     <text text-anchor="middle" x="150" y="70.75" fill="#000" opacity="0.25" class="oddstyle${button.id}">$line1</text>
                     <text text-anchor="middle" x="150" y="163.25" class="evenstyle${button.id}">$line2</text>
@@ -240,4 +267,15 @@ class LargeCard : ButtonMaker() {
             </svg>
         """.trimIndent()
     }
+}
+fun generateRectPathData(width: Float, height: Float, topLetRound:Float, topRightRound:Float, bottomRightRound:Float, bottomLeftRound:Float): String {
+    return """M 0 $topLetRound 
+ A $topLetRound $topLetRound 0 0 1 $topLetRound 0
+ L ${(width - topRightRound)} 0
+ A $topRightRound $topRightRound 0 0 1 $width $topRightRound
+ L $width ${(height - bottomRightRound)}
+ A $bottomRightRound $bottomRightRound 0 0 1 ${(width - bottomRightRound)} $height
+ L $bottomLeftRound $height
+ A $bottomLeftRound $bottomLeftRound 0 0 1 0 ${(height - bottomLeftRound)}
+ Z"""
 }

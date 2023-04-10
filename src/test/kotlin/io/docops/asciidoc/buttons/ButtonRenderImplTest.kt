@@ -393,7 +393,7 @@ class ButtonRenderImplTest {
 
     private fun testFontPanelSvcInternal(flag: Boolean, target:String) {
         val pans = panels {
-            isPdf = true
+            isPdf = flag
             theme {
                 colorMap {
                     color("#9C1AB1")

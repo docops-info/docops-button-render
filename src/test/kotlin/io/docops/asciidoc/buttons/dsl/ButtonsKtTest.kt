@@ -220,6 +220,8 @@ class ButtonsKtTest {
                 label = "Netflix"
                 type = "Movie Theater"
                 description = "Netflix, Inc. is an American subscription streaming service and production company."
+                line1 = "Netflix"
+                line2 = "Movie Theater"
             }
             large {
                 link = "https://www.facebook.com"
@@ -292,7 +294,7 @@ class ButtonsKtTest {
 
             ButtonType.LARGE_CARD -> {
                 list.largeButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, "", font = it.font)
+                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, "", font = it.font, line1=  it.line1, line2=it.line2 )
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)

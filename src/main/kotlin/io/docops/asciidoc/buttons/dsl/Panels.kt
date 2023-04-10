@@ -47,6 +47,8 @@ class LargeButton : ButtonItem() {
     var buttonImage: ButtonImage? = null
     var line1: String? = null
     var line2: String? = null
+    var line1Size: String = "30px"
+    var line2Size: String = "30px"
 }
 
 @PanelDSL
