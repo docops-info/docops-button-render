@@ -196,13 +196,13 @@ class LargeCard : ButtonMaker() {
         }
         //language=html
         var str =  """
-            <style>
+        <style>
         #${theme.id} rect.card { pointer-events: bounding-box; opacity: 1; }
         #${theme.id} .card { pointer-events: bounding-box; opacity: 1; }
         #${theme.id} .card:hover {  transition: mask-position 2s ease,-webkit-mask-position 2s ease;
-    -webkit-mask-position: 120%;
-    mask-position: 120%;
-    opacity: 1;}
+            -webkit-mask-position: 120%;
+            mask-position: 120%;
+            opacity: 1;}
         #${theme.id} .headline { font-family:  Helvetica, Arial, sans-serif; fill: #46494d; }
         #${theme.id} .link { font-family:  Helvetica, Arial, sans-serif; fill: #335D79; }
         #${theme.id} .description { font-size: 9pt; font-family:  Helvetica, Arial, sans-serif; }
@@ -252,9 +252,9 @@ class LargeCard : ButtonMaker() {
                     }
                     $color1
                 </style>
-                <g id="Page-1${button.id}" stroke="none" stroke-width="1" fill="#FFFFFF">
+                <g id="Page-1${button.id}" stroke="none" stroke-width="1" fill="#FFFFFF" >
                     <rect width="100%" height="100%" fill="none" />
-                    <path d="${generateRectPathData(300.toFloat(), (191/2).toFloat(), 10.0F, 10.0F, 0.0F, 0.0F)}" />
+                    <path  d="${generateRectPathData(300.toFloat(), (191/2).toFloat(), 10.0F, 10.0F, 0.0F, 0.0F)}" />
                     
                     <g transform="translate(0,95.5)">
                         <path d="M0,00 300,0 300,95.5 0,95.5" class="${button.id}_cls" />
