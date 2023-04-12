@@ -18,7 +18,6 @@
 
 package io.docops.asciidoc.buttons.theme
 
-import com.github.ajalt.colormath.model.RGB
 import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
@@ -168,11 +167,11 @@ class Theme {
         """.trimIndent()
     }
 
-    fun genOklchColor(mcolor: String): String {
+    /*fun genOklchColor(mcolor: String): String {
         val color = RGB(mcolor)
         val lch = color.toOklch()
         return "oklch(${lch.l*100}% ${lch.c} ${lch.h})"
-    }
+    }*/
     fun buildGradientDef(button: Button): String {
         val color = buttonColor(button)
         val m = gradientFromColor(color)
