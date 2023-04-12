@@ -81,10 +81,10 @@ class PanelService {
                         date = it.date,
                         font = f,
                         buttonImage = it.buttonImage,
-                        line1 = it.line1,
-                        line2 = it.line2,
-                        line1Size = it.line1Size,
-                        line2Size = it.line2Size
+                        line1 = it.line1?.line,
+                        line2 = it.line2?.line,
+                        line1Size = it.line1?.size,
+                        line2Size = it.line2?.size
                     )
                     localList.add(btn)
                 }

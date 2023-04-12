@@ -97,7 +97,17 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 sb.append(
                    """
                    <a xlink:href="${button.link}" target="$win">
-                       <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}">
+                       <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}"
+                       stroke-width="2" stroke="gold" stroke-dasharray="2000" stroke-dashoffset="2000">
+                       <animate id="p2"
+                         attributeName="stroke-dashoffset"
+                         begin="mouseover"
+                         end="mouseout"
+                         values="2037;0;2037"
+                         dur="5.5s"
+                         calcMode="linear"
+                         repeatCount="indefinite"
+                         />
                            <title class="description">${button.description.escapeXml()}</title>
                        </use>
                        <text class="category" visibility="hidden">${button.type.escapeXml()}</text>

@@ -341,7 +341,7 @@ class ButtonRenderImplTest {
                 title = "Google", link = "https://google.com",
                 description = "Search", authors = mutableListOf("Steve"), type = "Green",
                 date = "11/16/2021",
-                backgroundColor = "red",
+                backgroundColor = "#cc0000",
                 links = links,
                 line1 = "Google",
                 line2 = "Search"
@@ -376,7 +376,7 @@ class ButtonRenderImplTest {
                 title = "Datagrip",
                 type = "Awesome Little Lengthy Description For this tile still has 2 rows?",
                 description = "database",
-                backgroundColor = "red"
+                backgroundColor = "#ff0000"
             )
 
         )
@@ -432,8 +432,8 @@ class ButtonRenderImplTest {
                 author("author1")
                 author("author2")
                 date = "07/20/2022"
-                line1 = "Hello"
-                line2 = "World"
+                line1 = Line("Hello")
+                line2 = Line("World")
             }
             large {
                 link = "https://www.apple.com"
@@ -452,8 +452,8 @@ class ButtonRenderImplTest {
                     italic = true
 
                 }
-                line1 = "Foo"
-                line2 = "Bar"
+                line1 = Line("The Invention of Lying", size = "28px")
+                line2 = Line("Comedy")
             }
             large {
                 link = "https://www.apple.com"
@@ -494,8 +494,8 @@ class ButtonRenderImplTest {
                 author("author1")
                 author("author2")
                 date = "07/15/2022"
-                line1 = "Fizz"
-                line2 = "Buzz"
+                line1 = Line("Our Family Wedding")
+                line2 = Line("Comedy")
             }
         }
         val p = PanelService()

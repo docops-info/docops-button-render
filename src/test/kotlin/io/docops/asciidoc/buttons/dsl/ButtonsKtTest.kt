@@ -16,6 +16,8 @@
 
 package io.docops.asciidoc.buttons.dsl
 
+import com.github.ajalt.colormath.model.Oklab
+import com.github.ajalt.colormath.model.Oklch
 import io.docops.asciidoc.buttons.ButtonRenderImpl
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.theme.*
@@ -29,6 +31,7 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
+import com.github.ajalt.colormath.model.RGB
 
 
 class ButtonsKtTest {
@@ -220,8 +223,8 @@ class ButtonsKtTest {
                 label = "Netflix"
                 type = "Movie Theater"
                 description = "Netflix, Inc. is an American subscription streaming service and production company."
-                line1 = "Netflix"
-                line2 = "Movie Theater"
+                line1 = Line("Netflix")
+                line2 = Line("Movie Theater")
             }
             large {
                 link = "https://www.facebook.com"
@@ -294,7 +297,7 @@ class ButtonsKtTest {
 
             ButtonType.LARGE_CARD -> {
                 list.largeButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, "", font = it.font, line1=  it.line1, line2=it.line2 )
+                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, "", font = it.font, line1=  it.line1?.line, line2=it.line2?.line )
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
@@ -373,6 +376,7 @@ class ButtonsKtTest {
             assert(contains(data, nodeList.item(i).firstChild.textContent))
         }
     }
+
 
     private fun contains(slimButtons: Panels, author: String): Boolean {
         slimButtons.slimButtons.forEach {

@@ -18,6 +18,7 @@
 
 package io.docops.asciidoc.buttons.theme
 
+import com.github.ajalt.colormath.model.RGB
 import io.docops.asciidoc.buttons.dsl.Case
 import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
@@ -162,23 +163,24 @@ class Theme {
         val color = buttonColor(button)
         val m = gradientFromColor(color)
         return """
-          
-        .${button.id}_cls { fill: url(#${button.id}); }   
-         
-        #${button.id} .stop1 {stop-color: ${m["color1"]};}
-
-        #${button.id} .stop2 {stop-color: ${m["color2"]};}
-
-        #${button.id} .stop3 {stop-color: ${m["color3"]};}
-        
+.${button.id}_cls { fill: url(#${button.id}); }
+            
         """.trimIndent()
     }
+
+    fun genOklchColor(mcolor: String): String {
+        val color = RGB(mcolor)
+        val lch = color.toOklch()
+        return "oklch(${lch.l*100}% ${lch.c} ${lch.h})"
+    }
     fun buildGradientDef(button: Button): String {
+        val color = buttonColor(button)
+        val m = gradientFromColor(color)
         return """
            <linearGradient id="${button.id}" x2="1" y2="1">
-            <stop class="stop1" offset="0%"/>
-            <stop class="stop2" offset="50%"/>
-            <stop class="stop3" offset="100%"/>
+            <stop class="stop1" offset="0%" stop-color="${m["color1"]}"/>
+            <stop class="stop2" offset="50%" stop-color="${m["color2"]}"/>
+            <stop class="stop3" offset="100%" stop-color="${m["color3"]}"/>
             </linearGradient> 
         """
     }

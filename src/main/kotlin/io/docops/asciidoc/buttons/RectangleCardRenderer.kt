@@ -22,9 +22,10 @@ class RectangleCardRenderer : ButtonMaker() {
         if(!theme.isPDF) {
             sb.append(styles)
         }
-        sb.append( """
+        sb.append(makeDefs(buttons, theme))
+        /*sb.append( """
     ${createDefs(buttons, theme)}
-    """)
+    """)*/
         var row = 0
         var column = 0
         var count = 0
@@ -43,9 +44,11 @@ class RectangleCardRenderer : ButtonMaker() {
     }
 
     private fun makeStyles(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
+        val btnGrad = StringBuilder()
         buttonList.forEach { buttons ->
             buttons.forEach {
                     item -> theme.buttonTextColor(item)
+                btnGrad.append(theme.buildGradientStyle(item))
             }
         }
         //language=html
@@ -74,7 +77,7 @@ class RectangleCardRenderer : ButtonMaker() {
         @keyframes draw{ 0%{ stroke-dasharray: 140 540; stroke-dashoffset: -474; stroke-width:3px; } 100%{ stroke-dasharray: 760; stroke-dashoffset:0; stroke-width:5px; } }
         .shape{ stroke:black;}
 
-
+        $btnGrad
 """.trimIndent()
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"
@@ -106,7 +109,7 @@ class RectangleCardRenderer : ButtonMaker() {
         <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
         </a>
         <a xlink:href="${button.link}" class="linkText" target="$window">
-        <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" class="mybox shape" rx="12" ry="12" fill="${theme.buttonColor(button)}"/>
+        <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" class="mybox shape ${button.id}_cls" rx="18" ry="18" fill="${theme.buttonColor(button)}"/>
         </a>
         ${contentBox}
         ${makeLinks(itemWidth+15+105, itemHeight + 30, button, window)}

@@ -96,7 +96,7 @@ class LargeCard : ButtonMaker() {
                 // language=svg
                 imgOrRec = """
                     <g transform="translate($recXpos,$yPos)">
-                    <path d="${generateRectPathData(300.toFloat(), (191).toFloat(), topLeft, topRight, 0.0F, 0.0F)}" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}"/>
+                    <path d="${generateRectPathData(300.toFloat(), (191).toFloat(), topLeft, topRight, 0.0F, 0.0F)}" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}" filter="url(#dropShadow)"/>
                     </g>
                     """.trimIndent()
 
@@ -122,7 +122,19 @@ class LargeCard : ButtonMaker() {
                     <a xlink:href="${button.link}" target="$win">
                    <g transform="translate($recXpos,$yPos)" id="largePanelId">
                      <path d="${generateRectPathData(300.toFloat(), (400).toFloat(), 10.0F, 10.0F, 22.0F, 22.0F)}" 
-                        filter="url(#dropShadow)" class="card shape" fill="#ffffff"><title class="description">${button.description.escapeXml()}</title></path>
+                        filter="url(#dropShadow)" class="card shape" fill="#ffffff"
+                        stroke-width="2" stroke="black" stroke-dasharray="2000" stroke-dashoffset="2000"
+                       ><title class="description">${button.description.escapeXml()}</title>
+                        <animate id="p1"
+                             attributeName="stroke-dashoffset"
+                             begin="mouseover"
+                             end="mouseout"
+                             values="2037;0;2037"
+                             dur="2.5s"
+                             calcMode="linear"
+                             repeatCount="indefinite"
+                        />
+                        </path>
                     </g> 
                     $imgOrRec
                    </a>
