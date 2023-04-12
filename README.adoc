@@ -4,7 +4,7 @@
 :group: io.docops
 :artifact: docops-button-render
 :major: 2023
-:minor: .08
+:minor: .09
 :patch:
 :build:
 :extension:
@@ -45,6 +45,10 @@ link:https://search.maven.org/remotecontent?filepath=io/docops/{artifact}/{major
 link:docs/{artifact}.html[]
 
 == History
+
+2023.09 - 2023-04-12::
+* Fixed button edges for PDF
+* Adjusted hover stroke on buttons
 
 2023.08 - 2023-04-03::
 * Conditional PDF Styles
