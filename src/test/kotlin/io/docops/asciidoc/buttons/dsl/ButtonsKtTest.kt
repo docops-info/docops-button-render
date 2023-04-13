@@ -16,12 +16,24 @@
 
 package io.docops.asciidoc.buttons.dsl
 
-import com.github.ajalt.colormath.model.Oklab
-import com.github.ajalt.colormath.model.Oklch
 import io.docops.asciidoc.buttons.ButtonRenderImpl
 import io.docops.asciidoc.buttons.models.Button
-import io.docops.asciidoc.buttons.theme.*
-import org.junit.jupiter.api.Assertions.*
+import io.docops.asciidoc.buttons.theme.BlueTheme
+import io.docops.asciidoc.buttons.theme.ButtonType
+import io.docops.asciidoc.buttons.theme.DarkTheme
+import io.docops.asciidoc.buttons.theme.DarkTheme2
+import io.docops.asciidoc.buttons.theme.GradientStyle
+import io.docops.asciidoc.buttons.theme.GreenTheme
+import io.docops.asciidoc.buttons.theme.Grouping
+import io.docops.asciidoc.buttons.theme.GroupingOrder
+import io.docops.asciidoc.buttons.theme.LightGreyTheme
+import io.docops.asciidoc.buttons.theme.LightPurpleTheme
+import io.docops.asciidoc.buttons.theme.MagentaTheme
+import io.docops.asciidoc.buttons.theme.OrangeTheme
+import io.docops.asciidoc.buttons.theme.PurpleTheme
+import io.docops.asciidoc.buttons.theme.RedTheme
+import io.docops.asciidoc.buttons.theme.Theme
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.w3c.dom.Document
 import org.w3c.dom.NodeList
@@ -31,7 +43,6 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
-import com.github.ajalt.colormath.model.RGB
 
 
 class ButtonsKtTest {
@@ -281,7 +292,15 @@ class ButtonsKtTest {
         when (list.buttonType) {
             ButtonType.BUTTON -> {
                 list.panelButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, mutableListOf(), it.label, date = it.date, font = it.font)
+                    val btn = Button(
+                        it.label,
+                        it.link,
+                        it.description,
+                        mutableListOf(),
+                        it.label,
+                        date = it.date,
+                        font = it.font
+                    )
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
@@ -289,7 +308,16 @@ class ButtonsKtTest {
 
             ButtonType.SLIM_CARD -> {
                 list.slimButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, it.date, font = it.font, gradientStyle = it.gradientStyle)
+                    val btn = Button(
+                        it.label,
+                        it.link,
+                        it.description,
+                        it.authors,
+                        it.type,
+                        it.date,
+                        font = it.font,
+                        gradientStyle = it.gradientStyle
+                    )
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
@@ -297,7 +325,17 @@ class ButtonsKtTest {
 
             ButtonType.LARGE_CARD -> {
                 list.largeButtons.forEach {
-                    val btn = Button(it.label, it.link, it.description, it.authors, it.type, "", font = it.font, line1=  it.line1?.line, line2=it.line2?.line )
+                    val btn = Button(
+                        it.label,
+                        it.link,
+                        it.description,
+                        it.authors,
+                        it.type,
+                        "",
+                        font = it.font,
+                        line1 = it.line1?.line,
+                        line2 = it.line2?.line
+                    )
                     localList.add(btn)
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
