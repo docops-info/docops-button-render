@@ -90,7 +90,7 @@ class LargeCard : ButtonMaker() {
                          <path d="${generateRectPathData(300.toFloat(), (191).toFloat(), topLeft, topRight, 0.0F, 0.0F)}" 
                             class="card" fill="${theme.buttonColor(button)}"/>
                         </g>
-                        <image x="$recXpos" y="$yPos" width="300" height="191" href="${img.ref}"/>""".trimIndent()
+                        <image x="$recXpos" y="$yPos" width="300" height="191" xlink:href="${img.ref}" href="${img.ref}"/>""".trimIndent()
                 }
             } else {
                 // language=svg
