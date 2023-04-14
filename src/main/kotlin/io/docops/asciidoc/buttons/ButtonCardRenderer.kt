@@ -117,7 +117,7 @@ class ButtonCardRenderer : ButtonMaker() {
         #${theme.id} rect.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
         #${theme.id} rect.card:hover { opacity: 0.9; }
         #${theme.id} use.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} use.card:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; filter: url(#sofGlow)}
+        #${theme.id} use.card:hover { opacity: 0.9; -webkit-animation: 0.5s draw linear forwards; animation: 0.5s draw linear forwards; }
         #${theme.id} .card { pointer-events: bounding-box; opacity: 1; }
         #${theme.id} .card:hover { opacity: 0.9; }
         .subtitle { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 10px; }
