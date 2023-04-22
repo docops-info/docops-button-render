@@ -38,7 +38,7 @@ internal class StackedBarMakerTest {
             0.55|Dark Beer |Dark beers typically range in color from amber to dark reddish brown. They are characterized by their smooth malty flavor
         """.trimIndent()
         val s = StackedBarMaker(false)
-        val svg = s.makeStackedBar(strToStackedModels(str), "Demo Color", false)
+        val svg = s.makeStackedBar(strToStackedModels(str), "Demo Color")
         val dir = File("out")
         if(!dir.exists()) {
             dir.mkdir()

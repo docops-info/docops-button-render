@@ -77,7 +77,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 )
                 sb.append(
                     """
-                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="label ${theme.buttonTextColor(button)}">""")
+                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="glass label ${theme.buttonTextColor(button)}">""")
                 val lines = button.title.makeLines()
                 var dy = 0
                 if(lines.size>2) {
@@ -132,7 +132,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                     }
                     // language=svg
                     sb.append(
-                        """<tspan class="title ${theme.buttonTextColor(button)}" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan class="glass title ${theme.buttonTextColor(button)}" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
                         )
                 }
                 sb.append("""
@@ -182,7 +182,10 @@ class RoundButtonItemRenderer : ButtonMaker() {
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"
         }
-        str += """</style>"""
+        str += """
+            
+            ${glassStyle()}
+            </style>""".trimIndent()
         return str
     }
 

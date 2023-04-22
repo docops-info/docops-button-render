@@ -191,6 +191,60 @@ abstract class ButtonMaker {
         return sb.toString()
     }
 
+    fun glassStyle() = """
+        .glass {
+            overflow: hidden;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+            background-image: radial-gradient(circle at center, rgba(0, 167, 225, 0.25), rgba(0, 110, 149, 0.5));
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.75), inset 0 0 0 2px rgba(0, 0, 0, 0.3), inset 0 -6px 6px -3px rgba(0, 129, 174, 0.2);
+            position: relative;
+        }
+
+        .glass:after {
+            content: "";
+            background: rgba(0, 167, 225, 0.2);
+            display: block;
+            position: absolute;
+            z-index: 0;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(3px) saturate(400%);
+            -webkit-backdrop-filter: blur(3px) saturate(400%);
+        }
+
+        .glass:before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: calc(100% - 4px);
+            height: 35px;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+            top: 2px;
+            left: 2px;
+            border-radius: 30px 30px 200px 200px;
+            opacity: 0.7;
+        }
+
+        .glass:hover {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+        }
+
+        .glass:hover:before {
+            opacity: 1;
+        }
+
+        .glass:active {
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.75), inset 0 0 0 2px rgba(0, 0, 0, 0.3), inset 0 -6px 6px -3px rgba(0, 129, 174, 0.2);
+        }
+
+        .glass:active:before {
+            height: 25px;
+        }
+    """.trimIndent()
 
 }
 

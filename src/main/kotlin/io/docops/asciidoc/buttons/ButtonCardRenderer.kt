@@ -67,7 +67,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                   <use x="$recXpos" y="$yPos" class="card" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
+                   <use x="$recXpos" y="$yPos" class="glass" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
                         <title class="description">${button.description.escapeXml()}</title>
                    </use>      
                    <text class="category" visibility="hidden">${button.type.escapeXml()}</text>
@@ -83,9 +83,22 @@ class ButtonCardRenderer : ButtonMaker() {
                 sb.append(
                    """
                    <a xlink:href="${button.link}" target="$win">
-                       <use x="$recXpos" y="$yPos" class="card ${button.id}_cls shape" fill="${theme.buttonColor(button)}" xlink:href="#myPanel">
-                           <title class="description">${button.description.escapeXml()}</title>
-                       </use>
+                       <g transform="translate($recXpos,$yPos)">
+                        <path d="${generateRectPathData(300.toFloat(), (30).toFloat(), 10.0F, 10.0F, 10.0F, 10.0F)}" class="glass card ${button.id}_cls shape" fill="${theme.buttonColor(button)}"
+                       stroke-width="2" stroke="black" stroke-dasharray="2000" stroke-dashoffset="2000">
+                        <title class="description">${button.description.escapeXml()}</title>
+                        <animate id="p1"
+                             attributeName="stroke-dashoffset"
+                             begin="mouseover"
+                             end="mouseout"
+                             values="2037;0;2037"
+                             dur="2.5s"
+                             calcMode="linear"
+                             repeatCount="indefinite"
+                        />
+                        </path>
+                       </g>
+                       
                        <text class="category" visibility="hidden">${button.type.escapeXml()}</text>
                        <text class="author" visibility="hidden">${button.authors.firstOrNull()}</text>
                        <text class="date" visibility="hidden">${button.date.escapeXml()}</text>
@@ -94,7 +107,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 )
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="title ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</a></text>
+                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="glass title ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</a></text>
             """.trimIndent())
             }
 
@@ -141,7 +154,9 @@ class ButtonCardRenderer : ButtonMaker() {
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"
         }
-        str += """</style>"""
+        str += """
+            ${glassStyle()}
+            </style>""".trimMargin()
         return str
     }
 

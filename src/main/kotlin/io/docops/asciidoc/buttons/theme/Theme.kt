@@ -183,7 +183,7 @@ class Theme {
             </linearGradient> 
         """
     }
-    private fun gradientFromColor(color: String): Map<String, String> {
+    fun gradientFromColor(color: String): Map<String, String> {
         val decoded = Color.decode(color)
         val tinted1 = tint(decoded, 0.5)
         val tinted2 = tint(decoded, 0.25)

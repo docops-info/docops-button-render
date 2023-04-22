@@ -16,6 +16,10 @@
 
 package io.docops.asciidoc.stackbar
 
+import io.docops.asciidoc.buttons.dsl.panels
+import io.docops.asciidoc.buttons.generateRectPathData
+import io.docops.asciidoc.buttons.theme.Theme
+import io.docops.asciidoc.buttons.theme.theme
 import io.docops.asciidoc.stackbar.model.StackModel
 import io.docops.asciidoc.utils.addLinebreaks
 import kotlin.math.roundToInt
@@ -44,7 +48,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
         val sb = StringBuilder()
         val width = 800
         sb.append(head(height = 460, width = width))
-        sb.append(defs())
+        sb.append(defs(stackModels))
         sb.append(style(darkMode))
         if (!pdf) {
             sb.append(script())
@@ -52,18 +56,11 @@ class StackedBarMaker(val pdf: Boolean = false) {
         val norm = normalize(stackModels)
         var totalHeight = 20.0
         val x = width * 0.10
-        var mode = "#eeeeee"
-        if(darkMode) {
-            mode = "#444444"
-        }
-        var fill = "#000000"
-        if(darkMode) {
-            fill = "#ffffff"
-        }
+
+        val outerBoxD= generateRectPathData(800f, height = 460f, 20f,20f,20f,20f)
         // language=svg
         sb.append(
-            """
-               <rect x="0" y="0" rx="5" ry="5" fill="$mode" height="95%" width="95%" class="outerbox"/>
+            """<g transform="translate(0,0)"><path d="$outerBoxD" fill="url(#outerBox)" filter="url(#dropShadow)"/></g>
                <text x="${width / 2}" y="24" text-anchor="middle" class="title">$title</text>
             """.trimIndent()
         )
@@ -71,8 +68,9 @@ class StackedBarMaker(val pdf: Boolean = false) {
             val height = 400 * norm[index]
 
             val nextHalf = height / 2 + totalHeight
+            val pathd= generateRectPathData(barWidth.toFloat(), height = height.toFloat(), 2f,2f,2f,2f)
             // language=svg
-            sb.append("""<rect x="$x" y="$totalHeight" width="$barWidth" height="$height" fill="${colors[index % colors.size]}" class="card" onmouseover="show('rect-$index');" onmouseout="hide('rect-$index');"/>""")
+            sb.append("""<g transform="translate($x,$totalHeight)"><path d="$pathd" onmouseover="show('rect-$index');" onmouseout="hide('rect-$index');" filter="url(#dropShadow)" fill="url(#grad-$index)"/></g>""".trimIndent())
             // language=svg
             sb.append("""<text x="${x + 20}" y="$nextHalf" text-anchor="middle" class="label" onmouseover="show('rect-$index');" onmouseout="hide('rect-$index');">${(norm[index] * 100).roundToInt()}%</text>""")
             // language=svg
@@ -108,7 +106,7 @@ class StackedBarMaker(val pdf: Boolean = false) {
                         12
                     }
                     // language=svg
-                    sb.append("""<tspan x="410" dy="$start" fill="$fill">${d}</tspan>""")
+                    sb.append("""<tspan x="410" dy="$start" fill="#000">${d}</tspan>""")
                 }
                 sb.append("""</text>""")
             }
@@ -172,11 +170,66 @@ class StackedBarMaker(val pdf: Boolean = false) {
         rect.outerbox { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.5)); }
         rect.card { pointer-events: bounding-box; opacity: 1; }
         rect.card:hover { opacity: 0.6; }
+        path:hover {
+            fill: none;
+            stroke: gold;
+            pointer-events: all;
+            cursor: pointer;
+        }
     </style>
         """.trimIndent()
     }
 
-    private fun defs(): String {
+    private fun defs(stackModels: List<StackModel>): String {
+        val sb = StringBuilder()
+        val panels  = panels {theme {
+            colorMap {
+                color("#D10093")
+                color("#C98C53")
+                color("#E4D17E")
+                color("#EAC1E6")
+                color("#B46FDE")
+                color("#A9FBE6")
+                color("#F62257")
+                color("#4AC9ED")
+                color("#91DFF4")
+                color("#74AD28")
+                color("#9EFF6E")
+                color("#AF0AEC")
+                color("#851AF2")
+                color("#E23614")
+                color("#1F6627")
+                color("#84D962")
+                color("#A93286")
+                color("#9E0AE5")
+                color("#2FA1F1")
+                color("#C5893C")
+            }
+
+        }
+            button {  }
+        }
+        val theme =  Theme()
+
+
+        stackModels.forEachIndexed { index, stackModel ->
+            val color = panels.buttonTheme.colorMap.colors[index % colors.size]
+            val m = theme.gradientFromColor(color)
+            sb.append("""
+           <linearGradient id="grad-$index" x2="1" y2="1">
+            <stop class="stop1" offset="0%" stop-color="${m["color1"]}"/>
+            <stop class="stop2" offset="50%" stop-color="${m["color2"]}"/>
+            <stop class="stop3" offset="100%" stop-color="${m["color3"]}"/>
+            </linearGradient>""")
+        }
+        val m = theme.gradientFromColor("#eeeeee")
+        sb.append("""
+            <linearGradient id="outerBox" x2="1" y2="1">
+            <stop class="stop1" offset="0%" stop-color="${m["color1"]}"/>
+            <stop class="stop2" offset="50%" stop-color="${m["color2"]}"/>
+            <stop class="stop3" offset="100%" stop-color="${m["color3"]}"/>
+            </linearGradient>""${'"'})
+        """.trimIndent())
         // language=svg
         return """
     <defs>
@@ -187,6 +240,18 @@ class StackedBarMaker(val pdf: Boolean = false) {
         <marker id="arrowhead" viewBox="0 -5 10 10" refX="5" refY="0" markerWidth="4" markerHeight="4" orient="auto">
             <path class="cool" d="M0,-5L10,0L0,5"/>
         </marker>
+        <filter id="dropShadow" height="112%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+            <feOffset dx="1" dy="3" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.2"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        $sb
     </defs>
         """.trimIndent()
     }

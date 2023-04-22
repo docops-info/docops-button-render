@@ -107,7 +107,7 @@ class SlimCardRenderer : ButtonMaker() {
             var downBy = 16
             str.forEach {
                 // language=svg
-                head += """<tspan x="${recXpos+4}" dy="$downBy" class="category$btnTextColor">${it.trim()}</tspan>"""
+                head += """<tspan x="${recXpos+4}" dy="$downBy" class="glass category$btnTextColor">${it.trim()}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -120,8 +120,7 @@ class SlimCardRenderer : ButtonMaker() {
             downBy = 0
 
             titleStr.forEach {
-                title += """<text x="${recXpos+4}" y="${yPos+20}" class="title $btnTextColor" fill="#000" opacity="0.25">${it.trim()}</text>"""
-                title += """<text x="${recXpos+5}" y="${yPos+19}" class="title $btnTextColor">${it.trim()}</text>"""
+                title += """<text x="${recXpos+4}" y="${yPos+20}" class="glass title $btnTextColor" fill="#000" >${it.trim()}</text>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -208,7 +207,10 @@ class SlimCardRenderer : ButtonMaker() {
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"
         }
-        str += """</style>"""
+        str += """
+            
+            ${glassStyle()}
+            </style>""".trimIndent()
         return str
     }
 }

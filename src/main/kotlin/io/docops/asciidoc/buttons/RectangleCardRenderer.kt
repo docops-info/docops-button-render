@@ -82,7 +82,10 @@ class RectangleCardRenderer : ButtonMaker() {
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"
         }
-        str += """</style>"""
+        str += """
+            
+            ${glassStyle()}
+            </style>""".trimIndent()
         return str
     }
 
@@ -106,7 +109,7 @@ class RectangleCardRenderer : ButtonMaker() {
         <g>
         <rect x="$itemWidth" y="$itemHeight" width="$width" class="myrect" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3'/>
         <a xlink:href="${button.link}" class="linkText" target="$window">
-        <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
+        <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="glass ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
         </a>
         <a xlink:href="${button.link}" class="linkText" target="$window">
         <rect x="${itemWidth+10}" y="${itemHeight+10}" height="98" width="98" class="mybox shape ${button.id}_cls" rx="18" ry="18" fill="${theme.buttonColor(button)}"/>
@@ -146,7 +149,7 @@ class RectangleCardRenderer : ButtonMaker() {
             disp = "0${disp}"
         }
         return """
-            <g transform="translate(20,20)">
+            <g class="glass" transform="translate(20,20)">
                 <text x="${x-2 + 29}" y="${y-4 + 43}" text-anchor="middle" alignment-baseline="central" font-family="Helvetica, sans-serif" font-size="60px"  >
                 <a xlink:href="${button.link}" target="$window" fill="${button.numberColor}">$disp</a>
                 </text>

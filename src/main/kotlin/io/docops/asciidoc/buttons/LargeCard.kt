@@ -120,7 +120,7 @@ class LargeCard : ButtonMaker() {
                 sb.append(
                     """
                     <a xlink:href="${button.link}" target="$win">
-                   <g transform="translate($recXpos,$yPos)" id="largePanelId">
+                   <g class="glass" transform="translate($recXpos,$yPos)" id="largePanelId">
                      <path d="${generateRectPathData(300.toFloat(), (400).toFloat(), 10.0F, 10.0F, 22.0F, 22.0F)}" 
                         filter="url(#dropShadow)" class="card shape" fill="#ffffff"
                         stroke-width="2" stroke="black" stroke-dasharray="2000" stroke-dashoffset="2000"
@@ -151,7 +151,7 @@ class LargeCard : ButtonMaker() {
             if (theme.isPDF) {
                 // language=svg
                 sb.append("""
-                        <text x="${recXpos + 10}" y="${yPos + 220}" class="title" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</text>
+                        <text x="${recXpos + 10}" y="${yPos + 220}" class="title glass" text-decoration="underline" fill="#335D79">${button.title.escapeXml()}</text>
                         <text x="${recXpos + 10}" y="${yPos + 230}" class="category">${button.type.escapeXml()}</text>
                         <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">
                     """.trimIndent())
@@ -234,7 +234,9 @@ class LargeCard : ButtonMaker() {
         theme.buttonStyleMap.forEach { (t, u) ->
             str += "#${theme.id} .$u {$t}\n"
         }
-        str += """</style>"""
+        str += """
+            ${glassStyle()}
+            </style>""".trimIndent()
         return str
     }
 
@@ -249,7 +251,7 @@ class LargeCard : ButtonMaker() {
         val def1= theme.buildGradientDef(button)
         //language=svg
         return """
-            <svg id="twotone_${button.id}" x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg class="glass" id="twotone_${button.id}" x="$x" y="$y" width="300px" height="191px" viewBox="0 0 300 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>ICON</title>
                 <defs>${def1}</defs>
                 <style>
@@ -272,22 +274,12 @@ class LargeCard : ButtonMaker() {
                         <path d="M0,00 300,0 300,95.5 0,95.5" class="${button.id}_cls" />
                     </g>
                     <text text-anchor="middle" x="150" y="67.75" class="oddstyle${button.id}">$line1</text>
-                    <text text-anchor="middle" x="150" y="70.75" fill="#000" opacity="0.25" class="oddstyle${button.id}">$line1</text>
                     <text text-anchor="middle" x="150" y="163.25" class="evenstyle${button.id}">$line2</text>
-                    <text text-anchor="middle" x="150" y="166.25" fill="#000" opacity="0.25" class="evenstyle${button.id}">$line2</text>
                 </g>
             </svg>
         """.trimIndent()
     }
 }
 fun generateRectPathData(width: Float, height: Float, topLetRound:Float, topRightRound:Float, bottomRightRound:Float, bottomLeftRound:Float): String {
-    return """M 0 $topLetRound 
- A $topLetRound $topLetRound 0 0 1 $topLetRound 0
- L ${(width - topRightRound)} 0
- A $topRightRound $topRightRound 0 0 1 $width $topRightRound
- L $width ${(height - bottomRightRound)}
- A $bottomRightRound $bottomRightRound 0 0 1 ${(width - bottomRightRound)} $height
- L $bottomLeftRound $height
- A $bottomLeftRound $bottomLeftRound 0 0 1 0 ${(height - bottomLeftRound)}
- Z"""
+    return """M 0 $topLetRound A $topLetRound $topLetRound 0 0 1 $topLetRound 0 L ${(width - topRightRound)} 0 A $topRightRound $topRightRound 0 0 1 $width $topRightRound L $width ${(height - bottomRightRound)} A $bottomRightRound $bottomRightRound 0 0 1 ${(width - bottomRightRound)} $height L $bottomLeftRound $height A $bottomLeftRound $bottomLeftRound 0 0 1 0 ${(height - bottomLeftRound)} Z"""
 }

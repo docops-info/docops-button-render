@@ -17,6 +17,7 @@
 package io.docops.asciidoc.buttons.theme
 
 
+import io.docops.asciidoc.buttons.generateRectPathData
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
@@ -76,12 +77,13 @@ class ThemeTest {
 
     @Test
     fun `generate shades of color`() {
-        val color1= "#447799"
+        val color1= "#b9deae"
         val decoded = Color.decode(color1)
         val shaded = shade(decoded)
         println(shaded)
         val tinted = tint2(decoded)
         println(tinted)
+        println(generateRectPathData(40f,105.93606876004603f,5f,5f,5f,5f))
     }
     private fun shade(color: Color): String {
         val rs: Double = color.red * 0.75
