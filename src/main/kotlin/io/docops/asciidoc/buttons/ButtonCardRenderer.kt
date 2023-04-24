@@ -79,10 +79,15 @@ class ButtonCardRenderer : ButtonMaker() {
                 <text x="$textXPos" y="${yPos+20}" class="title ${theme.buttonTextColor(button)}" text-anchor="middle">${button.title.escapeXml()}</text>
             """.trimIndent())
             } else {
+                var textDeco = "text-decoration: none;"
+                button.font?.let {
+                    textDeco =  "text-decoration: underline;"
+                }
+
                 // language=svg
                 sb.append(
                    """
-                   <a xlink:href="${button.link}" target="$win">
+                   <a xlink:href="${button.link}" target="$win" style='${textDeco}'>
                        <g transform="translate($recXpos,$yPos)">
                         <path d="${generateRectPathData(300.toFloat(), (30).toFloat(), 10.0F, 10.0F, 10.0F, 10.0F)}" class="glass card ${button.id}_cls shape" fill="${theme.buttonColor(button)}"
                        stroke-width="2" stroke="black" stroke-dasharray="2000" stroke-dashoffset="2000">
@@ -107,7 +112,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 )
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a xlink:href="${button.link}" class="glass title ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</a></text>
+                <text x="$textXPos" y="${yPos+20}" text-anchor="middle" class="label"><a style='$textDeco' xlink:href="${button.link}" class="glass title ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</a></text>
             """.trimIndent())
             }
 

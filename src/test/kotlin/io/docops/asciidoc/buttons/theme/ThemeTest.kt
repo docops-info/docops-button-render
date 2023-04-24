@@ -22,6 +22,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 import java.awt.Color
+import java.io.Serializable
+import java.util.*
 
 class ThemeTest {
     @Test
@@ -84,6 +86,9 @@ class ThemeTest {
         val tinted = tint2(decoded)
         println(tinted)
         println(generateRectPathData(40f,105.93606876004603f,5f,5f,5f,5f))
+        val clr = randomColor()
+        println("#${clr.red.toString(16)}${clr.green.toString(16)}${clr.blue.toString(16)}")
+
     }
     private fun shade(color: Color): String {
         val rs: Double = color.red * 0.75
@@ -103,4 +108,21 @@ class ThemeTest {
         val bs = color.blue + (0.5 * (255 - color.blue))
         return  "#${rs.toInt().toString(16)}${gs.toInt().toString(16)}${bs.toInt().toString(16)}"
     }
+    fun randomColor(): Color {
+        val colors =  getRandomColor()
+        return colors
+    }
+
+}
+
+fun getRandomColor(): Color {
+    val random = Random()
+    val RGB = 0xff + 1
+    val colors = IntArray(2)
+    val a = 256
+    val r1 = Math.floor(Math.random() * RGB).toInt()
+    val r2 = Math.floor(Math.random() * RGB).toInt()
+    val r3 = Math.floor(Math.random() * RGB).toInt()
+    return  Color(r1, r2, r3)
+
 }

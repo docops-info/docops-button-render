@@ -104,6 +104,11 @@ class LargeCard : ButtonMaker() {
                     imgOrRec += makeTwoTone(recXpos,yPos, button.line1, button.line2, theme.buttonColor(button), button, theme)
                 }
             }
+            var textDeco = "text-decoration: none;"
+            button.font?.let {
+                textDeco =  "text-decoration: underline;"
+            }
+
             if (theme.isPDF) {
                 // language=svg
                 sb.append(
@@ -116,10 +121,11 @@ class LargeCard : ButtonMaker() {
                 """.trimIndent()
                 )
             } else {
+
                 // language=svg
                 sb.append(
                     """
-                    <a xlink:href="${button.link}" target="$win">
+                    <a xlink:href="${button.link}" target="$win" style='$textDeco'>
                    <g class="glass" transform="translate($recXpos,$yPos)" id="largePanelId">
                      <path d="${generateRectPathData(300.toFloat(), (400).toFloat(), 10.0F, 10.0F, 22.0F, 22.0F)}" 
                         filter="url(#dropShadow)" class="card shape" fill="#ffffff"
@@ -167,7 +173,7 @@ class LargeCard : ButtonMaker() {
                 }
                 // language=svg
                 sb.append("""
-                        <a xlink:href="${button.link}" href="${button.link}" class="${theme.buttonTextColor(button)}">
+                        <a xlink:href="${button.link}" href="${button.link}" class="${theme.buttonTextColor(button)}" style='$textDeco'>
                         <text x="${recXpos + 10}" y="${yPos + 220}" class="link" fill="#000" opacity="0.25">${button.title.escapeXml()}</text>
                         <text x="${recXpos + 11}" y="${yPos + 219}" class="title link">${button.title.escapeXml()}</text>
                         </a>

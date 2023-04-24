@@ -23,7 +23,8 @@ import io.docops.asciidoc.buttons.dsl.Font
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.utils.escapeXml
 import java.awt.Color
-import java.util.UUID
+
+import java.util.*
 
 @ThemeDSL
 class Theme {
@@ -200,6 +201,10 @@ class Theme {
         val gs = color.green + (factor * (255 - color.green))
         val bs = color.blue + (factor * (255 - color.blue))
         return  "#${rs.toInt().toString(16)}${gs.toInt().toString(16)}${bs.toInt().toString(16)}"
+    }
+
+    fun randomColor() {
+        val color = (Math.random() * 16777215).toInt() or (0xFF shl 24)
     }
 }
 

@@ -71,6 +71,11 @@ class SlimCardRenderer : ButtonMaker() {
             } else {
                 "_blank"
             }
+            var textDeco = "text-decoration: none;"
+            button.font?.let {
+                textDeco =  "text-decoration: underline;"
+            }
+
             if(theme.isPDF) {
                 // language=svg
                 sb.append(
@@ -84,7 +89,7 @@ class SlimCardRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """
-                    <a xlink:href="${button.link}" target="$win">
+                    <a xlink:href="${button.link}" target="$win" style='$textDeco'>
                    <use x="$recXpos" y="$yPos" class="$style ${button.id}_cls shape" fill="${theme.buttonColor(button)}" aria-hidden="true" focusable="false" xlink:href="#mySlimRect">
                        <title class="description">${button.description.escapeXml()}</title>
                    </use>

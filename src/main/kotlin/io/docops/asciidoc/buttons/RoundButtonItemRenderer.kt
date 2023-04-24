@@ -63,6 +63,11 @@ class RoundButtonItemRenderer : ButtonMaker() {
             } else {
                 "_blank"
             }
+            var textDeco = "text-decoration: none;"
+            button.font?.let {
+                textDeco =  "text-decoration: underline;"
+            }
+
             if(theme.isPDF) {
                 // language=svg
                 sb.append(
@@ -96,7 +101,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                    """
-                   <a xlink:href="${button.link}" target="$win">
+                   <a xlink:href="${button.link}" target="$win" stylw='$textDeco'>
                        <use x="$recXpos" y="$yPos" xlink:href="#myCircle" class="card ${button.id}_cls" fill="${theme.buttonColor(button)}"
                        stroke-width="2" stroke="gold" stroke-dasharray="2000" stroke-dashoffset="2000">
                        <animate id="p2"
@@ -119,7 +124,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 // language=svg
                 sb.append(
                     """ 
-                <a xlink:href="${button.link}" target="$win">
+                <a xlink:href="${button.link}" target="$win" style='$textDeco'>
                     <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" >""")
                 val lines = button.title.makeLines()
                 var dy = 0
