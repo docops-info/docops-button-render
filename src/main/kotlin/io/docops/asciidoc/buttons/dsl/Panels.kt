@@ -117,7 +117,7 @@ class ButtonTheme {
     var layout: Layout = Layout()
     var font: Font? = null
     var colorMap = ColorMap()
-    var legendOn = true
+    var legendOn = false
     var newWin = true
     var dropShadow = 1
     var gradientStyle : GradientStyle? = null
