@@ -81,7 +81,7 @@ class ButtonCardRenderer : ButtonMaker() {
             } else {
                 var textDeco = "text-decoration: none;"
                 button.font?.let {
-                    textDeco =  "text-decoration: underline;"
+                    if(it.underline){ textDeco =  "text-decoration: underline;"}
                 }
 
                 // language=svg

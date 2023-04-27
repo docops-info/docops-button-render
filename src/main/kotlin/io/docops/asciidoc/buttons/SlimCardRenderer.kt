@@ -73,7 +73,7 @@ class SlimCardRenderer : ButtonMaker() {
             }
             var textDeco = "text-decoration: none;"
             button.font?.let {
-                textDeco =  "text-decoration: underline;"
+                if(it.underline){ textDeco =  "text-decoration: underline;"}
             }
 
             if(theme.isPDF) {
