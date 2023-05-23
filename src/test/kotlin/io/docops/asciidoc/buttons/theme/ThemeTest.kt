@@ -34,6 +34,8 @@ class ThemeTest {
             dropShadow = 1
         }
         assertEquals("bold", t.fontWeight)
+        val clrMap = t.gradientFromColor("#c0c0c0")
+        println(clrMap)
     }
 
     @Test
@@ -79,7 +81,7 @@ class ThemeTest {
 
     @Test
     fun `generate shades of color`() {
-        val color1= "#b9deae"
+        val color1= "#202678"
         val decoded = Color.decode(color1)
         val shaded = shade(decoded)
         println(shaded)
@@ -88,6 +90,7 @@ class ThemeTest {
         println(generateRectPathData(40f,105.93606876004603f,5f,5f,5f,5f))
         val clr = randomColor()
         println("#${clr.red.toString(16)}${clr.green.toString(16)}${clr.blue.toString(16)}")
+
 
     }
     private fun shade(color: Color): String {

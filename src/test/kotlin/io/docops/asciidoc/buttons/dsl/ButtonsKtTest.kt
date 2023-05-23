@@ -64,6 +64,9 @@ class ButtonsKtTest {
                     groupBy = Grouping.TITLE
                     groupOrder = GroupingOrder.DESCENDING
                 }
+                font = font {
+                    color="#000000"
+                }
             }
             panel {
                 link = "https://www.google.com"
@@ -78,7 +81,7 @@ class ButtonsKtTest {
                 link = "https://www.apple.com"
                 label = "Apple"
                 font = font {
-                    color = "#0000ff"
+                    color = "#000000"
                     size = "10pt"
                     underline = true
                 }

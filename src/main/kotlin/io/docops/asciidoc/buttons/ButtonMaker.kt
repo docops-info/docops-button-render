@@ -96,6 +96,22 @@ abstract class ButtonMaker {
             <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="OUTLINE"/>
             <feComposite operator="out" in="OUTLINE" in2="SourceAlpha"/>
         </filter>
+        <filter id="Bevel" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" result="specOut" lighting-color="white">
+                <fePointLight x="-5000" y="-10000" z="20000"/>
+            </feSpecularLighting>
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint" />
+        </filter>
+        <filter id="Bevel2" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" result="specOut" lighting-color="white">
+                <fePointLight x="-5000" y="-10000" z="0000"/>
+            </feSpecularLighting>
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint" />
+        </filter>
         <linearGradient id="linear-gradient-0" gradientUnits="userSpaceOnUse" x1="162.375" y1="40.053" x2="162.375" y2="9.99">
             <stop offset="0" stop-color="#ff857a" stop-opacity="1"/>
             <stop offset="1" stop-color="#f0a2b7" stop-opacity="1"/>
@@ -141,6 +157,7 @@ abstract class ButtonMaker {
             <stop offset="50%" stop-color="red" />
             <stop offset="100%" stop-color="#112266" />
         </linearGradient>
+        
         $linear
         $btnDef
         <circle id="myCircle" cx="0" cy="0"  r="60" class="card" stroke="black" stroke-width="1"/>

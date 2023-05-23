@@ -211,6 +211,7 @@ class ButtonRenderImplTest {
                 legendOn = true
                 font = font {
                     size = "10pt"
+                    color = "#000000"
                 }
             }
             round {

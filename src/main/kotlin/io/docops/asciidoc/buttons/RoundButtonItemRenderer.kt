@@ -46,7 +46,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
     }
 
     private fun drawButtonRow(rowCount: Int, buttons: MutableList<Button>, theme: Theme): String {
-        val sb = StringBuilder("<g>")
+        val sb = StringBuilder("<g filter=\"url(#Bevel2)\">")
         var recXpos = 80
         var yPos = 65
         if(rowCount>0) {
@@ -82,7 +82,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 )
                 sb.append(
                     """
-                <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="glass label ${theme.buttonTextColor(button)}">""")
+                <text filter="url(#Bevel2)" x="$recXpos" y="${yPos + 5}" text-anchor="middle" class="glass label ${theme.buttonTextColor(button)}">""")
                 val lines = button.title.makeLines()
                 var dy = 0
                 if(lines.size>2) {
@@ -93,7 +93,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                         dy = 12
                     }
                     sb.append(
-                        """<tspan class="title" x="$recXpos" dy="$dy">${str.escapeXml()}</tspan>"""
+                        """<tspan class="title" x="$recXpos" dy="$dy" filter="url(#Bevel2)">${str.escapeXml()}</tspan>"""
                     )
                 }
                 sb.append("""</text>""")
@@ -125,7 +125,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
                 sb.append(
                     """ 
                 <a xlink:href="${button.link}" target="$win" style='$textDeco'>
-                    <text x="$recXpos" y="${yPos + 5}" text-anchor="middle" >""")
+                    <text filter="url(#Bevel2)" x="$recXpos" y="${yPos + 5}" text-anchor="middle" >""")
                 val lines = button.title.makeLines()
                 var dy = 0
                 if(lines.size>2) {

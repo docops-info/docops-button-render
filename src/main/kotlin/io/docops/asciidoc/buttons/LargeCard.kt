@@ -59,7 +59,7 @@ class LargeCard : ButtonMaker() {
         val topRight = 10f
         val bottomLeft = 10f
         val bottomRight = 10f
-        val sb = StringBuilder("<svg>")
+        val sb = StringBuilder("<svg filter=\"url(#Bevel2)\">")
         var recXpos = 10
         var yPos = 10
         var dateXpos = 95
@@ -264,23 +264,25 @@ class LargeCard : ButtonMaker() {
                     .oddstyle${button.id} {
                         font: bold ${button.line1Size} $font;
                         fill: $color;
+                        font-family: Arial, Helvetica, sans-serif;
                     }
 
                     .evenstyle${button.id} {
                         font: bold ${button.line2Size} $font;
                         fill: #ffffff;
+                        font-family: Arial, Helvetica, sans-serif;
                     }
                     $color1
                 </style>
                 <g id="Page-1${button.id}" stroke="none" stroke-width="1" fill="#FFFFFF" >
                     <rect width="100%" height="100%" fill="none" />
-                    <path  d="${generateRectPathData(300.toFloat(), (191/2).toFloat(), 10.0F, 10.0F, 0.0F, 0.0F)}" />
+                    <path  filter="url(#Bevel2)" d="${generateRectPathData(300.toFloat(), (191/2).toFloat(), 10.0F, 10.0F, 0.0F, 0.0F)}" />
                     
                     <g transform="translate(0,95.5)">
-                        <path d="M0,00 300,0 300,95.5 0,95.5" class="${button.id}_cls" />
+                        <path d="M0,00 300,0 300,95.5 0,95.5" class="${button.id}_cls" filter="url(#Bevel2)"/>
                     </g>
-                    <text text-anchor="middle" x="150" y="67.75" class="oddstyle${button.id}">$line1</text>
-                    <text text-anchor="middle" x="150" y="163.25" class="evenstyle${button.id}">$line2</text>
+                    <text text-anchor="middle" x="150" y="67.75" class="glass oddstyle${button.id}" filter="url(#Bevel2)">$line1</text>
+                    <text text-anchor="middle" x="150" y="163.25" class="glass evenstyle${button.id}" filter="url(#Bevel2)">$line2</text>
                 </g>
             </svg>
         """.trimIndent()

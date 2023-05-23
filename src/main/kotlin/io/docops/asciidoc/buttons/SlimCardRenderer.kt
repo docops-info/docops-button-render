@@ -51,7 +51,7 @@ class SlimCardRenderer : ButtonMaker() {
         theme.gradientStyle?.let {
             style = it.gradientId.lowercase()
         }
-        val sb = StringBuilder("<g>")
+        val sb = StringBuilder("""<g filter="url(#Bevel2)">""")
         var recXpos = 10
         var yPos = 10
         var dateXpos = 95
@@ -104,7 +104,7 @@ class SlimCardRenderer : ButtonMaker() {
                 (80 - button.authors.size * 16) + 16
             }
             button.authors.forEach {
-                authors.append("""<tspan x="${recXpos+4}" dy="16" class="author $btnTextColor">${it.escapeXml()}</tspan>""")
+                authors.append("""<tspan filter="url(#Bevel2)" x="${recXpos+4}" dy="16" class="glass author $btnTextColor">${it.escapeXml()}</tspan>""")
             }
             val str = addLinebreaks(button.type.escapeXml(),25)
             var head = ""
@@ -112,7 +112,7 @@ class SlimCardRenderer : ButtonMaker() {
             var downBy = 16
             str.forEach {
                 // language=svg
-                head += """<tspan x="${recXpos+4}" dy="$downBy" class="glass category$btnTextColor">${it.trim()}</tspan>"""
+                head += """<tspan filter="url(#Bevel2)" x="${recXpos+4}" dy="$downBy" class="glass category$btnTextColor">${it.trim()}</tspan>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -125,7 +125,7 @@ class SlimCardRenderer : ButtonMaker() {
             downBy = 0
 
             titleStr.forEach {
-                title += """<text x="${recXpos+4}" y="${yPos+20}" class="glass title $btnTextColor" fill="#000" >${it.trim()}</text>"""
+                title += """<text filter="url(#Bevel2)" x="${recXpos+4}" y="${yPos+20}" class="glass title $btnTextColor" fill="#000" >${it.trim()}</text>"""
                 c++
                 if(c>0) {
                     downBy = 16
@@ -138,7 +138,7 @@ class SlimCardRenderer : ButtonMaker() {
             downBy = 16
             descStr.forEach {
                 if(c < 4) {
-                    desc += """<tspan x="${recXpos + 4}" dy="$downBy" class="description $btnTextColor">${it.trim()}</tspan>"""
+                    desc += """<tspan filter="url(#Bevel2)" x="${recXpos + 4}" dy="$downBy" class="glass description $btnTextColor">${it.trim()}</tspan>"""
                     c++
                     if (c > 0) {
                         downBy = 16

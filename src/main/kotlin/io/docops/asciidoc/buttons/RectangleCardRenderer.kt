@@ -54,10 +54,7 @@ class RectangleCardRenderer : ButtonMaker() {
         //language=html
         var str =  """
         <style>
-        #${theme.id} .myrect {
-            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow}));  
-            stroke: #d2ddec;
-        }
+      
         #${theme.id} .mybox:hover {
              -webkit-animation: 0.5s draw linear forwards; 
             animation: 0.5s draw linear forwards;
@@ -106,8 +103,8 @@ class RectangleCardRenderer : ButtonMaker() {
         }
         //language=svg
         return """
-        <g>
-        <rect x="$itemWidth" y="$itemHeight" width="$width" class="myrect" height="$rowHeight" rx="12" ry="12" fill="#ffffff" fill-opacity='0.3'/>
+        <g filter="url(#Bevel2)">
+        <rect x="$itemWidth" y="$itemHeight" width="$width" filter="url(#Bevel2)" stroke="#b2b2b2" class="glass"  height="$rowHeight" rx="15" ry="15" fill="#ffffff" fill-opacity='0.3'/>
         <a xlink:href="${button.link}" class="linkText" target="$window">
         <text x="${itemWidth+15+105}" y="${itemHeight+25}" class="glass ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</text>
         </a>
@@ -150,7 +147,7 @@ class RectangleCardRenderer : ButtonMaker() {
         }
         return """
             <g class="glass" transform="translate(20,20)">
-                <text x="${x-2 + 29}" y="${y-4 + 43}" text-anchor="middle" alignment-baseline="central" font-family="Helvetica, sans-serif" font-size="60px"  >
+                <text x="${x-2 + 29}" y="${y-4 + 43}" text-anchor="middle" alignment-baseline="central" font-family="Helvetica, sans-serif" font-size="60px"  filter="url(#Bevel2)">
                 <a xlink:href="${button.link}" target="$window" fill="${button.numberColor}">$disp</a>
                 </text>
             </g>

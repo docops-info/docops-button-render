@@ -1,0 +1,48 @@
+@startmindmap
+<style>
+  mindmapDiagram {
+  Scale 10
+  LineColor Black
+   node {
+    FontName Roboto
+    Padding 5
+    Margin 15
+   ' RoundCorner 11
+    LineColor black
+    BackgroundColor #8ba8dc-#1751b9
+    FontColor white
+    LineStyle 0
+    LineThickness 1
+    DiagonalCorner 50
+  }
+  rootNode {
+   Padding 10
+   FontStyle  Bold
+}
+  leafNode {
+    Padding 7
+ }
+  .n1 {
+    BackgroundColor #f5ecb2-#ecda65
+    FontStyle  Bold
+    FontColor black
+  }
+  .n2 {
+      BackgroundColor #c880e2-#9201c6
+      FontStyle  Bold
+      FontColor white
+    }
+}
+</style>
+title style with gradient top to bottom direction
+top to bottom direction
+
+* Debian
+** Ubuntu <<n1>>
+*** Linux Mint <<n2>>
+*** Kubuntu <<n2>>
+
+** Raspbian <<n1>>
+*** OSMC <<n2>>
+*** Volumio <<n2>>
+@endmindmap
