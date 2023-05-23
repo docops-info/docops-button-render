@@ -174,8 +174,7 @@ class LargeCard : ButtonMaker() {
                 // language=svg
                 sb.append("""
                         <a xlink:href="${button.link}" href="${button.link}" class="${theme.buttonTextColor(button)}" style='$textDeco'>
-                        <text x="${recXpos + 10}" y="${yPos + 220}" class="link" fill="#000" opacity="0.25">${button.title.escapeXml()}</text>
-                        <text x="${recXpos + 11}" y="${yPos + 219}" class="title link">${button.title.escapeXml()}</text>
+                        <text filter="url(#Bevel2)" x="${recXpos + 10}" y="${yPos + 220}" class="link glass title" fill="#000" >${button.title.escapeXml()}</text>
                         </a>
                         <text x="${recXpos + 10}" y="${yPos + 234}" class="category ${theme.buttonTextColor(button)}">${strBuilder}</text>
                         <text x="${recXpos + 10}" y="${yPos + 240}" class="longdesc">

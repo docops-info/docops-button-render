@@ -147,7 +147,7 @@ class RectangleCardRenderer : ButtonMaker() {
         }
         return """
             <g class="glass" transform="translate(20,20)">
-                <text x="${x-2 + 29}" y="${y-4 + 43}" text-anchor="middle" alignment-baseline="central" font-family="Helvetica, sans-serif" font-size="60px"  filter="url(#Bevel2)">
+                <text x="${x-2 + 29}" y="${y-4 + 47}" text-anchor="middle" alignment-baseline="central" font-family="Helvetica, sans-serif" font-size="60px"  filter="url(#Bevel2)">
                 <a xlink:href="${button.link}" target="$window" fill="${button.numberColor}">$disp</a>
                 </text>
             </g>
