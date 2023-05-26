@@ -154,8 +154,9 @@
         .road {
             stroke-dasharray: 24;
             stroke-dashoffset: 24;
-            animation: dash 35s linear  infinite;
+            animation: dash 60s linear  infinite;
         }
+
         @keyframes dash {
             from {
                 stroke-dashoffset: 1200;
@@ -197,8 +198,16 @@
             }
         }
     </style>
+    <script>
+        var toggleRoad = function () {
+            document.querySelectorAll("[class~='road']").forEach(function (item) {
+                var running = item.style.animationPlayState === 'running'
+                item.style.animationPlayState = running ? 'paused' : 'running';
+            });
+        };
+    </script>
     <!--transform="translate(305,80) rotate(90) #fe0518"-->
-    <rect x="0" y="0" width="80%" height="99%" fill="#cccccc" class="glass" filter="url(#Bevel)" stroke="#b3b3b3" stroke-width="3"/>
+    <rect x="0" y="0" width="80%" height="99%" fill="#bbbbbb" class="glass" filter="url(#Bevel)" stroke="#b3b3b3" stroke-width="3" onclick="toggleRoad();"/>
     <text x="550" y="2" style="font-size:24px;font-weight:normal;font-family:Arial, Helvetica, sans-serif;" fill="purple" class="glass" filter="url(#Bevel2)">
         <tspan x="550" dy="24">Release Planning Tool</tspan>
     </text>
