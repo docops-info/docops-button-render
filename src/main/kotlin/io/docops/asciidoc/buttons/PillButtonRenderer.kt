@@ -116,7 +116,6 @@ class PillButtonRenderer {
         }
         buttons.forEach { button: Button ->
             val color = theme.buttonColor(button)
-            println(startY)
             btns.append(
                 """
                 <a xlink:href="${button.link}" href="${button.link}" target="$win">
@@ -140,8 +139,7 @@ class PillButtonRenderer {
     }
     private fun height(buttons: MutableList<MutableList<Button>>): Int {
         if (buttons.size > 1) {
-            return buttons.size * BUTTON_HEIGHT + 40
-
+            return buttons.size * BUTTON_HEIGHT + (buttons.size * 10)
         }
         return BUTTON_HEIGHT + 20
     }

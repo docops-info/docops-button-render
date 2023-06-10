@@ -140,17 +140,31 @@ class ButtonRenderImplTest {
             buttonType = ButtonType.PILL
             theme {
                 colorMap {
-                    color("#1f3614")
-                    color("#d42435")
-                    color("#7236f5")
-                    color("#28c7aa")
-                    color("#8a3cb2")
-                    color("#0bb6b3")
+                    color("#671853")
+                    color("#60269a")
+                    color("#1f731c")
+                    color("#e8ef72")
+                    color("#895ebe")
+                    color("#0d834c")
+                    color("#9e425d")
+                    color("#8a18cc")
+                    color("#2ed128")
+                    color("#e0b5a0")
+                    color("#92256d")
+                    color("#eb1e53")
+                    color("#12d3ff")
+                    color("#af2c62")
+                    color("#619d69")
+                    color("#a89d6c")
+                    color("#cd9921")
+                    color("#dba0ba")
+                    color("#543234")
+                    color("#134447")
                 }
                 legendOn = false
                 layout {
                     columns = 3
-                    groupBy = Grouping.ORDER
+                    groupBy = Grouping.TYPE
                     groupOrder = GroupingOrder.ASCENDING
                 }
                 font = font {
@@ -170,39 +184,123 @@ class ButtonRenderImplTest {
             }
             pill{
                 link = "https://www.apple.com"
-                label = "#1f3614"
+                label = "#5c5914"
                 date = "06/10/2023"
                 type = "Advertising 0"
             }
             pill{
                 link = "https://www.apple.com"
-                label = "#d42435"
+                label = "#8a11ba"
                 date = "06/09/2023"
                 type = "Advertising 1"
             }
             pill{
                 link = "https://www.apple.com"
-                label = "#7236f5"
+                label = "#389ec7"
                 date = "06/08/2023"
                 type = "Advertising 2"
             }
             pill{
                 link = "https://www.apple.com"
-                label = "#28c7aa"
+                label = "#55f70b"
                 date = "06/07/2023"
                 type = "Advertising 3"
             }
             pill{
                 link = "https://www.apple.com"
-                label = "#8a3cb2"
+                label = "#68b62f"
                 date = "06/06/2023"
                 type = "Advertising 4"
             }
             pill{
                 link = "https://www.apple.com"
-                label = "#0bb6b3"
+                label = "#665f25"
                 date = "06/05/2023"
                 type = "Advertising 0"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#e04da1"
+                date = "06/04/2023"
+                type = "Advertising 1"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#eb2a6e"
+                date = "06/03/2023"
+                type = "Advertising 2"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#03dcc2"
+                date = "06/02/2023"
+                type = "Advertising 3"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#24c8ee"
+                date = "06/01/2023"
+                type = "Advertising 4"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#79e6f9"
+                date = "05/31/2023"
+                type = "Advertising 0"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#772ece"
+                date = "05/30/2023"
+                type = "Advertising 1"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#100eff"
+                date = "05/29/2023"
+                type = "Advertising 2"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#95def4"
+                date = "05/28/2023"
+                type = "Advertising 3"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#157476"
+                date = "05/27/2023"
+                type = "Advertising 4"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#c5c9fb"
+                date = "05/26/2023"
+                type = "Advertising 0"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#f6611b"
+                date = "05/25/2023"
+                type = "Advertising 1"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#3ed811"
+                date = "05/24/2023"
+                type = "Advertising 2"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#b69946"
+                date = "05/23/2023"
+                type = "Advertising 3"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#95cb04"
+                date = "05/22/2023"
+                type = "Advertising 4"
             }
         }
         val p = PanelService()
