@@ -56,6 +56,7 @@ class SlimButton : ButtonItem()
 @PanelDSL
 class PanelButton : ButtonItem()
 
+
 @PanelDSL
 class Button : ButtonItem()
 
@@ -164,6 +165,11 @@ class Panels {
     fun panel(panelButton: PanelButton.() -> Unit) {
         panelButtons.add(PanelButton().apply(panelButton))
         buttonType = ButtonType.BUTTON
+    }
+
+    fun pill(panelButton: PanelButton.() -> Unit) {
+        panelButtons.add(PanelButton().apply(panelButton))
+        buttonType = ButtonType.PILL
     }
 
     fun button(panelButton: PanelButton.() -> Unit) {

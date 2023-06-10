@@ -20,10 +20,7 @@ import io.docops.asciidoc.buttons.dsl.*
 import io.docops.asciidoc.buttons.models.Button
 import io.docops.asciidoc.buttons.models.ButtonImage
 import io.docops.asciidoc.buttons.service.PanelService
-import io.docops.asciidoc.buttons.theme.Theme
-import io.docops.asciidoc.buttons.theme.Grouping
-import io.docops.asciidoc.buttons.theme.GroupingOrder
-import io.docops.asciidoc.buttons.theme.SlimCardsTheme
+import io.docops.asciidoc.buttons.theme.*
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -115,6 +112,105 @@ class ButtonRenderImplTest {
         f.writeBytes(svg.toByteArray())
     }
 
+    @Test
+    fun drawPills() {
+        val b = ButtonRenderImpl()
+        val buttons = buttons()
+        val theme = Theme()
+        theme.typeIs("PILL")
+        theme.groupBy = Grouping.TYPE
+        theme.groupOrder = GroupingOrder.ASCENDING
+        theme.columns = 3
+        theme.colorMap = colors()
+        theme.font.size = "18px"
+
+        val localList = buttons.toMutableList()
+        val svg = b.render(localList, theme)
+        val dir = File("out")
+        if (!dir.exists()) {
+            dir.mkdir()
+        }
+        val f = File("out/pills.svg")
+        f.writeBytes(svg.toByteArray())
+    }
+
+    @Test
+    fun testPillWithPanelService() {
+        val pans  = panels{
+            buttonType = ButtonType.PILL
+            theme {
+                colorMap {
+                    color("#1f3614")
+                    color("#d42435")
+                    color("#7236f5")
+                    color("#28c7aa")
+                    color("#8a3cb2")
+                    color("#0bb6b3")
+                }
+                legendOn = false
+                layout {
+                    columns = 3
+                    groupBy = Grouping.ORDER
+                    groupOrder = GroupingOrder.ASCENDING
+                }
+                font = font {
+                    family = "Arial, Helvetica, sans-serif"
+                    size = "18pt"
+                    color = "#f3f6f4"
+                    spacing = "normal"
+                    bold = false
+                    italic = false
+                    underline = false
+                    vertical = false
+                    case = Case.NONE
+
+                }
+                newWin = false
+                dropShadow = 0
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#1f3614"
+                date = "06/10/2023"
+                type = "Advertising 0"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#d42435"
+                date = "06/09/2023"
+                type = "Advertising 1"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#7236f5"
+                date = "06/08/2023"
+                type = "Advertising 2"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#28c7aa"
+                date = "06/07/2023"
+                type = "Advertising 3"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#8a3cb2"
+                date = "06/06/2023"
+                type = "Advertising 4"
+            }
+            pill{
+                link = "https://www.apple.com"
+                label = "#0bb6b3"
+                date = "06/05/2023"
+                type = "Advertising 0"
+            }
+        }
+        val p = PanelService()
+
+        val svg = p.fromPanelToSvg(pans)
+        val f = File("out/pillsvc.svg")
+        f.writeBytes(svg.toByteArray())
+    }
     @Test
     fun drawLargeButtons() {
         val b = ButtonRenderImpl()
@@ -259,7 +355,7 @@ class ButtonRenderImplTest {
                 type = "Pizza",
                 title = "Hamburger",
                 link = "https://cooking.nytimes.com/recipes/1016595-hamburgers-diner-style",
-                buttonImage = ButtonImage(ref = "archrun1.svg"),
+                buttonImage = ButtonImage(ref = "ayaan.png"),
                 font = font {
                     underline = true
                     color = "#0000ff"

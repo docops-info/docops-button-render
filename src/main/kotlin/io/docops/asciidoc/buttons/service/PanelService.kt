@@ -125,6 +125,22 @@ class PanelService {
                     localList.add(btn)
                 }
             }
+            ButtonType.PILL -> {
+                panel.panelButtons.forEach {
+                    val f: Font? = determineFont(panel, it)
+
+                    val btn = Button(
+                        title = it.label,
+                        link = it.link,
+                        description = it.description,
+                        authors = it.authors,
+                        type = it.label,
+                        date = it.date,
+                        font = f
+                    )
+                    localList.add(btn)
+                }
+            }
         }
         return localList
     }
@@ -201,6 +217,9 @@ class PanelService {
 
             ButtonType.RECTANGLE -> {
                 localList.addAll(panel.rectangleButtons)
+            }
+            ButtonType.PILL -> {
+                localList.addAll(panel.panelButtons)
             }
         }
         return localList

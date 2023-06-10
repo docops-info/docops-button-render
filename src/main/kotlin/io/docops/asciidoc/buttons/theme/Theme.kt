@@ -221,7 +221,7 @@ val LargeCards = theme {
 }
 
 enum class ButtonType {
-    BUTTON, ROUND, LARGE_CARD, SLIM_CARD, RECTANGLE
+    BUTTON, ROUND, LARGE_CARD, SLIM_CARD, RECTANGLE, PILL
 }
 
 enum class Grouping {

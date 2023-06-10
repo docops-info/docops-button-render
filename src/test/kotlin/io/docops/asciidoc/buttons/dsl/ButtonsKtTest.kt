@@ -359,6 +359,21 @@ class ButtonsKtTest {
                 }
                 genFile(localList = localList, theme = theme, fileName = fileName)
             }
+            ButtonType.PILL -> {
+                list.panelButtons.forEach {
+                    val btn = Button(
+                        it.label,
+                        it.link,
+                        it.description,
+                        mutableListOf(),
+                        it.label,
+                        date = it.date,
+                        font = it.font
+                    )
+                    localList.add(btn)
+                }
+                genFile(localList = localList, theme = theme, fileName = fileName)
+            }
         }
     }
 
@@ -432,60 +447,69 @@ class ButtonsKtTest {
 
     @Test
     fun newTest() {
-        val p =
-            panels {
-                theme {
-                    colorMap {
-                        color("#3FD9F7")
-                        color("#8636A4")
-                        color("#CFA118")
-                        color("#2F39CF")
-                        color("#482902")
-                        color("#AD80C2")
-                    }
-                    legendOn = false
-                    layout {
-                        columns = 3
-                        groupBy = Grouping.TYPE
-                        groupOrder = GroupingOrder.ASCENDING
-                    }
-                    font = font {
-                        color = "#000000"
-                        family = "Arial, Helvetica, sans-serif"
-                        size = "8pt"
-                        underline = true
-                    }
-                    dropShadow = 1
-                }
-                panel {
-                    link = "https://www.apple.com"
-                    label = "#3FD9F7"
-                }
-                panel {
-                    link = "https://www.apple.com"
-                    label = "#8636A4"
-                }
-                panel {
-                    link = "https://www.apple.com"
-                    label = "#CFA118"
-                }
-                panel {
-                    link = "https://www.apple.com"
-                    label = "#2F39CF"
-                }
-                panel {
-                    link = "https://www.apple.com"
-                    label = "#482902"
-                }
-                panel {
-                    link = "https://www.apple.com"
-                    label = "#AD80C2"
-                }
-            }
-        renderImage(p, "largeFont", BlueTheme)
+        val p = panelButtonData()
+        renderImage(p, "largePanelFont", BlueTheme)
+    }
+
+    @Test
+    fun pillTest() {
+        val p = panelButtonData()
+        p.buttonType = ButtonType.PILL
+        renderImage(p, "largePillFont", BlueTheme)
     }
 }
 
+fun panelButtonData() :Panels {
+    return panels {
+            theme {
+                colorMap {
+                    color("#3FD9F7")
+                    color("#8636A4")
+                    color("#CFA118")
+                    color("#2F39CF")
+                    color("#482902")
+                    color("#AD80C2")
+                }
+                legendOn = false
+                layout {
+                    columns = 3
+                    groupBy = Grouping.TYPE
+                    groupOrder = GroupingOrder.ASCENDING
+                }
+                font = font {
+                    color = "#000000"
+                    family = "Arial, Helvetica, sans-serif"
+                    size = "8pt"
+                    underline = true
+                }
+                dropShadow = 1
+            }
+            panel {
+                link = "https://www.apple.com"
+                label = "#3FD9F7"
+            }
+            panel {
+                link = "https://www.apple.com"
+                label = "#8636A4"
+            }
+            panel {
+                link = "https://www.apple.com"
+                label = "#CFA118"
+            }
+            panel {
+                link = "https://www.apple.com"
+                label = "#2F39CF"
+            }
+            panel {
+                link = "https://www.apple.com"
+                label = "#482902"
+            }
+            panel {
+                link = "https://www.apple.com"
+                label = "#AD80C2"
+            }
+        }
+}
 fun buttonData(): Panels {
     return panels {
         theme {
