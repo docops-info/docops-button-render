@@ -81,7 +81,7 @@ class LargeCardNext {
 
         val uses = """
             <path id="outerBox" fill="#ffffff"  d="M 0 18.0 A 18.0 18.0 0 0 1 18.0 0 L 282.0 0 A 18.0 18.0 0 0 1 300.0 18.0 L 300.0 382.0 A 18.0 18.0 0 0 1 282.0 400.0 L 18.0 400.0 A 18.0 18.0 0 0 1 0 382.0 Z">
-                        <title>Hello</title>
+                        <title>Title</title>
                     </path>
             <g id="topTextBox">
                 <path fill="#ffffff" d="M 0 18.0 A 18.0 18.0 0 0 1 18.0 0 L 282.0 0 A 18.0 18.0 0 0 1 300.0 18.0 L 300.0 95.5 A 0.0 0.0 0 0 1 300.0 95.5 L 0.0 95.5 A 0.0 0.0 0 0 1 0 95.5 Z"/>
@@ -128,7 +128,7 @@ class LargeCardNext {
                 """
                 <a xlink:href="${button.link}" href="${button.link}" target="$win">
                 <g transform="translate($startX,$startY)" class="basecard ${theme.buttonTextColor(button)}">
-                <use xlink:href="#outerBox" stroke="$color"><title>${button.title.escapeXml()}</title></use>
+                <use xlink:href="#outerBox" stroke="$color"><title class="description">${button.title.escapeXml()}</title></use>
                 <use xlink:href="#topTextBox"/>
                 ${determineLineText(button, color)}
                 ${drawText(button, color)}
@@ -183,7 +183,7 @@ class LargeCardNext {
             titleList.append("""<tspan x="10" dy="14" font-style="italic" font-weight="bold" fill="$color">${it.toString().escapeXml()}</tspan>""")
         }
         return """
-            <g transform="translate(0,190)">
+            <g transform="translate(0,190)" class="title">
             <text x="10" y="20" style="font: 12px Arial, Helvetica, sans-serif;">
                 <tspan font-weight="bold">${button.title.escapeXml()}</tspan>
                 $titleList
