@@ -120,7 +120,7 @@ class LargeCardNext {
 
         var startY = 10
         if (index > 0) {
-            startY = index * 400 + 20
+            startY = index * 410 + 10
         }
         buttons.forEach { button: Button ->
             val color = theme.buttonColor(button)

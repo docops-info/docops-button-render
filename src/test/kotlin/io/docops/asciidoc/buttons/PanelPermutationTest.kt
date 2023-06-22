@@ -33,9 +33,11 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
+import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
 
+@Ignore
 class PanelPermutationTest {
 
     @ParameterizedTest

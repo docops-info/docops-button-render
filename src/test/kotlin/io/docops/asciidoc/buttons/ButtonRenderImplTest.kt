@@ -600,7 +600,7 @@ class ButtonRenderImplTest {
                 }
                 legendOn = false
                 layout {
-                    columns = 4
+                    columns = 2
                     groupBy = Grouping.TYPE
                     groupOrder = GroupingOrder.ASCENDING
                 }

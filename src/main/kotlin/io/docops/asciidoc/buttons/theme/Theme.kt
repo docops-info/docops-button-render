@@ -176,11 +176,28 @@ class Theme {
     fun buildGradientDef(button: Button): String {
         val color = buttonColor(button)
         val m = gradientFromColor(color)
+        val list = mutableListOf<String>()
+        list.addAll(m.values)
+        list.addAll(m.values)
         return """
            <linearGradient id="${button.id}" x2="1" y2="1">
-            <stop class="stop1" offset="0%" stop-color="${m["color1"]}"/>
-            <stop class="stop2" offset="50%" stop-color="${m["color2"]}"/>
-            <stop class="stop3" offset="100%" stop-color="${m["color3"]}"/>
+            <stop class="stop1" offset="0%" stop-color="${m["color1"]}">
+                <animate attributeName="stop-color"
+                    values="${list.joinToString(separator = ";")};" dur="20s" repeatCount="indefinite">
+                </animate>
+            </stop>
+            <stop class="stop2" offset="50%" stop-color="${m["color2"]}">
+                <animate attributeName="stop-color"
+                    values="${list.joinToString(separator = ";")};" dur="20s" repeatCount="indefinite">
+                </animate>
+            </stop>
+            <stop class="stop3" offset="100%" stop-color="${m["color3"]}">
+                <animate attributeName="stop-color"
+                    values="${list.joinToString(separator = ";")};" dur="20s" repeatCount="indefinite">
+                </animate>
+            </stop>
+            <animateTransform attributeName="gradientTransform" type="rotate" values="360 .5 .5;0 .5 .5"
+                 dur="10s" repeatCount="indefinite" />
             </linearGradient> 
         """
     }
