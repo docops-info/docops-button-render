@@ -26,7 +26,7 @@ class SortingTest {
         val p = makePanel(t)
         val b = PanelService()
         val svg = b.fromPanelToSvg(p)
-        ensureOrder("/svg/g/a/text[@class='author']", svg, "Ginny")
+        ensureOrder("/svg/g/g/a/text[@class='author']", svg, "Ginny")
     }
 
     @Test
@@ -38,7 +38,7 @@ class SortingTest {
         val p = makePanel(t)
         val b = PanelService()
         val svg = b.fromPanelToSvg(p)
-        ensureOrder("/svg/g/a/text[@class='author']", svg, "Steve Jobs")
+        ensureOrder("/svg/g/g/a/text[@class='author']", svg, "Steve Jobs")
     }
     @Test
     fun whenSortByDateAscending() {
@@ -49,7 +49,7 @@ class SortingTest {
         val p = makePanel(t)
         val b = PanelService()
         val svg = b.fromPanelToSvg(p)
-        ensureOrder("/svg/g/a/text[@class='date']", svg, "08/01/2022")
+        ensureOrder("/svg/g/g/a/text[@class='date']", svg, "08/01/2022")
     }
     @Test
     fun whenSortByDateDescending() {
@@ -60,7 +60,7 @@ class SortingTest {
         val p = makePanel(t)
         val b = PanelService()
         val svg = b.fromPanelToSvg(p)
-        ensureOrder("/svg/g/a/text[@class='date']", svg, "08/07/2022")
+        ensureOrder("/svg/g/g/a/text[@class='date']", svg, "08/07/2022")
     }
     private fun ensureOrder(path: String, svg: String, compareTo: String) {
         val builderFactory = DocumentBuilderFactory.newInstance()
@@ -81,7 +81,7 @@ class SortingTest {
         val p = makePanel(t)
         val b = PanelService()
         val svg = b.fromPanelToSvg(p)
-        ensureOrder("/svg/g/a/text[@class='date']", svg, "08/07/2022")
+        ensureOrder("/svg/g/g/a/text[@class='date']", svg, "08/07/2022")
     }
     private fun makePanel(t: ButtonTheme) : Panels {
         return panels {

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="50"
+     viewBox="0 0 620 50" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter id="Bevel" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" result="specOut"
+                                lighting-color="white">
+                <fePointLight x="-5000" y="-10000" z="20000"/>
+            </feSpecularLighting>
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"
+                         result="litPaint"/>
+        </filter>
+        <filter id="Bevel2" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" result="specOut"
+                                lighting-color="white">
+                <fePointLight x="-5000" y="-10000" z="0000"/>
+            </feSpecularLighting>
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"
+                         result="litPaint"/>
+        </filter>
+        <style>
+            .glass:after,.glass:before{content:"";display:block;position:absolute}.glass{overflow:hidden;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.7);background-image:radial-gradient(circle at center,rgba(0,167,225,.25),rgba(0,110,149,.5));box-shadow:0 5px 10px rgba(0,0,0,.75),inset 0 0 0 2px rgba(0,0,0,.3),inset 0 -6px 6px -3px rgba(0,129,174,.2);position:relative}.glass:after{background:rgba(0,167,225,.2);z-index:0;height:100%;width:100%;top:0;left:0;backdrop-filter:blur(3px) saturate(400%);-webkit-backdrop-filter:blur(3px) saturate(400%)}.glass:before{width:calc(100% - 4px);height:35px;background-image:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,0));top:2px;left:2px;border-radius:30px 30px 200px 200px;opacity:.7}.glass:hover{text-shadow:0 1px 2px rgba(0,0,0,.9)}.glass:hover:before{opacity:1}.glass:active{text-shadow:0 0 2px rgba(0,0,0,.9);box-shadow:0 3px 8px rgba(0,0,0,.75),inset 0 0 0 2px rgba(0,0,0,.3),inset 0 -6px 6px -3px rgba(0,129,174,.2)}.glass:active:before{height:25px}
+            .raise {pointer-events: bounding-box;opacity: 1;}.raise:hover {stroke: gold;stroke-width: 3px; opacity: 0.9;}.raise
+        </style>
+    </defs>
+        <g>
+        <g transform="translate(10,10)" cursor="pointer">
+            <a xlink:href="https://www.google.com" target="_blank" style='text-decoration: none; font-family:Arial; fill: #fcfcfc;'>
+            <rect x="0" y="0" fill="#29b119" width="300" height="30" class="raise" filter="url(#Bevel2)" rx="10" ry="10"/>
+            <text class="category" visibility="hidden">Google</text>
+            <text class="author" visibility="hidden"/>
+            <text class="date" visibility="hidden">06/05/2022</text>
+            <text x="150" y="20" text-anchor="middle" class="glass">Google</text>
+            </a>
+        </g>
+        <g transform="translate(315,10)" cursor="pointer">
+            <a xlink:href="https://www.apple.com" target="_blank" style='text-decoration: none; font-family:Arial; fill: #fcfcfc;'>
+                <rect x="0" y="0" fill="#d75018" width="300" height="30" class="raise" filter="url(#Bevel2)" rx="10" ry="10"/>
+                <text class="category" visibility="hidden">Apple</text>
+                <text class="author" visibility="hidden"/>
+                <text class="date" visibility="hidden">06/05/2022</text>
+                <text x="150" y="20" text-anchor="middle" class="glass">Apple</text>
+            </a>
+    </g>
+        </g>
+
+</svg>

@@ -42,7 +42,7 @@ class ButtonRenderImpl : ButtonRenderer {
                 RoundButtonItemRenderer().makeButtons(buttons = rows, theme = theme)
             }
             ButtonType.BUTTON -> {
-                ButtonCardRenderer().makeButtons(buttons = rows, theme = theme)
+                ButtonCardRendererNext().makeButtons(buttons = rows, theme = theme)
             }
             ButtonType.LARGE_CARD -> {
                 LargeCardNext().makeButtons(buttons = rows, theme = theme)

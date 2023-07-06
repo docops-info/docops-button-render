@@ -46,7 +46,7 @@ class ButtonCardRenderer : ButtonMaker() {
     }
 
     private fun drawButtonRow(rowCount: Int, buttons: MutableList<Button>, theme: Theme, widthFactor: Int): String {
-        val sb = StringBuilder("<g filter=\"url(#Bevel2)\">")
+        val sb = StringBuilder("<g>")
         var recXpos = 10
         var yPos = 10
         if(rowCount>0) {
@@ -76,7 +76,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 """.trimIndent())
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" filter="url(#Bevel2)" class="title ${theme.buttonTextColor(button)}" text-anchor="middle">${button.title.escapeXml()}</text>
+                <text x="$textXPos" y="${yPos+20}" class="title ${theme.buttonTextColor(button)}" text-anchor="middle">${button.title.escapeXml()}</text>
             """.trimIndent())
             } else {
                 var textDeco = "text-decoration: none;"
@@ -112,7 +112,7 @@ class ButtonCardRenderer : ButtonMaker() {
                 )
                 // language=svg
                 sb.append("""
-                <text x="$textXPos" y="${yPos+20}" filter="url(#Bevel2)" text-anchor="middle" class="label"><a style='$textDeco' xlink:href="${button.link}" class="glass title ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</a></text>
+                <text x="$textXPos" y="${yPos+20}"  text-anchor="middle" class="label"><a style='$textDeco' xlink:href="${button.link}" class="glass title ${theme.buttonTextColor(button)}">${button.title.escapeXml()}</a></text>
             """.trimIndent())
             }
 

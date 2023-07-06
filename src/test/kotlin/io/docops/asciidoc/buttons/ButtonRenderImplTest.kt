@@ -98,10 +98,11 @@ class ButtonRenderImplTest {
         val b = ButtonRenderImpl()
         val buttons = buttons()
         val theme = Theme()
+        theme.scale = 1.5f
         theme.typeIs("BUTTON")
         theme.groupBy = Grouping.TYPE
         theme.groupOrder = GroupingOrder.ASCENDING
-        theme.columns = 2
+        theme.columns = 3
         val localList = buttons.toMutableList()
         val svg = b.render(localList, theme)
         val dir = File("out")
