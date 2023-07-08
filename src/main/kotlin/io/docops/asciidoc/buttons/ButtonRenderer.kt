@@ -36,7 +36,7 @@ class ButtonRenderImpl : ButtonRenderer {
         val rows = toRows(buttons, theme.columns)
         return when (theme.type) {
             ButtonType.SLIM_CARD -> {
-                SlimCardRenderer().makeButtons(buttons = rows, theme= theme)
+                SlimCardRendererNext().makeButtons(buttons = rows, theme= theme)
             }
             ButtonType.ROUND -> {
                 RoundButtonItemRenderer().makeButtons(buttons = rows, theme = theme)

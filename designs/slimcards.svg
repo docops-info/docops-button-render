@@ -14,74 +14,17 @@
   - See the License for the specific language governing permissions and
   - limitations under the License.
   -->
-
 <svg xmlns="http://www.w3.org/2000/svg" width="970" height="500"
      viewBox="0 0 1000 500">
     <filter id="shadow" color-interpolation-filters="sRGB">
         <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
     </filter>
     <defs>
-
-
+        <linearGradient id="first" x2="1" y2="1"><stop class="stop1" offset="0%" stop-color="#fdd9c9"/><stop class="stop2" offset="50%" stop-color="#fcc6ae"/><stop class="stop3" offset="100%" stop-color="#fbb394"/></linearGradient><linearGradient id="second" x2="1" y2="1"><stop class="stop1" offset="0%" stop-color="#f5e7d0"/><stop class="stop2" offset="50%" stop-color="#f0dbb8"/><stop class="stop3" offset="100%" stop-color="#eccfa1"/></linearGradient>
     </defs>
 
     <style>
-        rect.card {
-            pointer-events: bounding-box;
-            opacity: 1;
-        }
-
-        rect.card:hover {
-            opacity: 0.6;
-        }
-
-        .card {
-            filter: url(#shadow);
-        }
-        :root {
-            --main-bg-color: brown;
-            --card-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-        }
-
-        .lineHead {
-            fill: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-
-        .subtitle {
-            fill: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-            font-weight: normal;
-            font-size: 10px;
-        }
-
-        .author {
-            fill: black;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-            font-weight: normal;
-            font-size: 10px;
-        }
-
-        .date {
-            fill: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-            font-weight: normal;
-            font-size: 10px;
-        }
-        #tooltip {
-            background: cornsilk;
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 5px;
-        }
+        .glass {overflow: hidden;color: white;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);background-image: radial-gradient(circle at center, rgba(0, 167, 225, 0.25), rgba(0, 110, 149, 0.5));box-shadow: 0 5px 10px rgba(0, 0, 0, 0.75), inset 0 0 0 2px rgba(0, 0, 0, 0.3), inset 0 -6px 6px -3px rgba(0, 129, 174, 0.2);position: relative;}  .glass:after {content: "";background: rgba(0, 167, 225, 0.2);display: block;position: absolute;z-index: 0;height: 100%;width: 100%;top: 0;left: 0;backdrop-filter: blur(3px) saturate(400%);-webkit-backdrop-filter: blur(3px) saturate(400%);}  .glass:before {content: "";display: block;position: absolute;width: calc(100% - 4px);height: 35px;background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));top: 2px;left: 2px;border-radius: 30px 30px 200px 200px;opacity: 0.7;}  .glass:hover {text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);}  .glass:hover:before {opacity: 1;}  .glass:active {text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);box-shadow: 0 3px 8px rgba(0, 0, 0, 0.75), inset 0 0 0 2px rgba(0, 0, 0, 0.3), inset 0 -6px 6px -3px rgba(0, 129, 174, 0.2);}  .glass:active:before {height: 25px;}
     </style>
     <script>
         function showTooltip(evt, text) {
@@ -97,73 +40,43 @@
             tooltip.style.display = "none";
         }
     </script>
-    <g>
-    <rect x="10" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card">
-        <title>Long Title to show description in html popup.</title>
-    </rect>
-    <text x="12" y="30">
-        <tspan x="14" dy="0" class="lineHead">Welcome Aboard</tspan>
-        <tspan x="14" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-        <tspan x="14" dy="16" class="author">Steve D. Roach</tspan>
-        <tspan x="95" dy="80" class="date">11/16/1971</tspan>
-    </text>
-    <rect x="170" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card">
-        <title>Another title this time shorter</title>
-    </rect>
-    <text x="182" y="30">
-        <tspan x="176" dy="0" class="lineHead">Current Work</tspan>
-        <tspan x="176" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-        <tspan x="176" dy="16" class="author">Steve D. Roach</tspan>
-        <tspan x="255" dy="80" class="date">11/16/1971</tspan>
-    </text>
-    <rect x="330" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card"/>
-    <text x="332" y="30">
-        <tspan x="334" dy="0" class="lineHead">Current Work</tspan>
-        <tspan x="334" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-        <tspan x="334" dy="16" class="author">Steve D. Roach</tspan>
-        <tspan x="415" dy="80" class="date">11/16/1971</tspan>
-    </text>
-    <rect x="490" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5"  class="card"/>
-    <text x="492" y="30">
-        <tspan x="494" dy="0" class="lineHead">Current Work</tspan>
-        <tspan x="494" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-        <tspan x="494" dy="16" class="author">Steve D. Roach</tspan>
-        <tspan x="575" dy="80" class="date">11/16/1971</tspan>
-    </text>
-    <rect x="650" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card"/>
-    <text x="652" y="30">
-        <tspan x="654" dy="0" class="lineHead">Current Work</tspan>
-        <tspan x="654" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-        <tspan x="654" dy="16" class="author">Steve D. Roach</tspan>
-        <tspan x="735" dy="80" class="date">11/16/1971</tspan>
-    </text>
-    <rect x="810" y="10" fill="#aaaaaa" width="150" height="150" rx="5" ry="5"  class="card"/>
-    <text x="812" y="30">
-        <tspan x="814" dy="0" class="lineHead">Current Work</tspan>
-        <tspan x="814" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-        <tspan x="814" dy="16" class="author">Steve D. Roach</tspan>
-        <tspan x="895" dy="80" class="date">11/16/1971</tspan>
-    </text>
-    </g>
-    <g>
 
-        <rect x="10" y="170" fill="#aaaaaa" width="150" height="150" rx="5" ry="5" class="card">
+    <g transform="translate(10,10)">
+        <rect x="0" y="0" fill="#fcfcfc" width="150" height="150" rx="5" ry="5" class="card">
             <title>Long Title to show description in html popup.</title>
         </rect>
-        <foreignObject x="11" y="172" width="148" height="150">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: Arial,Helvetica, sans-serif; font-size: 10px">
-                <p>Hope this text wraps in a nice newline</p>
-            </div>
-        </foreignObject>
-
-        <rect x="170" y="170" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card">
-            <title>Another title this time shorter</title>
-        </rect>
-        <text x="182" y="200">
-            <tspan x="176" dy="0" class="lineHead">Current Work OnGoing Initiatives</tspan>
-            <tspan x="176" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-            <tspan x="176" dy="16" class="author">Steve D. Roach</tspan>
-            <tspan x="255" dy="80" class="date">11/16/1971</tspan>
+        <path fill="url(#first)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+        <text text-anchor="middle" x="75" y="0" class="glass" style="fill: #fcfcfc; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
+            <tspan x="75" dy="12">Current Work</tspan>
+            <tspan x="75" dy="12">OnGoing Initiatives</tspan>
         </text>
+
+        <text x="0" y="38" font-family="Arial,Helvetica, sans-serif" font-size="10">
+            <tspan x="2" dy="12"> The grass is always greener on</tspan>
+            <tspan x="2" dy="12">the other side of the fence</tspan>
+
+        </text>
+        <path transform="translate(0,130)" fill="url(#first)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 145.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
+        <text x="145" y="125" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold; font-style: italic;"  text-anchor="end">Steve Roach</text>
+        <text x="145" y="145" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;"  text-anchor="end">12/12/2023</text>
+    </g>
+    <g transform="translate(170,10)">
+        <rect x="0" y="0" fill="#fcfcfc" width="150" height="150" rx="5" ry="5" class="card">
+            <title>Long Title to show description in html popup.</title>
+        </rect>
+        <path fill="url(#second)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+        <text text-anchor="middle" x="75" y="0" class="glass" style="fill: #fcfcfc; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
+            <tspan x="75" dy="12">Current Work</tspan>
+            <tspan x="75" dy="12">OnGoing Initiatives</tspan>
+        </text>
+
+        <text x="0" y="38" font-family="Arial,Helvetica, sans-serif" font-size="10">
+            <tspan x="2" dy="12"> The grass is always greener on</tspan>
+            <tspan x="2" dy="12">the other side of the fence</tspan>
+
+        </text>
+        <path transform="translate(0,130)" fill="url(#second)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 145.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
+        <text x="145" y="125" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold; font-style: italic;"  text-anchor="end">Steve Roach</text>
+        <text x="145" y="145" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;"  text-anchor="end">12/12/2023</text>
     </g>
 </svg>

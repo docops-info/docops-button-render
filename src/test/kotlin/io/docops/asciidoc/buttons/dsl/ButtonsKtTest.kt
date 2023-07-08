@@ -522,6 +522,7 @@ fun buttonData(): Panels {
                 color = "#000000"
                 bold = false
                 italic = false
+                size = "10px"
             }
             dropShadow = 2
             colorMap {
@@ -566,6 +567,7 @@ fun buttonData(): Panels {
                 "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software and online services. "
             author("Steve Jobs")
             author("Steve Wozniak")
+            date = "08/20/1978"
         }
         slim {
             link = "https://www.microsoft.com"

@@ -80,6 +80,14 @@ abstract class AbstractButtonRenderer {
         <filter id="bottomshine">
             <feGaussianBlur stdDeviation="0.95"/>
         </filter>
+        <filter id="Bevel2" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" result="specOut" lighting-color="white">
+                <fePointLight x="-5000" y="-10000" z="0000"/>
+            </feSpecularLighting>
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint" />
+        </filter>
             """
 
         var str = ""
@@ -90,7 +98,7 @@ abstract class AbstractButtonRenderer {
         val style = """
             <style>
             .glass:after,.glass:before{content:"";display:block;position:absolute}.glass{overflow:hidden;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.7);background-image:radial-gradient(circle at center,rgba(0,167,225,.25),rgba(0,110,149,.5));box-shadow:0 5px 10px rgba(0,0,0,.75),inset 0 0 0 2px rgba(0,0,0,.3),inset 0 -6px 6px -3px rgba(0,129,174,.2);position:relative}.glass:after{background:rgba(0,167,225,.2);z-index:0;height:100%;width:100%;top:0;left:0;backdrop-filter:blur(3px) saturate(400%);-webkit-backdrop-filter:blur(3px) saturate(400%)}.glass:before{width:calc(100% - 4px);height:35px;background-image:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,0));top:2px;left:2px;border-radius:30px 30px 200px 200px;opacity:.7}.glass:hover{text-shadow:0 1px 2px rgba(0,0,0,.9)}.glass:hover:before{opacity:1}.glass:active{text-shadow:0 0 2px rgba(0,0,0,.9);box-shadow:0 3px 8px rgba(0,0,0,.75),inset 0 0 0 2px rgba(0,0,0,.3),inset 0 -6px 6px -3px rgba(0,129,174,.2)}.glass:active:before{height:25px}
-            .raise {pointer-events: bounding-box;opacity: 1;}.raise:hover {stroke: ${theme.strokeColor};stroke-width: 3px; opacity: ${theme.panelOpacity};}
+            .raise {pointer-events: bounding-box;opacity: 1;filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));}.raise:hover {stroke: ${theme.strokeColor};stroke-width: 3px; opacity: ${theme.panelOpacity};}
             $btnGrad
             $str
         </style>
@@ -119,4 +127,36 @@ abstract class AbstractButtonRenderer {
         const val BUTTON_PADDING = 5
         const val  BUTTON_SPACING = 10
     }
+}
+fun generateRectPathData(width: Float, height: Float, topLetRound:Float, topRightRound:Float, bottomRightRound:Float, bottomLeftRound:Float): String {
+    return """M 0 $topLetRound A $topLetRound $topLetRound 0 0 1 $topLetRound 0 L ${(width - topRightRound)} 0 A $topRightRound $topRightRound 0 0 1 $width $topRightRound L $width ${(height - bottomRightRound)} A $bottomRightRound $bottomRightRound 0 0 1 ${(width - bottomRightRound)} $height L $bottomLeftRound $height A $bottomLeftRound $bottomLeftRound 0 0 1 0 ${(height - bottomLeftRound)} Z"""
+}
+
+fun wrapText(text: String, width: Float) : MutableList<String> {
+    val sb = StringBuilder()
+    val words = text.split(" ")
+    var rowText = ""
+    val lines = mutableListOf<String>()
+    words.forEachIndexed { index, s ->
+        if(rowText.length + s.length > width) {
+            lines.add(rowText)
+            rowText = s
+            //close tspan, initialize rowtext and set s
+        } else {
+            rowText += " $s"
+        }
+    }
+    if(rowText.trim().isNotEmpty()) {
+        lines.add(rowText)
+    }
+    return lines
+
+}
+
+fun linesToMultiLineText(lines: MutableList<String>, dy: Int, x: Int): String {
+    var text = StringBuilder()
+    lines.forEach {
+        text.append("""<tspan x="$x" dy="$dy">$it</tspan>""")
+    }
+    return text.toString()
 }
