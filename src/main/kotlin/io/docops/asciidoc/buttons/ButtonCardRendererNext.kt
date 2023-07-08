@@ -43,7 +43,7 @@ class ButtonCardRendererNext : AbstractButtonRenderer() {
         """.trimIndent()
             )
 
-            startX += PillButtonRenderer.BUTTON_WIDTH + BUTTON_PADDING
+            startX += BUTTON_WIDTH + BUTTON_PADDING
 
         }
         return btns.toString()

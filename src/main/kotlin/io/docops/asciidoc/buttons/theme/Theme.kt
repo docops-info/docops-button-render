@@ -33,6 +33,7 @@ class Theme {
     }
     var scale: Float = 1.0f
     var strokeColor = "gold"
+    var panelOpacity = 0.9f
 
     val id = "DocOps-${UUID.randomUUID()}"
     var columns = 3

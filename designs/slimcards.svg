@@ -21,41 +21,7 @@
         <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
     </filter>
     <defs>
-        <filter id="dropShadow" height="130%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
-            <feOffset dx="5" dy="5" result="offsetblur"/>
-            <feComponentTransfer>
-                <feFuncA type="linear" slope="0.9"/>
-            </feComponentTransfer>
-            <feMerge>
-                <feMergeNode/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-        </filter>
-        <filter id="filter">
-            <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="OUTLINE"/>
-            <feComposite operator="out" in="OUTLINE" in2="SourceAlpha"/>
-        </filter>
-        <radialGradient id="myGradient">
-            <stop offset="10%" stop-color="#fbc1cc" />
-            <stop offset="50%" stop-color="#fa99b2" />
-        </radialGradient>
-        <radialGradient id="myGradient2">
-            <stop offset="10%" stop-color="#1fe4f5" />
-            <stop offset="95%" stop-color="#3fbafe" />
-        </radialGradient>
-        <radialGradient id="myGradient3">
-            <stop offset="10%" stop-color="#76b2fe" />
-            <stop offset="95%" stop-color="#b69efe" />
-        </radialGradient>
-        <radialGradient id="myGradient4">
-            <stop offset="10%" stop-color="#60efbc" />
-            <stop offset="95%" stop-color="#58d5c9" />
-        </radialGradient>
-        <radialGradient id="myGradient5">
-            <stop offset="10%" stop-color="#f588d8" />
-            <stop offset="95%" stop-color="#c0a3e5" />
-        </radialGradient>
+
 
     </defs>
 
@@ -132,7 +98,7 @@
         }
     </script>
     <g>
-    <rect x="10" y="10" fill="url(#myGradient)" width="150" height="150" rx="5" ry="5" class="card">
+    <rect x="10" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card">
         <title>Long Title to show description in html popup.</title>
     </rect>
     <text x="12" y="30">
@@ -141,7 +107,7 @@
         <tspan x="14" dy="16" class="author">Steve D. Roach</tspan>
         <tspan x="95" dy="80" class="date">11/16/1971</tspan>
     </text>
-    <rect x="170" y="10" fill="url(#myGradient2)" width="150" height="150" rx="5" ry="5" class="card">
+    <rect x="170" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card">
         <title>Another title this time shorter</title>
     </rect>
     <text x="182" y="30">
@@ -150,28 +116,28 @@
         <tspan x="176" dy="16" class="author">Steve D. Roach</tspan>
         <tspan x="255" dy="80" class="date">11/16/1971</tspan>
     </text>
-    <rect x="330" y="10" fill="url(#myGradient3)" width="150" height="150" rx="5" ry="5" class="card"/>
+    <rect x="330" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card"/>
     <text x="332" y="30">
         <tspan x="334" dy="0" class="lineHead">Current Work</tspan>
         <tspan x="334" dy="16" class="subtitle">OnGoing Initiatives</tspan>
         <tspan x="334" dy="16" class="author">Steve D. Roach</tspan>
         <tspan x="415" dy="80" class="date">11/16/1971</tspan>
     </text>
-    <rect x="490" y="10" fill="url(#myGradient4)" width="150" height="150" rx="5" ry="5"  class="card"/>
+    <rect x="490" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5"  class="card"/>
     <text x="492" y="30">
         <tspan x="494" dy="0" class="lineHead">Current Work</tspan>
         <tspan x="494" dy="16" class="subtitle">OnGoing Initiatives</tspan>
         <tspan x="494" dy="16" class="author">Steve D. Roach</tspan>
         <tspan x="575" dy="80" class="date">11/16/1971</tspan>
     </text>
-    <rect x="650" y="10" fill="url(#myGradient5)" width="150" height="150" rx="5" ry="5" class="card"/>
+    <rect x="650" y="10" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card"/>
     <text x="652" y="30">
         <tspan x="654" dy="0" class="lineHead">Current Work</tspan>
         <tspan x="654" dy="16" class="subtitle">OnGoing Initiatives</tspan>
         <tspan x="654" dy="16" class="author">Steve D. Roach</tspan>
         <tspan x="735" dy="80" class="date">11/16/1971</tspan>
     </text>
-    <rect x="810" y="10" fill="url(#myGradient)" width="150" height="150" rx="5" ry="5"  class="card"/>
+    <rect x="810" y="10" fill="#aaaaaa" width="150" height="150" rx="5" ry="5"  class="card"/>
     <text x="812" y="30">
         <tspan x="814" dy="0" class="lineHead">Current Work</tspan>
         <tspan x="814" dy="16" class="subtitle">OnGoing Initiatives</tspan>
@@ -180,16 +146,17 @@
     </text>
     </g>
     <g>
-        <rect x="10" y="170" fill="url(#myGradient2)" width="150" height="150" rx="5" ry="5" class="card">
+
+        <rect x="10" y="170" fill="#aaaaaa" width="150" height="150" rx="5" ry="5" class="card">
             <title>Long Title to show description in html popup.</title>
         </rect>
-        <text x="12" y="200">
-            <tspan x="14" dy="0" class="lineHead">Welcome Aboard</tspan>
-            <tspan x="14" dy="16" class="subtitle">OnGoing Initiatives</tspan>
-            <tspan x="14" dy="16" class="author">Steve D. Roach</tspan>
-            <tspan x="95" dy="80" class="date">11/16/1971</tspan>
-        </text>
-        <rect x="170" y="170" fill="url(#myGradient3)" width="150" height="150" rx="5" ry="5" class="card">
+        <foreignObject x="11" y="172" width="148" height="150">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: Arial,Helvetica, sans-serif; font-size: 10px">
+                <p>Hope this text wraps in a nice newline</p>
+            </div>
+        </foreignObject>
+
+        <rect x="170" y="170" fill="#cccccc" width="150" height="150" rx="5" ry="5" class="card">
             <title>Another title this time shorter</title>
         </rect>
         <text x="182" y="200">
