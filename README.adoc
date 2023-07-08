@@ -46,6 +46,9 @@ link:docs/{artifact}.html[]
 
 == History
 
+2023.16 - 2023-07-08::
+* Pill Button updates
+
 2023.15 - 2023-06-22::
 * Pill Button
 * Large Next
