@@ -36,7 +36,7 @@ class SlimCardRendererNext : AbstractButtonRenderer() {
         """
         <g transform="translate($startX,$startY)" cursor="pointer">
         <a xlink:href="${button.link}" target="$win" style='text-decoration: none; font-family:Arial; fill: #fcfcfc;'>
-        <rect x="0" y="0" fill="#fcfcfc" width="$BUTTON_HEIGHT" height="$BUTTON_HEIGHT" rx="5" ry="5" class="raise" stroke="#000000">
+        <rect x="0" y="0" fill="#fcfcfc" width="$BUTTON_HEIGHT" height="$BUTTON_HEIGHT" rx="5" ry="5"  stroke="#000000" class="raise">
             <title>${button.title.escapeXml()}</title>
         </rect>
         <path class="${button.id}_cls"  d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
@@ -47,7 +47,7 @@ class SlimCardRendererNext : AbstractButtonRenderer() {
         <text x="0" y="38" class="${theme.buttonTextColor(button)}">
             $lines
         </text>
-        <path class="${button.id}_cls"  transform="translate(0,125)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 144.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
+        <path class="${button.id}_cls" transform="translate(0,125)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 144.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
         <text x="145" y="135" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold; font-style: italic;"  text-anchor="end">${authorsToTSpans(button.authors, "145")}</text>
         <text x="145" y="145" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;"  text-anchor="end">${button.date}</text>
         </a>
