@@ -121,6 +121,9 @@ class ButtonTheme {
     var legendOn = false
     var newWin = true
     var dropShadow = 1
+    var scale: Float = 1.0f
+    var strokeColor = "gold"
+    var panelOpacity = 0.9f
     var gradientStyle : GradientStyle? = null
     fun layout(layout: Layout.() -> Unit) {
         this.layout = Layout().apply(layout)

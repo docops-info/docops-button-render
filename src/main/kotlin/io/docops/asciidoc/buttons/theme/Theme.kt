@@ -31,9 +31,6 @@ class Theme {
     companion object {
         private val fontWeights = listOf("bold", "normal", "italic")
     }
-    var scale: Float = 1.0f
-    var strokeColor = "gold"
-    var panelOpacity = 0.9f
 
     val id = "DocOps-${UUID.randomUUID()}"
     var columns = 3
@@ -73,6 +70,10 @@ class Theme {
     var isPDF = false
     var defs = ""
     var dropShadow = 1
+    var scale: Float = 1.0f
+    var strokeColor = "gold"
+    var panelOpacity = 0.9f
+
     var font: Font = Font()
 
     var typeMap = mutableMapOf<String, String>()

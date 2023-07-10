@@ -162,6 +162,9 @@ class PanelService {
         theme.legendOn = panel.buttonTheme.legendOn
         theme.newWin = panel.buttonTheme.newWin
         theme.dropShadow = panel.buttonTheme.dropShadow
+        theme.scale = panel.buttonTheme.scale
+        theme.panelOpacity = panel.buttonTheme.panelOpacity
+        theme.strokeColor = panel.buttonTheme.strokeColor
         panel.buttonTheme.font?.let {
             theme.font = it
         }

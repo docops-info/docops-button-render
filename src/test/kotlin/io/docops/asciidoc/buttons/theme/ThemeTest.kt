@@ -29,9 +29,11 @@ class ThemeTest {
     @Test
     fun testFontWeight() {
         val t = theme {
+            scale = "1.2".toFloat()
             columns = 5
             fontWeight = "bold"
             dropShadow = 1
+
         }
         assertEquals("bold", t.fontWeight)
         val clrMap = t.gradientFromColor("#c0c0c0")
