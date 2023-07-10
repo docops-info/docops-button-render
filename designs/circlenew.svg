@@ -1,32 +1,65 @@
-<svg width="120" height="120" version="1.1" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" width="550"
+     height="400">
+
     <defs>
+        <radialGradient id="blueCircle" gradientUnits="objectBoundingBox" fx="50%" fy="20%">
+            <stop offset="0%" style="stop-color:#FFFFFF" />
+            <stop offset="30%" style="stop-color:#f0afd1" />
+            <stop offset="40%" style="stop-color:#e987ba" />
+            <stop offset="100%" style="stop-color:#e25fa3" />
+        </radialGradient>
+
+        <radialGradient id="redCircle" gradientUnits="objectBoundingBox" fx="50%" fy="20%">
+            <stop offset="0%" style="stop-color:#FFFFFF" />
+            <stop offset="30%" style="stop-color:#89b485" />
+            <stop offset="40%" style="stop-color:#4e8f48" />
+            <stop offset="100%" style="stop-color:#136a0b" />
+        </radialGradient>
+        <radialGradient id="orangeCircle" gradientUnits="objectBoundingBox" fx="50%" fy="20%">
+            <stop offset="0%" style="stop-color:#FFFFFF" />
+            <stop offset="30%" style="stop-color:#f3bc8a" />
+            <stop offset="40%" style="stop-color:#ed9b4f" />
+            <stop offset="100%" style="stop-color:#e77a15" />
+        </radialGradient>
+        <filter id="Bevel2" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" result="specOut"
+                                lighting-color="white">
+                <fePointLight x="-5000" y="-10000" z="0000"/>
+            </feSpecularLighting>
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"
+                         result="litPaint"/>
+        </filter>
         <style>
-            .edge {
-                filter: drop-shadow(0 2mm 2mm #66557c);
+            .raise {
+                pointer-events: bounding-box;
+                opacity: 1;
+                filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
             }
-            .circleedge {
-                filter: drop-shadow(0 2mm 2mm #a899bd);
-            }
-            .odd {
-                font-size:8px;
-                font-family: Arial, sans-serif;
-            }
-            .even {
-                font-size:8px;
-                font-family: Arial, sans-serif;
+
+            .raise:hover {
+                stroke: gold;
+                stroke-width: 3px;
+                opacity: 0.9;
             }
         </style>
+        <circle id="3DBlueCircle" cx="0" cy="0" r="80" style="fill:url(#blueCircle)" />
     </defs>
-    <g>
-             aria-label='Below: + +'>
-            <circle cx="60" cy="60" r="50" fill="#0000ff" class="circleedge"/>
-            <circle cx="60" cy="60" r="17" fill="url(#grad$index)" class="circleedge"/>
-            <line x1="0" x2="0" y1="-20" y2="-80" stroke="$color" stroke-width="2"/>
-        <circle cx="0" cy="-80" r="3" fill="$color" />
-            <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="white" font-family="Verdana"
-                  font-size="12">
-                <tspan x="50%" dy="-10">Line 1</tspan>
-                <tspan x="50%" dy="10">Line 2</tspan>
-            </text>
+
+    <g transform="translate(100, 100)" cursor="pointer">
+        <use xlink:href="#3DBlueCircle" class="raise"/>
+        <text x="-10" y="-10" font-family="Arial" fill="#fcfcfc"> Line1</text>
+    </g>
+
+    <g transform="translate(275, 100)" cursor="pointer">
+        <circle id="3DRedCircle" cx="0" cy="0" r="80" style="fill:url(#redCircle)"  class="raise"/>
+        <text x="-10" y="-10" font-family="Arial" fill="#fcfcfc"> Line1</text>
+    </g>
+
+    <g transform="translate(450, 100)" cursor="pointer">
+        <circle id="3DRedCircle" cx="0" cy="0" r="80" style="fill:url(#orangeCircle)" class="raise"/>
+        <text x="-10" y="-10" font-family="Arial" fill="#fcfcfc"> Line1</text>
     </g>
 </svg>

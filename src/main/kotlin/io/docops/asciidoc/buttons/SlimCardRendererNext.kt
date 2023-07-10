@@ -41,7 +41,7 @@ class SlimCardRendererNext : AbstractButtonRenderer() {
         </rect>
         <path filter="url(#buttonBlur)" class="${button.id}_cls"  d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
         <path fill="url(#overlayGrad)" class="${button.id}_cls"  d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
-        <text text-anchor="middle" x="75" y="0" class="glass" style="fill: #fcfcfc; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
+        <text text-anchor="middle" x="75" y="8" class="glass" style="fill: #fcfcfc; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
             $title
         </text>
         <rect id="buttontop" x="4" y="3" width="140" height="12" ry="18" rx="18" fill="url(#topshineGrad)" filter="url(#topshineBlur)"/>
