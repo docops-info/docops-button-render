@@ -20,6 +20,32 @@
         <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
     </filter>
     <defs>
+        <filter id="buttonBlur">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+            <feOffset in="blur" dy="2" result="offsetBlur"/>
+            <feMerge>
+                <feMergeNode in="offsetBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <linearGradient id="overlayGrad" gradientUnits="userSpaceOnUse" x1="95" y1="-20" x2="95" y2="70">
+            <stop offset="0" stop-color="#000000" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+        </linearGradient>
+
+        <filter id="topshineBlur">
+            <feGaussianBlur stdDeviation="0.93"/>
+        </filter>
+
+        <linearGradient id="topshineGrad" gradientUnits="userSpaceOnUse" x1="95" y1="0" x2="95" y2="40">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+
+        <filter id="bottomshine">
+            <feGaussianBlur stdDeviation="0.95"/>
+        </filter>
         <linearGradient id="first" x2="1" y2="1"><stop class="stop1" offset="0%" stop-color="#fdd9c9"/><stop class="stop2" offset="50%" stop-color="#fcc6ae"/><stop class="stop3" offset="100%" stop-color="#fbb394"/></linearGradient><linearGradient id="second" x2="1" y2="1"><stop class="stop1" offset="0%" stop-color="#f5e7d0"/><stop class="stop2" offset="50%" stop-color="#f0dbb8"/><stop class="stop3" offset="100%" stop-color="#eccfa1"/></linearGradient>
     </defs>
 
@@ -42,10 +68,11 @@
     </script>
 
     <g transform="translate(10,10)">
-        <rect x="0" y="0" fill="#fcfcfc" width="150" height="150" rx="5" ry="5" class="card">
+        <rect x="0" y="0" fill="#fcfcfc" width="150" height="150" rx="5" ry="5" class="card" stroke="#000000">
             <title>Long Title to show description in html popup.</title>
         </rect>
-        <path fill="url(#first)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+        <path filter="url(#buttonBlur)" fill="url(#first)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+        <path fill="url(#overlayGrad)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
         <text text-anchor="middle" x="75" y="0" class="glass" style="fill: #fcfcfc; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
             <tspan x="75" dy="12">Current Work</tspan>
             <tspan x="75" dy="12">OnGoing Initiatives</tspan>
@@ -54,9 +81,11 @@
         <text x="0" y="38" font-family="Arial,Helvetica, sans-serif" font-size="10">
             <tspan x="2" dy="12"> The grass is always greener on</tspan>
             <tspan x="2" dy="12">the other side of the fence</tspan>
-
         </text>
-        <path transform="translate(0,130)" fill="url(#first)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 145.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
+        <rect id="buttontop" x="4" y="3" width="140" height="12" ry="18" rx="18" fill="url(#topshineGrad)" filter="url(#topshineBlur)"/>
+        <rect id="buttonbottom" x="4" y="26" width="140" height="4" fill="#ffffff" ry="18" rx="18" fill-opacity="0.3" filter="url(#bottomshine)"/>
+
+        <path transform="translate(0,125)" fill="url(#first)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 145.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
         <text x="145" y="125" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold; font-style: italic;"  text-anchor="end">Steve Roach</text>
         <text x="145" y="145" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;"  text-anchor="end">12/12/2023</text>
     </g>
@@ -64,7 +93,8 @@
         <rect x="0" y="0" fill="#fcfcfc" width="150" height="150" rx="5" ry="5" class="card">
             <title>Long Title to show description in html popup.</title>
         </rect>
-        <path fill="url(#second)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+        <path filter="url(#buttonBlur)" fill="url(#second)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+        <path  fill="url(#overlayGrad)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
         <text text-anchor="middle" x="75" y="0" class="glass" style="fill: #fcfcfc; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
             <tspan x="75" dy="12">Current Work</tspan>
             <tspan x="75" dy="12">OnGoing Initiatives</tspan>
@@ -75,8 +105,33 @@
             <tspan x="2" dy="12">the other side of the fence</tspan>
 
         </text>
-        <path transform="translate(0,130)" fill="url(#second)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 145.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
+        <rect id="buttontop" x="4" y="3" width="140" height="12" ry="18" rx="18" fill="url(#topshineGrad)" filter="url(#topshineBlur)"/>
+        <rect id="buttonbottom" x="4" y="26" width="140" height="4" fill="#ffffff" ry="18" rx="18" fill-opacity="0.3" filter="url(#bottomshine)"/>
+
+        <path transform="translate(0,125)" fill="url(#second)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 145.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
         <text x="145" y="125" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold; font-style: italic;"  text-anchor="end">Steve Roach</text>
         <text x="145" y="145" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;"  text-anchor="end">12/12/2023</text>
+    </g>
+    <g transform="translate(330,10)">
+        <rect x="0" y="0" fill="#fcfcfc" width="150" height="150" rx="5" ry="5" class="card" stroke="#000000">
+            <title>Long Title to show description in html popup.</title>
+        </rect>
+        <path filter="url(#buttonBlur)"  fill="url(#first)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+        <path id="buttongrad"  fill="url(#overlayGrad)" d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
+
+        <text text-anchor="middle" x="75" y="0" class="glass" style="fill: #000000; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
+            <tspan x="75" dy="12">Current Work</tspan>
+            <tspan x="75" dy="12">OnGoing Initiatives</tspan>
+        </text>
+        <rect id="buttontop" x="4" y="3" width="140" height="12" ry="18" rx="18" fill="url(#topshineGrad)" filter="url(#topshineBlur)"/>
+        <rect id="buttonbottom" x="4" y="26" width="140" height="4" fill="#ffffff" ry="18" rx="18" fill-opacity="0.3" filter="url(#bottomshine)"/>
+        <text x="0" y="38" font-family="Arial,Helvetica, sans-serif" font-size="10">
+            <tspan x="2" dy="12"> The grass is always greener on</tspan>
+            <tspan x="2" dy="12">the other side of the fence</tspan>
+        </text>
+        <path transform="translate(0,125)" fill="url(#first)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 145.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>
+        <text x="145" y="125" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold; font-style: italic;"  text-anchor="end">Steve Roach</text>
+        <text x="145" y="145" style="fill: #555555; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;"  text-anchor="end">12/12/2023</text>
+
     </g>
 </svg>
