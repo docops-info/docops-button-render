@@ -126,7 +126,7 @@ class LargeCardNext {
             val color = theme.buttonColor(button)
             btns.append(
                 """
-                <a xlink:href="${button.link}" href="${button.link}" target="$win">
+                <a xlink:href="${button.link}" href="${button.link}" target="$win" style="text-decoration: none;">
                 <g transform="translate($startX,$startY)" class="basecard ${theme.buttonTextColor(button)}">
                 <use xlink:href="#outerBox" stroke="$color"><title class="description">${button.title.escapeXml()}</title></use>
                 <use xlink:href="#topTextBox"/>

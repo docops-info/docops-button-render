@@ -33,7 +33,7 @@ class PillButtonRenderer : AbstractButtonRenderer() {
             val color = theme.buttonColor(button)
             btns.append(
                 """
-                <a xlink:href="${button.link}" href="${button.link}" target="$win">
+                <a xlink:href="${button.link}" href="${button.link}" target="$win" style="text-decoration: none;">
                 <g role="button" cursor="pointer" transform="translate($startX,$startY)">
                     <rect id="button" x="5" y="5" width="$BUTTON_WIDTH" height="$BUTTON_HEIGHT" ry="26" rx="26" class="${button.id}_cls" filter="url(#buttonBlur)" />
             
