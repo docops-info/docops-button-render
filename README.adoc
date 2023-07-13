@@ -46,6 +46,9 @@ link:docs/{artifact}.html[]
 
 == History
 
+2023.17 - 2023-07-12::
+* Scaling
+
 2023.16 - 2023-07-08::
 * Pill Button updates
 
