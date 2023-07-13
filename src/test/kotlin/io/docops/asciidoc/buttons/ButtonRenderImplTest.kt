@@ -395,6 +395,7 @@ class ButtonRenderImplTest {
     fun drawRoundFromDoc() {
         val d = panels {
             theme {
+                scale=0.5f
                 colorMap {
                     color("#ff6385")
                     color("#36a3eb")
@@ -591,6 +592,7 @@ class ButtonRenderImplTest {
         val pans = panels {
             isPdf = flag
             theme {
+                scale = 0.5f
                 colorMap {
                     color("#9C1AB1")
                     color("#4918B8")

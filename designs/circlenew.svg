@@ -41,7 +41,7 @@
 
             .raise:hover {
                 stroke: gold;
-                stroke-width: 3px;
+                stroke-width: 1px;
                 opacity: 0.9;
             }
         </style>
@@ -50,16 +50,33 @@
 
     <g transform="translate(100, 100)" cursor="pointer">
         <use xlink:href="#3DBlueCircle" class="raise"/>
-        <text x="-10" y="-10" font-family="Arial" fill="#fcfcfc"> Line1</text>
+        <text x="0" y="-10" font-family="Arial" fill="#fcfcfc" text-anchor='middle' dominant-baseline="central" class="raise"> Line1</text>
     </g>
 
     <g transform="translate(275, 100)" cursor="pointer">
         <circle id="3DRedCircle" cx="0" cy="0" r="80" style="fill:url(#redCircle)"  class="raise"/>
-        <text x="-10" y="-10" font-family="Arial" fill="#fcfcfc"> Line1</text>
+        <text x="0" y="-10" font-family="Arial" fill="#fcfcfc" text-anchor='middle' dominant-baseline="central" class="raise"> Line1</text>
     </g>
 
     <g transform="translate(450, 100)" cursor="pointer">
         <circle id="3DRedCircle" cx="0" cy="0" r="80" style="fill:url(#orangeCircle)" class="raise"/>
-        <text x="-10" y="-10" font-family="Arial" fill="#fcfcfc"> Line1</text>
+        <text x="0" y="0" font-family="Arial" fill="#fcfcfc" text-anchor='middle' dominant-baseline="central" class="raise"> Line1</text>
+    </g>
+    <g transform="translate(100, 270)" cursor="pointer">
+        <use xlink:href="#3DBlueCircle" class="raise"/>
+        <text x="0" y="-10" font-family="Arial" fill="#fcfcfc" text-anchor='middle' dominant-baseline="central" class="raise"> Line1</text>
+    </g>
+    <g transform="translate(275, 270)" cursor="pointer">
+        <circle cx="0" cy="0" r="80" style="fill:#fcfcfc; stroke: #f0afd1; stroke-width: 3px" />
+        <text x="0" y="-10" font-family="Arial" fill="#000000" text-anchor='middle' dominant-baseline="central" class="raise"> Line1</text>
+
+    </g>
+    <g transform="translate(450, 270)" cursor="pointer">
+        <circle cx="0" cy="0" r="80" style="fill:none; stroke: #f0afd1; stroke-width: 5px" class="raise" filter="url(#Bevel2)"/>
+        <text x="0" y="-30" font-family="Arial" fill="#000000" text-anchor='middle' dominant-baseline="central" class="raise">
+            <tspan x="0" dy="10">Computer</tspan>
+            <tspan x="0" dy="14">Works</tspan>
+            <tspan x="0" dy="14">Inc.</tspan>
+        </text>
     </g>
 </svg>

@@ -29,10 +29,12 @@ class RoundButtonItemRenderer : ButtonMaker() {
         if(!theme.isPDF) {
             sb.append(styles)
         }
+        sb.append("<g transform='scale(${theme.scale})'>")
         sb.append(drawButtons(buttons,theme))
         if(theme.legendOn) {
             sb.append(drawLegend(types))
         }
+        sb.append("</g>")
         sb.append(makeSvgEnd())
         return sb.toString()
     }

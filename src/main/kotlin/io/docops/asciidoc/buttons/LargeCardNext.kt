@@ -10,16 +10,18 @@ class LargeCardNext {
 
     fun makeButtons(buttons: MutableList<MutableList<Button>>, theme: Theme): String {
         val svgBuilder = StringBuilder()
-        svgBuilder.append(startSvg(height = height(buttons), width = width(theme)))
+        svgBuilder.append(startSvg(height = height(buttons), width = width(theme), theme = theme))
         svgBuilder.append(makeDefs(buttons = buttons, theme = theme))
+        svgBuilder.append("<g transform='scale(${theme.scale})'>")
         svgBuilder.append(drawButtons(buttonList = buttons, theme = theme))
+        svgBuilder.append("</g>")
         svgBuilder.append(endSvg())
         return svgBuilder.toString()
     }
 
-    private fun startSvg(height: Int, width: Int): String {
-        return """<svg xmlns="http://www.w3.org/2000/svg" width="$width" height="$height"
-     viewBox="0 0 $width $height" xmlns:xlink="http://www.w3.org/1999/xlink">"""
+    private fun startSvg(height: Int, width: Int, theme: Theme): String {
+        return """<svg xmlns="http://www.w3.org/2000/svg" width="${width * theme.scale}" height="${height * theme.scale}"
+     viewBox="0 0 ${width * theme.scale} ${height * theme.scale}" xmlns:xlink="http://www.w3.org/1999/xlink">"""
     }
 
     private fun endSvg(): String {

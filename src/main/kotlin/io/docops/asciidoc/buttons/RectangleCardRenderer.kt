@@ -23,9 +23,7 @@ class RectangleCardRenderer : ButtonMaker() {
             sb.append(styles)
         }
         sb.append(makeDefs(buttons, theme))
-        /*sb.append( """
-    ${createDefs(buttons, theme)}
-    """)*/
+        sb.append("<g transform='scale(${theme.scale})'>")
         var row = 0
         var column = 0
         var count = 0
@@ -39,6 +37,7 @@ class RectangleCardRenderer : ButtonMaker() {
             column = 0
 
         }
+        sb.append("</g>")
         sb.append("</svg>")
         return sb.toString()
     }

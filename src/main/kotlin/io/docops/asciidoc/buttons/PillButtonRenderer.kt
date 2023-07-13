@@ -9,10 +9,11 @@ class PillButtonRenderer : AbstractButtonRenderer() {
 
 
     override fun drawButtons(buttonList: MutableList<MutableList<Button>>, theme: Theme): String {
-        val sb = StringBuilder()
+        val sb = StringBuilder("<g transform=\"scale(${theme.scale})\">")
         buttonList.forEachIndexed { index, buttons ->
             sb.append(drawPills(index, buttons, theme))
         }
+        sb.append("</g>")
         return sb.toString()
     }
 
