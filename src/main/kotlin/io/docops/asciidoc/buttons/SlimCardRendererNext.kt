@@ -36,7 +36,7 @@ class SlimCardRendererNext : AbstractButtonRenderer() {
         """
         <g transform="translate($startX,$startY)" cursor="pointer">
         <a xlink:href="${button.link}" target="$win" style='text-decoration: none; font-family:Arial; fill: #fcfcfc;'>
-        <rect x="0" y="0" fill="#fcfcfc" width="$BUTTON_HEIGHT" height="$BUTTON_HEIGHT" rx="5" ry="5"  stroke="#000000" class="raise">
+        <rect x="0" y="0" fill="#fcfcfc" width="$BUTTON_HEIGHT" height="$BUTTON_HEIGHT" rx="5" ry="5"  stroke="#000000" class="${button.id}_cls raise">
             <title>${button.title.escapeXml()}</title>
         </rect>
         <path filter="url(#buttonBlur)" class="${button.id}_cls"  d="M 0 5.0 A 5.0 5.0 0 0 1 5.0 0 L 145.0 0 A 5.0 5.0 0 0 1 150.0 5.0 L 150.0 35.0 A 0.0 0.0 0 0 1 150.0 35.0 L 0.0 35.0 A 0.0 0.0 0 0 1 0 35.0 Z"/>
@@ -44,9 +44,7 @@ class SlimCardRendererNext : AbstractButtonRenderer() {
         <text text-anchor="middle" x="75" y="8" class="glass" style="fill: #fcfcfc; font-family: Arial,Helvetica, sans-serif; font-size: 10px; font-weight: bold;">
             $title
         </text>
-        <rect id="buttontop" x="4" y="3" width="140" height="12" ry="18" rx="18" fill="url(#topshineGrad)" filter="url(#topshineBlur)"/>
-        <rect id="buttonbottom" x="4" y="26" width="140" height="4" fill="#ffffff" ry="18" rx="18" fill-opacity="0.3" filter="url(#bottomshine)"/>
-        <text x="0" y="38" class="${theme.buttonTextColor(button)}">
+         <text x="0" y="38" class="${theme.buttonTextColor(button)}">
             $lines
         </text>
         <path class="${button.id}_cls" transform="translate(0,125)" d="M 0 0.0 A 0.0 0.0 0 0 1 0.0 0 L 150.0 0 A 0.0 0.0 0 0 1 150.0 0.0 L 150.0 20.0 A 5.0 5.0 0 0 1 144.0 25.0 L 5.0 25.0 A 5.0 5.0 0 0 1 0 20.0 Z"/>

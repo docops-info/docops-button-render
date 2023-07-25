@@ -275,3 +275,26 @@ class PanelStroke(val color: String = "black", val width: Int = 3)
 fun theme(theme: Theme.() -> Unit): Theme {
     return Theme().apply(theme).validate()
 }
+
+//language=css
+val DIVISION2 = mutableListOf(
+    "#45618E",
+    "#A43B3B",
+    "#FFD373",
+    "#F7E67A",
+    "#01FF90",
+    "#FF6F36",
+    "#EAA213",
+    "#FFAF10",
+    "#FF7F00",
+    "#6D4F98"
+)
+
+//language=css
+val DESTINY = mutableListOf("#c2bbb2", "#336b3e","#567e9d","#4f3663", "#cdad36")
+val DIABLO = mutableListOf(
+    "#790e66",
+    "#003a49",
+    "#00156f",
+    "#5500b5",
+    "#ae00ab")

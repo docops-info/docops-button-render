@@ -109,7 +109,9 @@ class ColorMap {
         colors.add(color)
     }
 
-
+    fun named(colorList: MutableList<String>) {
+        colors.addAll(colorList)
+    }
 }
 
 

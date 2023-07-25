@@ -592,18 +592,13 @@ class ButtonRenderImplTest {
         val pans = panels {
             isPdf = flag
             theme {
-                scale = 0.5f
+                scale = 0.6f
                 colorMap {
-                    color("#9C1AB1")
-                    color("#4918B8")
-                    color("#C861DF")
-                    color("#B8D7D5")
-                    color("#6526FE")
-                    color("#3FA3B2")
+                    named(DIVISION2)
                 }
                 legendOn = false
                 layout {
-                    columns = 2
+                    columns = 3
                     groupBy = Grouping.TYPE
                     groupOrder = GroupingOrder.ASCENDING
                 }
@@ -795,12 +790,7 @@ class ButtonRenderImplTest {
         val d = panels {
             theme {
                 colorMap {
-                    color("#9C1AB1")
-                    color("#4918B8")
-                    color("#C861DF")
-                    color("#B8D7D5")
-                    color("#6526FE")
-                    color("#3FA3B2")
+                    named(DIABLO)
                 }
             }
             button { }
