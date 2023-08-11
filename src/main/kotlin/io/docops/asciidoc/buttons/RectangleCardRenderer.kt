@@ -125,7 +125,7 @@ class RectangleCardRenderer : ButtonMaker() {
             if(index > 0) {
                 downBy = 20
             }
-            sb.append("""<tspan  x="$x" dy="$downBy"><a xlink:href="${link.href}" class="linkText" target="$window">${link.label}</a></tspan>""")
+            sb.append("""<tspan  x="$x" dy="$downBy"><a xlink:href="${link.href}" class="linkText" target="$window">${link.label.escapeXml()}</a></tspan>""")
         }
         sb.append("</text>")
         return sb.toString()

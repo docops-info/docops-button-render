@@ -168,7 +168,7 @@ class RoundButtonItemRenderer : ButtonMaker() {
         #${theme.id} circle.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
         #${theme.id} circle.card:hover { opacity: 0.9; transition: fill .5s ease-in;}
         #${theme.id} use.card { filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.${theme.dropShadow})); pointer-events: bounding-box; opacity: 1; }
-        #${theme.id} use.card:hover { opacity: 0.9; stroke-width: 3,stroke: gold; transition: fill .5s ease-in;}
+        #${theme.id} use.card:hover { opacity: 0.9; stroke-width: 3; stroke: gold; transition: fill .5s ease-in;}
         #${theme.id} .subtitle { font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 9pt; }
         #${theme.id} rect.legend { pointer-events: bounding-box; opacity: 1; }
 
